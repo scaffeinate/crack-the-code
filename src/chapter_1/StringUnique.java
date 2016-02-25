@@ -56,13 +56,14 @@ public class StringUnique {
 
 	/**
 	 * Check if characters are unique: Use a counter for each character and
-	 * increment If at least 1 counter element > 1 then return false
+	 * increment If at least 1 counter element > 1 then return false:
+	 * Complexity: O(n), Space: O(1)
 	 * 
 	 * @param word
 	 * @return isUniqueChars
 	 */
 	private boolean checkUniqueCharsArray(String word) {
-		int counter[] = new int[256];
+		int counter[] = new int[128];
 		char[] characters = word.toCharArray();
 
 		for (int i = 0; i < characters.length; i++) {
@@ -85,7 +86,7 @@ public class StringUnique {
 	 * Only works for characters a to z, Complexity: O(n)
 	 * 
 	 * @param word
-	 * @return
+	 * @return isUniqueChars
 	 */
 	private boolean checkUniqueCharsBits(String word) {
 		int checker = 0;
@@ -117,7 +118,7 @@ public class StringUnique {
 	 * with string size. Complexity: O(n), Extra Space: O(n)
 	 * 
 	 * @param word
-	 * @return
+	 * @return isUniqueChars
 	 */
 	private boolean checkUniqueCharsSet(String word) {
 		Set<Character> characterSet = new HashSet<Character>();
