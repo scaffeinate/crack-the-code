@@ -19,6 +19,6 @@ public class TimerUtil {
 	}
 	
 	public void calculateExecTime() {
-		System.out.println(this.process + " time taken: " + ((this.stopTime - this.startTime)/1000000) + "ms"); 
+		System.out.println(this.process + " time taken: " + ((double) (this.stopTime - this.startTime)/1000000) + "ms"); 
 	}
 }
