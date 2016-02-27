@@ -84,7 +84,8 @@ public class PalindromePermutation {
 
 	/**
 	 * Check if a palindrome exists in the permutation of words. Using an
-	 * integer value and using bit manipulation instead of an array
+	 * integer value and using bit manipulation instead of an array. 
+	 * Complexity: O(n), Space: O(1)
 	 * 
 	 * @param input
 	 * @return isPalindromePermutation
