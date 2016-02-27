@@ -48,7 +48,7 @@ public class CheckPermutation {
 	 * 
 	 * @param first
 	 * @param second
-	 * @return
+	 * @return isPermutation
 	 */
 	private boolean isPermutationArray(String first, String second) {
 		int[] counter = new int[128];
