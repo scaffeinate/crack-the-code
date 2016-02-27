@@ -56,8 +56,8 @@ public class StringUnique {
 
 	/**
 	 * Check if characters are unique: Use a counter for each character and
-	 * increment If at least 1 counter element > 1 then return false:
-	 * Complexity: O(n), Space: O(1)
+	 * increment If at least 1 counter element > 1 then return false: Complexity:
+	 * O(n), Space: O(1)
 	 * 
 	 * @param word
 	 * @return isUniqueChars
@@ -80,10 +80,10 @@ public class StringUnique {
 	}
 
 	/**
-	 * Check if characters are unique: Using a bit vector of length 32 instead
-	 * of using a counter array. Manipulate the bits for each character. If bit
-	 * is set to 1 already then character is already present -> return false
-	 * Only works for characters a to z, Complexity: O(n)
+	 * Check if characters are unique: Using a bit vector of length 32 instead of
+	 * using a counter array. Manipulate the bits for each character. If bit is
+	 * set to 1 already then character is already present -> return false Only
+	 * works for characters a to z, Complexity: O(n)
 	 * 
 	 * @param word
 	 * @return isUniqueChars
@@ -96,9 +96,8 @@ public class StringUnique {
 			int val = characters[i] - 'a';
 
 			/*
-			 * Set the bit at character[i]+1 to 1. Perform bitwise & with
-			 * checker value If value is greater than 0 then it is already set
-			 * -> return false
+			 * Set the bit at character[i]+1 to 1. Perform bitwise & with checker
+			 * value If value is greater than 0 then it is already set -> return false
 			 */
 			if ((checker & (1 << val)) > 0) {
 				return false;

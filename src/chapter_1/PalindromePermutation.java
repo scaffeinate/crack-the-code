@@ -21,8 +21,8 @@ public class PalindromePermutation {
 	 * Check if a palindrome exists in the permutation of words. Using a HashMap
 	 * to check if there is a corresponding character for each to satisfy the
 	 * palindrome condition with an exception in case of odd length palindrome.
-	 * Odd length palindrome will have 1 middle character. Time Complexity:
-	 * O(n), Additional Space: O(n)
+	 * Odd length palindrome will have 1 middle character. Time Complexity: O(n),
+	 * Additional Space: O(n)
 	 * 
 	 * @param input
 	 * @return isPalindromePermutation
@@ -53,10 +53,9 @@ public class PalindromePermutation {
 	}
 
 	/**
-	 * Check if a palindrome exists in the permutation of words. Using an array
-	 * of length 26 for each character to satisfy palindrome condition.
-	 * Complexity: O(n), Space: O(1) [26 characters fixed]. Works for all
-	 * alphabets.
+	 * Check if a palindrome exists in the permutation of words. Using an array of
+	 * length 26 for each character to satisfy palindrome condition. Complexity:
+	 * O(n), Space: O(1) [26 characters fixed]. Works for all alphabets.
 	 * 
 	 * @param input
 	 * @return isPalindromePermutation
@@ -83,9 +82,9 @@ public class PalindromePermutation {
 	}
 
 	/**
-	 * Check if a palindrome exists in the permutation of words. Using an
-	 * integer value and using bit manipulation instead of an array. 
-	 * Complexity: O(n), Space: O(1)
+	 * Check if a palindrome exists in the permutation of words. Using an integer
+	 * value and using bit manipulation instead of an array. Complexity: O(n),
+	 * Space: O(1)
 	 * 
 	 * @param input
 	 * @return isPalindromePermutation
