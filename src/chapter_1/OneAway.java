@@ -53,6 +53,42 @@ public class OneAway {
     return true;
   }
 
+  private boolean isEditInsert(String input1, String input2, int len1, int len2) {
+    int i = 0, j = 0;
+
+    while (i < len1 && j < len2) {
+      if (input1.charAt(i) == input2.charAt(j)) {
+        i++;
+        j++;
+      } else {
+        if (i != j) {
+          return false;
+        }
+        i++;
+      }
+    }
+    return true;
+  }
+
+  private boolean isEditReplace(String input1, String input2, int len) {
+    int i = 0;
+    boolean isChanged = false;
+
+    while (i < len) {
+      if (input1.charAt(i) != input2.charAt(i)) {
+        if (isChanged) {
+          return false;
+        }
+
+        isChanged = true;
+      }
+
+      i++;
+    }
+
+    return true;
+  }
+
   private boolean checkOneAway(String input1, String input2) {
     int len1 = input1.length();
     int len2 = input2.length();
@@ -70,6 +106,21 @@ public class OneAway {
     return false;
   }
 
+  private boolean checkOneAway2(String input1, String input2) {
+    int len1 = input1.length();
+    int len2 = input2.length();
+
+    if (len1 == len2) {
+      return isEditReplace(input1, input2, len1);
+    } else if (len1 + 1 == len2) {
+      return isEditInsert(input2, input1, len2, len1);
+    } else if (len1 - 1 == len2) {
+      return isEditInsert(input1, input2, len1, len2);
+    }
+
+    return false;
+  }
+
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     OneAway oneAway = new OneAway();
@@ -79,6 +130,7 @@ public class OneAway {
 
     if (input1 != null && input2 != null) {
       System.out.println(oneAway.checkOneAway(input1, input2));
+      System.out.println(oneAway.checkOneAway2(input1, input2));
     }
 
     scanner.close();
