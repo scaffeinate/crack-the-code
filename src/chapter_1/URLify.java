@@ -39,7 +39,7 @@ public class URLify {
 	}
 
 	/**
-	 * Copy the input string to a character array of size to accomodate %20 for
+	 * Copy the input string to a character array of size to accommodate %20 for
 	 * each space
 	 * 
 	 * @param input
