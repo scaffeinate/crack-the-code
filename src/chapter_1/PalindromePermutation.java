@@ -17,12 +17,24 @@ import java.util.Scanner;
  */
 public class PalindromePermutation {
 
+	/**
+	 * Check if a palindrome exists in the permutation of words. Using a HashMap
+	 * to check if there is a corresponding character for each to satisfy the
+	 * palindrome condition with an exception in case of odd length palindrome.
+	 * Odd length palindrome will have 1 middle character. Time Complexity:
+	 * O(n), Additional Space: O(n)
+	 * 
+	 * @param input
+	 * @return isPalindromePermutation
+	 */
 	private boolean isPalindromePermutationMap(String input) {
 		Map<Character, Integer> characterMap = new HashMap<Character, Integer>();
 		char[] characters = input.toCharArray();
+		int sum = 0;
 
 		for (char ch : characters) {
 			if (ch != ' ') {
+				// Toggle the value for each character
 				if (characterMap.containsKey(ch)) {
 					int count = characterMap.get(ch);
 					characterMap.put(ch, (count == 1) ? 0 : 1);
@@ -32,14 +44,23 @@ public class PalindromePermutation {
 			}
 		}
 
-		int sum = 0;
 		for (Character key : characterMap.keySet()) {
 			sum += characterMap.get(key).intValue();
 		}
 
+		// sum should be either 0 or 1 for it to be a palindrome
 		return sum <= 1;
 	}
 
+	/**
+	 * Check if a palindrome exists in the permutation of words. Using an array
+	 * of length 26 for each character to satisfy palindrome condition.
+	 * Complexity: O(n), Space: O(1) [26 characters fixed]. Works for all
+	 * alphabets.
+	 * 
+	 * @param input
+	 * @return isPalindromePermutation
+	 */
 	private boolean isPalindromePermutationArr(String input) {
 		int[] counter = new int[26];
 		char[] characters = input.toCharArray();
@@ -47,6 +68,7 @@ public class PalindromePermutation {
 
 		for (char ch : characters) {
 			if (ch != ' ') {
+				// Toggle values in the array between 0 and 1 for each character
 				int val = counter[ch - 'a'];
 				counter[ch - 'a'] = (val == 1) ? 0 : 1;
 			}
@@ -55,33 +77,39 @@ public class PalindromePermutation {
 		for (int i = 0; i < counter.length; i++) {
 			sum += counter[i];
 		}
+
+		// sum should be either 0 or 1 for it to be a palindrome
 		return sum <= 1;
 	}
 
+	/**
+	 * Check if a palindrome exists in the permutation of words. Using an
+	 * integer value and using bit manipulation instead of an array
+	 * 
+	 * @param input
+	 * @return isPalindromePermutation
+	 */
 	private boolean isPalindromePermutationBit(String input) {
 		int checker = 0;
 		char[] characters = input.toCharArray();
 
 		for (char ch : characters) {
 			int diff = ch - 'a';
-			int shift = (1 << diff);
+			int shift = (1 << diff); // set 1 to the diff bit
 
-			if ((checker & shift) == (int) Math.pow(2.0, diff)) {
+			// if bit is already set to 1 at the position it can't be 0
+			if ((checker & shift) != 0) {
+				// toggle that bit
 				int val = Integer.MAX_VALUE - (int) Math.pow(2.0, diff);
+				// use & to toggle the bit
 				checker &= val;
 			} else {
 				checker |= shift;
 			}
 		}
 
-		int count = 0;
-
-		while (checker > 0) {
-			checker &= checker - 1;
-			count++;
-		}
-
-		return count <= 1;
+		// checker should have one or zero bits set to 1
+		return (checker & (checker - 1)) == 0;
 	}
 
 	public static void main(String[] args) {
