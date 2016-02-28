@@ -16,6 +16,12 @@ import java.util.Scanner;
  */
 public class StringCompression {
 
+  /**
+   * Compresses the input string and returns the shorter of the two strings
+   * 
+   * @param input
+   * @return compressedString
+   */
   private String compressString(String input) {
     StringBuilder builder = new StringBuilder();
     int i = 0, counter = 1;
@@ -31,6 +37,7 @@ public class StringCompression {
 
     builder.append(input.charAt(i)).append(counter);
 
+    // return the shorter of the compressed and original string
     return (builder.length() < input.length()) ? builder.toString() : input;
   }
 
