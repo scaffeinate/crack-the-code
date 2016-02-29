@@ -18,7 +18,7 @@ import java.util.Set;
  */
 public class ZeroMatrix {
 
-  private int[][] constructZeroMatrix(int[][] matrix) {
+  private void constructZeroMatrix(int[][] matrix) {
 
     Set<Integer> rows = new HashSet<Integer>();
     Set<Integer> columns = new HashSet<Integer>();
@@ -43,8 +43,40 @@ public class ZeroMatrix {
         matrix[i][column] = 0;
       }
     }
+    
+    printMatrix(matrix);
+  }
 
-    return matrix;
+  private void constructZeroMatrix2(int[][] matrix) {
+    boolean[] rows = new boolean[matrix.length];
+    boolean[] columns = new boolean[matrix.length];
+
+    for (int i = 0; i < matrix.length; i++) {
+      for (int j = 0; j < matrix.length; j++) {
+        if (matrix[i][j] == 0) {
+          rows[i] = true;
+          columns[j] = true;
+        }
+      }
+    }
+    
+    for(int i=0;i<rows.length;i++) {
+      for(int j=0;j<matrix.length;j++) {
+        if(rows[i]) {
+          matrix[i][j] = 0;
+        }
+      }
+    }
+    
+    for(int i=0;i<matrix.length;i++) {
+      for(int j=0;j<columns.length;j++) {
+        if(columns[j]) {
+          matrix[i][j] = 0;
+        }
+      }
+    }
+    
+    printMatrix(matrix);
   }
 
   private void printMatrix(int[][] matrix) {
@@ -88,8 +120,9 @@ public class ZeroMatrix {
       zeroMatrix.printMatrix(matrix);
 
       System.out.println("After setting zeros:");
-      zeroMatrix.printMatrix(zeroMatrix.constructZeroMatrix(matrix));
+      zeroMatrix.constructZeroMatrix(matrix);
 
+      scanner.close();      
     } catch (FileNotFoundException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
