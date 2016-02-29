@@ -13,34 +13,53 @@ import java.util.Scanner;
  */
 public class RotateMatrix {
 
+  /**
+   * Rotates the matrix in-place. The number of layers is ceil(n/2) where n is
+   * the matrix length. For each layer shift the elements of top, left, right
+   * and bottom without using an extra array of size n.
+   * 
+   * temp = top
+   * top = left
+   * left = bottom
+   * bottom = right
+   * right = temp
+   * 
+   * @param matrix
+   * @param degrees
+   * @return matrix
+   */
   private int[][] rotate(int[][] matrix, int degrees) {
-
     int layers = (int) Math.ceil(matrix.length / 2.0);
-    System.out.println(layers);
 
     int top, left, right, bottom;
 
-    for (int i = 0; i < layers; i++) {
-      int len = matrix.length - 1;
-      top = left = i;
-      bottom = right = len - i;
-      int temp = 0;
+    // Rotate (degrees/90) times
+    for (int k = 0; k < (degrees / 90); k++) {
+      // For each layer do the shift
+      for (int i = 0; i < layers; i++) {
+        int len = matrix.length - 1;
+        top = left = i;
+        bottom = right = len - i;
+        int temp = 0;
 
-      for (int j = i; j < len - i; j++) {
-        temp = matrix[top][j];
-        matrix[top][j] = matrix[len - j][left];
-        matrix[len - j][left] = matrix[bottom][len - j];
-        matrix[bottom][len - j] = matrix[j][right];
-        matrix[j][right] = temp;
+        // shift the elements of each side
+        for (int j = i; j < len - i; j++) {
+          temp = matrix[top][j];
+          matrix[top][j] = matrix[len - j][left];
+          matrix[len - j][left] = matrix[bottom][len - j];
+          matrix[bottom][len - j] = matrix[j][right];
+          matrix[j][right] = temp;
+        }
       }
-
     }
-
-    printMatrix(matrix);
 
     return matrix;
   }
 
+  /**
+   * Prints the matrix
+   * @param matrix
+   */
   private void printMatrix(int[][] matrix) {
     for (int i = 0; i < matrix.length; i++) {
       for (int j = 0; j < matrix.length; j++) {
@@ -62,6 +81,8 @@ public class RotateMatrix {
     try {
       FileReader fileReader = new FileReader("input_files/image_matrix");
       Scanner scanner = new Scanner(fileReader);
+      
+      // Read input from file
       while (scanner.hasNextLine()) {
         builder.append(scanner.nextLine().trim()).append("\n");
         n++;
@@ -77,10 +98,12 @@ public class RotateMatrix {
         }
       }
 
-      System.out.println("Original Image Matrix: ");
+      System.out.println("Original Image Matrix:");
       rotateMatrix.printMatrix(matrix);
 
+      System.out.println("\nAfter Rotation:");
       rotateMatrix.rotate(matrix, 90);
+      rotateMatrix.printMatrix(matrix);
 
       scanner.close();
     } catch (FileNotFoundException e) {
