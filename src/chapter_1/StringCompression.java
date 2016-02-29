@@ -3,6 +3,9 @@
  */
 package chapter_1;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 
 /**
@@ -44,15 +47,21 @@ public class StringCompression {
 
   /**
    * @param args
+   * @throws FileNotFoundException 
    */
-  public static void main(String[] args) {
+  public static void main(String[] args) throws FileNotFoundException {
     // TODO Auto-generated method stub
-    Scanner scanner = new Scanner(System.in);
+    FileReader fileReader = new FileReader(new File("input_files/string_compression"));
+    Scanner scanner = new Scanner(fileReader);
     StringCompression stringCompression = new StringCompression();
 
-    String input = scanner.nextLine();
-    if (input != null && !input.isEmpty()) {
-      System.out.println(stringCompression.compressString(input));
+    while (scanner.hasNextLine()) {
+      String input = scanner.nextLine();
+      if (input != null && !input.isEmpty()) {
+        System.out.println("Input: " + input);
+        System.out.println("Compressed: " + stringCompression.compressString(input));
+        System.out.println();
+      }
     }
 
     scanner.close();

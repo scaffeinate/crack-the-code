@@ -105,7 +105,7 @@ public class ZeroMatrix {
         firstRowZero = true;
       }
     }
-    
+
     for (int i = 0; i < matrix.length; i++) {
       if (matrix[i][0] == 0) {
         firstColumnZero = true;
@@ -160,6 +160,7 @@ public class ZeroMatrix {
 
   /**
    * Given a row set the entire row values to 0
+   * 
    * @param matrix
    * @param row
    */
@@ -171,6 +172,7 @@ public class ZeroMatrix {
 
   /**
    * Given a column set the entire column values to 0
+   * 
    * @param matrix
    * @param column
    */
@@ -182,6 +184,7 @@ public class ZeroMatrix {
 
   /**
    * Prints the matrix
+   * 
    * @param matrix
    */
   private void printMatrix(int[][] matrix) {
@@ -195,6 +198,7 @@ public class ZeroMatrix {
 
   /**
    * Makes a copy of the matrix and return the copy
+   * 
    * @param matrix
    * @return copy
    */
@@ -211,56 +215,53 @@ public class ZeroMatrix {
 
   /**
    * @param args
+   * @throws FileNotFoundException 
    */
-  public static void main(String[] args) {
+  public static void main(String[] args) throws FileNotFoundException {
     // TODO Auto-generated method stub
     FileReader fileReader;
     ZeroMatrix zeroMatrix;
-    try {
-      fileReader = new FileReader(new File("input_files/zero_matrix"));
-      Scanner scanner = new Scanner(fileReader);
-      zeroMatrix = new ZeroMatrix();
-      StringBuilder builder = new StringBuilder();
-      int m = 0, n = 0;
 
-      while (scanner.hasNextLine()) {
-        String line = scanner.nextLine();
-        builder.append(line).append("\n");
-        m = line.split(" ").length;
-        n++;
-      }
+    fileReader = new FileReader(new File("input_files/zero_matrix"));
+    Scanner scanner = new Scanner(fileReader);
+    zeroMatrix = new ZeroMatrix();
+    StringBuilder builder = new StringBuilder();
+    int m = 0, n = 0;
 
-      System.out.println(m + " " + n);
-      
-      int[][] matrix = new int[n][m];
-      String[] lines = builder.toString().split("\n");
-      for (int i = 0; i < n; i++) {
-        String[] rows = lines[i].split(" ");
-        for (int j = 0; j < m; j++) {
-          matrix[i][j] = Integer.parseInt(rows[j]);
-        }
-      }
-
-      System.out.println("Original Matrix:");
-      zeroMatrix.printMatrix(matrix);
-
-      int[][] copy = zeroMatrix.copyMatrix(matrix);
-      System.out.println("\nAfter setting zeros:");
-      zeroMatrix.constructZeroMatrix(copy);
-
-      copy = zeroMatrix.copyMatrix(matrix);
-      System.out.println("\nAfter setting zeros - method 2:");
-      zeroMatrix.constructZeroMatrix2(copy);
-
-      copy = zeroMatrix.copyMatrix(matrix);
-      System.out.println("\nAfter setting zeros - method 3:");
-      zeroMatrix.constructZeroMatrix3(copy);
-
-      scanner.close();
-    } catch (FileNotFoundException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+    while (scanner.hasNextLine()) {
+      String line = scanner.nextLine();
+      builder.append(line).append("\n");
+      m = line.split(" ").length;
+      n++;
     }
+
+    System.out.println(m + " " + n);
+
+    int[][] matrix = new int[n][m];
+    String[] lines = builder.toString().split("\n");
+    for (int i = 0; i < n; i++) {
+      String[] rows = lines[i].split(" ");
+      for (int j = 0; j < m; j++) {
+        matrix[i][j] = Integer.parseInt(rows[j]);
+      }
+    }
+
+    System.out.println("Original Matrix:");
+    zeroMatrix.printMatrix(matrix);
+
+    int[][] copy = zeroMatrix.copyMatrix(matrix);
+    System.out.println("\nAfter setting zeros:");
+    zeroMatrix.constructZeroMatrix(copy);
+
+    copy = zeroMatrix.copyMatrix(matrix);
+    System.out.println("\nAfter setting zeros - method 2:");
+    zeroMatrix.constructZeroMatrix2(copy);
+
+    copy = zeroMatrix.copyMatrix(matrix);
+    System.out.println("\nAfter setting zeros - method 3:");
+    zeroMatrix.constructZeroMatrix3(copy);
+
+    scanner.close();
   }
 
 }

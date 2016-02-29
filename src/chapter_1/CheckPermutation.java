@@ -1,5 +1,8 @@
 package chapter_1;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -74,15 +77,24 @@ public class CheckPermutation {
     return true;
   }
 
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
+  public static void main(String[] args) throws FileNotFoundException {
+
+    FileReader fileReader = new FileReader(new File("input_files/check_permutation"));
+    Scanner scanner = new Scanner(fileReader);
     CheckPermutation checkPermutation = new CheckPermutation();
+    String input, first, second;
 
-    String first = scanner.nextLine();
-    String second = scanner.nextLine();
+    while (scanner.hasNextLine()) {
+      input = scanner.nextLine();
+      first = input.split(":")[0];
+      second = input.split(":")[1];
 
-    System.out.println(checkPermutation.isPermutationSorted(first, second));
-    System.out.println(checkPermutation.isPermutationArray(first, second));
+      System.out.println("Input: " + input);
+      System.out.println("Permutation check using sorted: " + checkPermutation.isPermutationSorted(first, second));
+      System.out.println("Permutation check using array: " + checkPermutation.isPermutationArray(first, second));
+      System.out.println();
+    }
+
     scanner.close();
   }
 }

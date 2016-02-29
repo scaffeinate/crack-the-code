@@ -1,5 +1,8 @@
 package chapter_1;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -112,15 +115,22 @@ public class PalindromePermutation {
     return (checker & (checker - 1)) == 0;
   }
 
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
+  public static void main(String[] args) throws FileNotFoundException {
+    
+    FileReader fileReader = new FileReader(new File("input_files/palindrome_permutation"));
+    Scanner scanner = new Scanner(fileReader);
     PalindromePermutation palindromePermutation = new PalindromePermutation();
-    String input = scanner.nextLine().toLowerCase();
+    String input;
 
-    if (input != null && !input.isEmpty()) {
-      System.out.println(palindromePermutation.isPalindromePermutationMap(input));
-      System.out.println(palindromePermutation.isPalindromePermutationArr(input));
-      System.out.println(palindromePermutation.isPalindromePermutationBit(input));
+    while(scanner.hasNextLine()) {
+      input = scanner.nextLine().toLowerCase();
+      if (input != null && !input.isEmpty()) {
+        System.out.println("Input: " + input);
+        System.out.println("Is palindrome permutation using map: " + palindromePermutation.isPalindromePermutationMap(input));
+        System.out.println("Is palindrome permutation using arr: " + palindromePermutation.isPalindromePermutationArr(input));
+        System.out.println("Is palindrome permutation using bit: " + palindromePermutation.isPalindromePermutationBit(input));
+        System.out.println();
+      }
     }
 
     scanner.close();

@@ -1,5 +1,8 @@
 package chapter_1;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 
 /**
@@ -246,17 +249,25 @@ public class OneAway {
     return true;
   }
 
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
+  public static void main(String[] args) throws FileNotFoundException {
+    FileReader fileReader = new FileReader(new File("input_files/one_away"));
+    Scanner scanner = new Scanner(fileReader);
     OneAway oneAway = new OneAway();
+    String input, first, second;
 
-    String input1 = scanner.nextLine();
-    String input2 = scanner.nextLine();
-
-    if (input1 != null && input2 != null) {
-      System.out.println(oneAway.checkOneAway(input1, input2));
-      System.out.println(oneAway.checkOneAway2(input1, input2));
-      System.out.println(oneAway.checkOneAway3(input1, input2));
+    while(scanner.hasNextLine()) {
+      input = scanner.nextLine();
+      first = input.split(":")[0];
+      second = input.split(":")[1];
+      
+      if (first != null && second != null) {
+        System.out.println("Input: " + input);
+        System.out.println("Is one edit away? " + oneAway.checkOneAway(first, second));
+        System.out.println("Is one edit away using method 2? " + oneAway.checkOneAway2(first, second));
+        System.out.println("Is one edit away using method 3? " + oneAway.checkOneAway3(first, second));
+        System.out.println();
+      }
+      
     }
 
     scanner.close();

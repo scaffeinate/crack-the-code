@@ -18,13 +18,10 @@ public class RotateMatrix {
    * the matrix length. For each layer shift the elements of top, left, right
    * and bottom without using an extra array of size n.
    * 
-   * temp = top
-   * top = left
-   * left = bottom
-   * bottom = right
-   * right = temp
+   * temp = top top = left left = bottom bottom = right right = temp
    * 
    * Complexity: O(n2), Space: O(n2)
+   * 
    * @param matrix
    * @param degrees
    * @return matrix
@@ -59,6 +56,7 @@ public class RotateMatrix {
 
   /**
    * Prints the matrix
+   * 
    * @param matrix
    */
   private void printMatrix(int[][] matrix) {
@@ -73,43 +71,41 @@ public class RotateMatrix {
   /**
    * 
    * @param args
+   * @throws FileNotFoundException 
    */
-  public static void main(String[] args) {
+  public static void main(String[] args) throws FileNotFoundException {
     RotateMatrix rotateMatrix = new RotateMatrix();
     StringBuilder builder = new StringBuilder();
     int[][] matrix;
     int n = 0;
-    try {
-      FileReader fileReader = new FileReader("input_files/image_matrix");
-      Scanner scanner = new Scanner(fileReader);
-      
-      // Read input from file
-      while (scanner.hasNextLine()) {
-        builder.append(scanner.nextLine().trim()).append("\n");
-        n++;
-      }
 
-      matrix = new int[n][n];
-      String[] lines = builder.toString().split("\n");
+    FileReader fileReader = new FileReader("input_files/image_matrix");
+    Scanner scanner = new Scanner(fileReader);
 
-      for (int i = 0; i < lines.length; i++) {
-        String[] rows = lines[i].split(" ");
-        for (int j = 0; j < rows.length; j++) {
-          matrix[i][j] = Integer.parseInt(rows[j]);
-        }
-      }
-
-      System.out.println("Original Image Matrix:");
-      rotateMatrix.printMatrix(matrix);
-
-      System.out.println("\nAfter Rotation:");
-      rotateMatrix.rotate(matrix, 90);
-      rotateMatrix.printMatrix(matrix);
-
-      scanner.close();
-    } catch (FileNotFoundException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+    // Read input from file
+    while (scanner.hasNextLine()) {
+      builder.append(scanner.nextLine().trim()).append("\n");
+      n++;
     }
+
+    matrix = new int[n][n];
+    String[] lines = builder.toString().split("\n");
+
+    for (int i = 0; i < lines.length; i++) {
+      String[] rows = lines[i].split(" ");
+      for (int j = 0; j < rows.length; j++) {
+        matrix[i][j] = Integer.parseInt(rows[j]);
+      }
+    }
+
+    System.out.println("Original Image Matrix:");
+    rotateMatrix.printMatrix(matrix);
+
+    System.out.println("\nAfter Rotation:");
+    rotateMatrix.rotate(matrix, 90);
+    rotateMatrix.printMatrix(matrix);
+
+    scanner.close();
+
   }
 }

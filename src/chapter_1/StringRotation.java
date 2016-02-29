@@ -3,6 +3,9 @@
  */
 package chapter_1;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 
 /**
@@ -59,17 +62,25 @@ public class StringRotation {
 
   /**
    * @param args
+   * @throws FileNotFoundException
    */
-  public static void main(String[] args) {
+  public static void main(String[] args) throws FileNotFoundException {
     // TODO Auto-generated method stub
-    Scanner scanner = new Scanner(System.in);
+    FileReader fileReader = new FileReader(new File("input_files/string_rotation"));
+    Scanner scanner = new Scanner(fileReader);
     StringRotation stringRotation = new StringRotation();
+    String input, s1, s2;
 
-    String s1 = scanner.nextLine();
-    String s2 = scanner.nextLine();
+    while (scanner.hasNextLine()) {
+      input = scanner.nextLine();
+      s1 = input.split(":")[0];
+      s2 = input.split(":")[1];
 
-    if (s1 != null && !s1.isEmpty() && s2 != null && !s2.isEmpty()) {
-      System.out.println(stringRotation.isStringRotation(s1, s2));
+      if (s1 != null && !s1.isEmpty() && s2 != null && !s2.isEmpty()) {
+        System.out.println("Input: " + input);
+        System.out.println("Is Rotation?: " + stringRotation.isStringRotation(s1, s2));
+        System.out.println();
+      }
     }
 
     scanner.close();

@@ -1,5 +1,8 @@
 package chapter_1;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 
 /**
@@ -87,14 +90,20 @@ public class URLify {
     return builder.toString();
   }
 
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
+  public static void main(String[] args) throws FileNotFoundException {
+    FileReader fileReader = new FileReader(new File("input_files/urlify"));
+    Scanner scanner = new Scanner(fileReader);
     URLify urlify = new URLify();
-
-    String input = scanner.nextLine();
-    if (input != null && !input.isEmpty()) {
-      int len = input.length();
-      System.out.println(urlify.getURL(urlify.copyString(input, len), len));
+    String input;
+    
+    while(scanner.hasNextLine()) {
+      input = scanner.nextLine();
+      if (input != null && !input.isEmpty()) {
+        int len = input.length();
+        System.out.println("Input: " + input);
+        System.out.println("URL: " + urlify.getURL(urlify.copyString(input, len), len));
+        System.out.println();
+      }
     }
 
     scanner.close();

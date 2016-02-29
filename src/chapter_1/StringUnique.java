@@ -1,5 +1,8 @@
 package chapter_1;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -130,17 +133,23 @@ public class StringUnique {
     return characterSet.size() == word.length();
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws FileNotFoundException {
 
     StringUnique stringUnique = new StringUnique();
-    Scanner scanner = new Scanner(System.in);
-    String word = scanner.nextLine().toLowerCase();
-
-    System.out.println(stringUnique.checkUniqueChars(word));
-    System.out.println(stringUnique.checkUniqueCharsSorted(word));
-    System.out.println(stringUnique.checkUniqueCharsArray(word));
-    System.out.println(stringUnique.checkUniqueCharsBits(word));
-    System.out.println(stringUnique.checkUniqueCharsSet(word));
+    FileReader fileReader = new FileReader(new File("input_files/string_unique"));
+    Scanner scanner = new Scanner(fileReader);
+    String word;
+    
+    while(scanner.hasNextLine()) {
+      word = scanner.nextLine().toLowerCase();
+      System.out.println("Input: " + word);
+      System.out.println("Is string unique? " + stringUnique.checkUniqueChars(word));
+      System.out.println("Is string unique using sorting? " + stringUnique.checkUniqueCharsSorted(word));
+      System.out.println("Is string unique using array? " + stringUnique.checkUniqueCharsArray(word));
+      System.out.println("Is string unique using bit? " + stringUnique.checkUniqueCharsBits(word));
+      System.out.println("Is string unique using set? " +  stringUnique.checkUniqueCharsSet(word));
+      System.out.println();
+    }
 
     scanner.close();
   }
