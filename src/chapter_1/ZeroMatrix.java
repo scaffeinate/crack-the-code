@@ -31,7 +31,7 @@ public class ZeroMatrix {
     Set<Integer> columns = new HashSet<Integer>();
 
     for (int i = 0; i < matrix.length; i++) {
-      for (int j = 0; j < matrix.length; j++) {
+      for (int j = 0; j < matrix[0].length; j++) {
         if (matrix[i][j] == 0) {
           rows.add(i);
           columns.add(j);
@@ -59,10 +59,10 @@ public class ZeroMatrix {
    */
   private void constructZeroMatrix2(int[][] matrix) {
     boolean[] rows = new boolean[matrix.length];
-    boolean[] columns = new boolean[matrix.length];
+    boolean[] columns = new boolean[matrix[0].length];
 
     for (int i = 0; i < matrix.length; i++) {
-      for (int j = 0; j < matrix.length; j++) {
+      for (int j = 0; j < matrix[0].length; j++) {
         if (matrix[i][j] == 0) {
           rows[i] = true;
           columns[j] = true;
@@ -100,11 +100,13 @@ public class ZeroMatrix {
      * check if firstRow and firstColumn contains 0 and set the flag to true if
      * so.
      */
-    for (int i = 0; i < matrix.length; i++) {
+    for (int i = 0; i < matrix[0].length; i++) {
       if (matrix[0][i] == 0) {
         firstRowZero = true;
       }
-
+    }
+    
+    for (int i = 0; i < matrix.length; i++) {
       if (matrix[i][0] == 0) {
         firstColumnZero = true;
       }
@@ -116,7 +118,7 @@ public class ZeroMatrix {
      * to 0.
      */
     for (int i = 1; i < matrix.length; i++) {
-      for (int j = 1; j < matrix.length; j++) {
+      for (int j = 1; j < matrix[0].length; j++) {
         if (matrix[i][j] == 0) {
           matrix[0][j] = 0;
           matrix[i][0] = 0;
@@ -162,7 +164,7 @@ public class ZeroMatrix {
    * @param row
    */
   private void nullifyRow(int[][] matrix, int row) {
-    for (int i = 0; i < matrix.length; i++) {
+    for (int i = 0; i < matrix[0].length; i++) {
       matrix[row][i] = 0;
     }
   }
@@ -184,7 +186,7 @@ public class ZeroMatrix {
    */
   private void printMatrix(int[][] matrix) {
     for (int i = 0; i < matrix.length; i++) {
-      for (int j = 0; j < matrix.length; j++) {
+      for (int j = 0; j < matrix[0].length; j++) {
         System.out.print(matrix[i][j] + " ");
       }
       System.out.println();
@@ -219,18 +221,22 @@ public class ZeroMatrix {
       Scanner scanner = new Scanner(fileReader);
       zeroMatrix = new ZeroMatrix();
       StringBuilder builder = new StringBuilder();
-      int n = 0;
+      int m = 0, n = 0;
 
       while (scanner.hasNextLine()) {
-        builder.append(scanner.nextLine()).append("\n");
+        String line = scanner.nextLine();
+        builder.append(line).append("\n");
+        m = line.split(" ").length;
         n++;
       }
 
-      int[][] matrix = new int[n][n];
+      System.out.println(m + " " + n);
+      
+      int[][] matrix = new int[n][m];
       String[] lines = builder.toString().split("\n");
       for (int i = 0; i < n; i++) {
         String[] rows = lines[i].split(" ");
-        for (int j = 0; j < rows.length; j++) {
+        for (int j = 0; j < m; j++) {
           matrix[i][j] = Integer.parseInt(rows[j]);
         }
       }
