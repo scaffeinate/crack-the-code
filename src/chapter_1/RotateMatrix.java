@@ -24,6 +24,7 @@ public class RotateMatrix {
    * bottom = right
    * right = temp
    * 
+   * Complexity: O(n2), Space: O(n2)
    * @param matrix
    * @param degrees
    * @return matrix
