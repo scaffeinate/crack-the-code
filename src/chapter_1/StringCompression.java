@@ -35,6 +35,7 @@ public class StringCompression {
       }
     }
 
+    // append the counter value for the last sequence of characters
     builder.append(input.charAt(i)).append(counter);
 
     // return the shorter of the compressed and original string
