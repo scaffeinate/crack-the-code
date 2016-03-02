@@ -79,7 +79,7 @@ public class CheckPermutation {
 
   public static void main(String[] args) throws FileNotFoundException {
 
-    FileReader fileReader = new FileReader(new File("input_files/check_permutation"));
+    FileReader fileReader = new FileReader(new File("input_files/chapter_1/check_permutation"));
     Scanner scanner = new Scanner(fileReader);
     CheckPermutation checkPermutation = new CheckPermutation();
     String input, first, second;

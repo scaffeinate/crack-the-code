@@ -91,7 +91,7 @@ public class URLify {
   }
 
   public static void main(String[] args) throws FileNotFoundException {
-    FileReader fileReader = new FileReader(new File("input_files/urlify"));
+    FileReader fileReader = new FileReader(new File("input_files/chapter_1/urlify"));
     Scanner scanner = new Scanner(fileReader);
     URLify urlify = new URLify();
     String input;

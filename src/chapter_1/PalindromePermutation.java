@@ -117,7 +117,7 @@ public class PalindromePermutation {
 
   public static void main(String[] args) throws FileNotFoundException {
     
-    FileReader fileReader = new FileReader(new File("input_files/palindrome_permutation"));
+    FileReader fileReader = new FileReader(new File("input_files/chapter_1/palindrome_permutation"));
     Scanner scanner = new Scanner(fileReader);
     PalindromePermutation palindromePermutation = new PalindromePermutation();
     String input;

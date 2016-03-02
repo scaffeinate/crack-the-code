@@ -66,7 +66,7 @@ public class StringRotation {
    */
   public static void main(String[] args) throws FileNotFoundException {
     // TODO Auto-generated method stub
-    FileReader fileReader = new FileReader(new File("input_files/string_rotation"));
+    FileReader fileReader = new FileReader(new File("input_files/chapter_1/string_rotation"));
     Scanner scanner = new Scanner(fileReader);
     StringRotation stringRotation = new StringRotation();
     String input, s1, s2;

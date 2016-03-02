@@ -51,7 +51,7 @@ public class StringCompression {
    */
   public static void main(String[] args) throws FileNotFoundException {
     // TODO Auto-generated method stub
-    FileReader fileReader = new FileReader(new File("input_files/string_compression"));
+    FileReader fileReader = new FileReader(new File("input_files/chapter_1/string_compression"));
     Scanner scanner = new Scanner(fileReader);
     StringCompression stringCompression = new StringCompression();
 

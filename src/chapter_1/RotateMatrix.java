@@ -79,7 +79,7 @@ public class RotateMatrix {
     int[][] matrix;
     int n = 0;
 
-    FileReader fileReader = new FileReader("input_files/image_matrix");
+    FileReader fileReader = new FileReader("input_files/chapter_1/image_matrix");
     Scanner scanner = new Scanner(fileReader);
 
     // Read input from file

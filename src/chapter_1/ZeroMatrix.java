@@ -222,7 +222,7 @@ public class ZeroMatrix {
     FileReader fileReader;
     ZeroMatrix zeroMatrix;
 
-    fileReader = new FileReader(new File("input_files/zero_matrix"));
+    fileReader = new FileReader(new File("input_files/chapter_1/zero_matrix"));
     Scanner scanner = new Scanner(fileReader);
     zeroMatrix = new ZeroMatrix();
     StringBuilder builder = new StringBuilder();

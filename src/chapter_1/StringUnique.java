@@ -136,7 +136,7 @@ public class StringUnique {
   public static void main(String[] args) throws FileNotFoundException {
 
     StringUnique stringUnique = new StringUnique();
-    FileReader fileReader = new FileReader(new File("input_files/string_unique"));
+    FileReader fileReader = new FileReader(new File("input_files/chapter_1/string_unique"));
     Scanner scanner = new Scanner(fileReader);
     String word;
     

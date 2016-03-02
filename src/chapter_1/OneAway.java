@@ -250,7 +250,7 @@ public class OneAway {
   }
 
   public static void main(String[] args) throws FileNotFoundException {
-    FileReader fileReader = new FileReader(new File("input_files/one_away"));
+    FileReader fileReader = new FileReader(new File("input_files/chapter_1/one_away"));
     Scanner scanner = new Scanner(fileReader);
     OneAway oneAway = new OneAway();
     String input, first, second;
