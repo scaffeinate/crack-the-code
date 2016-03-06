@@ -12,10 +12,20 @@ import java.util.Scanner;
  */
 public class KthToLast {
 
+  /**
+   * Finds element at Kth position from the last element using the index
+   * 
+   * Complexity: O(n)
+   * 
+   * @param list
+   * @param k
+   * @return foundElement
+   */
   private int findElement(CustomLinkedList<Integer> list, int k) {
     Node<Integer> current = list.head();
     int i = 0;
 
+    // return element if the index is at k distance from the size-1
     while (current != null) {
       if (i == list.size() - k - 1) {
         return current.data;
@@ -27,14 +37,28 @@ public class KthToLast {
     return -1;
   }
 
+  /**
+   * Finds element at Kth position from the last element using two pointers
+   * 
+   * Complexity: O(n)
+   * 
+   * @param list
+   * @param k
+   * @return
+   */
   private int findElement2(CustomLinkedList<Integer> list, int k) {
     Node<Integer> current = list.head();
     Node<Integer> runner = current;
 
+    // move the fast pointer k positions from the current
     for (int i = 0; i < k + 1; i++) {
       runner = runner.next;
     }
 
+    /*
+     * when the runner reaches the end the current would be at k distances from
+     * the end
+     */
     while (runner != null) {
       current = current.next;
       runner = runner.next;
