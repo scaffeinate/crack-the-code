@@ -22,8 +22,14 @@ public class DeleteMiddleNode {
     Node<Integer> slow = list.head();
     Node<Integer> fast = slow.next;
 
+    if (m < 0) {
+      return;
+    }
+    
     for (int i = 0; i < list.size() - m; i++) {
-      fast = fast.next;
+      if (fast.next != null) {
+        fast = fast.next;
+      }
     }
 
     while (fast.next != null) {
