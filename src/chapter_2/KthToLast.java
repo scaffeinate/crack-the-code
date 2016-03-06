@@ -12,8 +12,19 @@ import java.util.Scanner;
  */
 public class KthToLast {
 
-  private int findElement(int k) {
-    return 0;
+  private int findElement(CustomLinkedList<Integer> list, int k) {
+    Node<Integer> current = list.head();
+    int i = 0;
+    
+    while(current != null) {
+      if(i == list.size() - k) {
+        return current.data;
+      }
+      i++;
+      current = current.next;
+    }
+    
+    return -1;
   }
 
   public static void main(String[] args) throws FileNotFoundException {
@@ -37,7 +48,7 @@ public class KthToLast {
       System.out.println("Linked List:");
       list.print();
 
-      System.out.print("Element at k from last: " + kthToLast.findElement(k) + "\n");
+      System.out.print("Element at k from last: " + kthToLast.findElement(list, k) + "\n");
       System.out.println();
     }
 
