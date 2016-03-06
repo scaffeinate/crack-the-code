@@ -3,36 +3,44 @@
  */
 package chapter_2;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-
 /**
+ * CustomLinkedList: Simple LinkedList implementation.
+ * 
  * @author Sudharsanan Muralidharan
  */
-public class CustomLinkedList<T> implements List<T> {
+public class CustomLinkedList<T> {
 
   private Node<T> head = null;
   private Node<T> tail = null;
   private int size = 0;
 
-  @Override
+  /**
+   * Returns the current size of the LinkedList
+   * 
+   * @return size
+   */
   public int size() {
-    // TODO Auto-generated method stub
     return size;
   }
 
-  @Override
+  /**
+   * Returns whether list is empty of not
+   * 
+   * @return isEmpty
+   */
   public boolean isEmpty() {
-    // TODO Auto-generated method stub
     return size == 0;
   }
 
-  @Override
+  /**
+   * Retuns whether the list contains the object o
+   * 
+   * @param o
+   * @return contains
+   */
   public boolean contains(Object o) {
-    // TODO Auto-generated method stub
     Node<T> current = head;
+
     while (current != tail.next) {
       if (current.data.equals(o)) {
         return true;
@@ -43,15 +51,12 @@ public class CustomLinkedList<T> implements List<T> {
     return false;
   }
 
-  @Override
-  public Iterator<T> iterator() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
+  /**
+   * Convert the list toArray and return Object[]
+   * 
+   * @return orray[]
+   */
   public Object[] toArray() {
-    // TODO Auto-generated method stub
     Object[] array = new Object[size];
     int i = 0;
     Node<T> node = head;
@@ -65,169 +70,242 @@ public class CustomLinkedList<T> implements List<T> {
     return array;
   }
 
-  @Override
-  public <T> T[] toArray(T[] a) {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
+  /**
+   * Add new object to LinkedList
+   * 
+   * @param e
+   * @return added
+   */
   public boolean add(T e) {
-    // TODO Auto-generated method stub
+    boolean added = false;
+
+    /*
+     * create head if null i.e. list if empty
+     */
     if (head == null) {
       head = new Node<T>();
       head.data = e;
       head.next = null;
       tail = head;
+      added = true;
     } else {
+      // add element to the tail and increment size
       Node<T> current = new Node<T>();
       current.data = e;
       current.next = null;
       tail.next = current;
       tail = current;
+      added = true;
     }
 
     size++;
 
-    return false;
+    return added;
   }
 
-  @Override
+  /**
+   * Removes the object from the list
+   * 
+   * @param o
+   * @return removed
+   */
   public boolean remove(Object o) {
-    // TODO Auto-generated method stub
-    Node<T> slow = head;
-    Node<T> fast = slow.next;
+    Node<T> current = head;
 
-    while (fast != null) {
-      if (fast.data.equals(o)) {
-        slow.next = fast.next;
+    /*
+     * If head is to be removed
+     */
+    if (head.data.equals(o)) {
+      head = head.next;
+      size--;
+      return true;
+    }
+
+    while (current.next != null) {
+      if (current.next.data.equals(o)) {
+        current.next = current.next.next;
         size--;
+        if (current.next.equals(tail)) {
+          tail = current;
+        }
         return true;
+      } else {
+        current = current.next;
       }
-
-      slow = slow.next;
-      fast = fast.next;
-
-    }
-    return false;
-  }
-
-  @Override
-  public boolean containsAll(Collection<?> c) {
-    // TODO Auto-generated method stub
-    return false;
-  }
-
-  @Override
-  public boolean addAll(Collection<? extends T> c) {
-    // TODO Auto-generated method stub
-    return false;
-  }
-
-  @Override
-  public boolean addAll(int index, Collection<? extends T> c) {
-    // TODO Auto-generated method stub
-    return false;
-  }
-
-  @Override
-  public boolean removeAll(Collection<?> c) {
-    // TODO Auto-generated method stub
-    return false;
-  }
-
-  @Override
-  public boolean retainAll(Collection<?> c) {
-    // TODO Auto-generated method stub
-    return false;
-  }
-
-  @Override
-  public void clear() {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public T get(int index) {
-    // TODO Auto-generated method stub
-    Node<T> current = head;
-    int i = 0;
-    while (current != tail.next) {
-      if (i == index && current.data != null) {
-        return current.data;
-      }
-      i++;
-      current = current.next;
     }
 
-    return null;
+    return false;
   }
 
-  @Override
-  public T set(int index, T element) {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public void add(int index, T element) {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
+  /**
+   * Removes the object at index from list
+   * 
+   * @param index
+   * @return removed
+   */
   public T remove(int index) {
-    // TODO Auto-generated method stub
     Node<T> current = head;
-    Node<T> removedNode = null;
+    int i = 1;
+    T removed = null;
+
+    if (index == 0) {
+      T data = head.data;
+      head = head.next;
+      size--;
+      return data;
+    }
+
+    while (current.next != null) {
+      if (i == index) {
+        removed = current.next.data;
+        current.next = current.next.next;
+        size--;
+
+        if (index == size) {
+          tail = current;
+        }
+
+        return removed;
+      } else {
+        current = current.next;
+      }
+      
+      i++;
+    }
+
+    return null;
+  }
+
+  /**
+   * Get the element value at the index
+   * 
+   * @param index
+   * @return found.data
+   */
+  public T get(int index) {
+    Node<T> found = find(index);
+    if (found != null) {
+      return found.data;
+    }
+
+    return null;
+  }
+
+  /**
+   * Set the element value at the specified index
+   * 
+   * @param index
+   * @param element
+   * @return found.data
+   */
+  public T set(int index, T element) {
+    Node<T> found = find(index);
+    if (found != null) {
+      found.data = element;
+      return element;
+    }
+    return null;
+  }
+
+  /**
+   * Add an element at the index
+   * 
+   * @param index
+   * @param element
+   */
+  public void add(int index, T element) {
+    Node<T> current = head;
     int i = 0;
-    boolean removed = false;
+
+    /*
+     * if index is 0 then add it to front and update head
+     */
+    if (index == 0) {
+      Node<T> node = new Node<T>();
+      node.data = element;
+      node.next = head;
+      head = node;
+      size++;
+      return;
+    }
+
+    /*
+     * if index is size - 1 then add to the end and update tail
+     */
+    if(index == size-1) {
+      Node<T> node = new Node<T>();
+      node.data = element;
+      tail.next = node;
+      tail = node;
+      size++;
+      return;
+    }
     
-    while(current != null) {
-      if(i == index) {
-        removedNode = current;
-        removed = remove(current.data);
+    while (current != null) {
+      if (index == i) {
+        Node<T> node = new Node<T>();
+        node.data = element;
+        node.next = current.next;
+        current.next = node;
+        size++;
+      }
+
+      current = current.next;
+      i++;
+    }
+  }
+
+  /**
+   * Prints the list
+   */
+  public void print() {
+    Node<T> current = head;
+    StringBuilder builder = new StringBuilder();
+
+    builder.append("|").append(current.data);
+    current = current.next;
+
+    while (current != tail.next) {
+      builder.append("->").append(current.data);
+      current = current.next;
+    }
+
+    builder.append("|");
+
+    System.out.println(builder.toString());
+  }
+
+  /**
+   * Returns the head
+   * 
+   * @return head
+   */
+  public Node<T> head() {
+    return this.head;
+  }
+
+  /**
+   * Returns the Node<T> at the index
+   * 
+   * @param index
+   * @return node
+   */
+  private Node<T> find(int index) {
+    Node<T> current = head;
+    int i = 0;
+
+    if (index == 0) {
+      return current;
+    }
+
+    while (current != tail.next) {
+      if (i == index) {
+        return current;
       }
       i++;
       current = current.next;
     }
-    
-    if(removed) {
-      return removedNode.data;
-    }
-    
+
     return null;
   }
-
-  @Override
-  public int indexOf(Object o) {
-    // TODO Auto-generated method stub
-    return 0;
-  }
-
-  @Override
-  public int lastIndexOf(Object o) {
-    // TODO Auto-generated method stub
-    return 0;
-  }
-
-  @Override
-  public ListIterator<T> listIterator() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public ListIterator<T> listIterator(int index) {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public List<T> subList(int fromIndex, int toIndex) {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
 }
