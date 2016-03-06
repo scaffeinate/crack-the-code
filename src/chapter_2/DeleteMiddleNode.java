@@ -11,23 +11,29 @@ import java.util.Scanner;
  * 
  * EXAMPLE
  * 
- * Input: the node c from the linked list a->b->c->d->e->f
- * Output: nothing is returned, but the new linked list looks like a->b->d->e=>f
+ * Input: the node c from the linked list a->b->c->d->e->f Output: nothing is
+ * returned, but the new linked list looks like a->b->d->e=>f
  * 
  * @author Sudharsanan Muralidharan
  */
 public class DeleteMiddleNode {
 
-  private void deleteMiddle(CustomLinkedList<Integer> list) {
+  private void deleteMiddle(CustomLinkedList<Integer> list, int m) {
     Node<Integer> slow = list.head();
-    Node<Integer> fast = slow.next.next;
+    Node<Integer> fast = slow.next;
 
-    while (fast.next != null && fast.next.next != null) {
-      slow = slow.next;
-      fast = fast.next.next;
+    for (int i = 0; i < list.size() - m; i++) {
+      fast = fast.next;
     }
 
-    slow.next = slow.next.next;
+    while (fast.next != null) {
+      slow = slow.next;
+      fast = fast.next;
+    }
+
+    if (slow.next != null) {
+      slow.next = slow.next.next;
+    }
   }
 
   public static void main(String[] args) throws FileNotFoundException {
@@ -37,10 +43,12 @@ public class DeleteMiddleNode {
     String input;
     String[] elements;
     CustomLinkedList<Integer> list;
+    int m = 0;
 
     while (scanner.hasNextLine()) {
       input = scanner.nextLine();
-      elements = input.split(":");
+      m = Integer.parseInt(input.split(" ")[0]);
+      elements = input.split(" ")[1].split(":");
       list = new CustomLinkedList<Integer>();
       for (String e : elements) {
         list.add(Integer.parseInt(e));
@@ -49,8 +57,8 @@ public class DeleteMiddleNode {
       System.out.println("Original Linked List:");
       list.print();
 
-      deleteMiddleNode.deleteMiddle(list);
-      System.out.println("After Deleting the Middle node: ");
+      deleteMiddleNode.deleteMiddle(list, m);
+      System.out.println("After Deleting the the node: " + m);
       list.print();
 
       System.out.println();

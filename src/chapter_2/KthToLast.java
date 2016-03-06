@@ -50,9 +50,17 @@ public class KthToLast {
     Node<Integer> current = list.head();
     Node<Integer> runner = current;
 
+    if(k < 0) {
+      return -1;
+    }
+    
     // move the fast pointer k positions from the current
     for (int i = 0; i < k + 1; i++) {
-      runner = runner.next;
+      if (runner != null) {
+        runner = runner.next;
+      } else {
+        return -1;
+      }
     }
 
     /*
