@@ -15,16 +15,32 @@ public class KthToLast {
   private int findElement(CustomLinkedList<Integer> list, int k) {
     Node<Integer> current = list.head();
     int i = 0;
-    
-    while(current != null) {
-      if(i == list.size() - k) {
+
+    while (current != null) {
+      if (i == list.size() - k - 1) {
         return current.data;
       }
       i++;
       current = current.next;
     }
-    
+
     return -1;
+  }
+
+  private int findElement2(CustomLinkedList<Integer> list, int k) {
+    Node<Integer> current = list.head();
+    Node<Integer> runner = current;
+
+    for (int i = 0; i < k + 1; i++) {
+      runner = runner.next;
+    }
+
+    while (runner != null) {
+      current = current.next;
+      runner = runner.next;
+    }
+
+    return current.data;
   }
 
   public static void main(String[] args) throws FileNotFoundException {
@@ -49,6 +65,7 @@ public class KthToLast {
       list.print();
 
       System.out.print("Element at k from last: " + kthToLast.findElement(list, k) + "\n");
+      System.out.print("Element at k from last - Method 2: " + kthToLast.findElement2(list, k) + "\n");
       System.out.println();
     }
 
