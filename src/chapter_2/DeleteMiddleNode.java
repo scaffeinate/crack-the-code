@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * Question 2.3: Implement an algorithm to delete a node in the middle(i.e. any
  * node between first and last node, not necessarily the exact middle) of a
- * singly linked list.
+ * singly linked list given access to that node.
  * 
  * EXAMPLE
  * 
@@ -18,27 +18,45 @@ import java.util.Scanner;
  */
 public class DeleteMiddleNode {
 
-  private void deleteMiddle(CustomLinkedList<Integer> list, int m) {
-    Node<Integer> slow = list.head();
-    Node<Integer> fast = slow.next;
+  /**
+   * Deletes the middle node n by traversing from head till node.
+   * 
+   * Complexity: O(n)
+   * 
+   * @param list
+   * @param node
+   */
+  @SuppressWarnings("unused")
+  private void deleteMiddle(CustomLinkedList<Integer> list, Node<Integer> node) {
+    Node<Integer> current = list.head();
 
-    if (m < 0) {
-      return;
+    if (node.equals(current)) {
+      list.head(current.next);
     }
-    
-    for (int i = 0; i < list.size() - m; i++) {
-      if (fast.next != null) {
-        fast = fast.next;
+
+    while (current.next != null) {
+      if (current.next.equals(node)) {
+        current.next = current.next.next;
+        return;
       }
-    }
 
-    while (fast.next != null) {
-      slow = slow.next;
-      fast = fast.next;
+      current = current.next;
     }
+  }
 
-    if (slow.next != null) {
-      slow.next = slow.next.next;
+  /**
+   * Deletes the middle node n by copying the next node value to current and
+   * change the next reference to next.next
+   * 
+   * Complexity: O(1)
+   * 
+   * @param list
+   * @param node
+   */
+  private void deleteMiddle2(CustomLinkedList<Integer> list, Node<Integer> node) {
+    if (node.next != null) {
+      node.data = node.next.data;
+      node.next = node.next.next;
     }
   }
 
@@ -63,8 +81,12 @@ public class DeleteMiddleNode {
       System.out.println("Original Linked List:");
       list.print();
 
-      deleteMiddleNode.deleteMiddle(list, m);
-      System.out.println("After Deleting the the node: " + m);
+      Node<Integer> node = list.getNode(m);
+      if (node != null) {
+        // deleteMiddleNode.deleteMiddle(list, node);
+        deleteMiddleNode.deleteMiddle2(list, node);
+        System.out.println("After Deleting the the node: " + m);
+      }
       list.print();
 
       System.out.println();

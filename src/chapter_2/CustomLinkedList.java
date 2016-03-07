@@ -284,6 +284,24 @@ public class CustomLinkedList<T> {
     return this.head;
   }
 
+  
+  /**
+   * Sets the head
+   * @param node
+   */
+  public void head(Node<T> node) {
+    this.head = node;
+  }
+  
+  /**
+   * Returns the Node<T> at index
+   * @param index
+   * @return Node<T>
+   */
+  public Node<T> getNode(int index) {
+    return find(index);
+  }
+  
   /**
    * Returns the Node<T> at the index
    * 
