@@ -1,8 +1,10 @@
 package chapter_2;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Scanner;
+
+import chapter_2.list.CustomLinkedList;
+import chapter_2.list.Node;
+import util.InputUtil;
 
 /**
  * Question 2.2: Implement an algorithm to find the kth to last element of a
@@ -50,10 +52,10 @@ public class KthToLast {
     Node<Integer> current = list.head();
     Node<Integer> runner = current;
 
-    if(k < 0) {
+    if (k < 0) {
       return -1;
     }
-    
+
     // move the fast pointer k positions from the current
     for (int i = 0; i < k + 1; i++) {
       if (runner != null) {
@@ -76,20 +78,21 @@ public class KthToLast {
   }
 
   public static void main(String[] args) throws FileNotFoundException {
-    FileReader fileReader = new FileReader("input_files/chapter_2/k_last");
-    Scanner scanner = new Scanner(fileReader);
+
     KthToLast kthToLast = new KthToLast();
-    String input;
+    String[] input = InputUtil.readContents(2, "k_last");
     String[] elements;
     int k;
 
-    while (scanner.hasNextLine()) {
-      input = scanner.nextLine();
-      k = Integer.parseInt(input.split(" ")[0]);
-      elements = input.split(" ")[1].split(":");
+    for (String line : input) {
+      k = Integer.parseInt(line.split(" ")[0]);
+      elements = line.split(" ")[1].split(":");
+
       CustomLinkedList<Integer> list = new CustomLinkedList<Integer>();
       for (String e : elements) {
-        list.add(Integer.parseInt(e));
+        if (e != null && !e.trim().isEmpty()) {
+          list.add(Integer.parseInt(e));
+        }
       }
 
       System.out.println("Value of K:" + k);
@@ -100,7 +103,5 @@ public class KthToLast {
       System.out.print("Element at k from last - Method 2: " + kthToLast.findElement2(list, k) + "\n");
       System.out.println();
     }
-
-    scanner.close();
   }
 }

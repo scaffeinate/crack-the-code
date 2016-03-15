@@ -1,7 +1,7 @@
 /**
  * 
  */
-package chapter_2;
+package chapter_2.list;
 
 /**
  * CustomLinkedList: Simple LinkedList implementation.

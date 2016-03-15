@@ -1,5 +1,7 @@
 package chapter_2;
 
+import chapter_2.list.CustomLinkedList;
+
 /**
  * Question 2.5: You have two numbers represented by a linked list, where each
  * node contains a single digit. The digits are stored in reverse order, such

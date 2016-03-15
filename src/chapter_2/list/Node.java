@@ -1,12 +1,12 @@
 /**
  * 
  */
-package chapter_2;
+package chapter_2.list;
 
 /**
  * @author Sudharsanan Muralidharan
  */
 public class Node<T> {
-  T data;
-  Node<T> next;
+  public T data;
+  public Node<T> next;
 }

@@ -1,11 +1,12 @@
 package chapter_2;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
+
+import chapter_2.list.CustomLinkedList;
+import chapter_2.list.Node;
+import util.InputUtil;
 
 /**
  * Question 2.1: Write code to remove duplicates from an unsorted linked list.
@@ -61,18 +62,19 @@ public class RemoveDups {
   }
 
   public static void main(String[] args) throws FileNotFoundException {
-    FileReader fileReader = new FileReader(new File("input_files/chapter_2/remove_dups"));
-    Scanner scanner = new Scanner(fileReader);
+    
     RemoveDups removeDups = new RemoveDups();
-    String input;
+    String[] input = InputUtil.readContents(2, "remove_dups");
     String[] elements;
 
-    while (scanner.hasNextLine()) {
-      input = scanner.nextLine();
-      elements = input.split(":");
+    for(String line:input) {
+      elements = line.split(":");
       CustomLinkedList<Integer> list = new CustomLinkedList<Integer>();
+      
       for (String e : elements) {
-        list.add(Integer.parseInt(e));
+        if(e != null && !e.trim().isEmpty()) {
+          list.add(Integer.parseInt(e));
+        }
       }
 
       System.out.println("Original Linked List:");
@@ -87,8 +89,7 @@ public class RemoveDups {
       list.print();
 
       System.out.println();
-    }
 
-    scanner.close();
+    }
   }
 }

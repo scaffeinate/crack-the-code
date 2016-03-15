@@ -1,8 +1,10 @@
 package chapter_2;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Scanner;
+
+import chapter_2.list.CustomLinkedList;
+import chapter_2.list.Node;
+import util.InputUtil;
 
 /**
  * Question 2.5: You have two numbers represented by a linked list, where each
@@ -85,40 +87,40 @@ public class SumLists {
   }
 
   public static void main(String[] args) throws FileNotFoundException {
-    FileReader fileReader = new FileReader("input_files/chapter_2/sum_lists");
-    Scanner scanner = new Scanner(fileReader);
+
     SumLists sumLists = new SumLists();
-    String input;
+    String[] input = InputUtil.readContents(2, "sum_lists");
     String[] elements, elements2;
     CustomLinkedList<Integer> list, list2;
     StringBuilder builder;
 
-    while (scanner.hasNextLine()) {
-      input = scanner.nextLine();
-      builder = new StringBuilder();
+    for (String line : input) {
       list = new CustomLinkedList<Integer>();
       list2 = new CustomLinkedList<Integer>();
+      builder = new StringBuilder();
+      
+      elements = line.split("\\+")[0].split(":");
+      elements2 = line.split("\\+")[1].split(":");
 
-      elements = input.split("\\+")[0].split(":");
-      elements2 = input.split("\\+")[1].split(":");
-
-      for (String e : elements) {
-        list.add(Integer.parseInt(e));
-        builder.append(e);
+      if (elements != null) {
+        for (String e : elements) {
+          list.add(Integer.parseInt(e));
+          builder.append(e);
+        }
       }
 
-      builder.append('+');
+      if (elements2 != null) {
+        builder.append('+');
 
-      for (String e : elements2) {
-        list2.add(Integer.parseInt(e));
-        builder.append(e);
+        for (String e : elements2) {
+          list2.add(Integer.parseInt(e));
+          builder.append(e);
+        }
       }
 
       System.out.print(builder.reverse().toString() + "=");
       System.out.print(sumLists.computeSum(list, list2));
       System.out.println();
     }
-
-    scanner.close();
   }
 }
