@@ -3,10 +3,9 @@
  */
 package chapter_1;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Scanner;
+
+import util.InputUtil;
 
 /**
  * Question 1.9: Assume you have a method isSubstring which checks if one word
@@ -66,24 +65,19 @@ public class StringRotation {
    */
   public static void main(String[] args) throws FileNotFoundException {
     // TODO Auto-generated method stub
-    FileReader fileReader = new FileReader(new File("input_files/chapter_1/string_rotation"));
-    Scanner scanner = new Scanner(fileReader);
     StringRotation stringRotation = new StringRotation();
-    String input, s1, s2;
+    String[] input = InputUtil.readContents(1, "string_rotation");
+    String s1, s2;
 
-    while (scanner.hasNextLine()) {
-      input = scanner.nextLine();
-      s1 = input.split(":")[0];
-      s2 = input.split(":")[1];
+    for (String line : input) {
+      s1 = line.split(":")[0].trim();
+      s2 = line.split(":")[1].trim();
 
-      if (s1 != null && !s1.isEmpty() && s2 != null && !s2.isEmpty()) {
-        System.out.println("Input: " + input);
+      if (s1 != null && s2 != null && !s1.isEmpty() && !s2.isEmpty()) {
+        System.out.println("Input: " + line);
         System.out.println("Is Rotation?: " + stringRotation.isStringRotation(s1, s2));
         System.out.println();
       }
     }
-
-    scanner.close();
   }
-
 }

@@ -1,10 +1,9 @@
 package chapter_1;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.Arrays;
-import java.util.Scanner;
+
+import util.InputUtil;
 
 /**
  * Question 1.2: Given two strings, write a method to determine whether one is a
@@ -79,22 +78,21 @@ public class CheckPermutation {
 
   public static void main(String[] args) throws FileNotFoundException {
 
-    FileReader fileReader = new FileReader(new File("input_files/chapter_1/check_permutation"));
-    Scanner scanner = new Scanner(fileReader);
     CheckPermutation checkPermutation = new CheckPermutation();
-    String input, first, second;
+    String[] input = InputUtil.readContents(1, "check_permutation");
+    String first, second;
 
-    while (scanner.hasNextLine()) {
-      input = scanner.nextLine();
-      first = input.split(":")[0];
-      second = input.split(":")[1];
+    for (String line : input) {
+      first = line.split(":")[0].trim();
+      second = line.split(":")[1].trim();
 
-      System.out.println("Input: " + input);
-      System.out.println("Permutation check using sorted: " + checkPermutation.isPermutationSorted(first, second));
-      System.out.println("Permutation check using array: " + checkPermutation.isPermutationArray(first, second));
-      System.out.println();
+      if (first != null && second != null && !first.isEmpty() && !second.isEmpty()) {
+        System.out.println("Input: " + line);
+        System.out.println("Permutation check using sorted: " + checkPermutation.isPermutationSorted(first, second));
+        System.out.println("Permutation check using array: " + checkPermutation.isPermutationArray(first, second));
+        System.out.println();
+      }
     }
 
-    scanner.close();
   }
 }

@@ -1,8 +1,8 @@
 package chapter_1;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Scanner;
+
+import util.InputUtil;
 
 /**
  * Question 1.7: Given an image represented by an NxN matrix, where each pixel
@@ -71,30 +71,20 @@ public class RotateMatrix {
   /**
    * 
    * @param args
-   * @throws FileNotFoundException 
+   * @throws FileNotFoundException
    */
   public static void main(String[] args) throws FileNotFoundException {
     RotateMatrix rotateMatrix = new RotateMatrix();
-    StringBuilder builder = new StringBuilder();
+    String[] input = InputUtil.readContents(1, "image_matrix");
     int[][] matrix;
-    int n = 0;
-
-    FileReader fileReader = new FileReader("input_files/chapter_1/image_matrix");
-    Scanner scanner = new Scanner(fileReader);
-
-    // Read input from file
-    while (scanner.hasNextLine()) {
-      builder.append(scanner.nextLine().trim()).append("\n");
-      n++;
-    }
+    int n = input.length;
 
     matrix = new int[n][n];
-    String[] lines = builder.toString().split("\n");
 
-    for (int i = 0; i < lines.length; i++) {
-      String[] rows = lines[i].split(" ");
-      for (int j = 0; j < rows.length; j++) {
-        matrix[i][j] = Integer.parseInt(rows[j]);
+    for (int i = 0; i < n; i++) {
+      String[] row = input[i].split(" ");
+      for (int j = 0; j < n; j++) {
+        matrix[i][j] = Integer.parseInt(row[j]);
       }
     }
 
@@ -104,8 +94,5 @@ public class RotateMatrix {
     System.out.println("\nAfter Rotation:");
     rotateMatrix.rotate(matrix, 90);
     rotateMatrix.printMatrix(matrix);
-
-    scanner.close();
-
   }
 }

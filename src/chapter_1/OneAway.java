@@ -1,9 +1,8 @@
 package chapter_1;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Scanner;
+
+import util.InputUtil;
 
 /**
  * Question 1.5: There are three types of edits that can be performed on
@@ -250,26 +249,22 @@ public class OneAway {
   }
 
   public static void main(String[] args) throws FileNotFoundException {
-    FileReader fileReader = new FileReader(new File("input_files/chapter_1/one_away"));
-    Scanner scanner = new Scanner(fileReader);
-    OneAway oneAway = new OneAway();
-    String input, first, second;
 
-    while(scanner.hasNextLine()) {
-      input = scanner.nextLine();
-      first = input.split(":")[0];
-      second = input.split(":")[1];
+    OneAway oneAway = new OneAway();
+    String[] input = InputUtil.readContents(1, "one_away");
+    String first, second;
+
+    for (String line : input) {
+      first = line.split(":")[0].trim();
+      second = line.split(":")[1].trim();
       
-      if (first != null && second != null) {
-        System.out.println("Input: " + input);
+      if (first != null && second != null && !first.isEmpty() && !second.isEmpty()) {
+        System.out.println("Input: " + line);
         System.out.println("Is one edit away? " + oneAway.checkOneAway(first, second));
         System.out.println("Is one edit away using method 2? " + oneAway.checkOneAway2(first, second));
         System.out.println("Is one edit away using method 3? " + oneAway.checkOneAway3(first, second));
         System.out.println();
       }
-      
     }
-
-    scanner.close();
   }
 }

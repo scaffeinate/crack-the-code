@@ -1,12 +1,11 @@
 package chapter_1;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
+
+import util.InputUtil;
 
 /**
  * Question 1.1 : Implement an algorithm to determine if a string has all unique
@@ -136,21 +135,18 @@ public class StringUnique {
   public static void main(String[] args) throws FileNotFoundException {
 
     StringUnique stringUnique = new StringUnique();
-    FileReader fileReader = new FileReader(new File("input_files/chapter_1/string_unique"));
-    Scanner scanner = new Scanner(fileReader);
+    String[] input = InputUtil.readContents(1, "string_unique");
     String word;
-    
-    while(scanner.hasNextLine()) {
-      word = scanner.nextLine().toLowerCase();
+
+    for (String line : input) {
+      word = line.toLowerCase();
       System.out.println("Input: " + word);
       System.out.println("Is string unique? " + stringUnique.checkUniqueChars(word));
       System.out.println("Is string unique using sorting? " + stringUnique.checkUniqueCharsSorted(word));
       System.out.println("Is string unique using array? " + stringUnique.checkUniqueCharsArray(word));
       System.out.println("Is string unique using bit? " + stringUnique.checkUniqueCharsBits(word));
-      System.out.println("Is string unique using set? " +  stringUnique.checkUniqueCharsSet(word));
+      System.out.println("Is string unique using set? " + stringUnique.checkUniqueCharsSet(word));
       System.out.println();
     }
-
-    scanner.close();
   }
 }

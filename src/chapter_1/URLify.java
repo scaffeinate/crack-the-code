@@ -1,9 +1,8 @@
 package chapter_1;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Scanner;
+
+import util.InputUtil;
 
 /**
  * Question 1.3: Write a method to replace all spaces in a string with '%20'.
@@ -91,21 +90,15 @@ public class URLify {
   }
 
   public static void main(String[] args) throws FileNotFoundException {
-    FileReader fileReader = new FileReader(new File("input_files/chapter_1/urlify"));
-    Scanner scanner = new Scanner(fileReader);
-    URLify urlify = new URLify();
-    String input;
-    
-    while(scanner.hasNextLine()) {
-      input = scanner.nextLine();
-      if (input != null && !input.isEmpty()) {
-        int len = input.length();
-        System.out.println("Input: " + input);
-        System.out.println("URL: " + urlify.getURL(urlify.copyString(input, len), len));
-        System.out.println();
-      }
-    }
 
-    scanner.close();
+    URLify urlify = new URLify();
+    String[] input = InputUtil.readContents(1, "urlify");
+
+    for (String line : input) {
+      int len = line.length();
+      System.out.println("Input: " + input);
+      System.out.println("URL: " + urlify.getURL(urlify.copyString(line, len), len));
+      System.out.println();
+    }
   }
 }

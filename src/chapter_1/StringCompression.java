@@ -3,10 +3,9 @@
  */
 package chapter_1;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Scanner;
+
+import util.InputUtil;
 
 /**
  * Question 1.6: Implement a method to perform basic string compression using
@@ -47,24 +46,18 @@ public class StringCompression {
 
   /**
    * @param args
-   * @throws FileNotFoundException 
+   * @throws FileNotFoundException
    */
   public static void main(String[] args) throws FileNotFoundException {
     // TODO Auto-generated method stub
-    FileReader fileReader = new FileReader(new File("input_files/chapter_1/string_compression"));
-    Scanner scanner = new Scanner(fileReader);
     StringCompression stringCompression = new StringCompression();
+    String[] input = InputUtil.readContents(1, "string_compression");
 
-    while (scanner.hasNextLine()) {
-      String input = scanner.nextLine();
-      if (input != null && !input.isEmpty()) {
-        System.out.println("Input: " + input);
-        System.out.println("Compressed: " + stringCompression.compressString(input));
-        System.out.println();
-      }
+    for (String line : input) {
+      System.out.println("Input: " + line);
+      System.out.println("Compressed: " + stringCompression.compressString(line));
+      System.out.println();
     }
-
-    scanner.close();
   }
 
 }

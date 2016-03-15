@@ -1,11 +1,10 @@
 package chapter_1;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
+
+import util.InputUtil;
 
 /**
  * Question 1.4: Given a string, write a function to check if it is a
@@ -116,23 +115,20 @@ public class PalindromePermutation {
   }
 
   public static void main(String[] args) throws FileNotFoundException {
-    
-    FileReader fileReader = new FileReader(new File("input_files/chapter_1/palindrome_permutation"));
-    Scanner scanner = new Scanner(fileReader);
+
     PalindromePermutation palindromePermutation = new PalindromePermutation();
-    String input;
+    String[] input = InputUtil.readContents(1, "palindrome_permutation");
 
-    while(scanner.hasNextLine()) {
-      input = scanner.nextLine().toLowerCase();
-      if (input != null && !input.isEmpty()) {
-        System.out.println("Input: " + input);
-        System.out.println("Is palindrome permutation using map: " + palindromePermutation.isPalindromePermutationMap(input));
-        System.out.println("Is palindrome permutation using arr: " + palindromePermutation.isPalindromePermutationArr(input));
-        System.out.println("Is palindrome permutation using bit: " + palindromePermutation.isPalindromePermutationBit(input));
-        System.out.println();
-      }
+    for (String line : input) {
+      line = line.toLowerCase();
+      System.out.println("Input: " + line);
+      System.out
+          .println("Is palindrome permutation using map: " + palindromePermutation.isPalindromePermutationMap(line));
+      System.out
+          .println("Is palindrome permutation using arr: " + palindromePermutation.isPalindromePermutationArr(line));
+      System.out
+          .println("Is palindrome permutation using bit: " + palindromePermutation.isPalindromePermutationBit(line));
+      System.out.println();
     }
-
-    scanner.close();
   }
 }

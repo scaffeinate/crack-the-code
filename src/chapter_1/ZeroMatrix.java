@@ -3,13 +3,12 @@
  */
 package chapter_1;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
+
+import util.InputUtil;
 
 /**
  * Question 1.8: Write an algorithm such that if an element in an MxN matrix is
@@ -26,12 +25,12 @@ public class ZeroMatrix {
    * 
    * @param matrix
    */
-  private void constructZeroMatrix(int[][] matrix) {
+  private void constructZeroMatrix(int[][] matrix, int m, int n) {
     Set<Integer> rows = new HashSet<Integer>();
     Set<Integer> columns = new HashSet<Integer>();
 
-    for (int i = 0; i < matrix.length; i++) {
-      for (int j = 0; j < matrix[0].length; j++) {
+    for (int i = 0; i < m; i++) {
+      for (int j = 0; j < n; j++) {
         if (matrix[i][j] == 0) {
           rows.add(i);
           columns.add(j);
@@ -47,7 +46,7 @@ public class ZeroMatrix {
       nullifyColumn(matrix, column);
     }
 
-    printMatrix(matrix);
+    printMatrix(matrix, m, n);
   }
 
   /**
@@ -57,12 +56,12 @@ public class ZeroMatrix {
    * 
    * @param matrix
    */
-  private void constructZeroMatrix2(int[][] matrix) {
+  private void constructZeroMatrix2(int[][] matrix, int m, int n) {
     boolean[] rows = new boolean[matrix.length];
     boolean[] columns = new boolean[matrix[0].length];
 
-    for (int i = 0; i < matrix.length; i++) {
-      for (int j = 0; j < matrix[0].length; j++) {
+    for (int i = 0; i < m; i++) {
+      for (int j = 0; j < n; j++) {
         if (matrix[i][j] == 0) {
           rows[i] = true;
           columns[j] = true;
@@ -82,7 +81,7 @@ public class ZeroMatrix {
       }
     }
 
-    printMatrix(matrix);
+    printMatrix(matrix, m, n);
   }
 
   /**
@@ -93,20 +92,20 @@ public class ZeroMatrix {
    * 
    * @param matrix
    */
-  private void constructZeroMatrix3(int[][] matrix) {
+  private void constructZeroMatrix3(int[][] matrix, int m, int n) {
     boolean firstRowZero = false, firstColumnZero = false;
 
     /*
      * check if firstRow and firstColumn contains 0 and set the flag to true if
      * so.
      */
-    for (int i = 0; i < matrix[0].length; i++) {
+    for (int i = 0; i < n; i++) {
       if (matrix[0][i] == 0) {
         firstRowZero = true;
       }
     }
 
-    for (int i = 0; i < matrix.length; i++) {
+    for (int i = 0; i < m; i++) {
       if (matrix[i][0] == 0) {
         firstColumnZero = true;
       }
@@ -117,8 +116,8 @@ public class ZeroMatrix {
      * For eg: If matrix[2][3] is 0 then matrix[0][3] and matrix[2][0] are set
      * to 0.
      */
-    for (int i = 1; i < matrix.length; i++) {
-      for (int j = 1; j < matrix[0].length; j++) {
+    for (int i = 1; i < m; i++) {
+      for (int j = 1; j < n; j++) {
         if (matrix[i][j] == 0) {
           matrix[0][j] = 0;
           matrix[i][0] = 0;
@@ -129,7 +128,7 @@ public class ZeroMatrix {
     /*
      * Loop through the fist row and make the entire column values 0
      */
-    for (int i = 1; i < matrix.length; i++) {
+    for (int i = 1; i < m; i++) {
       if (matrix[i][0] == 0) {
         nullifyRow(matrix, i);
       }
@@ -138,7 +137,7 @@ public class ZeroMatrix {
     /*
      * Loop through the first column and make entire row values 0
      */
-    for (int i = 1; i < matrix[0].length; i++) {
+    for (int i = 1; i < n; i++) {
       if (matrix[0][i] == 0) {
         nullifyColumn(matrix, i);
       }
@@ -155,7 +154,7 @@ public class ZeroMatrix {
       nullifyColumn(matrix, 0);
     }
 
-    printMatrix(matrix);
+    printMatrix(matrix, m, n);
   }
 
   /**
@@ -187,9 +186,9 @@ public class ZeroMatrix {
    * 
    * @param matrix
    */
-  private void printMatrix(int[][] matrix) {
-    for (int i = 0; i < matrix.length; i++) {
-      for (int j = 0; j < matrix[0].length; j++) {
+  private void printMatrix(int[][] matrix, int m, int n) {
+    for (int i = 0; i < m; i++) {
+      for (int j = 0; j < n; j++) {
         System.out.print(matrix[i][j] + " ");
       }
       System.out.println();
@@ -219,49 +218,38 @@ public class ZeroMatrix {
    */
   public static void main(String[] args) throws FileNotFoundException {
     // TODO Auto-generated method stub
-    FileReader fileReader;
-    ZeroMatrix zeroMatrix;
-
-    fileReader = new FileReader(new File("input_files/chapter_1/zero_matrix"));
-    Scanner scanner = new Scanner(fileReader);
-    zeroMatrix = new ZeroMatrix();
-    StringBuilder builder = new StringBuilder();
+    ZeroMatrix zeroMatrix = new ZeroMatrix();
+    String[] input = InputUtil.readContents(1, "zero_matrix");
     int m = 0, n = 0;
 
-    while (scanner.hasNextLine()) {
-      String line = scanner.nextLine();
-      builder.append(line).append("\n");
-      m = line.split(" ").length;
-      n++;
-    }
+    m = input.length;
+    n = input[0].split(" ").length;
 
     System.out.println(m + " " + n);
 
-    int[][] matrix = new int[n][m];
-    String[] lines = builder.toString().split("\n");
-    for (int i = 0; i < n; i++) {
-      String[] rows = lines[i].split(" ");
-      for (int j = 0; j < m; j++) {
-        matrix[i][j] = Integer.parseInt(rows[j]);
+    int[][] matrix = new int[m][n];
+    
+    for (int i = 0; i < m; i++) {
+      String[] row = input[i].split(" ");
+      for (int j = 0; j < n; j++) {
+        matrix[i][j] = Integer.parseInt(row[j]);
       }
     }
 
     System.out.println("Original Matrix:");
-    zeroMatrix.printMatrix(matrix);
+    zeroMatrix.printMatrix(matrix, m, n);
 
     int[][] copy = zeroMatrix.copyMatrix(matrix);
     System.out.println("\nAfter setting zeros:");
-    zeroMatrix.constructZeroMatrix(copy);
+    zeroMatrix.constructZeroMatrix(copy, m, n);
 
     copy = zeroMatrix.copyMatrix(matrix);
     System.out.println("\nAfter setting zeros - method 2:");
-    zeroMatrix.constructZeroMatrix2(copy);
+    zeroMatrix.constructZeroMatrix2(copy, m, n);
 
     copy = zeroMatrix.copyMatrix(matrix);
     System.out.println("\nAfter setting zeros - method 3:");
-    zeroMatrix.constructZeroMatrix3(copy);
-
-    scanner.close();
+    zeroMatrix.constructZeroMatrix3(copy, m, n);
   }
 
 }
