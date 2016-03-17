@@ -16,88 +16,81 @@ import util.InputUtil;
 public class Palindrome {
 
   private boolean isPalindrome(CustomLinkedList<Character> list) {
-    Node<Character> current = list.head();
-    int i = 0;
-
-    while (i < list.size() / 2) {
-      current = current.next;
-      i++;
-    }
-    
-    Node<Character> runner = current.next;
-    Node<Character> temp;
-    
-    while (runner != null && runner.next != null) {
-      temp = runner.next;
-      runner.next = current;
-      current = runner;
-      runner = temp;
-    }
-    
     Node<Character> head = list.head();
-    
-    if(head.data == runner.data) {
-      head = head.next;
-    } else {
-      return false;
+    Node<Character> center = list.getNode(list.size() / 2);
+
+    Node<Character> prev, current, runner;
+
+    prev = center;
+    current = prev.next;
+
+    while (current != null) {
+      runner = current.next;
+      current.next = prev;
+      prev = current;
+      current = runner;
     }
-    
-    for (i = 0; i < (list.size() / 2)-1; i++) {
-      if(head.data != current.data) {
+
+    while (!head.equals(center)) {
+      if (!prev.data.equals(head.data)) {
         return false;
       }
-      
+
+      prev = prev.next;
       head = head.next;
-      current = current.next;
     }
 
     return true;
   }
-  
+
   private boolean isPalindrome2(CustomLinkedList<Character> list) {
     Node<Character> head = list.head();
-    Node<Character> current = head;
     Stack<Character> stack = new Stack<Character>();
-    
-    for(int i=0;i<list.size()/2;i++) {
-      current = current.next;
+
+    if (list.size() == 1) {
+      return true;
     }
-    
-    if(list.size() % 2 != 0) {
-      current = current.next;
+
+    Node<Character> center = list.getNode(list.size() / 2);
+
+    while (center != null) {
+      stack.push(center.data);
+      center = center.next;
     }
-    
-    for(int i=0;i<list.size()/2;i++) {
-      stack.push(current.data);
-      current = current.next;
-    }
-    
-    for(int i=0;i<list.size()/2;i++) {
-      if(head.data != stack.pop()) {
+
+    while (!head.equals(center) && !stack.isEmpty()) {
+      if (!head.data.equals(stack.pop())) {
         return false;
       }
-      
+
       head = head.next;
     }
-    
+
     return true;
   }
 
   public static void main(String[] args) throws FileNotFoundException {
     Palindrome palindrome = new Palindrome();
     String[] input = InputUtil.readContents(2, "palindrome");
+    CustomLinkedList<Character> inputList;
     CustomLinkedList<Character> list;
 
     for (String line : input) {
       line = line.toLowerCase();
-      list = new CustomLinkedList<Character>();
+      inputList = new CustomLinkedList<Character>();
 
       for (int i = 0; i < line.length(); i++) {
-        list.add(line.charAt(i));
+        inputList.add(line.charAt(i));
       }
 
       System.out.println("Input: " + line);
-      System.out.println("Is it Palindrome? " + palindrome.isPalindrome2(list));
+
+      list = new CustomLinkedList<Character>(inputList);
+      System.out.println("Is it Palindrome? " + palindrome.isPalindrome(list));
+
+      list = new CustomLinkedList<Character>(inputList);
+      System.out.println("Is it Palindrome - Method 2? " + palindrome.isPalindrome2(list));
+
       System.out.println();
     }
   }

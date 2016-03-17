@@ -14,6 +14,18 @@ public class CustomLinkedList<T> {
   private Node<T> tail = null;
   private int size = 0;
 
+  public CustomLinkedList() {
+    
+  }
+  
+  public CustomLinkedList(CustomLinkedList<T> copyList) {
+    Node<T> current = copyList.head;
+    while(current != null) {
+      this.add(current.data);
+      current = current.next;
+    }
+  }
+  
   /**
    * Returns the current size of the LinkedList
    * 
