@@ -15,6 +15,14 @@ import util.InputUtil;
  */
 public class Palindrome {
 
+  /**
+   * Check if list is a palindrome by reversing the half and checking.
+   * 
+   * Complexity: O(n), Space: O(1)
+   * 
+   * @param list
+   * @return
+   */
   private boolean isPalindrome(CustomLinkedList<Character> list) {
     Node<Character> head = list.head();
     Node<Character> center = list.getNode(list.size() / 2);
@@ -43,6 +51,14 @@ public class Palindrome {
     return true;
   }
 
+  /**
+   * Checks if the list is a palindrome using a Stack.
+   * 
+   * Complexity: O(n), Space: O(n)
+   * 
+   * @param list
+   * @return
+   */
   private boolean isPalindrome2(CustomLinkedList<Character> list) {
     Node<Character> head = list.head();
     Stack<Character> stack = new Stack<Character>();
