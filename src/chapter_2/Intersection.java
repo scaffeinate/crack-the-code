@@ -20,6 +20,19 @@ import util.ListUtil;
  */
 public class Intersection {
 
+  /**
+   * Check if the two lists have an intersecting node. After the intersecting
+   * node both the lists will be identical/merge. Determine the shorter and
+   * longer lists and move the longer pointer d times where d = longer.size() -
+   * shorter.size(). Check for intersection while moving since intersection can
+   * happen between start and d.
+   * 
+   * Complexity: O(n), Space: O(1)
+   * 
+   * @param firstList
+   * @param secondList
+   * @return isIntersecting
+   */
   private Node<Integer> isIntersecting(CustomLinkedList<Integer> firstList, CustomLinkedList<Integer> secondList) {
     Map<String, CustomLinkedList<Integer>> nodeMap = ListUtil.getShorterAndLonger(firstList, secondList);
     CustomLinkedList<Integer> longer = nodeMap.get("longer");
@@ -27,7 +40,7 @@ public class Intersection {
 
     Node<Integer> current = longer.head();
     Node<Integer> current2 = shorter.head();
-   
+
     for (int i = 0; i < longer.size() - shorter.size(); i++) {
       if (current.equals(current2)) {
         return current;
@@ -47,10 +60,17 @@ public class Intersection {
     return null;
   }
 
+  /**
+   * Pick a node from firstList and add it to secondList which will intersect
+   * after this point.
+   * 
+   * @param firstList
+   * @param secondList
+   */
   private void addIntersection(CustomLinkedList<Integer> firstList, CustomLinkedList<Integer> secondList) {
     secondList.addNode(3, firstList.getNode(4));
     System.out
-        .println("Fetch 4th Node from firstList: " + firstList.get(3) + " and add it to 3rd position of secondList");
+        .println("Fetch 4th Node from firstList: " + firstList.get(4) + " and add it to 3rd position of secondList");
     firstList.print();
     secondList.print();
   }
