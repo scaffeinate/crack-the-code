@@ -15,17 +15,17 @@ public class CustomLinkedList<T> {
   private int size = 0;
 
   public CustomLinkedList() {
-    
+
   }
-  
+
   public CustomLinkedList(CustomLinkedList<T> copyList) {
     Node<T> current = copyList.head;
-    while(current != null) {
+    while (current != null) {
       this.add(current.data);
       current = current.next;
     }
   }
-  
+
   /**
    * Returns the current size of the LinkedList
    * 
@@ -181,7 +181,7 @@ public class CustomLinkedList<T> {
       } else {
         current = current.next;
       }
-      
+
       i++;
     }
 
@@ -244,7 +244,7 @@ public class CustomLinkedList<T> {
     /*
      * if index is size - 1 then add to the end and update tail
      */
-    if(index == size-1) {
+    if (index == size - 1) {
       Node<T> node = new Node<T>();
       node.data = element;
       tail.next = node;
@@ -252,9 +252,9 @@ public class CustomLinkedList<T> {
       size++;
       return;
     }
-    
+
     while (current != null) {
-      if (index == i) {
+      if (index - 1 == i) {
         Node<T> node = new Node<T>();
         node.data = element;
         node.next = current.next;
@@ -265,6 +265,38 @@ public class CustomLinkedList<T> {
       current = current.next;
       i++;
     }
+  }
+
+  public void addNode(int index, Node<T> node) {
+    Node<T> current = head;
+    int i = 0, oldSize = 0, newSize = 0;
+
+    if (index == 0) {
+      head = node;
+    }
+
+    if (index == size - 1) {
+      tail = node;
+      oldSize = size;
+    }
+
+    while (current != null) {
+      ++i;
+      if (i == index) {
+        current.next = node;
+        oldSize = i;
+        break;
+      }
+
+      current = current.next;
+    }
+    
+    while(node != null) {
+      node = node.next;
+      newSize++;
+    }
+    
+    size = oldSize + newSize;
   }
 
   /**
@@ -296,24 +328,25 @@ public class CustomLinkedList<T> {
     return this.head;
   }
 
-  
   /**
    * Sets the head
+   * 
    * @param node
    */
   public void head(Node<T> node) {
     this.head = node;
   }
-  
+
   /**
    * Returns the Node<T> at index
+   * 
    * @param index
    * @return Node<T>
    */
   public Node<T> getNode(int index) {
     return find(index);
   }
-  
+
   /**
    * Returns the Node<T> at the index
    * 

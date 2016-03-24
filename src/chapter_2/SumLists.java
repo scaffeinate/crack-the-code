@@ -1,10 +1,12 @@
 package chapter_2;
 
 import java.io.FileNotFoundException;
+import java.util.Map;
 
 import chapter_2.list.CustomLinkedList;
 import chapter_2.list.Node;
 import util.InputUtil;
+import util.ListUtil;
 
 /**
  * Question 2.5: You have two numbers represented by a linked list, where each
@@ -34,16 +36,15 @@ public class SumLists {
    * @return sum
    */
   private int computeSum(CustomLinkedList<Integer> list, CustomLinkedList<Integer> list2) {
-    int size1 = list.size();
-    int size2 = list2.size();
 
     /*
      * to handle length mismatch, fetch the larger and smaller lists head.
      * current node points the head of the larger linked list current2 points
      * the other list.
      */
-    Node<Integer> current = size1 > size2 ? list.head() : list2.head();
-    Node<Integer> current2 = size1 > size2 ? list2.head() : list.head();
+    Map<String, CustomLinkedList<Integer>> nodeMap = ListUtil.getShorterAndLonger(list, list2);
+    Node<Integer> current = nodeMap.get("longer").head();
+    Node<Integer> current2 = nodeMap.get("shorter").head();
 
     return add(current, current2, 0, 0);
   }
@@ -98,7 +99,7 @@ public class SumLists {
       list = new CustomLinkedList<Integer>();
       list2 = new CustomLinkedList<Integer>();
       builder = new StringBuilder();
-      
+
       elements = line.split("\\+")[0].split(":");
       elements2 = line.split("\\+")[1].split(":");
 
