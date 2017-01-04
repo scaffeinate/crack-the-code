@@ -41,29 +41,40 @@ public class URLify {
   }
 
   /**
-   * Copy the input string to a character array of size to accommodate %20 for
-   * each space
+   * Append Spaces at the end to accommodate the replaced characters 
    *
    * @param input
    * @param len
    * @return charArr
    */
-  private char[] copyString(String input, int len) {
-
+  private char[] appendSpace(String input) {
+    int len = input.length();
     int spaces = countSpaces(input, len);
     char[] inputArr = new char[len + (spaces * 2)];
-
-    for (int i = 0; i < input.length(); i++) {
-      inputArr[i] = input.charAt(i);
-    }
-
+    System.arraycopy(input.toCharArray(), 0, inputArr, 0, len);
+    return inputArr;
+  }
+  
+  /**
+   * Prepend Spaces at the end to accommodate the replaced characters
+   * 
+   * @param input
+   * @return
+   */
+  private char[] prependSpace(String input) {
+    int len = input.length();
+    int spaces = countSpaces(input, len);
+    char[] inputArr = new char[len + (spaces * 2)];
+    System.arraycopy(input.toCharArray(), 0, inputArr, (spaces * 2), len);   
     return inputArr;
   }
 
   /**
    * Given the character array and actual length without spaces construct the
-   * URL version of the string
+   * URL version of the string bottom up approach
    *
+   * Complexity: O(n), Extra Space: O(1)
+   * 
    * @param inputArr
    * @param actualLen
    * @return url
@@ -88,6 +99,35 @@ public class URLify {
 
     return builder.toString();
   }
+  
+  /**
+   * Given the character array and actual length without spaces construct the
+   * URL version of the string
+   * 
+   * Complexity: O(n), Extra Space: O(1)
+   * @param inputArr
+   * @param actualLen
+   * @return url
+   */
+  private String getURLForward(char[] inputArr, int actualLen) {
+    StringBuilder builder = new StringBuilder();
+    
+    for(int i = (inputArr.length - actualLen), j = 0; i < inputArr.length; i++, j++) {
+      if(inputArr[i] == ' ') {
+        inputArr[j] = '%';
+        inputArr[++j] = '2';
+        inputArr[++j] = '0';
+      } else {
+        inputArr[j] = inputArr[i];
+      }
+    }
+    
+    for(char c:inputArr) {
+      builder.append(c);
+    }
+    
+    return builder.toString();
+  }
 
   public static void main(String[] args) throws FileNotFoundException {
 
@@ -95,9 +135,10 @@ public class URLify {
     String[] input = InputUtil.readContents(1, "urlify");
 
     for (String line : input) {
-      int len = line.length();
-      System.out.println("Input: " + input);
-      System.out.println("URL: " + urlify.getURL(urlify.copyString(line, len), len));
+      int originalLen = line.length();
+      System.out.println("Input: " + line);
+      System.out.println("URL: " + urlify.getURL(urlify.appendSpace(line), originalLen));
+      System.out.println("URL: " + urlify.getURLForward(urlify.prependSpace(line), originalLen));
       System.out.println();
     }
   }
