@@ -32,14 +32,8 @@ public class CheckPermutation {
       Arrays.sort(firstChars);
       Arrays.sort(secondChars);
 
-      for (int i = 0; i < firstChars.length; i++) {
-        if (firstChars[i] != secondChars[i]) {
-          return false;
-        }
-      }
+      return Arrays.equals(firstChars, secondChars);
     }
-
-    return true;
   }
 
   /**
@@ -76,6 +70,36 @@ public class CheckPermutation {
     return true;
   }
 
+  /**
+   * Check if first string is a permutation of the second: Use 2 bit vectors of
+   * length 32 to maintain a counter for each character. XOR of the bit vectors
+   * value != 0 -> return false:
+   * 
+   * Complexity: O(n), Space: O(1)
+   * 
+   * @param first
+   * @param second
+   * @return isPermutation
+   */
+  private boolean isPermutationBitWise(String first, String second) {
+    int checker = 0, checker2 = 0;
+
+    if (first.length() != second.length()) {
+      return false;
+    }
+
+    int len = first.length();
+    for (int i = 0; i < len; i++) {
+      checker |= (1 << (first.charAt(i) - 'a'));
+    }
+
+    for (int i = 0; i < len; i++) {
+      checker2 |= (1 << (second.charAt(i) - 'a'));
+    }
+
+    return (checker ^ checker2) == 0;
+  }
+
   public static void main(String[] args) throws FileNotFoundException {
 
     CheckPermutation checkPermutation = new CheckPermutation();
@@ -90,6 +114,7 @@ public class CheckPermutation {
         System.out.println("Input: " + line);
         System.out.println("Permutation check using sorted: " + checkPermutation.isPermutationSorted(first, second));
         System.out.println("Permutation check using array: " + checkPermutation.isPermutationArray(first, second));
+        System.out.println("Permutation check using bitwise: " + checkPermutation.isPermutationBitWise(first, second));
         System.out.println();
       }
     }
