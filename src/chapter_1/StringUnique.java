@@ -69,7 +69,7 @@ public class StringUnique {
     char[] characters = word.toCharArray();
 
     for (int i = 0; i < characters.length; i++) {
-      counter[characters[i]]++;
+      counter[characters[i] - 1]++;
     }
 
     for (int i = 0; i < counter.length; i++) {
@@ -85,7 +85,7 @@ public class StringUnique {
    * Check if characters are unique: Using a bit vector of length 32 instead of
    * using a counter array. Manipulate the bits for each character. If bit is
    * set to 1 already then character is already present -> return false Only
-   * works for characters a to z, Complexity: O(n)
+   * works for characters a to z, Complexity: O(n), Space: O(1)
    *
    * @param word
    * @return isUniqueChars
@@ -115,8 +115,10 @@ public class StringUnique {
   }
 
   /**
-   * Check if characters are unique: Add characters to Set and check set size
-   * with string size. Complexity: O(n), Extra Space: O(n)
+   * Check if characters are unique: Add characters to Hash Set and check if it
+   * exists in Set
+   * 
+   * Complexity: O(n), Extra Space: O(n)
    *
    * @param word
    * @return isUniqueChars
@@ -126,10 +128,13 @@ public class StringUnique {
     char[] characters = word.toCharArray();
 
     for (char c : characters) {
+      if (characterSet.contains(c)) {
+        return false;
+      }
       characterSet.add(c);
     }
 
-    return characterSet.size() == word.length();
+    return true;
   }
 
   public static void main(String[] args) throws FileNotFoundException {
