@@ -28,31 +28,21 @@ public class OneAway {
   private boolean isEditInsert(String input1, String input2) {
     int i = 0, j = 0, changes = 0;
 
-    /*
-     * input1 is longer than input2. So loop till input2.length
-     */
-    while (j < input2.length()) {
-      // if number of character changes is greater than 1 then return false
-      if (changes > 1) {
-        return false;
-      } else {
-        // if the character at i and j are equal then move to the next
-        if (input1.charAt(i) == input2.charAt(j)) {
-          j++;
-        } else {
-          // increase the number of changes for mismatch
-          changes++;
+    while (i < input1.length() && j < input2.length()) {
+      if (input1.charAt(i) != input2.charAt(j)) {
+        if (changes > 0) {
+          return false;
         }
+
+        changes++;
+      } else {
+        j++;
       }
+
       i++;
     }
 
-    // Handle last character change
-    if (input1.charAt(input1.length() - 1) != input2.charAt(input2.length() - 1)) {
-      changes++;
-    }
-
-    return changes <= 1;
+    return true;
   }
 
   /**
@@ -67,12 +57,12 @@ public class OneAway {
     while (i < input1.length()) {
       // For mismatch in characters increment changes
       if (input1.charAt(i) != input2.charAt(i)) {
-        changes++;
-
         // if number of changes is more than 1 return false
-        if (changes > 1) {
+        if (changes > 0) {
           return false;
         }
+
+        changes++;
       }
       i++;
     }
@@ -83,6 +73,8 @@ public class OneAway {
   /**
    * Check if input1 is one insert or delete away from input2. This is the Book
    * solution.
+   * 
+   * Complexity: O(n), Space: O(1)
    * 
    * @param input1
    * @param input2
@@ -112,6 +104,8 @@ public class OneAway {
   /**
    * Check if input1 is one replace away from input2
    * 
+   * Complexity: O(n), Space: O(1)
+   * 
    * @param input1
    * @param input2
    * @return isOneReplaceAway
@@ -137,9 +131,11 @@ public class OneAway {
   }
 
   /**
-   * Check if input1 is one edit away from input2. Complexity: O(n-1) where n is
-   * the length of longer input. Since the strings length should be one away we
-   * check n-1 times.
+   * Check if input1 is one edit away from input2.
+   * 
+   * Complexity: O(n), Space: O(1) where n is the length of longer input.
+   * 
+   * Since the strings length should be one away we check n-1 times.
    * 
    * @param input1
    * @param input2
@@ -173,9 +169,12 @@ public class OneAway {
   }
 
   /**
-   * Check if input1 is one edit away from input2. Complexity: O(n-1) where n is
-   * the length of longer input. Since the strings length should be one away we
-   * check n-1 times. This is the Book solution.
+   * Check if input1 is one edit away from input2.
+   * 
+   * Complexity: O(n), Space: O(1) where n is the length of longer input.
+   * 
+   * Since the strings length should be one away we check n-1 times. This is the
+   * Book solution.
    * 
    * @param input1
    * @param input2
@@ -204,9 +203,20 @@ public class OneAway {
   }
 
   /**
-   * Check if input1 is one edit away from input2. Complexity: O(n-1) where n is
-   * the length of longer input. Since the strings length should be one away we
-   * check n-1 times. Combined method as given in the Book.
+   * If you notice isEditInsert and isEditReplace uses a counter variable and
+   * exactly same logic except the pointer position. Similarly isEditInsert2 and
+   * isEditReplace2 uses a boolean condition or variable which is not different
+   * from the other implementation.
+   * 
+   * So we can combine both implementations with just the pointer position
+   * change.
+   * 
+   * Check if input1 is one edit away from input2.
+   * 
+   * Complexity: O(n), Space: O(1) where n is the length of longer input.
+   * 
+   * Since the strings length should be one away we check n-1 times. Combined
+   * method as given in the Book.
    * 
    * @param input1
    * @param input2
@@ -233,8 +243,7 @@ public class OneAway {
         }
         isChanged = true;
 
-        // for insert and delete the lengths are different. so increment the
-        // shorter string length by 1
+        // pointer position change
         if (longer.length() == shorter.length()) {
           j++;
         }
@@ -249,7 +258,6 @@ public class OneAway {
   }
 
   public static void main(String[] args) throws FileNotFoundException {
-
     OneAway oneAway = new OneAway();
     String[] input = InputUtil.readContents(1, "one_away");
     String first, second;
@@ -257,12 +265,14 @@ public class OneAway {
     for (String line : input) {
       first = line.split(":")[0].trim();
       second = line.split(":")[1].trim();
-      
+
       if (first != null && second != null && !first.isEmpty() && !second.isEmpty()) {
         System.out.println("Input: " + line);
-        System.out.println("Is one edit away? " + oneAway.checkOneAway(first, second));
-        System.out.println("Is one edit away using method 2? " + oneAway.checkOneAway2(first, second));
-        System.out.println("Is one edit away using method 3? " + oneAway.checkOneAway3(first, second));
+        System.out.println("Is less than or equal to one edit away? " + oneAway.checkOneAway(first, second));
+        System.out
+            .println("Is less than or equal to one edit away using method 2? " + oneAway.checkOneAway2(first, second));
+        System.out
+            .println("Is less than or equal to one edit away using method 3? " + oneAway.checkOneAway3(first, second));
         System.out.println();
       }
     }
