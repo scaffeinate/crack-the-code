@@ -27,20 +27,15 @@ public class RotateMatrix {
    * @return matrix
    */
   private int[][] rotate(int[][] matrix, int degrees) {
-    int layers = (int) Math.ceil(matrix.length / 2.0);
-
-    int top, left, right, bottom;
-
-    // Rotate (degrees/90) times
-    for (int k = 0; k < (degrees / 90); k++) {
-      // For each layer do the shift
-      for (int i = 0; i < layers; i++) {
+    int numRotations = (degrees / 90);
+    int numLayers = matrix.length / 2;
+    int top, left, right, bottom, temp = 0;
+    while (numRotations-- > 0) {
+      for (int i = 0; i < numLayers; i++) {
         int len = matrix.length - 1;
         top = left = i;
         bottom = right = len - i;
-        int temp = 0;
 
-        // shift the elements of each side
         for (int j = i; j < len - i; j++) {
           temp = matrix[top][j];
           matrix[top][j] = matrix[len - j][left];
@@ -92,7 +87,7 @@ public class RotateMatrix {
     rotateMatrix.printMatrix(matrix);
 
     System.out.println("\nAfter Rotation:");
-    rotateMatrix.rotate(matrix, 90);
+    rotateMatrix.rotate(matrix, 270);
     rotateMatrix.printMatrix(matrix);
   }
 }

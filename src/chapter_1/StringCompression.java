@@ -21,6 +21,8 @@ public class StringCompression {
   /**
    * Compresses the input string and returns the shorter of the two strings
    * 
+   * Complexity: O(n), Space: O(n) for the String builder
+   * 
    * @param input
    * @return compressedString
    */
