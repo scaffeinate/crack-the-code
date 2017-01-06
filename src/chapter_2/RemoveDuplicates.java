@@ -17,7 +17,7 @@ import util.InputUtil;
  * 
  * @author Sudharsanan Muralidharan
  */
-public class RemoveDups {
+public class RemoveDuplicates {
 
   /**
    * Remove duplicates from the list using a set
@@ -26,15 +26,20 @@ public class RemoveDups {
    * 
    * @param list
    */
-  private void removeDuplicatesSet(CustomLinkedList<Integer> list) {
+  private void removeSet(CustomLinkedList<Integer> list) {
     Node<Integer> current = list.head();
+    Node<Integer> runner = current.next;
     Set<Integer> set = new HashSet<Integer>();
+    set.add(current.data);
 
-    while (current.next != null) {
-      if (set.add(current.next.data)) {
-        current = current.next;
+    while (runner != null) {
+      if (set.contains(runner.data)) {
+        current.next = runner.next;
+        runner = runner.next;
       } else {
-        current.next = current.next.next;
+        set.add(runner.data);
+        current = current.next;
+        runner = runner.next;
       }
     }
   }
@@ -46,47 +51,54 @@ public class RemoveDups {
    * 
    * @param list
    */
-  private void removeDuplicates(CustomLinkedList<Integer> list) {
+  private void remove(CustomLinkedList<Integer> list) {
     Node<Integer> current = list.head();
     while (current != null) {
-      Node<Integer> second = current;
-      while (second.next != null) {
-        if (current.data.equals(second.next.data)) {
-          second.next = second.next.next;
+      Node<Integer> current2 = current;
+      Node<Integer> runner2 = current2.next;
+
+      while (runner2 != null) {
+        if (runner2.data.equals(current.data)) {
+          current2.next = runner2.next;
         } else {
-          second = second.next;
+          current2 = current2.next;
         }
+        runner2 = runner2.next;
       }
+
       current = current.next;
     }
   }
 
   public static void main(String[] args) throws FileNotFoundException {
-    
-    RemoveDups removeDups = new RemoveDups();
+    RemoveDuplicates removeDuplicates = new RemoveDuplicates();
     String[] input = InputUtil.readContents(2, "remove_dups");
     String[] elements;
 
-    for(String line:input) {
+    for (String line : input) {
       elements = line.split(":");
       CustomLinkedList<Integer> list = new CustomLinkedList<Integer>();
-      
+      CustomLinkedList<Integer> list2 = new CustomLinkedList<Integer>(list);
+
       for (String e : elements) {
-        if(e != null && !e.trim().isEmpty()) {
+        if (e != null && !e.trim().isEmpty()) {
           list.add(Integer.parseInt(e));
+          list2.add(Integer.parseInt(e));
         }
       }
 
       System.out.println("Original Linked List:");
       list.print();
 
-      removeDups.removeDuplicates(list);
+      removeDuplicates.remove(list);
       System.out.println("After Removing Duplicates: ");
       list.print();
 
-      removeDups.removeDuplicatesSet(list);
+      System.out.println("Original Linked List:");
+      list2.print();
+      removeDuplicates.removeSet(list2);
       System.out.println("After Removing Duplicates using Set:");
-      list.print();
+      list2.print();
 
       System.out.println();
 
