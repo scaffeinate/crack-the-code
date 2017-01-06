@@ -123,7 +123,8 @@ public class CustomLinkedList<T> {
    */
   public boolean remove(Object o) {
     Node<T> current = head;
-
+    Node<T> runner = current.next;
+    
     /*
      * If head is to be removed
      */
@@ -133,22 +134,47 @@ public class CustomLinkedList<T> {
       return true;
     }
 
-    while (current.next != null) {
-      if (current.next.data.equals(o)) {
-        current.next = current.next.next;
+    while (runner != null) {
+      if (runner.data.equals(o)) {
+        current.next = runner.next;
         size--;
-        if (current.next.equals(tail)) {
+        if (runner.equals(tail)) {
           tail = current;
         }
         return true;
       } else {
         current = current.next;
       }
+      runner = runner.next;
     }
 
     return false;
   }
 
+  public void removeAll(Object o) {
+    Node<T> current = head;
+    Node<T> runner = current.next;
+    
+    if(head.data.equals(o)) {
+      head = head.next;
+    }
+    
+    while(runner != null) {
+      if(runner.data.equals(o)) {
+        current.next = runner.next;
+        
+        if(runner.equals(tail)) {
+          tail = current;
+        }
+        size--;
+      } else {
+        current = current.next;
+      }
+      
+      runner = runner.next;
+    }
+  }
+  
   /**
    * Removes the object at index from list
    * 
@@ -269,7 +295,7 @@ public class CustomLinkedList<T> {
 
   public void addNode(int index, Node<T> node) {
     Node<T> current = head;
-    int i = 0, oldSize = 0, newSize = 0;
+    int i = 1;
 
     if (index == 0) {
       head = node;
@@ -277,26 +303,23 @@ public class CustomLinkedList<T> {
 
     if (index == size - 1) {
       tail = node;
-      oldSize = size;
     }
 
     while (current != null) {
-      ++i;
       if (i == index) {
+        node.next = current.next;
         current.next = node;
-        oldSize = i;
         break;
       }
-
+      i++;
       current = current.next;
     }
     
     while(node != null) {
       node = node.next;
-      newSize++;
     }
     
-    size = oldSize + newSize;
+    size += 1;
   }
 
   /**
@@ -309,7 +332,7 @@ public class CustomLinkedList<T> {
     builder.append("|").append(current.data);
     current = current.next;
 
-    while (current != tail.next) {
+    while (current != null) {
       builder.append("->").append(current.data);
       current = current.next;
     }
@@ -326,6 +349,24 @@ public class CustomLinkedList<T> {
    */
   public Node<T> head() {
     return this.head;
+  }
+
+  /**
+   * Sets the head
+   * 
+   * @param node
+   */
+  public void tail(Node<T> node) {
+    this.tail = node;
+  }
+  
+  /**
+   * Returns the head
+   * 
+   * @return head
+   */
+  public Node<T> tail() {
+    return this.tail;
   }
 
   /**
