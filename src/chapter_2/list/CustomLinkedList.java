@@ -150,6 +150,42 @@ public class CustomLinkedList<T> {
 
     return false;
   }
+  
+  public Node<T> removeNode(Object o) {
+    Node<T> current = head;
+    Node<T> runner = current.next;
+    Node<T> removedNode = null;
+    
+    if(head.data.equals(o)) {
+      removedNode = head;
+      head = head.next;
+      size--;
+      return removedNode;
+    }
+    
+    while(runner != null) {
+      if(runner.data.equals(o)) {
+        current.next = runner.next;
+        size--;
+        
+        if(runner == tail) {
+          tail = current;
+        }
+        removedNode = runner;
+        break;
+      } else {
+        current = current.next;
+      }
+      
+      runner = runner.next;
+    }
+    
+    if(removedNode != null) {
+      removedNode.next = null;
+    }
+    
+    return removedNode;
+  }
 
   public void removeAll(Object o) {
     Node<T> current = head;
@@ -322,11 +358,23 @@ public class CustomLinkedList<T> {
     size += 1;
   }
 
+  public void print() {
+    this.print(null);
+  }
+  
   /**
    * Prints the list
    */
-  public void print() {
+  public void print(Node<T> head) {
     Node<T> current = head;
+    if(head == null) {
+      current = this.head;
+    }
+    
+    if(current == null) {
+      return;
+    }
+    
     StringBuilder builder = new StringBuilder();
 
     builder.append("|").append(current.data);
@@ -394,7 +442,7 @@ public class CustomLinkedList<T> {
    * @param index
    * @return node
    */
-  private Node<T> find(int index) {
+  public Node<T> find(int index) {
     Node<T> current = head;
     int i = 0;
 
@@ -407,6 +455,23 @@ public class CustomLinkedList<T> {
         return current;
       }
       i++;
+      current = current.next;
+    }
+
+    return null;
+  }
+  
+  public Node<T> find(Object o) {
+    Node<T> current = head;
+
+    if (head.data.equals(o)) {
+      return current;
+    }
+
+    while (current != null) {
+      if (current.data.equals(o)) {
+        return current;
+      }
       current = current.next;
     }
 
