@@ -9,18 +9,18 @@ import java.util.Arrays;
  * @author Sudharsanan Muralidharan
  */
 public class HashTable<K, V> {
-  private Node<K, V>[] hashArray;
+  private HashTableNode<K, V>[] hashArray;
   private int hashSize = 32;
 
   @SuppressWarnings("unchecked")
   public HashTable() {
-    hashArray = (Node<K, V>[]) Arrays.copyOf(new Object[hashSize], hashSize, Node[].class);
+    hashArray = (HashTableNode<K, V>[]) Arrays.copyOf(new Object[hashSize], hashSize, HashTableNode[].class);
   }
   
   public void put(K key, V value) {
       // TODO implement
     int index = key.hashCode() % hashSize;
-    Node<K, V> head;
+    HashTableNode<K, V> head;
     
     if(hashArray[index] == null) {
       hashArray[index] = add(key, value, null);
@@ -36,15 +36,15 @@ public class HashTable<K, V> {
      return find(key, hashArray[index]);
   }
   
-  private Node<K, V> add(K key, V value, Node<K, V> head) {
+  private HashTableNode<K, V> add(K key, V value, HashTableNode<K, V> head) {
     // TODO Auto-generated method stub
     if (head == null) {
-      head = new Node<K, V>();
+      head = new HashTableNode<K, V>();
       head.key = key;
       head.value = value;
       head.next = null;
     } else {
-      Node<K, V> current = head;
+      HashTableNode<K, V> current = head;
       
       while(current.next != null) {
         current = current.next;
@@ -58,9 +58,9 @@ public class HashTable<K, V> {
     return head;
   }
   
-  private V find(K key, Node<K, V> head) {
+  private V find(K key, HashTableNode<K, V> head) {
     // TODO Auto-generated method stub
-    Node<K, V> current = head;
+    HashTableNode<K, V> current = head;
     while (current != null) {
       if (current.key.equals(key)) {
         return current.value;

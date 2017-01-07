@@ -1,12 +1,12 @@
 package additional;
 
-public class Node<K, V> {
+public class HashTableNode<K, V> {
 
   K key;
   V value;;
-  Node<K, V> next;
+  HashTableNode<K, V> next;
 
-  public Node() {
+  public HashTableNode() {
     // TODO Auto-generated constructor stub
   }
 
