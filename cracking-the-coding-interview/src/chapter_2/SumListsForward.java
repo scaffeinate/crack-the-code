@@ -62,7 +62,7 @@ public class SumListsForward {
      */
     while (!stack.isEmpty()) {
       sum = stack.pop() + stack2.pop() + temp;
-      resultList.add(sum % 10);
+      resultList.addToFront(sum % 10);
       temp = sum / 10;
     }
 
@@ -71,10 +71,95 @@ public class SumListsForward {
      * add it to list.
      */
     if ((temp = stack2.pop()) != 0) {
-      resultList.add(temp);
+      resultList.addToFront(temp);
     }
 
     return resultList;
+  }
+
+  /**
+   * Compute Sum Forward in a LinkedList.
+   * 
+   * For eg: 9->9->8->1 + 8->3->4 which is 9981+834 should return 1->0->8->1->5
+   * 
+   * Call Recursive function sumForwardRecurse
+   * 
+   * Complexity: O(n), Space: O(n) for recursive function
+   * 
+   * The recursive method returns the NodeWrapper head which needs to be added
+   * to front of linked list.
+   * 
+   * @param current
+   * @param current2
+   * @return
+   */
+  private CustomLinkedList<Integer> computeSumRecurse(Node<Integer> current, Node<Integer> current2) {
+    CustomLinkedList<Integer> resultList = new CustomLinkedList<Integer>();
+    NodeWrapper<Integer> resultNodeWrapper = sumFowardRecurse(current, current2);
+    Node<Integer> head = resultNodeWrapper.node;
+
+    /*
+     * If there is a carry in the first digit it needs to be added as a new
+     * node.
+     * 
+     * Eg: In 9->2->3 + 1->8->2, 9 + 1 + 1(carry) will yeild 11. The carry now
+     * is also 1 which needs to be added to list.
+     */
+    if (resultNodeWrapper.temp != 0) {
+      Node<Integer> node = new Node<Integer>();
+      node.data = resultNodeWrapper.temp;
+      resultList.add(node.data);
+    }
+    
+    while (head != null) {
+      resultList.add(head.data);
+      head = head.next;
+    }
+
+    return resultList;
+  }
+
+  /**
+   * Recursive function to sum list forward.
+   * 
+   * In order for this to work we need to pass back the node as well as the
+   * carry when we reach the tail. So NodeWrapper class holds the reference to
+   * the node and also the carry value. Took the hint for using Wrapper class
+   * from Book. But implementation might differ.
+   * 
+   * @param current
+   * @param current2
+   * @return NodeWrapper head
+   */
+  private NodeWrapper<Integer> sumFowardRecurse(Node<Integer> current, Node<Integer> current2) {
+    NodeWrapper<Integer> currentNode = new NodeWrapper<Integer>();
+    Node<Integer> node = new Node<Integer>();
+    int sum = 0, temp = 0;
+
+    sum = current.data + current2.data;
+    node.data = (sum % 10);
+    temp = (sum / 10);
+
+    currentNode.node = node;
+
+    if (current.next == null) {
+      node.next = null;
+      currentNode.temp = temp;
+    } else {
+      NodeWrapper<Integer> resultWrapper = sumFowardRecurse(current.next, current2.next);
+      node.next = resultWrapper.node; // Link the node to the NodeWrapper which
+                                      // has next node & carry in stack
+
+      /*
+       * When the stack returns compute the new sum with the carry from previous
+       * call and update the carry and digit in list
+       */
+      sum += resultWrapper.temp;
+      node.data = (sum % 10);
+      currentNode.temp += (sum / 10);
+    }
+
+    return currentNode;
   }
 
   /**
@@ -135,7 +220,16 @@ public class SumListsForward {
       CustomLinkedList<Integer> result = sumListsForward.computeSum(list.head(), list2.head());
       result.print();
 
+      System.out.println("Using Recursion: ");
+      CustomLinkedList<Integer> resultRecurse = sumListsForward.computeSumRecurse(list.head(), list2.head());
+      resultRecurse.print();
+
       System.out.println();
     }
+  }
+
+  class NodeWrapper<T> {
+    Node<T> node;
+    int temp = 0;
   }
 }

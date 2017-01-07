@@ -120,6 +120,26 @@ public class CustomLinkedList<T> {
 
     return added;
   }
+  
+  public boolean addToFront(T e) {
+    boolean added = false;
+    
+    if(head == null) {
+      head = new Node<T>();
+      head.data = e;
+      head.next = null;
+      tail = head;
+      added = true;
+    } else {
+      Node<T> node = new Node<T>();
+      node.data = e;
+      node.next = head;
+      head = node;
+      added = true;
+    }
+    
+    return added;
+  }
 
   /**
    * Removes the object from the list
@@ -309,24 +329,15 @@ public class CustomLinkedList<T> {
       return;
     }
 
-    /*
-     * if index is size - 1 then add to the end and update tail
-     */
-    if (index == size - 1) {
-      Node<T> node = new Node<T>();
-      node.data = element;
-      tail.next = node;
-      tail = node;
-      size++;
-      return;
-    }
-
     while (current != null) {
       if (index - 1 == i) {
         Node<T> node = new Node<T>();
         node.data = element;
         node.next = current.next;
         current.next = node;
+        if (index == size - 1) {
+          tail = node;
+        }
         size++;
       }
 
