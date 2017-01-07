@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import chapter_2.list.CustomLinkedList;
 import chapter_2.list.Node;
 import util.InputUtil;
+import util.ListUtil;
 
 /**
  * Question 2.4: Write code to partition a linked list around a value x, such
@@ -143,11 +144,11 @@ public class Partition {
 
       System.out.println("Using 2 Linked Lists:");
       head = partition.partition(list, partitionVal);
-      list.print(head);
+      ListUtil.printList(head);
       
       System.out.println("Using Inplace:");
       head = partition.partitionInplace(list2, partitionVal);
-      list2.print(head);
+      ListUtil.printList(head);
       
       System.out.println();
       

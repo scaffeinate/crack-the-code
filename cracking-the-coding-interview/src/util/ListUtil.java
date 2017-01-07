@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import chapter_2.list.CustomLinkedList;
+import chapter_2.list.Node;
 
 public class ListUtil {
 
@@ -18,5 +19,33 @@ public class ListUtil {
     resultMap.put("shorter", shorter);
 
     return resultMap;
+  }
+
+  public static <T> void printList(Node<T> head) {
+    Node<T> current = head;
+
+    if (current == null) {
+      return;
+    }
+
+    StringBuilder builder = new StringBuilder();
+
+    builder.append("|").append(current.data);
+    current = current.next;
+
+    while (current != null) {
+      builder.append("->").append(current.data);
+      current = current.next;
+    }
+
+    builder.append("|");
+
+    System.out.println(builder.toString());
+  }
+  
+  public static <T> CustomLinkedList<T> constructList(Node<T> head) {
+    CustomLinkedList<T> list = new CustomLinkedList<T>();
+    
+    return list;
   }
 }

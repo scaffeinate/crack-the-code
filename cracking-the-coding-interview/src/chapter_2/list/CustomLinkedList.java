@@ -3,6 +3,8 @@
  */
 package chapter_2.list;
 
+import util.ListUtil;
+
 /**
  * CustomLinkedList: Simple LinkedList implementation.
  * 
@@ -24,6 +26,10 @@ public class CustomLinkedList<T> {
       this.add(current.data);
       current = current.next;
     }
+  }
+  
+  public CustomLinkedList(Node<T> head) {
+    this.head = head;
   }
 
   /**
@@ -358,36 +364,11 @@ public class CustomLinkedList<T> {
     size += 1;
   }
 
-  public void print() {
-    this.print(null);
-  }
-  
   /**
    * Prints the list
    */
-  public void print(Node<T> head) {
-    Node<T> current = head;
-    if(head == null) {
-      current = this.head;
-    }
-    
-    if(current == null) {
-      return;
-    }
-    
-    StringBuilder builder = new StringBuilder();
-
-    builder.append("|").append(current.data);
-    current = current.next;
-
-    while (current != null) {
-      builder.append("->").append(current.data);
-      current = current.next;
-    }
-
-    builder.append("|");
-
-    System.out.println(builder.toString());
+  public void print() {
+    ListUtil.printList(this.head);
   }
 
   /**
