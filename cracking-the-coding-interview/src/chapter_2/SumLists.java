@@ -35,56 +35,103 @@ public class SumLists {
    * @param list2
    * @return sum
    */
-  private int computeSum(CustomLinkedList<Integer> list, CustomLinkedList<Integer> list2) {
-
-    /*
-     * to handle length mismatch, fetch the larger and smaller lists head.
-     * current node points the head of the larger linked list current2 points
-     * the other list.
-     */
+  private CustomLinkedList<Integer> computeSum(CustomLinkedList<Integer> list, CustomLinkedList<Integer> list2) {
     Map<String, CustomLinkedList<Integer>> nodeMap = ListUtil.getShorterAndLonger(list, list2);
     Node<Integer> current = nodeMap.get("longer").head();
     Node<Integer> current2 = nodeMap.get("shorter").head();
 
-    return add(current, current2, 0, 0);
+    CustomLinkedList<Integer> resultList = add(current, current2);
+    return resultList;
+  }
+  
+  private CustomLinkedList<Integer> computeSumRecurse(CustomLinkedList<Integer> list, CustomLinkedList<Integer> list2) {
+    Map<String, CustomLinkedList<Integer>> nodeMap = ListUtil.getShorterAndLonger(list, list2);
+    Node<Integer> current = nodeMap.get("longer").head();
+    Node<Integer> current2 = nodeMap.get("shorter").head();
+    
+    Node<Integer> resultHead = addRecursive(current, current2, 0);
+    
+    return new CustomLinkedList<Integer>(resultHead);
+  }
+
+  /**
+   * Using an iterative approach to add two LinkedList elements
+   * 
+   * Complexity: O(n), Space: O(n)
+   * 
+   * @param longerHead
+   * @param shorterHead
+   * @return resultList
+   */
+  private CustomLinkedList<Integer> add(Node<Integer> longerHead, Node<Integer> shorterHead) {
+    CustomLinkedList<Integer> list = new CustomLinkedList<Integer>();
+    int temp = 0, sum = 0;
+    while (shorterHead != null) {
+      sum = shorterHead.data + longerHead.data + temp;
+      list.add(sum % 10);
+      temp = (sum / 10);
+
+      shorterHead = shorterHead.next;
+      longerHead = longerHead.next;
+    }
+
+    while (longerHead != null) {
+      sum = longerHead.data + temp;
+      list.add(sum % 10);
+      temp = (sum / 10);
+      longerHead = longerHead.next;
+    }
+
+    if (temp != 0) {
+      list.add(temp);
+    }
+
+    return list;
   }
 
   /**
    * Recursive function which computes the sum of digits
    * 
+   * Complexity: O(n), Space: O(n) [Recursive call, stack is used for memory]
+   * 
    * @param current
    * @param current2
    * @param carry
    * @param place
-   * @return sum
+   * @return resultList head
    */
-  private int add(Node<Integer> current, Node<Integer> current2, int carry, int place) {
+  private Node<Integer> addRecursive(Node<Integer> current, Node<Integer> current2, int temp) {
+    int sum = 0;
 
-    int total = 0, sum = 0;
-
-    /*
-     * current2 points to the smaller list and current to the larger. Add the
-     * digits till current2 runs out and then compute the rest of the digits for
-     * current
-     */
-    if (current2 != null) {
-      // compute the sum of digits + carryover
-      sum = current.data + current2.data + carry;
-      // compute new carryover
-      carry = sum / 10;
-      // (10^place) * digit + add() of rest of the digits
-      total += Math.pow(10, place) * (sum % 10) + add(current.next, current2.next, carry, ++place);
-    } else if (current != null) {
-      // since the smaller list digits are exhausted add digit + carryover
-      sum = current.data + carry;
-      // compute new carryover
-      carry = sum / 10;
-      total += Math.pow(10, place) * (sum % 10) + add(current.next, null, carry, ++place);
-    } else {
-      total += Math.pow(10, place) * carry;
+    if (current != null) {
+      sum += current.data;
     }
 
-    return total;
+    if (current2 != null) {
+      sum += current2.data;
+    }
+
+    sum += temp;
+
+    Node<Integer> resultNode = new Node<Integer>();
+    resultNode.data = (sum % 10);
+    temp = (sum / 10);
+    resultNode.next = null;
+
+    if (current.next == null) {
+      if (temp != 0) {
+        Node<Integer> node = new Node<Integer>();
+        node.data = temp;
+        node.next = null;
+        resultNode.next = node;
+      }
+      return resultNode;
+    }
+
+    resultNode.next = addRecursive((current != null) ? current.next : null, (current2 != null) ? current2.next : null,
+        temp);
+
+    return resultNode;
   }
 
   public static void main(String[] args) throws FileNotFoundException {
@@ -106,21 +153,29 @@ public class SumLists {
       if (elements != null) {
         for (String e : elements) {
           list.add(Integer.parseInt(e));
-          builder.append(e);
+          builder.append(e).append("->");
         }
       }
 
       if (elements2 != null) {
-        builder.append('+');
+        builder.append(" + ");
 
         for (String e : elements2) {
           list2.add(Integer.parseInt(e));
-          builder.append(e);
+          builder.append(e).append("->");
         }
       }
 
-      System.out.print(builder.reverse().toString() + "=");
-      System.out.print(sumLists.computeSum(list, list2));
+      System.out.println(builder.toString());
+      
+      System.out.println("Using Iteration: ");
+      CustomLinkedList<Integer> result = sumLists.computeSum(list, list2);
+      result.print();
+      
+      System.out.println("Using Recursion: ");
+      CustomLinkedList<Integer> resultRecurse = sumLists.computeSumRecurse(list, list2);
+      resultRecurse.print();
+      
       System.out.println();
     }
   }
