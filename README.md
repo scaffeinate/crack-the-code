@@ -1,2 +1,9 @@
-# Cracking-the-code
-Cracking the coding interview solutions using Java
+# Algorithms & DS solutions in Java
+
+Practice solutions for:
+
+- Cracking the coding interview
+- GeeksForGeeks
+- Hackerrank
+- Leetcode
+
