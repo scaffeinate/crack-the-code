@@ -27,24 +27,25 @@ public class Palindrome {
     Node<Character> head = list.head();
     Node<Character> center = list.getNode(list.size() / 2);
 
-    Node<Character> prev, current, runner;
+    Node<Character> current, runner, temp;
 
-    prev = center;
-    current = prev.next;
+    current = center;
+    runner = center.next;
+    current.next = null;
 
-    while (current != null) {
-      runner = current.next;
-      current.next = prev;
-      prev = current;
+    while (runner != null) {
+      temp = runner.next;
+      runner.next = current;
       current = runner;
+      runner = temp;
     }
 
     while (!head.equals(center)) {
-      if (!prev.data.equals(head.data)) {
+      if (!current.data.equals(head.data)) {
         return false;
       }
 
-      prev = prev.next;
+      current = current.next;
       head = head.next;
     }
 
