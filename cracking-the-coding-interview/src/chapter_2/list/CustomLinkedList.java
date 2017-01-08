@@ -442,7 +442,7 @@ public class CustomLinkedList<T> {
       return current;
     }
 
-    while (current != tail.next) {
+    while (current != null) {
       if (i == index) {
         return current;
       }
