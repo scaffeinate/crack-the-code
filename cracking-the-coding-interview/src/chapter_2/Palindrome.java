@@ -86,6 +86,45 @@ public class Palindrome {
     return true;
   }
 
+  /**
+   * Recursive solution to check if it's a Palindrome. This is the same approach
+   * as in Book but implementation is a little different. Start with the head
+   * and recurse through center which can be checked when len hits 0 or 1. We
+   * reduce the length by 2 every call. Return center or center.next when this
+   * condition is true.
+   * 
+   * The ref is passed back the calling function. Say we have 5 nodes where 2nd
+   * index is the center. Now 3rd index will be compared to 1st index. If data
+   * is equal we move the ref to ref.next and pass it back to the calling
+   * function and let memory stack do it's job.
+   * 
+   * 
+   * @param current
+   * @param len
+   * @return wrapper which has node and isPalindrome flag
+   */
+  private NodeWrapper<Character> isParlindromeRecurse(Node<Character> current, int len) {
+    NodeWrapper<Character> resultWrapper = null;
+
+    if (len == 1) {
+      return new NodeWrapper<Character>(current.next);
+    } else if (len == 0) {
+      return new NodeWrapper<Character>(current);
+    }
+
+    resultWrapper = isParlindromeRecurse(current.next, len - 2);
+
+    if (resultWrapper.isPalindrome) {
+      if (current.data.equals(resultWrapper.node.data)) {
+        resultWrapper.node = resultWrapper.node.next;
+      } else {
+        resultWrapper.isPalindrome = false;
+      }
+    }
+
+    return resultWrapper;
+  }
+
   public static void main(String[] args) throws FileNotFoundException {
     Palindrome palindrome = new Palindrome();
     String[] input = InputUtil.readContents(2, "palindrome");
@@ -103,12 +142,25 @@ public class Palindrome {
       System.out.println("Input: " + line);
 
       list = new CustomLinkedList<Character>(inputList);
-      System.out.println("Is it Palindrome? " + palindrome.isPalindrome(list));
+      System.out.println("Is it Palindrome? - Inline " + palindrome.isPalindrome(list));
 
       list = new CustomLinkedList<Character>(inputList);
-      System.out.println("Is it Palindrome - Method 2? " + palindrome.isPalindrome2(list));
+      System.out.println("Is it Palindrome? - Stack " + palindrome.isPalindrome2(list));
+
+      list = new CustomLinkedList<Character>(inputList);
+      System.out.println(
+          "Is it Palindrome? - Recurse " + palindrome.isParlindromeRecurse(list.head(), list.size()).isPalindrome);
 
       System.out.println();
+    }
+  }
+
+  class NodeWrapper<T> {
+    Node<T> node;
+    boolean isPalindrome = true;
+
+    NodeWrapper(Node<T> node) {
+      this.node = node;
     }
   }
 }
