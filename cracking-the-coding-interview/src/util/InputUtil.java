@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
+import chapter_2.list.CustomLinkedList;
+
 public class InputUtil {
 
   private static final String INPUT = "input_files/chapter_";
@@ -26,5 +28,18 @@ public class InputUtil {
     scanner.close();
 
     return buffer.toString().split("\n");
+  }
+
+  public static CustomLinkedList<String> parseLinkedList(String line) {
+    String[] elements = line.split(":");
+    CustomLinkedList<String> list = new CustomLinkedList<String>();
+
+    for (String e : elements) {
+      if (e != null && !e.trim().isEmpty()) {
+        list.add(e.toString());
+      }
+    }
+
+    return list;
   }
 }
