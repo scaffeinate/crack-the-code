@@ -10,7 +10,7 @@ import chapter_2.list.Node;
  * @author Sudharsanan Muralidharan
  * @param <T>
  */
-public class CustomStack<T> {
+public class CustomStack<T> extends AbstractStack<T> {
   private Node<T> top = null;
   private int size = 0;
 
@@ -22,6 +22,7 @@ public class CustomStack<T> {
    * 
    * @param data
    */
+  @Override
   public void push(T data) {
     if (top == null) {
       top = new Node<T>();
@@ -40,6 +41,7 @@ public class CustomStack<T> {
   /**
    * Pop top of the stack
    */
+  @Override
   public T pop() {
     T result = null;
     if (top == null) {
@@ -49,7 +51,7 @@ public class CustomStack<T> {
     result = top.data;
     top = top.next;
     size--;
-    
+
     return result;
   }
 
@@ -58,6 +60,7 @@ public class CustomStack<T> {
    * 
    * @return top
    */
+  @Override
   public T peek() {
     if (top == null) {
       throw new EmptyStackException();
@@ -67,25 +70,11 @@ public class CustomStack<T> {
   }
 
   /**
-   * Check if stack is Empty
-   * 
-   * @return
+   * Return the Node<T> at top
+   * @return top
    */
-  public boolean isEmpty() {
-    return (size == 0);
-  }
-
   public Node<T> top() {
     return this.top;
-  }
-  
-  /**
-   * Get stack size
-   * 
-   * @return size
-   */
-  public int size() {
-    return this.size;
   }
 
   /**
@@ -96,7 +85,7 @@ public class CustomStack<T> {
     if (this.isEmpty()) {
       return "";
     }
-    
+
     Node<T> current = top;
     StringBuilder builder = new StringBuilder();
     builder.append("[");
