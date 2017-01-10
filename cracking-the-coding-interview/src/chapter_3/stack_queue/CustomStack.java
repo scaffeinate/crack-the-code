@@ -40,13 +40,17 @@ public class CustomStack<T> {
   /**
    * Pop top of the stack
    */
-  public void pop() {
+  public T pop() {
+    T result = null;
     if (top == null) {
       throw new EmptyStackException();
     }
 
+    result = top.data;
     top = top.next;
     size--;
+    
+    return result;
   }
 
   /**

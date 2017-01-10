@@ -22,7 +22,7 @@ public class CustomQueue<T> {
    * Push data into queue
    * @param data
    */
-  public void push(T data) {
+  public void add(T data) {
     if (head == null) {
       head = new Node<T>();
       head.data = data;
@@ -42,12 +42,22 @@ public class CustomQueue<T> {
   /**
    * Removes node from front of the queue
    */
-  public void pop() {
+  public T remove() {
+    T result = null;
     if (head == null) {
       throw new EmptyStackException();
     }
+    result = head.data;
     head = head.next;
+    
+    
+    if(head == null) {
+      tail = null;
+    }
+    
     size--;
+    
+    return result;
   }
 
   /**
@@ -60,6 +70,14 @@ public class CustomQueue<T> {
     }
 
     return head.data;
+  }
+  
+  public T back() {
+    if(tail == null) {
+      throw new EmptyStackException();
+    }
+    
+    return tail.data;
   }
 
   /**
