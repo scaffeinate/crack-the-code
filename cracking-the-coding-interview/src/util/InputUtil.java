@@ -42,4 +42,18 @@ public class InputUtil {
 
     return list;
   }
+  
+  public static String getArg(String line) {
+    return line.subSequence(line.indexOf('(') + 1, line.indexOf(')')).toString();
+  }
+  
+  public static String[] getArgs(String line, int length) {
+    String[] args = new String[length];
+    if(length == 2) {
+      args[0] = line.subSequence(line.indexOf('(')+1, line.indexOf(',')).toString();
+      args[1] = line.subSequence(line.indexOf(',') + 1, line.indexOf(')')).toString();
+    }
+    
+    return args;
+  }
 }

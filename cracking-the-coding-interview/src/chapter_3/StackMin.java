@@ -29,7 +29,7 @@ public class StackMin {
     CustomStackMin customStackMin = new CustomStackMin();
     for (String line : input) {
       if (line.startsWith("push")) {
-        int val = Integer.parseInt(line.subSequence(line.indexOf('(') + 1, line.indexOf(')')).toString());
+        int val = Integer.parseInt(InputUtil.getArg(line));
         System.out.println("Pusing " + val + " to stack");
         customStackMin.push(val);
       } else if (line.startsWith("pop")) {

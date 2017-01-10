@@ -66,12 +66,13 @@ public class ThreeinOne {
     for (int i = 1; i < input.length; i++) {
       String line = input[i];
       int stackNumber, val;
-      if (line.startsWith("push(")) {
-        stackNumber = Integer.parseInt(line.subSequence(line.indexOf('(')+1, line.indexOf(',')).toString());
-        val = Integer.parseInt(line.subSequence(line.indexOf(',') + 1, line.indexOf(')')).toString());
+      if (line.startsWith("push")) {
+        String[] inputArgs = InputUtil.getArgs(line, 2);
+        stackNumber = Integer.parseInt(inputArgs[0]);
+        val = Integer.parseInt(inputArgs[1]);
         threeinOne.push(stackNumber, val);
-      } else if (line.startsWith("pop(")) {
-        stackNumber = Integer.parseInt(line.subSequence(line.indexOf('(')+1, line.indexOf(')')).toString());
+      } else if (line.startsWith("pop")) {
+        stackNumber = Integer.parseInt(InputUtil.getArg(line));
         System.out.println("Popping from stack " + stackNumber + " -> " + threeinOne.pop(stackNumber));
       }
     }
