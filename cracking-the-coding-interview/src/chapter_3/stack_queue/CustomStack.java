@@ -1,5 +1,7 @@
 package chapter_3.stack_queue;
 
+import java.util.EmptyStackException;
+
 import chapter_2.list.Node;
 
 /**
@@ -39,10 +41,12 @@ public class CustomStack<T> {
    * Pop top of the stack
    */
   public void pop() {
-    if (top != null) {
-      top = top.next;
-      size--;
+    if (top == null) {
+      throw new EmptyStackException();
     }
+
+    top = top.next;
+    size--;
   }
 
   /**
@@ -51,10 +55,11 @@ public class CustomStack<T> {
    * @return top
    */
   public T peek() {
-    if (top != null) {
-      return top.data;
+    if (top == null) {
+      throw new EmptyStackException();
     }
-    return null;
+
+    return top.data;
   }
 
   /**
@@ -76,11 +81,14 @@ public class CustomStack<T> {
   }
 
   /**
-   * @Override toString()
-   * Returns the content of the stack
+   * @Override toString() Returns the content of the stack
    */
   @Override
   public String toString() {
+    if (this.isEmpty()) {
+      return "";
+    }
+    
     Node<T> current = top;
     StringBuilder builder = new StringBuilder();
     builder.append("[");
