@@ -18,9 +18,11 @@ public class SetOfStacks<T> extends AbstractStack<T> {
     CustomStack<T> stack = map.get(mostRecentStack);
     if (mostRecentStack == -1 || (stack != null && stack.size() > threshold)) {
       stack = createStack();
+      mostRecentStack++; 
     }
 
     stack.push(data);
+    map.put(mostRecentStack, stack);
   }
 
   @Override
@@ -41,20 +43,20 @@ public class SetOfStacks<T> extends AbstractStack<T> {
   public T popAt(int index) {
     CustomStack<T> stack = map.get(index);
     if (stack == null) {
-      System.out.println("Sub-stack not found");
+      System.out.println("Sub-stack at " + index + " not found");
       return null;
     }
     
     T popped = stack.pop();
     if (stack.isEmpty()) {
       mostRecentStack--;
+      System.out.println("Stack at " + index + " is empty. Updating recent stack to " + mostRecentStack);
     }
     return popped;
   }
 
   private CustomStack<T> createStack() {
     CustomStack<T> stack = new CustomStack<T>();
-    map.put(mostRecentStack++, stack);
     return stack;
   }
 }
