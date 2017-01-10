@@ -75,6 +75,10 @@ public class CustomStack<T> {
     return (size == 0);
   }
 
+  public Node<T> top() {
+    return this.top;
+  }
+  
   /**
    * Get stack size
    * 
