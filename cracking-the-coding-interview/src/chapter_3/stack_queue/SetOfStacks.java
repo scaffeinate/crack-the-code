@@ -3,8 +3,8 @@ package chapter_3.stack_queue;
 import java.util.HashMap;
 import java.util.Map;
 
-import datastructures.lists.stack.AbstractStack;
-import datastructures.lists.stack.CustomStack;
+import datastructures.stack.AbstractStack;
+import datastructures.stack.CustomStack;
 
 public class SetOfStacks<T> extends AbstractStack<T> {
   private Map<Integer, CustomStack<T>> map;

@@ -1,7 +1,7 @@
 package chapter_3.stack_queue;
 
 import datastructures.common.Node;
-import datastructures.lists.stack.CustomStack;
+import datastructures.stack.CustomStack;
 
 /**
  * Extend the CustomStack to include the method min which returns the minValue

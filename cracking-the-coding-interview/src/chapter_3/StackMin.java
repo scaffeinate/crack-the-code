@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.EmptyStackException;
 
 import chapter_3.stack_queue.CustomStackMin;
-import datastructures.lists.stack.CustomStack;
+import datastructures.stack.CustomStack;
 import util.InputUtil;
 
 /**

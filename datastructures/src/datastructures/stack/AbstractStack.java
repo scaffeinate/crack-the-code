@@ -1,4 +1,4 @@
-package datastructures.lists.stack;
+package datastructures.stack;
 
 /**
  * AbstractStack class which has the basic stack functions. push(), pop() and
