@@ -1,10 +1,10 @@
-package util;
+package datastructures.util;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import chapter_2.list.CustomLinkedList;
-import chapter_2.list.Node;
+import datastructures.common.Node;
+import datastructures.lists.CustomLinkedList;
 
 public class ListUtil {
 

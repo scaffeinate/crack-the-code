@@ -1,9 +1,10 @@
 /**
  * 
  */
-package chapter_2.list;
+package datastructures.lists;
 
-import util.ListUtil;
+import datastructures.common.Node;
+import datastructures.util.ListUtil;
 
 /**
  * CustomLinkedList: Simple LinkedList implementation.

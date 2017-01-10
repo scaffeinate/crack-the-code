@@ -1,7 +1,7 @@
 /**
  * 
  */
-package chapter_2.list;
+package datastructures.common;
 
 /**
  * @author Sudharsanan Muralidharan

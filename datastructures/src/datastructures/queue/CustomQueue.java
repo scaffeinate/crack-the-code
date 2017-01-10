@@ -1,8 +1,8 @@
-package chapter_3.stack_queue;
+package datastructures.queue;
 
 import java.util.EmptyStackException;
 
-import chapter_2.list.Node;
+import datastructures.common.Node;
 
 /**
  * Simple Queue Implementation

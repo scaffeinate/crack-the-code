@@ -1,4 +1,4 @@
-package chapter_3.stack_queue;
+package datastructures.lists.stack;
 
 /**
  * AbstractStack class which has the basic stack functions. push(), pop() and
