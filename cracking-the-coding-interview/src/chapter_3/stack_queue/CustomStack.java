@@ -12,7 +12,6 @@ import chapter_2.list.Node;
  */
 public class CustomStack<T> extends AbstractStack<T> {
   private Node<T> top = null;
-  private int size = 0;
 
   public CustomStack() {
   }

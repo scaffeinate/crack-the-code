@@ -8,7 +8,7 @@ package chapter_3.stack_queue;
  * @param <T>
  */
 public abstract class AbstractStack<T> {
-  private int size = 0;
+  protected int size = 0;
 
   public abstract void push(T data);
 
