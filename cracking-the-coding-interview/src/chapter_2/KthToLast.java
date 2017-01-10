@@ -2,8 +2,8 @@ package chapter_2;
 
 import java.io.FileNotFoundException;
 
-import chapter_2.list.CustomLinkedList;
-import chapter_2.list.Node;
+import datastructures.common.Node;
+import datastructures.lists.CustomLinkedList;
 import util.InputUtil;
 
 /**

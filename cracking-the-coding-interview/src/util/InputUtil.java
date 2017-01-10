@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
-import chapter_2.list.CustomLinkedList;
+import datastructures.lists.CustomLinkedList;
 
 public class InputUtil {
 

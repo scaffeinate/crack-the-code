@@ -3,10 +3,10 @@ package chapter_2;
 import java.io.FileNotFoundException;
 import java.util.Map;
 
-import chapter_2.list.CustomLinkedList;
-import chapter_2.list.Node;
+import datastructures.common.Node;
+import datastructures.lists.CustomLinkedList;
+import datastructures.util.ListUtil;
 import util.InputUtil;
-import util.ListUtil;
 
 /**
  * Question 2.5: You have two numbers represented by a linked list, where each

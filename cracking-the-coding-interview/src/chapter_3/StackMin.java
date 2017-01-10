@@ -3,8 +3,8 @@ package chapter_3;
 import java.io.FileNotFoundException;
 import java.util.EmptyStackException;
 
-import chapter_3.stack_queue.CustomStack;
 import chapter_3.stack_queue.CustomStackMin;
+import datastructures.lists.stack.CustomStack;
 import util.InputUtil;
 
 /**

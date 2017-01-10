@@ -3,10 +3,10 @@ package chapter_2.additional;
 import java.io.FileNotFoundException;
 import java.util.Stack;
 
-import chapter_2.list.CustomLinkedList;
-import chapter_2.list.Node;
+import datastructures.common.Node;
+import datastructures.lists.CustomLinkedList;
+import datastructures.util.ListUtil;
 import util.InputUtil;
-import util.ListUtil;
 
 /**
  * Additional: Write a program to reverse a LinkedList. Sub solution for solving
