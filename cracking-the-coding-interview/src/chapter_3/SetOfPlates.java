@@ -16,18 +16,15 @@ public class SetOfPlates {
     String[] input = InputUtil.readContents(3, "set_of_plates");
     int threshold = Integer.parseInt(input[0]);
     SetOfStacks<Integer> setOfStacks = new SetOfStacks<Integer>(threshold);
-    for (String line:input) {
-      if(line.startsWith("push")) {
+    for (String line : input) {
+      if (line.startsWith("push")) {
         int data = Integer.parseInt(InputUtil.getArg(line));
         System.out.println("Pushing to stack : " + data);
         setOfStacks.push(data);
-      } else if(line.startsWith("pop()")) {
+      } else if (line.startsWith("pop()")) {
         System.out.println("Popping from stack : " + setOfStacks.pop());
-      } else if(line.startsWith("peek")) {
+      } else if (line.startsWith("peek")) {
         System.out.println("Top: " + setOfStacks.peek());
-      } else if(line.startsWith("popAt")) {
-        int stackNumber = Integer.parseInt(InputUtil.getArg(line));
-        setOfStacks.popAt(stackNumber);
       }
     }
   }

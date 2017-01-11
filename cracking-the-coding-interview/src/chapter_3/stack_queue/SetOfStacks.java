@@ -1,65 +1,66 @@
 package chapter_3.stack_queue;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import datastructures.stack.AbstractStack;
 import datastructures.stack.CustomStack;
 
 public class SetOfStacks<T> extends AbstractStack<T> {
-  private Map<Integer, CustomStack<T>> map;
+  private List<CustomStack<T>> listOfStacks;
   private int threshold = 0;
-  private int mostRecentStack = -1;
 
   public SetOfStacks(int threshold) {
     this.threshold = threshold;
-    map = new HashMap<Integer, CustomStack<T>>();
+    listOfStacks = new ArrayList<CustomStack<T>>();
   }
 
   @Override
   public void push(T data) {
-    CustomStack<T> stack = map.get(mostRecentStack);
-    if (mostRecentStack == -1 || (stack != null && stack.size() > threshold)) {
-      stack = createStack();
-      mostRecentStack++; 
+    CustomStack<T> stack = getRecentStack();
+    if (stack == null || (stack != null && stack.size() >= threshold)) {
+      createStack(data);
+    } else {
+      stack.push(data);
     }
-
-    stack.push(data);
-    map.put(mostRecentStack, stack);
   }
 
   @Override
   public T pop() {
-    return popAt(mostRecentStack);
+    CustomStack<T> stack = getRecentStack();
+    T popped = stack.pop();
+    if (stack.isEmpty()) {
+      listOfStacks.remove(listOfStacks.size() - 1);
+    }
+
+    return popped;
   }
 
   @Override
   public T peek() {
-    CustomStack<T> stack = map.get(mostRecentStack);
-    if (stack != null) {
-      return stack.peek();
-    }
-
-    return null;
-  }
-
-  public T popAt(int index) {
-    CustomStack<T> stack = map.get(index);
-    if (stack == null) {
-      System.out.println("Sub-stack at " + index + " not found");
+    if (listOfStacks.isEmpty()) {
+      System.out.println("Stacks are empty");
       return null;
     }
-    
-    T popped = stack.pop();
-    if (stack.isEmpty()) {
-      mostRecentStack--;
-      System.out.println("Stack at " + index + " is empty. Updating recent stack to " + mostRecentStack);
-    }
-    return popped;
+
+    CustomStack<T> stack = listOfStacks.get(listOfStacks.size() - 1);
+    return stack.peek();
   }
 
-  private CustomStack<T> createStack() {
+  private void createStack(T data) {
     CustomStack<T> stack = new CustomStack<T>();
+    stack.push(data);
+    listOfStacks.add(stack);
+  }
+
+  private CustomStack<T> getRecentStack() {
+    CustomStack<T> stack = null;
+    try {
+      stack = listOfStacks.get(listOfStacks.size() - 1);
+    } catch (IndexOutOfBoundsException e) {
+
+    }
+
     return stack;
   }
 }
