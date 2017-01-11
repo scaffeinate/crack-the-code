@@ -1,5 +1,7 @@
 # Algorithms & DS solutions in Java
 
+[Work In Progress. Solutions for new problems added everyday.]
+
 Practice solutions for:
 
 - Cracking the coding interview
@@ -7,3 +9,8 @@ Practice solutions for:
 - Hackerrank
 - Leetcode
 
+Datastructure Implementations:
+
+- LinkedList
+- Stack
+- Queue
