@@ -22,30 +22,112 @@ public class DoubleLinkedList<T> {
     size++;
   }
 
-  public boolean remove(Object o) {
+  public void add(T data, int index) {
+    if (index < 0 || index >= size) {
+      return;
+    }
+
+    if (index == 0) {
+      addToFront(data);
+    } else if (index == (size - 1)) {
+      add(data);
+    } else {
+      addAt(data, index);
+    }
+  }
+
+  public void addToFront(T data) {
+    DoubleNode<T> node = new DoubleNode<T>();
+    node.data = data;
+    node.next = head;
+    head.prev = node;
+    head = node;
+    size++;
+  }
+
+  private void addAt(T data, int index) {
+    DoubleNode<T> current = head;
+    int i = 1;
+
+    while (current != null) {
+      if (i == index) {
+        DoubleNode<T> node = new DoubleNode<T>();
+        node.data = data;
+        node.next = current.next;
+        node.prev = current;
+        current.next.prev = node;
+        current.next = node;
+        size++;
+        return;
+      }
+
+      i++;
+      current = current.next;
+    }
+  }
+
+  public boolean remove(T data) {
     DoubleNode<T> current = head;
 
-    if (current.equals(o)) {
+    if (head.data.equals(data)) {
       head = head.next;
       head.prev = null;
+      size--;
+      return true;
+    }
+
+    if (tail.data.equals(data)) {
+      tail = tail.prev;
+      tail.next = null;
+      size--;
       return true;
     }
 
     while (current != null) {
-      if (current.equals(o)) {
-        if (current.equals(tail)) {
-          current = current.prev;
-          current.next = null;
-        } else {
-          current.next = current.next.next;
-          current.next.prev = current.prev;
-        }
+      if (current.data.equals(data)) {
+        current.prev.next = current.next;
+        current.next.prev = current.prev;
         size--;
         return true;
       }
       current = current.next;
     }
 
+    return false;
+  }
+
+  public boolean remove(int index) {
+    if (index < 0 || index >= size) {
+      return false;
+    }
+
+    if (index == 0) {
+      head = head.next;
+      head.prev = null;
+      size--;
+      return true;
+    }
+
+    if (index == size - 1) {
+      tail = tail.prev;
+      tail.next = null;
+      size--;
+      return true;
+    }
+
+    DoubleNode<T> current = head;
+    int i = 0;
+
+    while (current != null) {
+      if (i == index) {
+        current.prev.next = current.next;
+        current.next.prev = current.prev;
+        size--;
+        return true;
+      }
+      i++;
+      current = current.next;
+    }
     return false;
   }
 

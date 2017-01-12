@@ -11,6 +11,13 @@ public class TestDoubleLinkedList {
     list.add(4);
     list.add(5);
     
+    System.out.println(list.remove(4));
+    
+    list.addToFront(10);
+    list.add(11, 0);
+    list.add(15, 4);
+    list.add(12, 2);
+    
     list.print();
     list.printReverse();
   }
