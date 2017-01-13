@@ -1,0 +1,16 @@
+enqueue Cat:1
+enqueue Dog:2
+enqueue Cat:3
+enqueue Cat:4
+enqueue Dog:1
+enqueue Cat:6
+enqueue Dog:1
+enqueue Dog:8
+enqueue Cat:2
+enqueue Dog:9
+enqueue Dog:2
+enqueue Cat:10
+dequeue
+dequeueDog
+dequeue
+dequeueCat
