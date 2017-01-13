@@ -23,15 +23,11 @@ public class TwoWayStack<T> extends AbstractStack<T> {
   @Override
   public T pop() {
     T data = null;
-    if (!isEmpty()) {
-      if (top.equals(bottom)) {
-        data = top.data;
-        top = null;
-        bottom = null;
-      } else {
-        data = top.data;
-        top.below.above = null;
-        top = top.below;
+    if (top != null) {
+      data = top.data;
+      top = top.below;
+      if (top != null) {
+        top.above = null;
       }
       size--;
     }
@@ -41,20 +37,13 @@ public class TwoWayStack<T> extends AbstractStack<T> {
 
   public T popBottom() {
     T data = null;
-    if (!isEmpty()) {
-      if (bottom.equals(top)) {
-        data = bottom.data;
-        bottom = null;
-        top = null;
-        size--;
+    if (bottom != null) {
+      data = bottom.data;
+      bottom = bottom.above;
+      if(bottom != null) {
+        bottom.below = null;
       }
-
-      if (bottom != null) {
-        data = bottom.data;
-        bottom.above.below = null;
-        bottom = bottom.above;
-        size--;
-      }
+      size--;
     }
     return data;
   }
