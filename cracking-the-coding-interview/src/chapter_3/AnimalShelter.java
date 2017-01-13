@@ -38,5 +38,7 @@ public class AnimalShelter {
         System.out.println("Dequeue Cat => " + cat);
       }
     }
+    
+    System.out.println("Shelder holds: " + shelter.toString());
   }
 }
