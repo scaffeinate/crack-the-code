@@ -4,8 +4,9 @@ import datastructures.tree.BinarySearchTree;
 
 public class TestBinarySearchTree {
   public static void main(String[] args) {
-    BinarySearchTree tree = new BinarySearchTree();
-    tree.insert(tree.getRoot(), 5);
+    BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
+    tree.insertRoot(5);
+    
     tree.insert(tree.getRoot(), 4);
     tree.insert(tree.getRoot(), 6);
     tree.insert(tree.getRoot(), 1);
@@ -19,6 +20,6 @@ public class TestBinarySearchTree {
     tree.inOrder(tree.getRoot());
     tree.postOrder(tree.getRoot());
     
-    System.out.println(tree.findPath(tree.getRoot(), 13));
+    System.out.println(tree.findPath(tree.getRoot(), 1));
   }
 }
