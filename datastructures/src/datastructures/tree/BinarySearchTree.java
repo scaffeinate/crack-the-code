@@ -16,7 +16,7 @@ public class BinarySearchTree<T> {
     if (root == null) {
       root = new TreeNode<T>(data);
     } else {
-      if (root.compareTo(data) <= 0) {
+      if (root.compareTo(data) >= 0) {
         root.left = insert(root.left, data);
       } else {
         root.right = insert(root.right, data);
@@ -24,23 +24,49 @@ public class BinarySearchTree<T> {
     }
     return root;
   }
+  
+  public T find(TreeNode<T> root, T data) {
+    if(root == null) {
+      return null;
+    }
+    
+    if(root.data.equals(data)) {
+      return data;
+    } else {
+      if(root.compareTo(data) >= 0) {
+        return find(root.left, data);
+      } else {
+        return find(root.right, data);
+      }
+    }
+  }
 
   public String findPath(TreeNode<T> root, T data) {
     if (root == null) {
       return null;
     }
-    String path = "";
+    StringBuilder builder = new StringBuilder();
     if (root.data.equals(data)) {
       return root.data.toString();
     } else {
-      if (root.compareTo(data) <= 0) {
-        path += (root.data) + "->left->" + findPath(root.left, data);
+      if (root.compareTo(data) >= 0) {
+        String nextElement = findPath(root.left, data);
+        if(nextElement != null) {
+          builder.append(root.data).append("->left->").append(nextElement);
+        } else {
+          builder = null;
+        }
       } else {
-        path += (root.data) + "->right->" + findPath(root.right, data);
+        String nextElement = findPath(root.right, data);
+        if(nextElement != null) {
+          builder.append(root.data).append("->right->").append(nextElement);
+        } else {
+          builder = null;
+        }
       }
     }
 
-    return path;
+    return (builder == null) ? null : builder.toString();
   }
 
   public void inOrder(TreeNode<T> root) {
