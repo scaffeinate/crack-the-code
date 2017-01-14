@@ -27,7 +27,7 @@ public class BinarySearchTree<T> {
 
   public String findPath(TreeNode<T> root, T data) {
     if (root == null) {
-      return "not found";
+      return null;
     }
     String path = "";
     if (root.data.equals(data)) {
@@ -45,25 +45,25 @@ public class BinarySearchTree<T> {
 
   public void inOrder(TreeNode<T> root) {
     if (root != null) {
-      System.out.println(root.data);
       inOrder(root.left);
+      System.out.print(root.data + " ");
       inOrder(root.right);
     }
   }
 
   public void preOrder(TreeNode<T> root) {
     if (root != null) {
+      System.out.print(root.data + " ");
       preOrder(root.left);
-      System.out.println(root.data);
       preOrder(root.right);
     }
   }
 
   public void postOrder(TreeNode<T> root) {
     if (root != null) {
-      preOrder(root.left);
-      preOrder(root.right);
-      System.out.println(root.data);
+      postOrder(root.left);
+      postOrder(root.right);
+      System.out.print(root.data + " ");
     }
   }
 
