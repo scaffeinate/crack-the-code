@@ -6,20 +6,28 @@ import datastructures.tree.TreeNode;
 public class TestBinarySearchTree {
   public static void main(String[] args) {
     BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
-    TreeNode<Integer> root = tree.insertRoot(5);
+    TreeNode<Integer> root = tree.insertRoot(15);
     
-    tree.insert(root, 4);
-    tree.insert(root, 6);
-    tree.insert(root, 5);
-    tree.insert(root, 3);
-    tree.insert(root, 4);
-    tree.insert(root, 2);
-    tree.insert(root, 1);
-    tree.insert(root, 6);
-    tree.insert(root, 7);
-    tree.insert(root, 8);
+    tree.insert(root, 14);
+    tree.insert(root, 17);
     tree.insert(root, 10);
-    tree.insert(root, 9);
+    tree.insert(root, 8);
+    tree.insert(root, 13);
+    tree.insert(root, 6);
+    tree.insert(root, 12);
+    tree.insert(root, 13);
+    tree.insert(root, 5);
+    tree.insert(root, 7);
+    tree.insert(root, 16);
+    tree.insert(root, 18);
+    tree.insert(root, 19);
+    tree.insert(root, 21);
+    tree.insert(root, 20);
+    
+    tree.delete(root, 10);
+    tree.delete(root, 20);
+    tree.delete(root, 21);
+    tree.delete(root, 15);
     
     System.out.println("Tree Traversal: ");
     System.out.print("Tree preOrder: ");
