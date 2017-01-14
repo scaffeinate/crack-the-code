@@ -28,6 +28,45 @@ public class TestBinarySearchTree {
     tree.delete(root, 20);
     tree.delete(root, 21);
     tree.delete(root, 15);
+    tree.delete(root, 8);
+    tree.delete(root, 12);
+    tree.delete(root, 13);
+    tree.delete(root, 12);
+    tree.delete(root, 16);
+    
+    /*TreeNode<Integer> root = tree.insertRoot(15);
+    tree.insert(root, 9);
+    tree.insert(root, 16);
+    tree.insert(root, 5);
+    tree.insert(root, 13);
+    tree.insert(root, 20);
+    tree.insert(root, 4);
+    tree.insert(root, 7);
+    tree.insert(root, 12);
+    tree.insert(root, 14);
+    tree.insert(root, 17);
+    tree.insert(root, 24);
+    tree.insert(root, 2);
+    tree.insert(root, 5);
+    tree.insert(root, 6);
+    tree.insert(root, 8);
+    tree.insert(root, 15);
+    tree.insert(root, 17);
+    tree.insert(root, 18);
+    tree.insert(root, 22);
+    tree.insert(root, 25);
+    tree.insert(root, 1);
+    tree.insert(root, 3);
+    tree.insert(root, 19);
+    
+    tree.delete(root, 16);
+    tree.delete(root, 1);
+    tree.delete(root, 19);
+    tree.delete(root, 15);
+    tree.delete(root, 9);
+    tree.delete(root, 15);
+    tree.delete(root, 17);
+    tree.delete(root, 4);*/
     
     System.out.println("Tree Traversal: ");
     System.out.print("Tree preOrder: ");

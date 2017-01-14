@@ -31,16 +31,18 @@ public class BinarySearchTree<T> {
     }
 
     if (root.data.equals(data)) {
+      // Leaf node
       if (root.left == null && root.right == null) {
         root = null;
-      } else if(root.left == null) {
-        root = root.right;
-      } else if(root.right == null) {
-        root = root.left;
+      } else if (root.left == null) {
+        root = root.right; // Node with only right child
+      } else if (root.right == null) {
+        root = root.left; // Node with only left child
       } else {
-        TreeNode<T> minNode = findRightMin(root.right);
-        root.data = minNode.data;
-        root.right = delete(root.right, minNode.data);
+        // Node with two children
+        T minVal = findRightMin(root.right); // Find min of right subTree
+        root.data = minVal; // Set minVal to current node data
+        root.right = delete(root.right, minVal); // Delete the minVal
       }
     } else {
       if (root.compareTo(data) >= 0) {
@@ -49,32 +51,19 @@ public class BinarySearchTree<T> {
         root.right = delete(root.right, data);
       }
     }
-    
+
     return root;
   }
 
-  private TreeNode<T> findRightMin(TreeNode<T> root) {
+  private T findRightMin(TreeNode<T> root) {
     if (root.left == null) {
-      TreeNode<T> rightMinNode = root;
-      if(root.right != null) {
-        root = copyNode(root.right);
-      }
-      return rightMinNode;
+      T data = root.data;
+      return data;
     } else {
-      TreeNode<T> rightMin = findRightMin(root.left);
-      return rightMin;
+      return findRightMin(root.left);
     }
   }
-  
-  private TreeNode<T> copyNode(TreeNode<T> node) {
-    TreeNode<T> copy = new TreeNode<T>();
-    copy.data = node.data;
-    copy.left = node.left;
-    copy.right = node.right;
-    
-    return copy;
-  }
-  
+
   public T find(TreeNode<T> root, T data) {
     if (root == null) {
       return null;
