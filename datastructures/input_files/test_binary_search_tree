@@ -4,6 +4,7 @@ traversal
 search 14
 search 5
 search 1
+minMax
 delete 10
 delete 20
 delete 21
@@ -17,3 +18,4 @@ traversal
 search 14
 search 5
 search 1
+minMax

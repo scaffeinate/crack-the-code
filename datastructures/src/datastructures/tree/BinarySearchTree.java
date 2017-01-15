@@ -230,6 +230,20 @@ public class BinarySearchTree<T> {
   public TreeNode<T> getRoot() {
     return this.treeRoot;
   }
+  
+  public T getMinimum(TreeNode<T> root) {
+    while(root.left != null) {
+      root = root.left;
+    }
+    return root.data;
+  }
+  
+  public T getMaximum(TreeNode<T> root) {
+    while(root.right != null) {
+      root = root.right;
+    }
+    return root.data;
+  }
 
   private void resetVisited(TreeNode<T> root) {
     if (root != null) {

@@ -53,6 +53,12 @@ public class TestBinarySearchTree {
     System.out.println();
   }
 
+  private void getMinMax() {
+    System.out.println("Minimum in tree: " + tree.getMinimum(root));
+    System.out.println("Maximum in tree: " + tree.getMaximum(root));
+    System.out.println();
+  }
+  
   public static void main(String[] args) throws FileNotFoundException {
     TestBinarySearchTree testBinarySearchTree = new TestBinarySearchTree();
     String[] input = InputUtil.readContents("test_binary_search_tree");
@@ -83,6 +89,8 @@ public class TestBinarySearchTree {
         testBinarySearchTree.delete(value);
       } else if (action.equals("search")) {
         testBinarySearchTree.search(value);
+      } else if(action.equals("minMax")) {
+        testBinarySearchTree.getMinMax();
       }
     }
   }
