@@ -154,6 +154,18 @@ public class BinarySearchTree<T> {
     }
   }
 
+  public T search(TreeNode<T> root, T data) {
+    while(root != null && !root.data.equals(data)) {
+      if(root.compareTo(data) >= 0) {
+        root = root.left;
+      } else {
+        root = root.right;
+      }
+    }
+    
+    return (root != null) ? root.data : null;
+  }
+  
   public String findPath(TreeNode<T> root, T data) {
     if (root == null) {
       return null;

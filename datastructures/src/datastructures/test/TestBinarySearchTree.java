@@ -48,6 +48,7 @@ public class TestBinarySearchTree {
   private void search(Integer data) {
     System.out.println("Searching for: " + data);
     System.out.println("Is " + data + " in BST: " + (tree.find(root, data) != null));
+    System.out.println("Is " + data + " in BST: " + (tree.search(root, data) != null));
     System.out.println("Search path for " + data + ":" + tree.findPath(root, data));
     System.out.println();
   }
