@@ -14,3 +14,4 @@ Datastructure Implementations:
 - LinkedList
 - Stack
 - Queue
+- Binary Search Tree
