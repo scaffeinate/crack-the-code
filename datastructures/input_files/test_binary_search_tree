@@ -1,0 +1,19 @@
+insertRoot 15
+insertNodes 14,17,10,8,13,6,12,13,5,7,16,18,19,21,20
+traversal
+search 14
+search 5
+search 1
+delete 10
+delete 20
+delete 21
+delete 15
+delete 8
+delete 12
+delete 13
+delete 12
+delete 16
+traversal
+search 14
+search 5
+search 1

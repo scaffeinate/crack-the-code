@@ -1,15 +1,19 @@
 package datastructures.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 public class BinarySearchTree<T> {
-  TreeNode<T> root = null;
+  TreeNode<T> treeRoot = null;
 
   public BinarySearchTree() {
 
   }
 
   public TreeNode<T> insertRoot(T data) {
-    this.root = new TreeNode<T>(data);
-    return this.root;
+    this.treeRoot = new TreeNode<T>(data);
+    return this.treeRoot;
   }
 
   public TreeNode<T> insert(TreeNode<T> root, T data) {
@@ -178,31 +182,48 @@ public class BinarySearchTree<T> {
     return (builder == null) ? null : builder.toString();
   }
 
-  public void inOrder(TreeNode<T> root) {
+  public String inOrder(TreeNode<T> root) {
+    StringBuilder builder = new StringBuilder();
     if (root != null) {
-      inOrder(root.left);
-      System.out.print(root.data + " ");
-      inOrder(root.right);
+      builder.append(inOrder(root.left));
+      builder.append(root.data).append(" ");
+      builder.append(inOrder(root.right));
     }
+
+    return builder.toString();
   }
 
-  public void preOrder(TreeNode<T> root) {
+  public String preOrder(TreeNode<T> root) {
+    StringBuilder builder = new StringBuilder();
     if (root != null) {
-      System.out.print(root.data + " ");
-      preOrder(root.left);
-      preOrder(root.right);
+      builder.append(root.data).append(" ");
+      builder.append(preOrder(root.left));
+      builder.append(preOrder(root.right));
     }
+
+    return builder.toString();
   }
 
-  public void postOrder(TreeNode<T> root) {
+  public String postOrder(TreeNode<T> root) {
+    StringBuilder builder = new StringBuilder();
     if (root != null) {
-      postOrder(root.left);
-      postOrder(root.right);
-      System.out.print(root.data + " ");
+      builder.append(postOrder(root.left));
+      builder.append(postOrder(root.right));
+      builder.append(root.data).append(" ");
     }
+
+    return builder.toString();
   }
 
   public TreeNode<T> getRoot() {
-    return this.root;
+    return this.treeRoot;
+  }
+
+  private void resetVisited(TreeNode<T> root) {
+    if (root != null) {
+      root.visited = false;
+      resetVisited(root.left);
+      resetVisited(root.right);
+    }
   }
 }
