@@ -4,7 +4,8 @@ public class TreeNode<T> implements Comparable<T> {
   T data;
   TreeNode<T> left = null;
   TreeNode<T> right = null;
-
+  boolean visited = false;
+  
   public TreeNode() {
 
   }

@@ -64,6 +64,76 @@ public class BinarySearchTree<T> {
     }
   }
 
+  public String breadthFirstTraversal(TreeNode<T> root) {
+    Queue<TreeNode<T>> queue = new LinkedList<TreeNode<T>>();
+    int level = 0, numElementsAtDepth = 0;
+    boolean shouldIncreaseDepth = false;
+    StringBuilder builder = new StringBuilder();
+
+    queue.add(root);
+    builder.append("Level: ").append(level).append(" => [ ");
+    numElementsAtDepth = queue.size();
+
+    while (!queue.isEmpty()) {
+      TreeNode<T> node = queue.poll();
+      numElementsAtDepth--;
+      if (node != null) {
+        builder.append(node.data).append(" ");
+        if (numElementsAtDepth == 0) {
+          level++;
+          shouldIncreaseDepth = true;
+          builder.append("]").append("\n");
+          builder.append("Level: ").append(level).append(" => [ ");
+        }
+
+        queue.add(node.left);
+        queue.add(node.right);
+
+        if (shouldIncreaseDepth) {
+          numElementsAtDepth = queue.size();
+          shouldIncreaseDepth = false;
+        }
+      }
+    }
+    builder.append("]").append("\n\n");
+    builder.append("Number of Levels: " + level);
+
+    return builder.toString();
+  }
+
+  public String depthFirstTraversal(TreeNode<T> root) {
+    Stack<TreeNode<T>> stack = new Stack<TreeNode<T>>();
+    StringBuilder builder = new StringBuilder();
+    stack.push(root);
+
+    builder.append("[ ");
+
+    while (!stack.isEmpty()) {
+      TreeNode<T> top = stack.peek();
+
+      if (!top.visited) {
+        builder.append(top.data).append(" ");
+        top.visited = true;
+      }
+      TreeNode<T> child = null;
+      if (top.left != null && !top.left.visited) {
+        child = top.left;
+      } else if (top.right != null && !top.right.visited) {
+        child = top.right;
+      }
+
+      if (child == null) {
+        stack.pop();
+      } else {
+        stack.push(child);
+      }
+    }
+
+    builder.append("]");
+    resetVisited(treeRoot);
+    return builder.toString();
+  }
+
   public T find(TreeNode<T> root, T data) {
     if (root == null) {
       return null;
