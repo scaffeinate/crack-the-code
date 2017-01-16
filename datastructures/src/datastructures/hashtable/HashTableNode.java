@@ -1,4 +1,4 @@
-package additional;
+package datastructures.hashtable;
 
 public class HashTableNode<K, V> {
 
