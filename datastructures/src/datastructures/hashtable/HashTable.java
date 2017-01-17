@@ -20,40 +20,35 @@ public class HashTable<K, V> {
   
   public void put(K key, V value) {
     int index = hash(key);
-    
-    if(hashArray[index] == null) {
-      hashArray[index] = new HashTableNode<K, V>(key, value);
-    } else {
-      HashTableNode<K, V> head = hashArray[index];
-      hashArray[index] = addToLinkedList(head, key, value);
-    }
+    HashTableNode<K, V> head = hashArray[index];
+    hashArray[index] = add(head, key, value);
   }
 
   public V get(K key) {
      int index = hash(key);
-     return find(key, hashArray[index]);
+     HashTableNode<K, V> node = find(hashArray[index], key);
+     return (node != null) ? node.value : null;
   }
   
-  private HashTableNode<K, V> addToLinkedList(HashTableNode<K, V> head, K key, V value) {
-    HashTableNode<K, V> current = head;
-    while(current != null) {
-      if(current.key.equals(key)) {
-        current.value = value;
-        return head;
-      }
-      current = current.next;
+  private HashTableNode<K, V> add(HashTableNode<K, V> head, K key, V value) {
+    HashTableNode<K, V> node = find(head, key);
+    if(node != null) {
+      node.value = value;
+    } else {
+      node = new HashTableNode<K, V>(key, value);
+      node.next = head;
+      head = node;
+      size++;
     }
     
-    HashTableNode<K, V> node = new HashTableNode<K, V>(key, value);
-    node.next = head;
-    return node;
+    return head;
   }
   
-  private V find(K key, HashTableNode<K, V> head) {
+  private HashTableNode<K, V> find(HashTableNode<K, V> head, K key) {
     HashTableNode<K, V> current = head;
     while (current != null) {
       if (current.key.equals(key)) {
-        return current.value;
+        return current;
       }
       
       current = current.next;
