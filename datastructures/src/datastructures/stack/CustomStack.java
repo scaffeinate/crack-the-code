@@ -10,8 +10,9 @@ import datastructures.common.Node;
  * @author Sudharsanan Muralidharan
  * @param <T>
  */
-public class CustomStack<T> extends AbstractStack<T> {
+public class CustomStack<T> implements GenericStack<T> {
   private Node<T> top = null;
+  private int size = 0;
 
   public CustomStack() {
   }
@@ -94,5 +95,15 @@ public class CustomStack<T> extends AbstractStack<T> {
       current = current.next;
     }
     return builder.toString();
+  }
+
+  @Override
+  public int size() {
+    return this.size();
+  }
+
+  @Override
+  public boolean isEmpty() {
+    return (this.size() == 0);
   }
 }

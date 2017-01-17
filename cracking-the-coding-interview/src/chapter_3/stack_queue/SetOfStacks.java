@@ -3,12 +3,13 @@ package chapter_3.stack_queue;
 import java.util.ArrayList;
 import java.util.List;
 
-import datastructures.stack.AbstractStack;
 import datastructures.stack.CustomStack;
+import datastructures.stack.GenericStack;
 
-public class SetOfStacks<T> extends AbstractStack<T> {
+public class SetOfStacks<T> implements GenericStack<T> {
   private List<CustomStack<T>> listOfStacks;
   private int threshold = 0;
+  private int size = 0;
 
   public SetOfStacks(int threshold) {
     this.threshold = threshold;
@@ -62,5 +63,15 @@ public class SetOfStacks<T> extends AbstractStack<T> {
     }
 
     return stack;
+  }
+
+  @Override
+  public int size() {
+    return this.size;
+  }
+
+  @Override
+  public boolean isEmpty() {
+    return (this.size == 0);
   }
 }

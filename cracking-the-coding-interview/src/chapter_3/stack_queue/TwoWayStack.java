@@ -1,10 +1,11 @@
 package chapter_3.stack_queue;
 
-import datastructures.stack.AbstractStack;
+import datastructures.stack.GenericStack;
 
-public class TwoWayStack<T> extends AbstractStack<T> {
+public class TwoWayStack<T> implements GenericStack<T> {
   NodeTopBottom<T> top = null;
   NodeTopBottom<T> bottom = null;
+  private int size = 0;
 
   @Override
   public void push(T data) {
@@ -94,6 +95,16 @@ public class TwoWayStack<T> extends AbstractStack<T> {
     public NodeTopBottom(T data) {
       this.data = data;
     }
+  }
+
+  @Override
+  public int size() {
+    return this.size;
+  }
+
+  @Override
+  public boolean isEmpty() {
+    return (this.size == 0);
   }
 
 }
