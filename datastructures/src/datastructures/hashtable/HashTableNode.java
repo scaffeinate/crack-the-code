@@ -1,13 +1,15 @@
 package datastructures.hashtable;
 
 public class HashTableNode<K, V> {
-
   K key;
   V value;;
-  HashTableNode<K, V> next;
+  HashTableNode<K, V> next = null;
 
-  public HashTableNode() {
-    // TODO Auto-generated constructor stub
+  public HashTableNode() {}
+  
+  public HashTableNode(K key, V value) {
+    this.key = key;
+    this.value = value;
   }
 
 }
