@@ -12,4 +12,12 @@ public class HashTableNode<K, V> {
     this.value = value;
   }
 
+  public K getKey() {
+    return this.key;
+  }
+  
+  public V getValue() {
+    return this.value;
+  }
+  
 }
