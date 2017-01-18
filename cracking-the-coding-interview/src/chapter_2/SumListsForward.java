@@ -3,8 +3,8 @@ package chapter_2;
 import java.io.FileNotFoundException;
 import java.util.Stack;
 
-import datastructures.common.Node;
 import datastructures.lists.CustomLinkedList;
+import datastructures.lists.LinkedListNode;
 import util.InputUtil;
 
 /**
@@ -35,7 +35,7 @@ public class SumListsForward {
    * @param current2
    * @return
    */
-  private CustomLinkedList<Integer> computeSum(Node<Integer> current, Node<Integer> current2) {
+  private CustomLinkedList<Integer> computeSum(LinkedListNode<Integer> current, LinkedListNode<Integer> current2) {
     CustomLinkedList<Integer> resultList = new CustomLinkedList<Integer>();
     Stack<Integer> stack = new Stack<Integer>();
     Stack<Integer> stack2 = new Stack<Integer>();
@@ -93,10 +93,10 @@ public class SumListsForward {
    * @param current2
    * @return
    */
-  private CustomLinkedList<Integer> computeSumRecurse(Node<Integer> current, Node<Integer> current2) {
+  private CustomLinkedList<Integer> computeSumRecurse(LinkedListNode<Integer> current, LinkedListNode<Integer> current2) {
     CustomLinkedList<Integer> resultList = new CustomLinkedList<Integer>();
     NodeWrapper<Integer> resultNodeWrapper = sumFowardRecurse(current, current2);
-    Node<Integer> head = resultNodeWrapper.node;
+    LinkedListNode<Integer> head = resultNodeWrapper.node;
 
     /*
      * If there is a carry in the first digit it needs to be added as a new
@@ -106,7 +106,7 @@ public class SumListsForward {
      * is also 1 which needs to be added to list.
      */
     if (resultNodeWrapper.temp != 0) {
-      Node<Integer> node = new Node<Integer>();
+      LinkedListNode<Integer> node = new LinkedListNode<Integer>();
       node.data = resultNodeWrapper.temp;
       resultList.add(node.data);
     }
@@ -131,9 +131,9 @@ public class SumListsForward {
    * @param current2
    * @return NodeWrapper head
    */
-  private NodeWrapper<Integer> sumFowardRecurse(Node<Integer> current, Node<Integer> current2) {
+  private NodeWrapper<Integer> sumFowardRecurse(LinkedListNode<Integer> current, LinkedListNode<Integer> current2) {
     NodeWrapper<Integer> currentNode = new NodeWrapper<Integer>();
-    Node<Integer> node = new Node<Integer>();
+    LinkedListNode<Integer> node = new LinkedListNode<Integer>();
     int sum = 0, temp = 0;
 
     sum = current.data + current2.data;
@@ -174,7 +174,7 @@ public class SumListsForward {
     CustomLinkedList<Integer> shorter = (list.size() > list2.size()) ? list2 : list;
 
     for (int i = 0; i < Math.abs((list2.size() - list.size())); i++) {
-      Node<Integer> node = new Node<Integer>();
+      LinkedListNode<Integer> node = new LinkedListNode<Integer>();
       node.data = 0;
       node.next = shorter.head();
       shorter.head(node);
@@ -229,7 +229,7 @@ public class SumListsForward {
   }
 
   class NodeWrapper<T> {
-    Node<T> node;
+    LinkedListNode<T> node;
     int temp = 0;
   }
 }

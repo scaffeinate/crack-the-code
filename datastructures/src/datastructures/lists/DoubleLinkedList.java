@@ -1,19 +1,17 @@
 package datastructures.lists;
 
-import datastructures.common.DoubleNode;
-
 public class DoubleLinkedList<T> {
-  private DoubleNode<T> head = null;
-  private DoubleNode<T> tail = null;
+  private DoubleLinkedListNode<T> head = null;
+  private DoubleLinkedListNode<T> tail = null;
   private int size = 0;
 
   public void add(T data) {
     if (head == null) {
-      head = new DoubleNode<T>();
+      head = new DoubleLinkedListNode<T>();
       head.data = data;
       tail = head;
     } else {
-      DoubleNode<T> node = new DoubleNode<T>();
+      DoubleLinkedListNode<T> node = new DoubleLinkedListNode<T>();
       node.data = data;
       tail.next = node;
       node.prev = tail;
@@ -37,7 +35,7 @@ public class DoubleLinkedList<T> {
   }
 
   public void addToFront(T data) {
-    DoubleNode<T> node = new DoubleNode<T>();
+    DoubleLinkedListNode<T> node = new DoubleLinkedListNode<T>();
     node.data = data;
     node.next = head;
     head.prev = node;
@@ -46,12 +44,12 @@ public class DoubleLinkedList<T> {
   }
 
   private void addAt(T data, int index) {
-    DoubleNode<T> current = head;
+    DoubleLinkedListNode<T> current = head;
     int i = 1;
 
     while (current != null) {
       if (i == index) {
-        DoubleNode<T> node = new DoubleNode<T>();
+        DoubleLinkedListNode<T> node = new DoubleLinkedListNode<T>();
         node.data = data;
         node.next = current.next;
         node.prev = current;
@@ -72,7 +70,7 @@ public class DoubleLinkedList<T> {
     } else if (tail.data.equals(data)) {
       removeTail();
     } else {
-      DoubleNode<T> current = head;
+      DoubleLinkedListNode<T> current = head;
       while (current != null) {
         if (current.data.equals(data)) {
           current.prev.next = current.next;
@@ -95,7 +93,7 @@ public class DoubleLinkedList<T> {
     } else if (index == size - 1) {
       removeTail();
     } else {
-      DoubleNode<T> current = head;
+      DoubleLinkedListNode<T> current = head;
       int i = 0;
 
       while (current != null) {
@@ -112,7 +110,7 @@ public class DoubleLinkedList<T> {
   }
 
   public T get(int index) {
-    DoubleNode<T> current = head;
+    DoubleLinkedListNode<T> current = head;
     int i = 0;
     while (current != null) {
       if (i == index) {
@@ -126,7 +124,7 @@ public class DoubleLinkedList<T> {
   }
 
   public void set(T data, int index) {
-    DoubleNode<T> current = head;
+    DoubleLinkedListNode<T> current = head;
     int i = 0;
     while(current != null) {
       if(i == index) {
@@ -137,11 +135,11 @@ public class DoubleLinkedList<T> {
     }
   }
 
-  public DoubleNode<T> head() {
+  public DoubleLinkedListNode<T> head() {
     return this.head;
   }
 
-  public DoubleNode<T> tail() {
+  public DoubleLinkedListNode<T> tail() {
     return this.tail;
   }
 
@@ -159,7 +157,7 @@ public class DoubleLinkedList<T> {
 
   public void printReverse() {
     StringBuilder builder = new StringBuilder();
-    DoubleNode<T> current = tail;
+    DoubleLinkedListNode<T> current = tail;
     builder.append("null<-");
     while (current.prev != null) {
       builder.append(current.data).append("<=>");
@@ -173,7 +171,7 @@ public class DoubleLinkedList<T> {
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
-    DoubleNode<T> current = head;
+    DoubleLinkedListNode<T> current = head;
     builder.append("null<-");
     while (current.next != null) {
       builder.append(current.data).append("<=>");

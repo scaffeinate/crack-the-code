@@ -2,8 +2,8 @@ package chapter_2;
 
 import java.io.FileNotFoundException;
 
-import datastructures.common.Node;
 import datastructures.lists.CustomLinkedList;
+import datastructures.lists.LinkedListNode;
 import datastructures.util.ListUtil;
 import util.InputUtil;
 
@@ -36,12 +36,12 @@ public class Partition {
    * @param partitionVal
    * @return Node<Integer> of New List head
    */
-  private Node<Integer> partition(CustomLinkedList<Integer> list, int partitionVal) {
+  private LinkedListNode<Integer> partition(CustomLinkedList<Integer> list, int partitionVal) {
     CustomLinkedList<Integer> left = new CustomLinkedList<Integer>();
     CustomLinkedList<Integer> right = new CustomLinkedList<Integer>();
-    Node<Integer> current = list.head();
-    Node<Integer> start = null;
-    Node<Integer> partitionNode = list.removeNode(Integer.valueOf(partitionVal));
+    LinkedListNode<Integer> current = list.head();
+    LinkedListNode<Integer> start = null;
+    LinkedListNode<Integer> partitionNode = list.removeNode(Integer.valueOf(partitionVal));
 
     if (partitionNode != null) {
       current = list.head();
@@ -97,13 +97,13 @@ public class Partition {
    * @param partitionVal
    * @return
    */
-  private Node<Integer> partitionInplace(CustomLinkedList<Integer> list, int partitionVal) {
-    Node<Integer> head = list.head();
-    Node<Integer> tail = head;
-    Node<Integer> current = head;
+  private LinkedListNode<Integer> partitionInplace(CustomLinkedList<Integer> list, int partitionVal) {
+    LinkedListNode<Integer> head = list.head();
+    LinkedListNode<Integer> tail = head;
+    LinkedListNode<Integer> current = head;
 
     while (current != null) {
-      Node<Integer> next = current.next;
+      LinkedListNode<Integer> next = current.next;
       if (current.data.intValue() < partitionVal) {
         current.next = head;
         head = current;
@@ -124,7 +124,7 @@ public class Partition {
     Partition partition = new Partition();
     String[] contents = InputUtil.readContents(2, "partition");
     String[] elements;
-    Node<Integer> head;
+    LinkedListNode<Integer> head;
 
     for (String line : contents) {
       String[] values = line.split(" ");

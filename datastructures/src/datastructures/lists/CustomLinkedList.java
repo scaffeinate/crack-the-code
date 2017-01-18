@@ -3,7 +3,6 @@
  */
 package datastructures.lists;
 
-import datastructures.common.Node;
 import datastructures.util.ListUtil;
 
 /**
@@ -11,54 +10,32 @@ import datastructures.util.ListUtil;
  * 
  * @author Sudharsanan Muralidharan
  */
-public class CustomLinkedList<T> {
-
-  private Node<T> head = null;
-  private Node<T> tail = null;
-  private int size = 0;
+public class CustomLinkedList<T> extends AbstractList<T> {
 
   public CustomLinkedList() {
 
   }
 
   public CustomLinkedList(CustomLinkedList<T> copyList) {
-    Node<T> current = copyList.head;
+    LinkedListNode<T> current = copyList.head;
     while (current != null) {
       this.add(current.data);
       current = current.next;
     }
   }
   
-  public CustomLinkedList(Node<T> head) {
+  public CustomLinkedList(LinkedListNode<T> head) {
     this.head = head;
   }
 
   /**
-   * Returns the current size of the LinkedList
-   * 
-   * @return size
-   */
-  public int size() {
-    return size;
-  }
-
-  /**
-   * Returns whether list is empty of not
-   * 
-   * @return isEmpty
-   */
-  public boolean isEmpty() {
-    return size == 0;
-  }
-
-  /**
-   * Retuns whether the list contains the object o
+   * Returns whether the list contains the object o
    * 
    * @param o
    * @return contains
    */
   public boolean contains(Object o) {
-    Node<T> current = head;
+    LinkedListNode<T> current = head;
 
     while (current != tail.next) {
       if (current.data.equals(o)) {
@@ -78,7 +55,7 @@ public class CustomLinkedList<T> {
   public Object[] toArray() {
     Object[] array = new Object[size];
     int i = 0;
-    Node<T> node = head;
+    LinkedListNode<T> node = head;
 
     while (node != null) {
       array[i] = node.data;
@@ -102,14 +79,14 @@ public class CustomLinkedList<T> {
      * create head if null i.e. list if empty
      */
     if (head == null) {
-      head = new Node<T>();
+      head = new LinkedListNode<T>();
       head.data = e;
       head.next = null;
       tail = head;
       added = true;
     } else {
       // add element to the tail and increment size
-      Node<T> current = new Node<T>();
+      LinkedListNode<T> current = new LinkedListNode<T>();
       current.data = e;
       current.next = null;
       tail.next = current;
@@ -126,13 +103,13 @@ public class CustomLinkedList<T> {
     boolean added = false;
     
     if(head == null) {
-      head = new Node<T>();
+      head = new LinkedListNode<T>();
       head.data = e;
       head.next = null;
       tail = head;
       added = true;
     } else {
-      Node<T> node = new Node<T>();
+      LinkedListNode<T> node = new LinkedListNode<T>();
       node.data = e;
       node.next = head;
       head = node;
@@ -149,8 +126,8 @@ public class CustomLinkedList<T> {
    * @return removed
    */
   public boolean remove(Object o) {
-    Node<T> current = head;
-    Node<T> runner = current.next;
+    LinkedListNode<T> current = head;
+    LinkedListNode<T> runner = current.next;
     
     /*
      * If head is to be removed
@@ -178,10 +155,10 @@ public class CustomLinkedList<T> {
     return false;
   }
   
-  public Node<T> removeNode(Object o) {
-    Node<T> current = head;
-    Node<T> runner = current.next;
-    Node<T> removedNode = null;
+  public LinkedListNode<T> removeNode(Object o) {
+    LinkedListNode<T> current = head;
+    LinkedListNode<T> runner = current.next;
+    LinkedListNode<T> removedNode = null;
     
     if(head.data.equals(o)) {
       removedNode = head;
@@ -195,11 +172,11 @@ public class CustomLinkedList<T> {
         current.next = runner.next;
         size--;
         
-        if(runner == tail) {
+        if(runner.equals(tail)) {
           tail = current;
         }
         removedNode = runner;
-        break;
+        return runner;
       } else {
         current = current.next;
       }
@@ -207,16 +184,12 @@ public class CustomLinkedList<T> {
       runner = runner.next;
     }
     
-    if(removedNode != null) {
-      removedNode.next = null;
-    }
-    
     return removedNode;
   }
 
   public void removeAll(Object o) {
-    Node<T> current = head;
-    Node<T> runner = current.next;
+    LinkedListNode<T> current = head;
+    LinkedListNode<T> runner = current.next;
     
     if(head.data.equals(o)) {
       head = head.next;
@@ -245,7 +218,7 @@ public class CustomLinkedList<T> {
    * @return removed
    */
   public T remove(int index) {
-    Node<T> current = head;
+    LinkedListNode<T> current = head;
     int i = 1;
     T removed = null;
 
@@ -284,7 +257,7 @@ public class CustomLinkedList<T> {
    * @return found.data
    */
   public T get(int index) {
-    Node<T> found = find(index);
+    LinkedListNode<T> found = find(index);
     if (found != null) {
       return found.data;
     }
@@ -300,7 +273,7 @@ public class CustomLinkedList<T> {
    * @return found.data
    */
   public T set(int index, T element) {
-    Node<T> found = find(index);
+    LinkedListNode<T> found = find(index);
     if (found != null) {
       found.data = element;
       return element;
@@ -315,14 +288,14 @@ public class CustomLinkedList<T> {
    * @param element
    */
   public void add(int index, T element) {
-    Node<T> current = head;
+    LinkedListNode<T> current = head;
     int i = 0;
 
     /*
      * if index is 0 then add it to front and update head
      */
     if (index == 0) {
-      Node<T> node = new Node<T>();
+      LinkedListNode<T> node = new LinkedListNode<T>();
       node.data = element;
       node.next = head;
       head = node;
@@ -332,7 +305,7 @@ public class CustomLinkedList<T> {
 
     while (current != null) {
       if (index - 1 == i) {
-        Node<T> node = new Node<T>();
+        LinkedListNode<T> node = new LinkedListNode<T>();
         node.data = element;
         node.next = current.next;
         current.next = node;
@@ -347,8 +320,8 @@ public class CustomLinkedList<T> {
     }
   }
 
-  public void addNode(int index, Node<T> node) {
-    Node<T> current = head;
+  public void addNode(int index, LinkedListNode<T> node) {
+    LinkedListNode<T> current = head;
     int i = 1;
 
     if (index == 0) {
@@ -384,48 +357,12 @@ public class CustomLinkedList<T> {
   }
 
   /**
-   * Returns the head
-   * 
-   * @return head
-   */
-  public Node<T> head() {
-    return this.head;
-  }
-
-  /**
-   * Sets the head
-   * 
-   * @param node
-   */
-  public void tail(Node<T> node) {
-    this.tail = node;
-  }
-  
-  /**
-   * Returns the head
-   * 
-   * @return head
-   */
-  public Node<T> tail() {
-    return this.tail;
-  }
-
-  /**
-   * Sets the head
-   * 
-   * @param node
-   */
-  public void head(Node<T> node) {
-    this.head = node;
-  }
-
-  /**
    * Returns the Node<T> at index
    * 
    * @param index
    * @return Node<T>
    */
-  public Node<T> getNode(int index) {
+  public LinkedListNode<T> getNode(int index) {
     return find(index);
   }
 
@@ -435,8 +372,8 @@ public class CustomLinkedList<T> {
    * @param index
    * @return node
    */
-  public Node<T> find(int index) {
-    Node<T> current = head;
+  public LinkedListNode<T> find(int index) {
+    LinkedListNode<T> current = head;
     int i = 0;
 
     if (index == 0) {
@@ -454,8 +391,8 @@ public class CustomLinkedList<T> {
     return null;
   }
   
-  public Node<T> find(Object o) {
-    Node<T> current = head;
+  public LinkedListNode<T> find(Object o) {
+    LinkedListNode<T> current = head;
 
     if (head.data.equals(o)) {
       return current;

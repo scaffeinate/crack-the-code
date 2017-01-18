@@ -3,8 +3,8 @@ package chapter_2;
 import java.io.FileNotFoundException;
 import java.util.Stack;
 
-import datastructures.common.Node;
 import datastructures.lists.CustomLinkedList;
+import datastructures.lists.LinkedListNode;
 import util.InputUtil;
 
 /**
@@ -24,10 +24,10 @@ public class Palindrome {
    * @return
    */
   private boolean isPalindrome(CustomLinkedList<Character> list) {
-    Node<Character> head = list.head();
-    Node<Character> center = list.getNode(list.size() / 2);
+    LinkedListNode<Character> head = list.head();
+    LinkedListNode<Character> center = list.getNode(list.size() / 2);
 
-    Node<Character> current, runner, temp;
+    LinkedListNode<Character> current, runner, temp;
 
     current = center;
     runner = center.next;
@@ -61,14 +61,14 @@ public class Palindrome {
    * @return
    */
   private boolean isPalindrome2(CustomLinkedList<Character> list) {
-    Node<Character> head = list.head();
+    LinkedListNode<Character> head = list.head();
     Stack<Character> stack = new Stack<Character>();
 
     if (list.size() == 1) {
       return true;
     }
 
-    Node<Character> center = list.getNode(list.size() / 2);
+    LinkedListNode<Character> center = list.getNode(list.size() / 2);
 
     while (center != null) {
       stack.push(center.data);
@@ -103,7 +103,7 @@ public class Palindrome {
    * @param len
    * @return wrapper which has node and isPalindrome flag
    */
-  private NodeWrapper<Character> isParlindromeRecurse(Node<Character> current, int len) {
+  private NodeWrapper<Character> isParlindromeRecurse(LinkedListNode<Character> current, int len) {
     NodeWrapper<Character> resultWrapper = null;
 
     if (len == 1) {
@@ -156,10 +156,10 @@ public class Palindrome {
   }
 
   class NodeWrapper<T> {
-    Node<T> node;
+    LinkedListNode<T> node;
     boolean isPalindrome = true;
 
-    NodeWrapper(Node<T> node) {
+    NodeWrapper(LinkedListNode<T> node) {
       this.node = node;
     }
   }

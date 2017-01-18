@@ -4,8 +4,8 @@ import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 
-import datastructures.common.Node;
 import datastructures.lists.CustomLinkedList;
+import datastructures.lists.LinkedListNode;
 import util.InputUtil;
 
 /**
@@ -27,8 +27,8 @@ public class RemoveDuplicates {
    * @param list
    */
   private void removeSet(CustomLinkedList<Integer> list) {
-    Node<Integer> current = list.head();
-    Node<Integer> runner = current.next;
+    LinkedListNode<Integer> current = list.head();
+    LinkedListNode<Integer> runner = current.next;
     Set<Integer> set = new HashSet<Integer>();
     set.add(current.data);
 
@@ -52,10 +52,10 @@ public class RemoveDuplicates {
    * @param list
    */
   private void remove(CustomLinkedList<Integer> list) {
-    Node<Integer> current = list.head();
+    LinkedListNode<Integer> current = list.head();
     while (current != null) {
-      Node<Integer> current2 = current;
-      Node<Integer> runner2 = current2.next;
+      LinkedListNode<Integer> current2 = current;
+      LinkedListNode<Integer> runner2 = current2.next;
 
       while (runner2 != null) {
         if (runner2.data.equals(current.data)) {

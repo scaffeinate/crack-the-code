@@ -2,7 +2,7 @@ package datastructures.stack;
 
 import java.util.EmptyStackException;
 
-import datastructures.common.Node;
+import datastructures.lists.LinkedListNode;
 
 /**
  * Simple Stack implementation
@@ -11,7 +11,7 @@ import datastructures.common.Node;
  * @param <T>
  */
 public class CustomStack<T> implements GenericStack<T> {
-  private Node<T> top = null;
+  private LinkedListNode<T> top = null;
   private int size = 0;
 
   public CustomStack() {
@@ -25,11 +25,11 @@ public class CustomStack<T> implements GenericStack<T> {
   @Override
   public void push(T data) {
     if (top == null) {
-      top = new Node<T>();
+      top = new LinkedListNode<T>();
       top.data = data;
       top.next = null;
     } else {
-      Node<T> node = new Node<T>();
+      LinkedListNode<T> node = new LinkedListNode<T>();
       node.data = data;
       node.next = top;
       top = node;
@@ -73,7 +73,7 @@ public class CustomStack<T> implements GenericStack<T> {
    * Return the Node<T> at top
    * @return top
    */
-  public Node<T> top() {
+  public LinkedListNode<T> top() {
     return this.top;
   }
 
@@ -86,7 +86,7 @@ public class CustomStack<T> implements GenericStack<T> {
       return "";
     }
 
-    Node<T> current = top;
+    LinkedListNode<T> current = top;
     StringBuilder builder = new StringBuilder();
     builder.append("[");
     while (current != null) {

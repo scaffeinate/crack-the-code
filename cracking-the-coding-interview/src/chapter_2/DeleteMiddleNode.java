@@ -2,8 +2,8 @@ package chapter_2;
 
 import java.io.FileNotFoundException;
 
-import datastructures.common.Node;
 import datastructures.lists.CustomLinkedList;
+import datastructures.lists.LinkedListNode;
 import util.InputUtil;
 
 /**
@@ -29,8 +29,8 @@ public class DeleteMiddleNode {
    * @param node
    */
   @SuppressWarnings("unused")
-  private void deleteMiddle(CustomLinkedList<Integer> list, Node<Integer> node) {
-    Node<Integer> current = list.head();
+  private void deleteMiddle(CustomLinkedList<Integer> list, LinkedListNode<Integer> node) {
+    LinkedListNode<Integer> current = list.head();
 
     if (node.equals(current)) {
       list.head(current.next);
@@ -55,7 +55,7 @@ public class DeleteMiddleNode {
    * @param list
    * @param node
    */
-  private void deleteMiddle2(CustomLinkedList<Integer> list, Node<Integer> node) {
+  private void deleteMiddle2(CustomLinkedList<Integer> list, LinkedListNode<Integer> node) {
     if (node.next != null) {
       node.data = node.next.data;
       node.next = node.next.next;
@@ -86,7 +86,7 @@ public class DeleteMiddleNode {
         System.out.println("Original Linked List:");
         list.print();
 
-        Node<Integer> node = list.getNode(m);
+        LinkedListNode<Integer> node = list.getNode(m);
         if (node != null) {
           // deleteMiddleNode.deleteMiddle(list, node);
           deleteMiddleNode.deleteMiddle2(list, node);

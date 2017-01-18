@@ -2,8 +2,8 @@ package chapter_2;
 
 import java.io.FileNotFoundException;
 
-import datastructures.common.Node;
 import datastructures.lists.CustomLinkedList;
+import datastructures.lists.LinkedListNode;
 import util.InputUtil;
 
 /**
@@ -28,9 +28,9 @@ public class LoopDetection {
    * @param list
    * @return collisionNode
    */
-  private Node<String> detectLoop(CustomLinkedList<String> list) {
-    Node<String> current = list.head();
-    Node<String> current2 = list.head();
+  private LinkedListNode<String> detectLoop(CustomLinkedList<String> list) {
+    LinkedListNode<String> current = list.head();
+    LinkedListNode<String> current2 = list.head();
 
     current = current.next;
     current2 = current2.next.next;
@@ -62,11 +62,11 @@ public class LoopDetection {
       System.out.println("Original Linked List:");
       list.print();
 
-      Node<String> temp = list.find(0);
+      LinkedListNode<String> temp = list.find(0);
       System.out.println(temp.data + " " + list.tail().data);
       list.tail().next = temp;
 
-      Node<String> result = loopDetection.detectLoop(list);
+      LinkedListNode<String> result = loopDetection.detectLoop(list);
       if (result != null) {
         System.out.println("Loop at:" + result.data);
       } else {

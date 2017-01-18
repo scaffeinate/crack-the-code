@@ -3,8 +3,8 @@ package chapter_2;
 import java.io.FileNotFoundException;
 import java.util.Map;
 
-import datastructures.common.Node;
 import datastructures.lists.CustomLinkedList;
+import datastructures.lists.LinkedListNode;
 import datastructures.util.ListUtil;
 import util.InputUtil;
 
@@ -37,8 +37,8 @@ public class SumLists {
    */
   private CustomLinkedList<Integer> computeSum(CustomLinkedList<Integer> list, CustomLinkedList<Integer> list2) {
     Map<String, CustomLinkedList<Integer>> nodeMap = ListUtil.getShorterAndLonger(list, list2);
-    Node<Integer> current = nodeMap.get("longer").head();
-    Node<Integer> current2 = nodeMap.get("shorter").head();
+    LinkedListNode<Integer> current = nodeMap.get("longer").head();
+    LinkedListNode<Integer> current2 = nodeMap.get("shorter").head();
 
     CustomLinkedList<Integer> resultList = add(current, current2);
     return resultList;
@@ -46,10 +46,10 @@ public class SumLists {
   
   private CustomLinkedList<Integer> computeSumRecurse(CustomLinkedList<Integer> list, CustomLinkedList<Integer> list2) {
     Map<String, CustomLinkedList<Integer>> nodeMap = ListUtil.getShorterAndLonger(list, list2);
-    Node<Integer> current = nodeMap.get("longer").head();
-    Node<Integer> current2 = nodeMap.get("shorter").head();
+    LinkedListNode<Integer> current = nodeMap.get("longer").head();
+    LinkedListNode<Integer> current2 = nodeMap.get("shorter").head();
     
-    Node<Integer> resultHead = addRecursive(current, current2, 0);
+    LinkedListNode<Integer> resultHead = addRecursive(current, current2, 0);
     
     return new CustomLinkedList<Integer>(resultHead);
   }
@@ -63,7 +63,7 @@ public class SumLists {
    * @param shorterHead
    * @return resultList
    */
-  private CustomLinkedList<Integer> add(Node<Integer> longerHead, Node<Integer> shorterHead) {
+  private CustomLinkedList<Integer> add(LinkedListNode<Integer> longerHead, LinkedListNode<Integer> shorterHead) {
     CustomLinkedList<Integer> list = new CustomLinkedList<Integer>();
     int temp = 0, sum = 0;
     while (shorterHead != null) {
@@ -100,7 +100,7 @@ public class SumLists {
    * @param place
    * @return resultList head
    */
-  private Node<Integer> addRecursive(Node<Integer> current, Node<Integer> current2, int temp) {
+  private LinkedListNode<Integer> addRecursive(LinkedListNode<Integer> current, LinkedListNode<Integer> current2, int temp) {
     int sum = 0;
 
     if (current != null) {
@@ -113,14 +113,14 @@ public class SumLists {
 
     sum += temp;
 
-    Node<Integer> resultNode = new Node<Integer>();
+    LinkedListNode<Integer> resultNode = new LinkedListNode<Integer>();
     resultNode.data = (sum % 10);
     temp = (sum / 10);
     resultNode.next = null;
 
     if (current.next == null) {
       if (temp != 0) {
-        Node<Integer> node = new Node<Integer>();
+        LinkedListNode<Integer> node = new LinkedListNode<Integer>();
         node.data = temp;
         node.next = null;
         resultNode.next = node;

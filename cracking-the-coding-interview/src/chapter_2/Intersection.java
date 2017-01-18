@@ -3,8 +3,8 @@ package chapter_2;
 import java.io.FileNotFoundException;
 import java.util.Map;
 
-import datastructures.common.Node;
 import datastructures.lists.CustomLinkedList;
+import datastructures.lists.LinkedListNode;
 import datastructures.util.ListUtil;
 import util.InputUtil;
 
@@ -33,13 +33,13 @@ public class Intersection {
    * @param secondList
    * @return isIntersecting
    */
-  private Node<Integer> isIntersecting(CustomLinkedList<Integer> firstList, CustomLinkedList<Integer> secondList) {
+  private LinkedListNode<Integer> isIntersecting(CustomLinkedList<Integer> firstList, CustomLinkedList<Integer> secondList) {
     Map<String, CustomLinkedList<Integer>> nodeMap = ListUtil.getShorterAndLonger(firstList, secondList);
     CustomLinkedList<Integer> longer = nodeMap.get("longer");
     CustomLinkedList<Integer> shorter = nodeMap.get("shorter");
 
-    Node<Integer> current = longer.head();
-    Node<Integer> current2 = shorter.head();
+    LinkedListNode<Integer> current = longer.head();
+    LinkedListNode<Integer> current2 = shorter.head();
 
     for (int i = 0; i < longer.size() - shorter.size(); i++) {
       if (current.equals(current2)) {
@@ -103,7 +103,7 @@ public class Intersection {
         intersection.addIntersection(firstList, secondList);
       }
 
-      Node<Integer> intersectingNode = intersection.isIntersecting(firstList, secondList);
+      LinkedListNode<Integer> intersectingNode = intersection.isIntersecting(firstList, secondList);
       System.out
           .println("Does it intersect? " + ((intersectingNode != null) ? ("Yes " + intersectingNode.data) : "No"));
 

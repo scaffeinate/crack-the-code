@@ -3,8 +3,8 @@ package datastructures.util;
 import java.util.HashMap;
 import java.util.Map;
 
-import datastructures.common.Node;
 import datastructures.lists.CustomLinkedList;
+import datastructures.lists.LinkedListNode;
 
 public class ListUtil {
 
@@ -21,8 +21,8 @@ public class ListUtil {
     return resultMap;
   }
 
-  public static <T> void printList(Node<T> head) {
-    Node<T> current = head;
+  public static <T> void printList(LinkedListNode<T> head) {
+    LinkedListNode<T> current = head;
 
     if (current == null) {
       return;
@@ -43,7 +43,7 @@ public class ListUtil {
     System.out.println(builder.toString());
   }
   
-  public static <T> CustomLinkedList<T> constructList(Node<T> head) {
+  public static <T> CustomLinkedList<T> constructList(LinkedListNode<T> head) {
     CustomLinkedList<T> list = new CustomLinkedList<T>();
     
     return list;

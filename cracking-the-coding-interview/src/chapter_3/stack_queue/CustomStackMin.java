@@ -1,6 +1,6 @@
 package chapter_3.stack_queue;
 
-import datastructures.common.Node;
+import datastructures.lists.LinkedListNode;
 import datastructures.stack.CustomStack;
 
 /**
@@ -48,7 +48,7 @@ public class CustomStackMin extends CustomStack<Integer> {
    * @return minVal
    */
   private int findMin(int data) {
-    Node<Integer> node = super.top();
+    LinkedListNode<Integer> node = super.top();
     int min = node.data;
     while (node != null) {
       if (node.data <= min) {

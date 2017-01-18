@@ -2,8 +2,8 @@ package chapter_2;
 
 import java.io.FileNotFoundException;
 
-import datastructures.common.Node;
 import datastructures.lists.CustomLinkedList;
+import datastructures.lists.LinkedListNode;
 import util.InputUtil;
 
 /**
@@ -24,7 +24,7 @@ public class KthToLast {
    * @return foundElement
    */
   private int findElement(CustomLinkedList<Integer> list, int k) {
-    Node<Integer> current = list.head();
+    LinkedListNode<Integer> current = list.head();
     int i = 0;
 
     // return element if the index is at k distance from the size-1
@@ -49,8 +49,8 @@ public class KthToLast {
    * @return
    */
   private int findElement2(CustomLinkedList<Integer> list, int k) {
-    Node<Integer> current = list.head();
-    Node<Integer> runner = current;
+    LinkedListNode<Integer> current = list.head();
+    LinkedListNode<Integer> runner = current;
 
     if (k < 0) {
       return -1;

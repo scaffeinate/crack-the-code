@@ -2,7 +2,7 @@ package datastructures.queue;
 
 import java.util.EmptyStackException;
 
-import datastructures.common.Node;
+import datastructures.lists.LinkedListNode;
 
 /**
  * Simple Queue Implementation
@@ -11,7 +11,7 @@ import datastructures.common.Node;
  * @param <T>
  */
 public class CustomQueue<T> {
-  private Node<T> head = null, tail = null;
+  private LinkedListNode<T> head = null, tail = null;
   private int size = 0;
 
   public CustomQueue() {
@@ -24,12 +24,12 @@ public class CustomQueue<T> {
    */
   public void add(T data) {
     if (head == null) {
-      head = new Node<T>();
+      head = new LinkedListNode<T>();
       head.data = data;
       head.next = null;
       tail = head;
     } else {
-      Node<T> node = new Node<T>();
+      LinkedListNode<T> node = new LinkedListNode<T>();
       node.data = data;
       node.next = null;
       tail.next = node;
@@ -109,7 +109,7 @@ public class CustomQueue<T> {
     }
     StringBuilder builder = new StringBuilder();
     builder.append("[");
-    Node<T> current = head;
+    LinkedListNode<T> current = head;
     while(current != null) {
       builder.append(current.data);
       builder.append((current.next != null) ? " " : "]");

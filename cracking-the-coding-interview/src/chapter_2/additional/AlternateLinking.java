@@ -2,8 +2,8 @@ package chapter_2.additional;
 
 import java.io.FileNotFoundException;
 
-import datastructures.common.Node;
 import datastructures.lists.CustomLinkedList;
+import datastructures.lists.LinkedListNode;
 import util.InputUtil;
 
 /**
@@ -30,9 +30,9 @@ public class AlternateLinking {
    * @param list
    */
   private void linkAlternates(CustomLinkedList<String> list) {
-    Node<String> head = list.head();
-    Node<String> current = head;
-    Node<String> runner = head;
+    LinkedListNode<String> head = list.head();
+    LinkedListNode<String> current = head;
+    LinkedListNode<String> runner = head;
     
     //Using the Runner Technique here
     while (runner != null && runner.next != null) {
@@ -43,7 +43,7 @@ public class AlternateLinking {
     runner = current;
     current = head;
 
-    Node<String> temp, temp2;
+    LinkedListNode<String> temp, temp2;
     while (current != null && runner != null) {
       temp = current.next;
       current.next = runner;

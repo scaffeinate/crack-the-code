@@ -3,8 +3,8 @@ package chapter_2.additional;
 import java.io.FileNotFoundException;
 import java.util.Stack;
 
-import datastructures.common.Node;
 import datastructures.lists.CustomLinkedList;
+import datastructures.lists.LinkedListNode;
 import datastructures.util.ListUtil;
 import util.InputUtil;
 
@@ -26,18 +26,18 @@ public class ReverseLinkedList {
    * @param head
    * @return resultHead
    */
-  private Node<String> reverseUsingStack(Node<String> head) {
-    Node<String> resultHead = null;
-    Stack<Node<String>> stack = new Stack<Node<String>>();
+  private LinkedListNode<String> reverseUsingStack(LinkedListNode<String> head) {
+    LinkedListNode<String> resultHead = null;
+    Stack<LinkedListNode<String>> stack = new Stack<LinkedListNode<String>>();
     while (head != null) {
       stack.push(head);
       head = head.next;
     }
 
-    Node<String> current = null;
+    LinkedListNode<String> current = null;
     while (!stack.isEmpty()) {
       if (resultHead == null) {
-        resultHead = new Node<String>();
+        resultHead = new LinkedListNode<String>();
         resultHead = stack.pop();
         current = resultHead;
       } else {
@@ -65,7 +65,7 @@ public class ReverseLinkedList {
    * @param current
    * @return resultHead
    */
-  private NodeWrapper<String> reverseRecursive(Node<String> current) {
+  private NodeWrapper<String> reverseRecursive(LinkedListNode<String> current) {
     NodeWrapper<String> resultWrapper = null;
 
     if (current.next == null) {
@@ -90,10 +90,10 @@ public class ReverseLinkedList {
    * @param head
    * @return resultHead
    */
-  private Node<String> reverseInline(Node<String> head) {
-    Node<String> resultHead = head;
-    Node<String> runner = resultHead.next;
-    Node<String> temp;
+  private LinkedListNode<String> reverseInline(LinkedListNode<String> head) {
+    LinkedListNode<String> resultHead = head;
+    LinkedListNode<String> runner = resultHead.next;
+    LinkedListNode<String> temp;
 
     resultHead.next = null;
 
@@ -122,15 +122,15 @@ public class ReverseLinkedList {
       list.print();
 
       System.out.println("Reversed using Stack:");
-      Node<String> result = reverseLinkedList.reverseUsingStack(list.head());
+      LinkedListNode<String> result = reverseLinkedList.reverseUsingStack(list.head());
       ListUtil.printList(result);
 
       System.out.println("Reversed Recursive:");
-      Node<String> resultRecurse = reverseLinkedList.reverseRecursive(list2.head()).head;
+      LinkedListNode<String> resultRecurse = reverseLinkedList.reverseRecursive(list2.head()).head;
       ListUtil.printList(resultRecurse);
 
       System.out.println("Reversed Inline:");
-      Node<String> resultInline = reverseLinkedList.reverseInline(list3.head());
+      LinkedListNode<String> resultInline = reverseLinkedList.reverseInline(list3.head());
       ListUtil.printList(resultInline);
 
       System.out.println();
@@ -144,7 +144,7 @@ public class ReverseLinkedList {
    * @param <T>
    */
   class NodeWrapper<T> {
-    Node<T> head;
-    Node<T> tail;
+    LinkedListNode<T> head;
+    LinkedListNode<T> tail;
   }
 }
