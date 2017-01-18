@@ -1,6 +1,5 @@
 package datastructures.hashtable;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,14 +11,17 @@ import java.util.Set;
  */
 public class HashTable<K, V> {
   private HashTableNode<K, V>[] hashArray;
-  private int hashSize = 32;
+  private final int INITIAL_CAPACITY = 32;
+  private final double THRESHOLD = 0.75;
+  
+  private int currentCapacity = INITIAL_CAPACITY;
   private int size = 0;
   private Set<HashTableNode<K, V>> entrySet;
   private Set<K> keySet;
 
   @SuppressWarnings("unchecked")
   public HashTable() {
-    hashArray = (HashTableNode<K, V>[]) Arrays.copyOf(new Object[hashSize], hashSize, HashTableNode[].class);
+    hashArray = new HashTableNode[INITIAL_CAPACITY];
     entrySet = new HashSet<HashTableNode<K, V>>();
     keySet = new HashSet<K>();
   }
@@ -28,6 +30,10 @@ public class HashTable<K, V> {
     int index = hash(key);
     HashTableNode<K, V> head = hashArray[index];
     hashArray[index] = add(head, key, value);
+    
+    if(loadFactor() > THRESHOLD) {
+      expand();
+    }
   }
 
   public V get(K key) {
@@ -115,6 +121,18 @@ public class HashTable<K, V> {
   }
 
   private int hash(K key) {
-    return (key.hashCode() % hashSize);
+    return (key.hashCode() % currentCapacity);
+  }
+  
+  private double loadFactor() {
+    return (size/currentCapacity);
+  }
+  
+  @SuppressWarnings({ "rawtypes", "unchecked" })
+  private void expand() {
+    currentCapacity = (currentCapacity * 2);
+    HashTableNode[] newArray = new HashTableNode[currentCapacity];
+    System.arraycopy(hashArray, 0, newArray, 0, size);
+    hashArray = newArray;
   }
 }
