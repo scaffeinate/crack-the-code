@@ -1,10 +1,8 @@
 package datastructures.lists;
 
-import datastructures.common.Node;
-
 public class CircularLinkedList<T> {
-  private Node<T> head = null;
-  private Node<T> tail = null;
+  private LinkedListNode<T> head = null;
+  private LinkedListNode<T> tail = null;
   private int size = 0;
 
   public CircularLinkedList() {
@@ -12,11 +10,11 @@ public class CircularLinkedList<T> {
 
   public void add(T data) {
     if (head == null) {
-      head = new Node<T>();
+      head = new LinkedListNode<T>();
       head.data = data;
       tail = head;
     } else {
-      Node<T> node = new Node<T>();
+      LinkedListNode<T> node = new LinkedListNode<T>();
       node.data = data;
       tail.next = node;
       tail = node;
@@ -26,7 +24,7 @@ public class CircularLinkedList<T> {
   }
 
   public void addToFront(T data) {
-    Node<T> node = new Node<T>();
+    LinkedListNode<T> node = new LinkedListNode<T>();
     node.data = data;
     node.next = head;
     head = node;
@@ -39,12 +37,12 @@ public class CircularLinkedList<T> {
     } else if (index == size - 1) {
       add(data);
     } else {
-      Node<T> current = head;
-      Node<T> runner = current.next;
+      LinkedListNode<T> current = head;
+      LinkedListNode<T> runner = current.next;
       int i = 1;
       while(runner != null) {
         if(i == index) {
-          Node<T> node = new Node<T>();
+          LinkedListNode<T> node = new LinkedListNode<T>();
           node.data = data;
           current.next = node;
           node.next = runner;
@@ -60,7 +58,7 @@ public class CircularLinkedList<T> {
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
-    Node<T> current = head;
+    LinkedListNode<T> current = head;
     builder.append("List: [");
     while (current.next != head) {
       builder.append(current.data).append("->");
