@@ -25,6 +25,18 @@ public abstract class AbstractList<T> implements GenericList<T> {
     this.head = head;
   }
 
+
+  /**
+   * Returns the tail
+   * 
+   * @return tail
+   */
+  @Override
+  public LinkedListNode<T> tail() {
+    return this.tail;
+  }
+  
+  
   /**
    * Sets the tail
    * 
@@ -36,13 +48,23 @@ public abstract class AbstractList<T> implements GenericList<T> {
   }
 
   /**
-   * Returns the tail
+   * Convert the list toArray and return Object[]
    * 
-   * @return tail
+   * @return orray[]
    */
   @Override
-  public LinkedListNode<T> tail() {
-    return this.tail;
+  public Object[] toArray() {
+    Object[] array = new Object[size];
+    int i = 0;
+    LinkedListNode<T> node = head;
+
+    while (node != null) {
+      array[i] = node.data;
+      node = node.next;
+      i++;
+    }
+
+    return array;
   }
 
   /**
