@@ -166,6 +166,33 @@ public class CustomLinkedList<T> extends AbstractList<T> {
 
     return removed;
   }
+  
+  @Override
+  public boolean removeFirst() {
+    if(head == null) {
+      return false;
+    }
+    
+    head = head.next;
+    return true;
+  }
+
+  @Override
+  public boolean removeLast() {
+    if(tail == null) {
+      return false;
+    }
+    
+    LinkedListNode<T> current = head;
+    LinkedListNode<T> runner = current.next;
+    while(runner != null) {
+      if(runner.equals(tail)) {
+        current.next = null;
+        tail = current;
+      }
+    }
+    return true;
+  }
 
   /**
    * Get the element value at the index

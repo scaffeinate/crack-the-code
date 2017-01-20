@@ -4,10 +4,16 @@ public interface GenericList<T> {
   public boolean add(T data);
 
   public boolean add(int index, T data);
+  
+  public boolean addToFront(T data);
 
   public boolean remove(Object o);
 
   public T remove(int index);
+  
+  public boolean removeFirst();
+  
+  public boolean removeLast();
 
   public T get(int index);
 

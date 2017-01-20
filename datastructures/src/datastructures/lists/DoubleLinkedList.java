@@ -40,9 +40,9 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
   @Override
   public boolean remove(Object o) {
     if (head.data.equals(o)) {
-      return removeHead();
+      return removeFirst();
     } else if (tail.data.equals(o)) {
-      return removeTail();
+      return removeLast();
     } else {
       LinkedListNode<T> current = head;
       while (current != null) {
@@ -66,11 +66,11 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
     }
 
     if (index == 0) {
-      if(removeHead()) {
+      if(removeFirst()) {
         return head.data;
       }
     } else if (index == size - 1) {
-      if(removeTail()) {
+      if(removeLast()) {
         return tail.data;
       }
     } else {
@@ -129,7 +129,7 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
     return true;
   }
   
-  public boolean removeHead() {
+  public boolean removeFirst() {
     if(head == null) {
       return false;
     }
@@ -139,7 +139,7 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
     return true;
   }
 
-  public boolean removeTail() {
+  public boolean removeLast() {
     if(tail == null) {
       return false;
     }
