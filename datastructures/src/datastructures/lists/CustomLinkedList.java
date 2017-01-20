@@ -189,9 +189,11 @@ public class CustomLinkedList<T> extends AbstractList<T> {
       if(runner.equals(tail)) {
         current.next = null;
         tail = current;
+        return true;
       }
     }
-    return true;
+    
+    return false;
   }
 
   /**

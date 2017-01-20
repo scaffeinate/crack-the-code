@@ -1,37 +1,27 @@
 package datastructures.lists;
 
-public class CircularLinkedList<T> {
-  private LinkedListNode<T> head = null;
-  private LinkedListNode<T> tail = null;
-  private int size = 0;
-
+public class CircularLinkedList<T> extends AbstractList<T> {
+  
   public CircularLinkedList() {
   }
 
-  public void add(T data) {
+  @Override
+  public boolean add(T data) {
     if (head == null) {
-      head = new LinkedListNode<T>();
-      head.data = data;
+      head = new LinkedListNode<T>(data);
       tail = head;
     } else {
-      LinkedListNode<T> node = new LinkedListNode<T>();
-      node.data = data;
+      LinkedListNode<T> node = new LinkedListNode<T>(data);
       tail.next = node;
       tail = node;
     }
     size++;
     tail.next = head;
+    return true;
   }
 
-  public void addToFront(T data) {
-    LinkedListNode<T> node = new LinkedListNode<T>();
-    node.data = data;
-    node.next = head;
-    head = node;
-    tail.next = head;
-  }
-
-  public void add(T data, int index) {
+  @Override
+  public boolean add(int index, T data) {
     if (index == 0) {
       addToFront(data);
     } else if (index == size - 1) {
@@ -42,17 +32,74 @@ public class CircularLinkedList<T> {
       int i = 1;
       while(runner != null) {
         if(i == index) {
-          LinkedListNode<T> node = new LinkedListNode<T>();
-          node.data = data;
+          LinkedListNode<T> node = new LinkedListNode<T>(data);
           current.next = node;
           node.next = runner;
-          return;
+          return true;
         }
         i++;
         current = current.next;
         runner = runner.next;
       }
     }
+    return false;
+  }
+
+  @Override
+  public boolean addToFront(T data) {
+    LinkedListNode<T> node = new LinkedListNode<T>(data, head);
+    head = node;
+    tail.next = head;
+    return true;
+  }
+
+  @Override
+  public boolean remove(Object o) {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  @Override
+  public T remove(int index) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public boolean removeFirst() {
+    if(head == null) {
+      return false;
+    }
+    
+    head = head.next;
+    tail.next = head;
+    return true;
+  }
+
+  @Override
+  public boolean removeLast() {
+    LinkedListNode<T> current = head;
+    LinkedListNode<T> runner = current.next;
+    
+    while(!runner.equals(head)) {
+      if(runner.equals(tail)) {
+        current.next = head;
+        tail = current;
+        return true;
+      }
+    }
+    
+    return false;
+  }
+
+  @Override
+  public T get(int index) {
+    return null;
+  }
+
+  @Override
+  public T set(int index, T data) {
+    return null;
   }
 
   @Override
@@ -69,13 +116,5 @@ public class CircularLinkedList<T> {
     builder.append("Tail linked to head? ").append(tail.next.equals(head));
 
     return builder.toString();
-  }
-
-  public boolean isEmpty() {
-    return (this.size == 0);
-  }
-
-  public int size() {
-    return this.size;
   }
 }

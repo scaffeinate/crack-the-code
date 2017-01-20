@@ -1,8 +1,6 @@
 package datastructures.lists;
 
 public class DoubleLinkedList<T> extends AbstractList<T> {
-  private LinkedListNode<T> head = null;
-  private LinkedListNode<T> tail = null;
   
   @Override
   public boolean add(T data) {
