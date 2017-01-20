@@ -18,8 +18,7 @@ public class BinaryMaxHeap<T> {
 		if (insertAt != 1) {
 			int index = insertAt;
 			int parentIndex = (index / 2);
-
-			while (compare(data, heapArr[parentIndex]) > 0) {
+			while ((compare(heapArr[index], heapArr[parentIndex]) > 0) && parentIndex > 0) {
 				T temp = heapArr[parentIndex];
 				heapArr[parentIndex] = heapArr[index];
 				heapArr[index] = temp;
@@ -40,7 +39,7 @@ public class BinaryMaxHeap<T> {
 	public T extractMax() {
 		T data = heapArr[1];
 		heapArr[1] = heapArr[insertAt - 1];
-		heapArr[insertAt] = null;
+		heapArr[insertAt - 1] = null;
 		maxHeapify(1);
 		insertAt--;
 		size--;

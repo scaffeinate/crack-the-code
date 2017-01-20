@@ -4,13 +4,12 @@ import datastructures.tree.BinaryMinHeap;
 
 public class TestBinaryMinHeap {
   public static void main(String[] args) {
-    BinaryMinHeap binaryMinHeap = new BinaryMinHeap();
+    BinaryMinHeap<Integer> binaryMinHeap = new BinaryMinHeap<Integer>();
     binaryMinHeap.insert(2);
     binaryMinHeap.insert(5);
     binaryMinHeap.insert(10);
     binaryMinHeap.insert(1);
     binaryMinHeap.insert(7);
-    
     binaryMinHeap.insert(7);
     binaryMinHeap.insert(0);
     binaryMinHeap.insert(3);

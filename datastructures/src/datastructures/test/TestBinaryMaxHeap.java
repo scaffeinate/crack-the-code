@@ -12,7 +12,7 @@ public class TestBinaryMaxHeap {
 		binaryMaxHeap.insert(7);
 
 		binaryMaxHeap.insert(7);
-		binaryMaxHeap.insert(11);
+		binaryMaxHeap.insert(0);
 		binaryMaxHeap.insert(3);
 		binaryMaxHeap.insert(4);
 		binaryMaxHeap.insert(5);
