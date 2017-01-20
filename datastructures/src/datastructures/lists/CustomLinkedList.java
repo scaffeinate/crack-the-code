@@ -51,7 +51,7 @@ public class CustomLinkedList<T> extends AbstractList<T> {
     size++;
     return added;
   }
-  
+
   /**
    * Add an element at the index
    * 
@@ -69,8 +69,8 @@ public class CustomLinkedList<T> extends AbstractList<T> {
       size++;
       return true;
     }
-    
-    if(index == size-1) {
+
+    if (index == size - 1) {
       LinkedListNode<T> node = new LinkedListNode<T>(data, head);
       tail = node;
       size++;
@@ -88,7 +88,7 @@ public class CustomLinkedList<T> extends AbstractList<T> {
       current = current.next;
       i++;
     }
-    
+
     return false;
   }
 
@@ -133,66 +133,63 @@ public class CustomLinkedList<T> extends AbstractList<T> {
    * @return removed
    */
   @Override
-  public T remove(int index) {
+  public boolean remove(int index) {
     LinkedListNode<T> current = head;
     LinkedListNode<T> runner = current.next;
-    int i = 0;
-    T removed = null;
+    int i = 1;
 
     if (index == 0) {
-      removed = head.data;
       head = head.next;
       size--;
-      return removed;
+      return true;
     }
 
     while (runner != null) {
-      if (i == index - 1) {
-        removed = runner.data;
+      if (i == index) {
         current.next = runner.next;
         size--;
-
-        if (i == size - 1) {
+        if (i == size) {
           tail = current;
         }
-
+        return true;
       } else {
         current = current.next;
       }
-
       runner = runner.next;
       i++;
     }
 
-    return removed;
+    return false;
   }
-  
+
   @Override
   public boolean removeFirst() {
-    if(head == null) {
+    if (head == null) {
       return false;
     }
-    
+
     head = head.next;
+    size--;
     return true;
   }
 
   @Override
   public boolean removeLast() {
-    if(tail == null) {
+    if (tail == null) {
       return false;
     }
-    
+
     LinkedListNode<T> current = head;
     LinkedListNode<T> runner = current.next;
-    while(runner != null) {
-      if(runner.equals(tail)) {
+    while (runner != null) {
+      if (runner.equals(tail)) {
         current.next = null;
         tail = current;
+        size--;
         return true;
       }
     }
-    
+
     return false;
   }
 
@@ -247,7 +244,7 @@ public class CustomLinkedList<T> extends AbstractList<T> {
 
     return added;
   }
-  
+
   /**
    * Prints the list
    */
@@ -264,7 +261,7 @@ public class CustomLinkedList<T> extends AbstractList<T> {
   public LinkedListNode<T> getNode(int index) {
     return find(index);
   }
-  
+
   /**
    * Returns the Node<T> at the index
    * 

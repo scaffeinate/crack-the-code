@@ -9,7 +9,7 @@ public interface GenericList<T> {
 
   public boolean remove(Object o);
 
-  public T remove(int index);
+  public boolean remove(int index);
   
   public boolean removeFirst();
   

@@ -1,7 +1,7 @@
 package datastructures.lists;
 
 public class DoubleLinkedList<T> extends AbstractList<T> {
-  
+
   @Override
   public boolean add(T data) {
     boolean added = false;
@@ -19,7 +19,7 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
     size++;
     return added;
   }
-  
+
   @Override
   public boolean add(int index, T data) {
     if (index < 0 || index >= size) {
@@ -34,7 +34,7 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
       return addAt(data, index);
     }
   }
-  
+
   @Override
   public boolean remove(Object o) {
     if (head.data.equals(o)) {
@@ -53,24 +53,20 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
         current = current.next;
       }
     }
-    
+
     return false;
   }
-  
+
   @Override
-  public T remove(int index) {
+  public boolean remove(int index) {
     if (index < 0 || index >= size) {
-      return null;
+      return false;
     }
 
     if (index == 0) {
-      if(removeFirst()) {
-        return head.data;
-      }
+      return removeFirst();
     } else if (index == size - 1) {
-      if(removeLast()) {
-        return tail.data;
-      }
+      return removeLast();
     } else {
       LinkedListNode<T> current = head;
       int i = 0;
@@ -80,16 +76,16 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
           current.prev.next = current.next;
           current.next.prev = current.prev;
           size--;
-          return current.data;
+          return true;
         }
         i++;
         current = current.next;
       }
     }
-    
-    return null;
+
+    return false;
   }
-  
+
   @Override
   public T get(int index) {
     LinkedListNode<T> current = head;
@@ -104,12 +100,13 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
 
     return null;
   }
+
   @Override
   public T set(int index, T data) {
     LinkedListNode<T> current = head;
     int i = 0;
-    while(current != null) {
-      if(i == index) {
+    while (current != null) {
+      if (i == index) {
         current.data = data;
         return current.data;
       }
@@ -118,7 +115,7 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
     }
     return null;
   }
-  
+
   public boolean addToFront(T data) {
     LinkedListNode<T> node = new LinkedListNode<T>(data, head);
     head.prev = node;
@@ -126,9 +123,9 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
     size++;
     return true;
   }
-  
+
   public boolean removeFirst() {
-    if(head == null) {
+    if (head == null) {
       return false;
     }
     head = head.next;
@@ -138,7 +135,7 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
   }
 
   public boolean removeLast() {
-    if(tail == null) {
+    if (tail == null) {
       return false;
     }
     tail = tail.prev;
@@ -146,7 +143,7 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
     size--;
     return true;
   }
-  
+
   private boolean addAt(T data, int index) {
     LinkedListNode<T> current = head;
     int i = 1;
@@ -163,10 +160,10 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
       i++;
       current = current.next;
     }
-    
+
     return false;
   }
-  
+
   public void print() {
     System.out.println(this.toString());
   }
