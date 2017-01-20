@@ -41,7 +41,7 @@ public class Partition {
     CustomLinkedList<Integer> right = new CustomLinkedList<Integer>();
     LinkedListNode<Integer> current = list.head();
     LinkedListNode<Integer> start = null;
-    LinkedListNode<Integer> partitionNode = list.removeNode(Integer.valueOf(partitionVal));
+    LinkedListNode<Integer> partitionNode = removeNode(list, Integer.valueOf(partitionVal));
 
     if (partitionNode != null) {
       current = list.head();
@@ -118,6 +118,35 @@ public class Partition {
     tail.next = null;
 
     return head;
+  }
+  
+  public LinkedListNode<Integer> removeNode(CustomLinkedList<Integer> list, Object o) {
+    LinkedListNode<Integer> current = list.head();
+    LinkedListNode<Integer> runner = current.next;
+    LinkedListNode<Integer> removedNode = null;
+
+    if (current.data.equals(o)) {
+      removedNode = current;
+      list.head(current.next);
+      return removedNode;
+    }
+
+    while (runner != null) {
+      if (runner.data.equals(o)) {
+        current.next = runner.next;
+        removedNode = runner;
+        if(runner.equals(list.tail())) {
+          list.tail(runner);
+        }
+        return runner;
+      } else {
+        current = current.next;
+      }
+
+      runner = runner.next;
+    }
+
+    return removedNode;
   }
 
   public static void main(String[] args) throws FileNotFoundException {

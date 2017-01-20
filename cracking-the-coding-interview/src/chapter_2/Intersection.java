@@ -1,11 +1,9 @@
 package chapter_2;
 
 import java.io.FileNotFoundException;
-import java.util.Map;
 
 import datastructures.lists.CustomLinkedList;
 import datastructures.lists.LinkedListNode;
-import datastructures.util.ListUtil;
 import util.InputUtil;
 
 /**
@@ -34,14 +32,23 @@ public class Intersection {
    * @return isIntersecting
    */
   private LinkedListNode<Integer> isIntersecting(CustomLinkedList<Integer> firstList, CustomLinkedList<Integer> secondList) {
-    Map<String, CustomLinkedList<Integer>> nodeMap = ListUtil.getShorterAndLonger(firstList, secondList);
-    CustomLinkedList<Integer> longer = nodeMap.get("longer");
-    CustomLinkedList<Integer> shorter = nodeMap.get("shorter");
-
-    LinkedListNode<Integer> current = longer.head();
-    LinkedListNode<Integer> current2 = shorter.head();
-
-    for (int i = 0; i < longer.size() - shorter.size(); i++) {
+    LinkedListNode<Integer> current = firstList.head();
+    LinkedListNode<Integer> current2 = secondList.head();
+    int firstSize = 0, secondSize = 0;
+    while(current != null) {
+      firstSize++;
+      current = current.next;
+    }
+    
+    while(current2 != null) {
+      secondSize++;
+      current2 = current2.next;
+    }
+    
+    current = (firstSize > secondSize) ? firstList.head() : secondList.head();
+    current2 = (firstSize > secondSize) ? secondList.head() : firstList.head();
+    
+    for (int i = 0; i < Math.abs(firstSize - secondSize); i++) {
       if (current.equals(current2)) {
         return current;
       }
@@ -68,9 +75,18 @@ public class Intersection {
    * @param secondList
    */
   private void addIntersection(CustomLinkedList<Integer> firstList, CustomLinkedList<Integer> secondList) {
-    secondList.addNode(3, firstList.getNode(4));
+    LinkedListNode<Integer> node = firstList.getNode(4);
+    int i = 0;
+    LinkedListNode<Integer> current = secondList.head();
+    while(current != null) {
+      if(i == 2) {
+        current.next = node;
+      }
+      i++;
+      current = current.next;
+    }
     System.out
-        .println("Fetch 4th Node from firstList: " + firstList.get(4) + " and add it to 3rd position of secondList");
+        .println("Fetch 4th Node from firstList: " + firstList.get(4) + " and add it to 2nd position of secondList");
     firstList.print();
     secondList.print();
   }

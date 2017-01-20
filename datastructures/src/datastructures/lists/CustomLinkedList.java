@@ -238,67 +238,6 @@ public class CustomLinkedList<T> extends AbstractList<T> {
 
     return added;
   }
-
-  public void addNode(int index, LinkedListNode<T> node) {
-    LinkedListNode<T> current = head;
-    int i = 1;
-
-    if (index == 0) {
-      head = node;
-    }
-
-    if (index == size - 1) {
-      tail = node;
-    }
-
-    while (current != null) {
-      if (i == index) {
-        node.next = current.next;
-        current.next = node;
-        break;
-      }
-      i++;
-      current = current.next;
-    }
-
-    while (node != null) {
-      node = node.next;
-    }
-
-    size += 1;
-  }
-
-  public LinkedListNode<T> removeNode(Object o) {
-    LinkedListNode<T> current = head;
-    LinkedListNode<T> runner = current.next;
-    LinkedListNode<T> removedNode = null;
-
-    if (head.data.equals(o)) {
-      removedNode = head;
-      head = head.next;
-      size--;
-      return removedNode;
-    }
-
-    while (runner != null) {
-      if (runner.data.equals(o)) {
-        current.next = runner.next;
-        size--;
-
-        if (runner.equals(tail)) {
-          tail = current;
-        }
-        removedNode = runner;
-        return runner;
-      } else {
-        current = current.next;
-      }
-
-      runner = runner.next;
-    }
-
-    return removedNode;
-  }
   
   /**
    * Prints the list
@@ -315,26 +254,6 @@ public class CustomLinkedList<T> extends AbstractList<T> {
    */
   public LinkedListNode<T> getNode(int index) {
     return find(index);
-  }
-
-  private LinkedListNode<T> find(Object o) {
-    if (head.data.equals(o)) {
-      return head;
-    }
-    
-    if(tail.data.equals(o)) {
-      return tail;
-    }
-    
-    LinkedListNode<T> current = head;
-    while (current != null) {
-      if (current.data.equals(o)) {
-        return current;
-      }
-      current = current.next;
-    }
-
-    return null;
   }
   
   /**
