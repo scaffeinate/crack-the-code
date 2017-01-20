@@ -1,99 +1,80 @@
 package datastructures.lists;
 
-public class DoubleLinkedList<T> {
-  private DoubleLinkedListNode<T> head = null;
-  private DoubleLinkedListNode<T> tail = null;
-  private int size = 0;
-
-  public void add(T data) {
+public class DoubleLinkedList<T> extends AbstractList<T> {
+  private LinkedListNode<T> head = null;
+  private LinkedListNode<T> tail = null;
+  
+  @Override
+  public boolean add(T data) {
+    boolean added = false;
     if (head == null) {
-      head = new DoubleLinkedListNode<T>();
-      head.data = data;
+      head = new LinkedListNode<T>(data);
       tail = head;
+      added = true;
     } else {
-      DoubleLinkedListNode<T> node = new DoubleLinkedListNode<T>();
-      node.data = data;
+      LinkedListNode<T> node = new LinkedListNode<T>(data);
       tail.next = node;
       node.prev = tail;
       tail = node;
+      added = true;
     }
     size++;
+    return added;
   }
-
-  public void add(T data, int index) {
+  
+  @Override
+  public boolean add(int index, T data) {
     if (index < 0 || index >= size) {
-      return;
+      return false;
     }
 
     if (index == 0) {
-      addToFront(data);
+      return addToFront(data);
     } else if (index == (size - 1)) {
-      add(data);
+      return add(data);
     } else {
-      addAt(data, index);
+      return addAt(data, index);
     }
   }
-
-  public void addToFront(T data) {
-    DoubleLinkedListNode<T> node = new DoubleLinkedListNode<T>();
-    node.data = data;
-    node.next = head;
-    head.prev = node;
-    head = node;
-    size++;
-  }
-
-  private void addAt(T data, int index) {
-    DoubleLinkedListNode<T> current = head;
-    int i = 1;
-
-    while (current != null) {
-      if (i == index) {
-        DoubleLinkedListNode<T> node = new DoubleLinkedListNode<T>();
-        node.data = data;
-        node.next = current.next;
-        node.prev = current;
-        current.next.prev = node;
-        current.next = node;
-        size++;
-        return;
-      }
-
-      i++;
-      current = current.next;
-    }
-  }
-
-  public void remove(T data) {
-    if (head.data.equals(data)) {
-      removeHead();
-    } else if (tail.data.equals(data)) {
-      removeTail();
+  
+  @Override
+  public boolean remove(Object o) {
+    if (head.data.equals(o)) {
+      return removeHead();
+    } else if (tail.data.equals(o)) {
+      return removeTail();
     } else {
-      DoubleLinkedListNode<T> current = head;
+      LinkedListNode<T> current = head;
       while (current != null) {
-        if (current.data.equals(data)) {
+        if (current.data.equals(o)) {
           current.prev.next = current.next;
           current.next.prev = current.prev;
           size--;
-          break;
+          return true;
         }
         current = current.next;
       }
     }
+    
+    return false;
   }
-
-  public void remove(int index) {
+  
+  @Override
+  public T remove(int index) {
     if (index < 0 || index >= size) {
-      return;
+      return null;
     }
 
     if (index == 0) {
-      removeHead();
+      if(removeHead()) {
+        return head.data;
+      }
     } else if (index == size - 1) {
-      removeTail();
+      if(removeTail()) {
+        return tail.data;
+      }
     } else {
-      DoubleLinkedListNode<T> current = head;
+      LinkedListNode<T> current = head;
       int i = 0;
 
       while (current != null) {
@@ -101,16 +82,19 @@ public class DoubleLinkedList<T> {
           current.prev.next = current.next;
           current.next.prev = current.prev;
           size--;
-          break;
+          return current.data;
         }
         i++;
         current = current.next;
       }
     }
+    
+    return null;
   }
-
+  
+  @Override
   public T get(int index) {
-    DoubleLinkedListNode<T> current = head;
+    LinkedListNode<T> current = head;
     int i = 0;
     while (current != null) {
       if (i == index) {
@@ -122,42 +106,76 @@ public class DoubleLinkedList<T> {
 
     return null;
   }
-
-  public void set(T data, int index) {
-    DoubleLinkedListNode<T> current = head;
+  @Override
+  public T set(int index, T data) {
+    LinkedListNode<T> current = head;
     int i = 0;
     while(current != null) {
       if(i == index) {
         current.data = data;
+        return current.data;
       }
       i++;
       current = current.next;
     }
+    return null;
+  }
+  
+  public boolean addToFront(T data) {
+    LinkedListNode<T> node = new LinkedListNode<T>(data, head);
+    head.prev = node;
+    head = node;
+    size++;
+    return true;
+  }
+  
+  public boolean removeHead() {
+    if(head == null) {
+      return false;
+    }
+    head = head.next;
+    head.prev = null;
+    size--;
+    return true;
   }
 
-  public DoubleLinkedListNode<T> head() {
-    return this.head;
+  public boolean removeTail() {
+    if(tail == null) {
+      return false;
+    }
+    tail = tail.prev;
+    tail.next = null;
+    size--;
+    return true;
   }
+  
+  private boolean addAt(T data, int index) {
+    LinkedListNode<T> current = head;
+    int i = 1;
 
-  public DoubleLinkedListNode<T> tail() {
-    return this.tail;
+    while (current != null) {
+      if (i == index) {
+        LinkedListNode<T> node = new LinkedListNode<T>(data, current.next, current);
+        current.next.prev = node;
+        current.next = node;
+        size++;
+        return true;
+      }
+
+      i++;
+      current = current.next;
+    }
+    
+    return false;
   }
-
-  public int size() {
-    return this.size;
-  }
-
-  public boolean isEmpty() {
-    return (this.size == 0);
-  }
-
+  
   public void print() {
     System.out.println(this.toString());
   }
 
   public void printReverse() {
     StringBuilder builder = new StringBuilder();
-    DoubleLinkedListNode<T> current = tail;
+    LinkedListNode<T> current = tail;
     builder.append("null<-");
     while (current.prev != null) {
       builder.append(current.data).append("<=>");
@@ -171,7 +189,7 @@ public class DoubleLinkedList<T> {
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
-    DoubleLinkedListNode<T> current = head;
+    LinkedListNode<T> current = head;
     builder.append("null<-");
     while (current.next != null) {
       builder.append(current.data).append("<=>");
@@ -179,17 +197,5 @@ public class DoubleLinkedList<T> {
     }
     builder.append(current.data).append("->null");
     return builder.toString();
-  }
-
-  private void removeHead() {
-    head = head.next;
-    head.prev = null;
-    size--;
-  }
-
-  private void removeTail() {
-    tail = tail.prev;
-    tail.next = null;
-    size--;
   }
 }
