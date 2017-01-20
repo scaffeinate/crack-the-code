@@ -6,6 +6,26 @@ public abstract class AbstractList<T> implements GenericList<T> {
   protected int size = 0;
 
   /**
+   * Returns whether the list contains the object o
+   * 
+   * @param o
+   * @return contains
+   */
+  @Override
+  public boolean contains(Object o) {
+    LinkedListNode<T> current = head;
+
+    while (current != null) {
+      if (current.data.equals(o)) {
+        return true;
+      }
+      current = current.next;
+    }
+
+    return false;
+  }
+  
+  /**
    * Returns the head
    * 
    * @return head

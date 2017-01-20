@@ -199,26 +199,6 @@ public class CustomLinkedList<T> extends AbstractList<T> {
     return null;
   }
 
-  /**
-   * Returns whether the list contains the object o
-   * 
-   * @param o
-   * @return contains
-   */
-  @Override
-  public boolean contains(Object o) {
-    LinkedListNode<T> current = head;
-
-    while (current != null) {
-      if (current.data.equals(o)) {
-        return true;
-      }
-      current = current.next;
-    }
-
-    return false;
-  }
-
   public boolean addToFront(T e) {
     boolean added = false;
 

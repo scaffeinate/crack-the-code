@@ -1,9 +1,9 @@
 package datastructures.lists;
 
 public interface GenericList<T> {
-  public boolean add(T e);
+  public boolean add(T data);
 
-  public boolean add(int index, T element);
+  public boolean add(int index, T data);
 
   public boolean remove(Object o);
 
@@ -11,7 +11,7 @@ public interface GenericList<T> {
 
   public T get(int index);
 
-  public T set(int index, T element);
+  public T set(int index, T data);
 
   public boolean contains(Object o);
 
