@@ -105,7 +105,7 @@ public class BinarySearchTree<T> {
     return builder.toString();
   }
 
-  public String depthFirstTraversal(TreeNode<T> root) {
+  public String depthFirstPreOrder(TreeNode<T> root) {
     Stack<TreeNode<T>> stack = new Stack<TreeNode<T>>();
     StringBuilder builder = new StringBuilder();
     stack.push(root);
@@ -138,6 +138,62 @@ public class BinarySearchTree<T> {
     return builder.toString();
   }
 
+  public String depthFirstInOrder(TreeNode<T> root) {
+    Stack<TreeNode<T>> stack = new Stack<TreeNode<T>>();
+    StringBuilder builder = new StringBuilder();
+
+    stack.push(root);
+    builder.append("[ ");
+    
+    while (!stack.isEmpty()) {
+      TreeNode<T> node = stack.peek();
+
+      if (node.left != null && !node.left.visited) {
+        stack.push(node.left);
+      } else if (!node.visited) {
+        builder.append(node.data + " ");
+        node.visited = true;
+        if (node.right != null && !node.right.visited) {
+          stack.push(node.right);
+        } else {
+          stack.pop();
+        }
+      } else {
+        stack.pop();
+      }
+    }
+    
+    builder.append("]");
+    resetVisited(treeRoot);
+    return builder.toString();
+  }
+  
+  public String depthFirstPostOrder(TreeNode<T> root) {
+    Stack<TreeNode<T>> stack = new Stack<TreeNode<T>>();
+    StringBuilder builder = new StringBuilder();
+
+    stack.push(root);
+    builder.append("[ ");
+    
+    while(!stack.isEmpty()) {
+      TreeNode<T> node = stack.peek();
+      if(node.left != null && !node.left.visited) {
+        stack.push(node.left);
+      } else if(node.right != null && !node.right.visited) {
+        stack.push(node.right);
+      } else if(!node.visited) {
+        builder.append(node.data + " ");
+        node.visited = true;
+      } else {
+        stack.pop();
+      }
+    }
+    
+    builder.append("]");
+    resetVisited(treeRoot);
+    return builder.toString();
+  }
+
   public T find(TreeNode<T> root, T data) {
     if (root == null) {
       return null;
@@ -155,17 +211,17 @@ public class BinarySearchTree<T> {
   }
 
   public T search(TreeNode<T> root, T data) {
-    while(root != null && !root.data.equals(data)) {
-      if(root.compareTo(data) >= 0) {
+    while (root != null && !root.data.equals(data)) {
+      if (root.compareTo(data) >= 0) {
         root = root.left;
       } else {
         root = root.right;
       }
     }
-    
+
     return (root != null) ? root.data : null;
   }
-  
+
   public String findPath(TreeNode<T> root, T data) {
     if (root == null) {
       return null;
@@ -230,16 +286,16 @@ public class BinarySearchTree<T> {
   public TreeNode<T> getRoot() {
     return this.treeRoot;
   }
-  
+
   public T getMinimum(TreeNode<T> root) {
-    while(root.left != null) {
+    while (root.left != null) {
       root = root.left;
     }
     return root.data;
   }
-  
+
   public T getMaximum(TreeNode<T> root) {
-    while(root.right != null) {
+    while (root.right != null) {
       root = root.right;
     }
     return root.data;

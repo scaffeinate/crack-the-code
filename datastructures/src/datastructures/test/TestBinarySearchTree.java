@@ -33,7 +33,11 @@ public class TestBinarySearchTree {
   private void traversal() {
     System.out.println("\nTree Traversal: \n");
     System.out.println("Depth First Traversal: ");
-    System.out.println("1. Using stack: " + tree.depthFirstTraversal(root));
+    System.out.println("1. Using stack: ");
+    System.out.println("PreOrder: " + tree.depthFirstPreOrder(root));
+    System.out.println("InOrder: " + tree.depthFirstInOrder(root));
+    System.out.print("PostOrder: " + tree.depthFirstPostOrder(root));
+
     System.out.println();
     System.out.println("2. Recursive: ");
     System.out.println("PreOrder: [ " + tree.preOrder(root) + "]");
