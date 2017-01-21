@@ -1,10 +1,12 @@
 package datastructures.test;
 
-import datastructures.tree.BinaryMinHeap;
+import datastructures.heap.BinaryHeap;
+import datastructures.heap.BinaryMinHeap;
+import datastructures.heap.BinaryHeap.HeapType;
 
 public class TestBinaryMinHeap {
   public static void main(String[] args) {
-    BinaryMinHeap<Integer> binaryMinHeap = new BinaryMinHeap<Integer>();
+    BinaryHeap<Integer> binaryMinHeap = new BinaryMinHeap<Integer>(HeapType.MIN_HEAP);
     binaryMinHeap.insert(2);
     binaryMinHeap.insert(5);
     binaryMinHeap.insert(10);
@@ -21,10 +23,10 @@ public class TestBinaryMinHeap {
     
     binaryMinHeap.print();
     
-    System.out.println("\nExtracting Min from Binary Heap");
+    System.out.println("Extracting Min from Binary Heap");
     
     for(int i=0;i<size;i++) {
-      System.out.print(binaryMinHeap.extractMin() + " ");
+      System.out.print(binaryMinHeap.extract() + " ");
     }
   }
 }
