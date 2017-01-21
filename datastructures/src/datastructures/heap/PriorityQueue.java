@@ -20,7 +20,7 @@ public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> 
     if (element == null) {
       System.out.print(" => [Invalid index]");
     } else {
-      if (comparePriority(priority, element.priority) <= 0) {
+      if (type == HeapType.MAX_HEAP && comparePriority(priority, element.priority) <= 0) {
         System.out.print(" => [Priority is not greater than current.]");
       } else {
         element.priority = priority;
@@ -35,6 +35,26 @@ public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> 
     }
   }
 
+  public void decreaseKey(int index, P priority) {
+    PriorityQueueElement<P, V> element = heapArr[index];
+    if (element == null) {
+      System.out.print(" => [Invalid index]");
+    } else {
+      if (type == HeapType.MIN_HEAP && comparePriority(priority, element.priority) >= 0) {
+        System.out.print(" => [Priority is not lesser than current.]");
+      } else {
+        element.priority = priority;
+        int current = index;
+        int parent = (current / 2);
+        while (parent > 0 && violatesProperty(current, parent)) {
+          swapElements(current, parent);
+          current = parent;
+          parent = (current / 2);
+        }
+      }
+    }
+  }
+  
   @Override
   public void print() {
     System.out.println(this.toString());

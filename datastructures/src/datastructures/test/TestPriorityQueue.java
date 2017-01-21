@@ -41,14 +41,43 @@ public class TestPriorityQueue {
   } 
   
   public void buildMinPriorityQueue(String[] input) {
-    
+    priorityQueue = new PriorityQueue<Integer, String>(HeapType.MIN_HEAP);
+    for(String line:input) {
+      if(line.startsWith("insert")) {
+        String[] values = line.split(" ");
+        priorityQueue.insert(Integer.parseInt(values[1]), values[2]);
+      } else if(line.startsWith("peek")) {
+        System.out.println("\nAlgo with Min Time => " + priorityQueue.peek());
+      } else if(line.startsWith("decreaseKey")) {
+        String[] values = line.split(" ");
+        System.out.print("\nDecreasing Time for Algo at: " + values[1] + " to " + values[2]);
+        priorityQueue.decreaseKey(Integer.parseInt(values[1]), Integer.parseInt(values[2]));
+        System.out.println();
+      } else if(line.startsWith("extractAll")) {
+        int size = priorityQueue.size();
+        System.out.println("\nExtracting All the Algorithms in Priority Queue: [" + size + "]");
+        System.out.print("[ ");
+        for(int i=0;i<size;i++) {
+          System.out.print(priorityQueue.extract() + " ");
+        }
+        System.out.println("]");
+      } else if(line.startsWith("extract")) {
+        System.out.println("\nExtracting Algo with Min Time => " + priorityQueue.extract());
+      } else if(line.startsWith("print")) {
+        System.out.println();
+        priorityQueue.print();
+      }
+    }
   }
   
   public static void main(String[] args) throws FileNotFoundException {
     TestPriorityQueue testPriorityQueue = new TestPriorityQueue();
     String[] input = InputUtil.readContents("test_max_priority_queue");
+    System.out.println("-------Testing Max Priority Queue-------");
     testPriorityQueue.buildMaxPriorityQueue(input);
     
+    System.out.println();
+    System.out.println("-------Testing Min Priority Queue-------");
     input = InputUtil.readContents("test_min_priority_queue");
     testPriorityQueue.buildMinPriorityQueue(input);
   }
