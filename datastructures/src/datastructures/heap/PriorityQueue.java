@@ -3,11 +3,11 @@ package datastructures.heap;
 public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> {
 
   public PriorityQueue(HeapType type) {
-    super(-1, type);
+    this(-1, type);
   }
 
   public PriorityQueue(int initialCapacity, HeapType type) {
-    super(initialCapacity, type);
+    super(PriorityQueueElement.class, initialCapacity, type);
   }
 
   public void insert(P priority, V val) {
@@ -18,10 +18,10 @@ public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> 
   public void increaseKey(int index, P priority) {
     PriorityQueueElement<P, V> element = heapArr[index];
     if (element == null) {
-      System.out.println("Invalid index");
+      System.out.print(" => [Invalid index]");
     } else {
-      if (comparePriority(priority, element.priority) < 0) {
-        System.out.println("Priority is not increased.");
+      if (comparePriority(priority, element.priority) <= 0) {
+        System.out.print(" => [Priority is not greater than current.]");
       } else {
         element.priority = priority;
         int current = index;
@@ -33,6 +33,21 @@ public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> 
         }
       }
     }
+  }
+
+  @Override
+  public void print() {
+    System.out.println(this.toString());
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder builder = new StringBuilder();
+    builder.append("Priority Queue: ").append("[").append(this.size()).append("]\n");
+    for (int i = 1; i < size; i++) {
+      builder.append(heapArr[i].toString()).append("\n");
+    }
+    return builder.toString();
   }
 
   @Override
