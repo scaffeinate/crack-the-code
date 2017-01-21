@@ -1,7 +1,8 @@
 package datastructures.heap;
 
 public abstract class BinaryHeap<T> {
-  private final int INITIAL_CAPACITY = 32;
+  private final int DEFAULT_INITIAL_CAPACITY = 32;
+  private int heapCapacity;
 
   public enum HeapType {
     MIN_HEAP, MAX_HEAP
@@ -12,8 +13,10 @@ public abstract class BinaryHeap<T> {
   protected int insertAt = 1;
 
   @SuppressWarnings("unchecked")
-  public BinaryHeap(HeapType type) {
-    heapArr = (T[]) new Object[INITIAL_CAPACITY];
+  public BinaryHeap(int initialCapacity, HeapType type) {
+    heapCapacity = (initialCapacity == -1) ? DEFAULT_INITIAL_CAPACITY : initialCapacity;
+    heapArr = (T[]) new Object[heapCapacity];
+    System.out.println("Initial Capacity set to " + heapArr.length);
     this.type = type;
   }
 
@@ -33,6 +36,10 @@ public abstract class BinaryHeap<T> {
       }
     }
     insertAt++;
+
+    if (insertAt == heapCapacity) {
+      growHeap();
+    }
   }
 
   public T extract() {
@@ -72,7 +79,7 @@ public abstract class BinaryHeap<T> {
     int leftChild = 2 * index;
     int rightChild = (2 * index) + 1;
     int current = index;
-    
+
     if (leftChild < insertAt && violatesProperty(leftChild, current)) {
       current = leftChild;
     }
@@ -89,12 +96,12 @@ public abstract class BinaryHeap<T> {
 
   private boolean violatesProperty(int childIndex, int parentIndex) {
     int compare = compare(heapArr[childIndex], heapArr[parentIndex]);
-    if(type == HeapType.MIN_HEAP) {
+    if (type == HeapType.MIN_HEAP) {
       return compare < 0;
-    } else if(type == HeapType.MAX_HEAP) {
+    } else if (type == HeapType.MAX_HEAP) {
       return compare > 0;
     }
-    
+
     return false;
   }
 
@@ -117,5 +124,13 @@ public abstract class BinaryHeap<T> {
     T temp = heapArr[i];
     heapArr[i] = heapArr[j];
     heapArr[j] = temp;
+  }
+
+  @SuppressWarnings("unchecked")
+  private void growHeap() {
+    T[] newHeap = (T[]) new Object[heapCapacity * 2];
+    System.arraycopy(heapArr, 1, newHeap, 1, insertAt - 1);
+    heapArr = newHeap;
+    heapCapacity = heapArr.length;
   }
 }
