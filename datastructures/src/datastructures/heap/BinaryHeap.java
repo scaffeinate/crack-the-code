@@ -1,5 +1,7 @@
 package datastructures.heap;
 
+import java.lang.reflect.Array;
+
 public abstract class BinaryHeap<T> {
   private final int DEFAULT_INITIAL_CAPACITY = 32;
   private int heapCapacity;
@@ -9,9 +11,9 @@ public abstract class BinaryHeap<T> {
   protected int size = 1;
 
   @SuppressWarnings("unchecked")
-  public BinaryHeap(int initialCapacity, HeapType type) {
+  public BinaryHeap(Class<?> clazz, int initialCapacity, HeapType type) {
     heapCapacity = (initialCapacity == -1) ? DEFAULT_INITIAL_CAPACITY : initialCapacity;
-    heapArr = (T[]) new Object[heapCapacity];
+    heapArr = (T[]) Array.newInstance(clazz, heapCapacity);
     this.type = type;
   }
 
@@ -57,7 +59,7 @@ public abstract class BinaryHeap<T> {
     return data;
   }
 
-  public T head() {
+  public T peek() {
     return heapArr[1];
   }
 

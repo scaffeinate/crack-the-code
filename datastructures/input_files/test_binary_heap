@@ -1,16 +1,16 @@
 insert 2:5:10:1:7:7:0:3:4:5:8:12
 print
-head
+peek
 insert 20
 extract
 insert -2
-head
+peek
 extractAll
 buildHeap 5:13:2:25:7:17:20:8:4
 print
 extract
 print
 insert 0
-head
+peek
 extractAll
 sort 7:5:2:9:18:1:0:6:4:5:8:10

@@ -11,7 +11,7 @@ public class TestBinaryMinHeap {
   BinaryHeap<Integer> binaryMinHeap;
 
   public TestBinaryMinHeap() {
-    binaryMinHeap = new BinaryMinHeap<Integer>();
+    binaryMinHeap = new BinaryMinHeap<Integer>(Integer.class);
   }
 
   private void buildMinHeap(String[] input) {
@@ -34,8 +34,8 @@ public class TestBinaryMinHeap {
           arr[i] = Integer.parseInt(values[i]);
         }
         binaryMinHeap.buildHeap(arr);
-      } else if (line.startsWith("head")) {
-        System.out.println("Mininum from Heap: " + binaryMinHeap.head());
+      } else if (line.startsWith("peek")) {
+        System.out.println("Mininum from Heap: " + binaryMinHeap.peek());
       } else if (line.startsWith("extractAll")) {
         int size = binaryMinHeap.size();
         System.out.println("Extract Min From Heap for n times: ");

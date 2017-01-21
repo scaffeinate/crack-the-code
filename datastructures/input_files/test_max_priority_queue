@@ -1,0 +1,22 @@
+insert 10 launch_app
+insert 12 garbage_collect
+insert 5 launch_terminal
+insert 14 monitor_process
+insert 3 launch_browser
+insert 25 free_unused_memory
+print
+increaseKey 1 25
+increaseKey 1 40
+peek 
+insert 52 new_critical_process
+insert 2 new_browser_tab
+insert 20 process_instruction
+increaseKey 5 54
+extract
+increaseKey 25 1000
+insert 24 kill_signal
+insert 1 optimize_space
+print
+increaseKey 2 50
+print
+extractAll

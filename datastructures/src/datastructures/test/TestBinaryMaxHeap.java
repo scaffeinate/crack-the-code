@@ -11,11 +11,10 @@ public class TestBinaryMaxHeap {
   BinaryHeap<Integer> binaryMaxHeap;
 
   public TestBinaryMaxHeap() {
-    binaryMaxHeap = new BinaryMaxHeap<Integer>();
+    binaryMaxHeap = new BinaryMaxHeap<Integer>(Integer.class);
   }
 
   private void buildMaxHeap(String[] input) {
-    binaryMaxHeap = new BinaryMaxHeap<Integer>();
     for (String line : input) {
       if (line.startsWith("insert")) {
         String[] values = line.split(" ")[1].split(":");
@@ -35,8 +34,8 @@ public class TestBinaryMaxHeap {
           arr[i] = Integer.parseInt(values[i]);
         }
         binaryMaxHeap.buildHeap(arr);
-      } else if (line.startsWith("head")) {
-        System.out.println("Maximum from Heap: " + binaryMaxHeap.head());
+      } else if (line.startsWith("peek")) {
+        System.out.println("Maximum from Heap: " + binaryMaxHeap.peek());
       } else if (line.startsWith("extractAll")) {
         int size = binaryMaxHeap.size();
         System.out.println("Extract Max From Heap for n times: ");
