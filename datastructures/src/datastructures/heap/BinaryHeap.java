@@ -43,7 +43,7 @@ public abstract class BinaryHeap<T> {
     size = arr.length + 1;
     heapArr = (T[]) new Object[size];
     heapCapacity = size;
-    System.arraycopy(arr, 0, heapArr, 1, size - 1);
+    System.arraycopy(arr, 0, heapArr, 1, size());
 
     for (int i = size / 2; i >= 1; i--) {
       heapify(i);
@@ -52,8 +52,8 @@ public abstract class BinaryHeap<T> {
 
   public T extract() {
     T data = heapArr[1];
-    heapArr[1] = heapArr[size - 1];
-    heapArr[size - 1] = null;
+    heapArr[1] = heapArr[size()];
+    heapArr[size()] = null;
     size--;
     heapify(1);
     return data;
@@ -69,7 +69,7 @@ public abstract class BinaryHeap<T> {
 
   public void sort(T[] arr) {
     buildHeap(arr);
-    int n = this.size - 1;
+    int n = size();
     for (int i = n; i >= 2; i--) {
       swapElements(1, i);
       size--;
@@ -150,7 +150,7 @@ public abstract class BinaryHeap<T> {
   @SuppressWarnings("unchecked")
   private void growHeap() {
     T[] newHeap = (T[]) new Object[heapCapacity * 2];
-    System.arraycopy(heapArr, 1, newHeap, 1, size - 1);
+    System.arraycopy(heapArr, 1, newHeap, 1, size());
     heapArr = newHeap;
     heapCapacity = heapArr.length;
   }
