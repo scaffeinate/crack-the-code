@@ -46,6 +46,16 @@ public class TestBinaryMaxHeap {
         System.out.println("\n");
       } else if(line.startsWith("print")) {
         binaryMaxHeap.print();
+      } else if(line.startsWith("sort")) {
+        String[] values = line.split(" ")[1].split(":");
+        Integer[] arr = new Integer[values.length];
+        System.out.print("Sorting Array: [ ");
+        for (int i = 0; i < values.length; i++) {
+          System.out.print(values[i] + " ");
+          arr[i] = Integer.parseInt(values[i]);
+        }
+        System.out.println("]");
+        binaryMaxHeap.sort(arr);
       }
     }
   }
