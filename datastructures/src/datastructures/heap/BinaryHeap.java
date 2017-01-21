@@ -4,10 +4,6 @@ public abstract class BinaryHeap<T> {
   private final int DEFAULT_INITIAL_CAPACITY = 32;
   private int heapCapacity;
 
-  public enum HeapType {
-    MIN_HEAP, MAX_HEAP
-  }
-
   protected HeapType type;
   protected T[] heapArr;
   protected int size = 1;
@@ -32,14 +28,10 @@ public abstract class BinaryHeap<T> {
 
     int current = size;
     int parent = (current / 2);
-    while (parent > 0) {
-      if (violatesProperty(current, parent) && current > 0) {
-        swapElements(current, parent);
-        current = parent;
-        parent = (current / 2);
-      } else {
-        break;
-      }
+    while (parent > 0 && violatesProperty(current, parent)) {
+      swapElements(current, parent);
+      current = parent;
+      parent = (current / 2);
     }
     size++;
   }
@@ -81,7 +73,7 @@ public abstract class BinaryHeap<T> {
       size--;
       heapify(1);
     }
-    
+
     size = n;
     print();
   }
@@ -121,7 +113,7 @@ public abstract class BinaryHeap<T> {
     }
   }
 
-  private boolean violatesProperty(int childIndex, int parentIndex) {
+  protected boolean violatesProperty(int childIndex, int parentIndex) {
     int compare = compare(heapArr[childIndex], heapArr[parentIndex]);
     if (type == HeapType.MIN_HEAP) {
       return compare < 0;
@@ -132,7 +124,7 @@ public abstract class BinaryHeap<T> {
     return false;
   }
 
-  private int compare(T data, T o) {
+  protected int compare(T data, T o) {
     if (o instanceof Integer) {
       return ((Integer) data).compareTo((Integer) o);
     } else if (o instanceof Float) {
@@ -147,7 +139,7 @@ public abstract class BinaryHeap<T> {
     return -1;
   }
 
-  private void swapElements(int i, int j) {
+  protected void swapElements(int i, int j) {
     T temp = heapArr[i];
     heapArr[i] = heapArr[j];
     heapArr[j] = temp;
