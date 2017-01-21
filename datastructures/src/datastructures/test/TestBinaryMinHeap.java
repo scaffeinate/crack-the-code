@@ -36,13 +36,15 @@ public class TestBinaryMinHeap {
         binaryMinHeap.buildHeap(arr);
       } else if (line.startsWith("head")) {
         System.out.println("Mininum from Heap: " + binaryMinHeap.head());
-      } else if (line.startsWith("extract")) {
+      } else if (line.startsWith("extractAll")) {
         int size = binaryMinHeap.size();
         System.out.println("Extract Min From Heap for n times: ");
         for (int i = 0; i < size; i++) {
           System.out.print(binaryMinHeap.extract() + " ");
         }
         System.out.println("\n");
+      } else if (line.startsWith("extract")) {
+        System.out.println("Extract Min From Heap: " + binaryMinHeap.extract());
       } else if (line.startsWith("print")) {
         binaryMinHeap.print();
       } else if (line.startsWith("sort")) {

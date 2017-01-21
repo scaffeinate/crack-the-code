@@ -7,19 +7,19 @@ import datastructures.heap.BinaryMaxHeap;
 import datastructures.util.InputUtil;
 
 public class TestBinaryMaxHeap {
-  
+
   BinaryHeap<Integer> binaryMaxHeap;
-  
+
   public TestBinaryMaxHeap() {
     binaryMaxHeap = new BinaryMaxHeap<Integer>();
   }
-  
+
   private void buildMaxHeap(String[] input) {
     binaryMaxHeap = new BinaryMaxHeap<Integer>();
     for (String line : input) {
       if (line.startsWith("insert")) {
         String[] values = line.split(" ")[1].split(":");
-        if(values.length == 1) {
+        if (values.length == 1) {
           System.out.println("Inserting " + values[0] + " into Max Heap");
         } else {
           System.out.println("Inserting bunch of values into Max Heap");
@@ -37,16 +37,18 @@ public class TestBinaryMaxHeap {
         binaryMaxHeap.buildHeap(arr);
       } else if (line.startsWith("head")) {
         System.out.println("Maximum from Heap: " + binaryMaxHeap.head());
-      } else if (line.startsWith("extract")) {
+      } else if (line.startsWith("extractAll")) {
         int size = binaryMaxHeap.size();
         System.out.println("Extract Max From Heap for n times: ");
         for (int i = 0; i < size; i++) {
           System.out.print(binaryMaxHeap.extract() + " ");
         }
         System.out.println("\n");
-      } else if(line.startsWith("print")) {
+      } else if (line.startsWith("extract")) {
+        System.out.println("Extract Max From Heap: " + binaryMaxHeap.extract());
+      } else if (line.startsWith("print")) {
         binaryMaxHeap.print();
-      } else if(line.startsWith("sort")) {
+      } else if (line.startsWith("sort")) {
         String[] values = line.split(" ")[1].split(":");
         Integer[] arr = new Integer[values.length];
         System.out.print("Sorting Array: [ ");
@@ -59,10 +61,10 @@ public class TestBinaryMaxHeap {
       }
     }
   }
-  
-	public static void main(String[] args) throws FileNotFoundException {
-	  TestBinaryMaxHeap testBinaryMaxHeap = new TestBinaryMaxHeap();
+
+  public static void main(String[] args) throws FileNotFoundException {
+    TestBinaryMaxHeap testBinaryMaxHeap = new TestBinaryMaxHeap();
     String[] input = InputUtil.readContents("test_binary_heap");
     testBinaryMaxHeap.buildMaxHeap(input);
-	}
+  }
 }
