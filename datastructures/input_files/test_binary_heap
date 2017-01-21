@@ -1,0 +1,14 @@
+insert 2:5:10:1:7:7:0:3:4:5:8:12
+print
+head
+insert 20
+insert -2
+head
+extract
+buildHeap 2:5:10:1:7:7:0:3:4:5:8:12
+print
+head
+insert 20
+insert -2
+head
+extract

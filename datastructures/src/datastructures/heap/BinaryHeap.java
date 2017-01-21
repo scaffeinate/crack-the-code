@@ -10,43 +10,57 @@ public abstract class BinaryHeap<T> {
 
   protected HeapType type;
   protected T[] heapArr;
-  protected int insertAt = 1;
+  protected int size = 1;
 
   @SuppressWarnings("unchecked")
   public BinaryHeap(int initialCapacity, HeapType type) {
     heapCapacity = (initialCapacity == -1) ? DEFAULT_INITIAL_CAPACITY : initialCapacity;
     heapArr = (T[]) new Object[heapCapacity];
-    System.out.println("Initial Capacity set to " + heapArr.length);
     this.type = type;
   }
 
   public void insert(T data) {
-    heapArr[insertAt] = data;
-    if (insertAt != 1) {
-      int current = insertAt;
-      int parent = (current / 2);
-      while (parent > 0) {
-        if (violatesProperty(current, parent) && current > 0) {
-          swapElements(current, parent);
-          current = parent;
-          parent = (current / 2);
-        } else {
-          break;
-        }
+    if (size == heapCapacity) {
+      growHeap();
+    }
+
+    heapArr[size] = data;
+    if (size == 1) {
+      size++;
+      return;
+    }
+
+    int current = size;
+    int parent = (current / 2);
+    while (parent > 0) {
+      if (violatesProperty(current, parent) && current > 0) {
+        swapElements(current, parent);
+        current = parent;
+        parent = (current / 2);
+      } else {
+        break;
       }
     }
-    insertAt++;
+    size++;
+  }
 
-    if (insertAt == heapCapacity) {
-      growHeap();
+  @SuppressWarnings("unchecked")
+  public void buildHeap(T[] arr) {
+    size = arr.length + 1;
+    heapArr = (T[]) new Object[size];
+    heapCapacity = heapArr.length;
+    System.arraycopy(arr, 0, heapArr, 1, size - 1);
+
+    for (int i = size / 2; i >= 1; i--) {
+      heapify(i);
     }
   }
 
   public T extract() {
     T data = heapArr[1];
-    heapArr[1] = heapArr[insertAt - 1];
-    heapArr[insertAt - 1] = null;
-    insertAt--;
+    heapArr[1] = heapArr[size - 1];
+    heapArr[size - 1] = null;
+    size--;
     heapify(1);
     return data;
   }
@@ -56,7 +70,7 @@ public abstract class BinaryHeap<T> {
   }
 
   public int size() {
-    return (this.insertAt - 1);
+    return (this.size - 1);
   }
 
   public void print() {
@@ -67,7 +81,7 @@ public abstract class BinaryHeap<T> {
   public String toString() {
     StringBuilder builder = new StringBuilder();
     builder.append("[ ");
-    for (int i = 1; i < insertAt; i++) {
+    for (int i = 1; i < size; i++) {
       builder.append(heapArr[i]).append(" ");
     }
 
@@ -80,11 +94,11 @@ public abstract class BinaryHeap<T> {
     int rightChild = (2 * index) + 1;
     int current = index;
 
-    if (leftChild < insertAt && violatesProperty(leftChild, current)) {
+    if (leftChild < size && violatesProperty(leftChild, current)) {
       current = leftChild;
     }
 
-    if (rightChild < insertAt && violatesProperty(rightChild, current)) {
+    if (rightChild < size && violatesProperty(rightChild, current)) {
       current = rightChild;
     }
 
@@ -129,7 +143,7 @@ public abstract class BinaryHeap<T> {
   @SuppressWarnings("unchecked")
   private void growHeap() {
     T[] newHeap = (T[]) new Object[heapCapacity * 2];
-    System.arraycopy(heapArr, 1, newHeap, 1, insertAt - 1);
+    System.arraycopy(heapArr, 1, newHeap, 1, size - 1);
     heapArr = newHeap;
     heapCapacity = heapArr.length;
   }

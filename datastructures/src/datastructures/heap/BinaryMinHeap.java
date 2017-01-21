@@ -2,11 +2,11 @@ package datastructures.heap;
 
 public class BinaryMinHeap<T> extends BinaryHeap<T> {
 
-  public BinaryMinHeap(int initialCapacity, HeapType type) {
-    super(initialCapacity, type);
+  public BinaryMinHeap() {
+    this(-1);
   }
-
-  public BinaryMinHeap(HeapType type) {
-    super(-1, type);
+  
+  public BinaryMinHeap(int initialCapacity) {
+    super(initialCapacity, HeapType.MIN_HEAP);
   }
 }
