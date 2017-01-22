@@ -7,7 +7,7 @@ import java.util.Set;
 public class Trie {
   private TrieNode root = null;
   private int size = 0;
-  
+
   public Trie() {
     root = new TrieNode();
   }
@@ -25,7 +25,7 @@ public class Trie {
     }
 
     size++;
-    current.children.put('*', new TrieNode(true));
+    current.children.put('*', new TrieNode());
   }
 
   public void insertRecurse(String word) {
@@ -35,7 +35,7 @@ public class Trie {
 
   private void insertRecurse(TrieNode root, String word, int index) {
     if (index == word.length()) {
-      root.children.put('*', new TrieNode(true));
+      root.children.put('*', new TrieNode());
       return;
     }
 
@@ -73,17 +73,53 @@ public class Trie {
       }
     }
 
-    return (current.children.get('*') != null) && (current.children.get('*').end);
+    return current.children.containsKey('*');
   }
 
-  public boolean delete(String pattern) {
-    return delete(this.root, pattern, 0);
+  public boolean delete(String word) {
+    return delete(this.root, word, 0);
+  }
+
+  public boolean deletePrefix(String prefix) {
+    TrieNode current = root;
+    TrieNode prev = null;
+    char c = 0;
+
+    for (int i = 0; i < prefix.length(); i++) {
+      c = prefix.charAt(i);
+      TrieNode node = current.children.get(c);
+      if (node == null) {
+        return false;
+      }
+      prev = current;
+      current = node;
+    }
+
+    if (prev != null && prev.children.remove(c) != null) {
+      size = size - countSubWords(current);
+      return true;
+    }
+
+    return false;
+  }
+
+  private int countSubWords(TrieNode root) {
+    Set<Entry<Character, TrieNode>> children = root.children.entrySet();
+    int sum = 0;
+    for (Entry<Character, TrieNode> child : children) {
+      if(child.getKey() == '*') {
+        sum += 1;
+      } else {
+        sum += countSubWords(child.getValue());
+      }
+    }
+    
+    return sum;
   }
 
   private boolean delete(TrieNode root, String word, int index) {
     if (index == word.length()) {
-      if (root.children.containsKey('*')) {
-        root.children.remove('*');
+      if (root.children.remove('*') != null) {
         size--;
         return isLeafNode(root);
       }
@@ -92,10 +128,10 @@ public class Trie {
       TrieNode node = root.children.get(c);
       if (node != null) {
         boolean childDeleted = delete(node, word, index + 1);
-        if(childDeleted) {
+        if (childDeleted) {
           root.children.remove(c);
         }
-        return childDeleted && isLeafNode(root);
+        return isLeafNode(root);
       }
     }
 
@@ -104,20 +140,13 @@ public class Trie {
 
   private boolean isLeafNode(TrieNode node) {
     Map<Character, TrieNode> children = node.children;
-    if (children.size() > 1) {
-      return false;
-    } else if (children.size() == 1) {
-      TrieNode nullNode = children.get('*'); 
-      return  (nullNode != null && !nullNode.end);
-    }
-    
-    return true;
+    return (children.isEmpty() || (children.size() == 1) && children.containsKey('*'));
   }
 
   public void traverse(TrieNode root, StringBuilder builder) {
     Set<Entry<Character, TrieNode>> children = root.children.entrySet();
     for (Entry<Character, TrieNode> entry : children) {
-      if (!entry.getValue().end) {
+      if (entry.getKey() != '*') {
         builder.append(entry.getKey());
         traverse(entry.getValue(), builder);
         builder.setLength(builder.length() - 1);
@@ -130,7 +159,7 @@ public class Trie {
   public TrieNode getRoot() {
     return this.root;
   }
-  
+
   public int size() {
     return this.size;
   }
