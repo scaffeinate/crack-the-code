@@ -140,7 +140,8 @@ public class Trie {
 
   private boolean isLeafNode(TrieNode node) {
     Map<Character, TrieNode> children = node.children;
-    return (children.isEmpty() || (children.size() == 1) && children.containsKey('*'));
+    return children.isEmpty();
+  }
   }
 
   public void traverse(TrieNode root, StringBuilder builder) {
