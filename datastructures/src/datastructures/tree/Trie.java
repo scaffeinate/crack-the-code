@@ -76,11 +76,13 @@ public class Trie {
     return current.children.containsKey('*');
   }
 
-  public boolean delete(String word) {
-    return delete(this.root, word, 0);
+  public boolean remove(String word) {
+    int prevSize = this.size;
+    remove(this.root, word, 0);
+    return (prevSize != size);
   }
 
-  public boolean deletePrefix(String prefix) {
+  public boolean removePrefix(String prefix) {
     TrieNode current = root;
     TrieNode prev = null;
     char c = 0;
@@ -107,17 +109,17 @@ public class Trie {
     Set<Entry<Character, TrieNode>> children = root.children.entrySet();
     int sum = 0;
     for (Entry<Character, TrieNode> child : children) {
-      if(child.getKey() == '*') {
+      if (child.getKey() == '*') {
         sum += 1;
       } else {
         sum += countSubWords(child.getValue());
       }
     }
-    
+
     return sum;
   }
 
-  private boolean delete(TrieNode root, String word, int index) {
+  private boolean remove(TrieNode root, String word, int index) {
     if (index == word.length()) {
       if (root.children.remove('*') != null) {
         size--;
@@ -127,7 +129,7 @@ public class Trie {
       Character c = word.charAt(index);
       TrieNode node = root.children.get(c);
       if (node != null) {
-        boolean childDeleted = delete(node, word, index + 1);
+        boolean childDeleted = remove(node, word, index + 1);
         if (childDeleted) {
           root.children.remove(c);
         }
@@ -142,6 +144,11 @@ public class Trie {
     Map<Character, TrieNode> children = node.children;
     return children.isEmpty();
   }
+
+  public void print() {
+    System.out.println("\nPrinting Trie of size: " + size);
+    traverse(root, new StringBuilder());
+    System.out.println("\n");
   }
 
   public void traverse(TrieNode root, StringBuilder builder) {
@@ -152,7 +159,7 @@ public class Trie {
         traverse(entry.getValue(), builder);
         builder.setLength(builder.length() - 1);
       } else {
-        System.out.println(builder.toString());
+        System.out.print(builder.toString() + " ");
       }
     }
   }
