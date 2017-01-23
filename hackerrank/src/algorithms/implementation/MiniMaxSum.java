@@ -1,7 +1,6 @@
 package algorithms.implementation;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,13 +32,18 @@ public class MiniMaxSum {
       numbers.add(in.nextLong());
     }
 
-    Collections.sort(numbers);
-    long sum = 0;
+    long sum = 0, min = Long.MAX_VALUE, max = Long.MIN_VALUE;
     for (Long number : numbers) {
+      if(number < min) {
+        min = number;
+      }
+      if(number > max) {
+        max = number;
+      }
       sum += number;
     }
 
-    System.out.println((sum - numbers.get(4)) + " " + (sum - numbers.get(0)));
+    System.out.println((sum - max) + " " + (sum - min));
     in.close();
   }
 }
