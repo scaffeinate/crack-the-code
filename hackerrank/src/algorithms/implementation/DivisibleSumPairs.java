@@ -2,6 +2,12 @@ package algorithms.implementation;
 
 import java.util.Scanner;
 
+/**
+ * 
+ * Challenge: https://www.hackerrank.com/challenges/divisible-sum-pairs
+ * 
+ * @author Sudharsanan Muralidharan
+ */
 public class DivisibleSumPairs {
   public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
