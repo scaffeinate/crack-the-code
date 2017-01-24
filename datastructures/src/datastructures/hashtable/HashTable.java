@@ -78,6 +78,14 @@ public class HashTable<K, V> {
     return this.keySet;
   }
   
+  public void print() {
+    System.out.print("[ ");
+    for(HashTableNode<K, V> entry: this.entrySet()) {
+      System.out.print(entry.getKey() + ":" + entry.getValue() + " ");
+    }
+    System.out.print("]\n");
+  }
+  
   private void delete(HashTableNode<K, V> head, K key) {
     HashTableNode<K, V> current = head;
     HashTableNode<K, V> runner = head.next;
@@ -121,7 +129,7 @@ public class HashTable<K, V> {
   }
 
   private int hash(K key) {
-    return (key.hashCode() % currentCapacity);
+    return Math.abs((key.hashCode() % currentCapacity));
   }
   
   private double loadFactor() {
