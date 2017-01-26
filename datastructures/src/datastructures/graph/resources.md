@@ -3,6 +3,11 @@ Resources:
 
 1. Graph Basics:
   
+    Adjacency List Representation:
+    ------------------------------
+    1. https://en.wikipedia.org/wiki/Adjacency_list
+    2. http://stackoverflow.com/questions/9667571/graph-what-are-the-disadvantages-if-i-replace-each-linked-list-in-adjacency-li
+  
     Videos:
     -------
       
