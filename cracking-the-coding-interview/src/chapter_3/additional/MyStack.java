@@ -5,11 +5,17 @@ import java.util.Queue;
 
 import datastructures.stack.GenericStack;
 
+/**
+ * 
+ * @author Sudharsanan Muralidharan
+ *
+ * @param <T>
+ */
 public class MyStack<T> implements GenericStack<T> {
   private Queue<T> firstQueue, secondQueue;
   boolean pushingToFirstQueue = true;
   private int size = 0;
-  
+
   public MyStack() {
     firstQueue = new LinkedList<T>();
     secondQueue = new LinkedList<T>();
@@ -18,7 +24,7 @@ public class MyStack<T> implements GenericStack<T> {
   @Override
   public T peek() {
     T data = null;
-    if(pushingToFirstQueue) {
+    if (pushingToFirstQueue) {
       data = transfer(firstQueue, secondQueue);
       secondQueue.add(data);
     } else {
@@ -31,19 +37,19 @@ public class MyStack<T> implements GenericStack<T> {
 
   @Override
   public void push(T data) {
-    if(pushingToFirstQueue) {
+    if (pushingToFirstQueue) {
       firstQueue.add(data);
     } else {
       secondQueue.add(data);
     }
-    
+
     size++;
   }
 
   @Override
   public T pop() {
     T data = null;
-    if(pushingToFirstQueue) {
+    if (pushingToFirstQueue) {
       data = transfer(firstQueue, secondQueue);
     } else {
       data = transfer(secondQueue, firstQueue);
@@ -52,13 +58,13 @@ public class MyStack<T> implements GenericStack<T> {
     pushingToFirstQueue = !pushingToFirstQueue;
     return data;
   }
-  
+
   private T transfer(Queue<T> queue1, Queue<T> queue2) {
     T data = null;
     int queueSize = queue1.size();
-    while(queueSize-- > 0) {
+    while (queueSize-- > 0) {
       data = queue1.remove();
-      if(queueSize != 0) {
+      if (queueSize != 0) {
         queue2.add(data);
       }
     }
