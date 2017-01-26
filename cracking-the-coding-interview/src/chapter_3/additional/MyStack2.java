@@ -5,6 +5,12 @@ import java.util.Queue;
 
 import datastructures.stack.GenericStack;
 
+/**
+ * 
+ * @author Sudharsanan Muralidharan
+ *
+ * @param <T>
+ */
 public class MyStack2<T> implements GenericStack<T> {
 
   private Queue<T> firstQueue;
@@ -19,7 +25,7 @@ public class MyStack2<T> implements GenericStack<T> {
 
   @Override
   public void push(T data) {
-    if(pushingToFirstQueue) {
+    if (pushingToFirstQueue) {
       firstQueue.add(data);
       transfer(secondQueue, firstQueue);
     } else {
@@ -50,13 +56,13 @@ public class MyStack2<T> implements GenericStack<T> {
   public boolean isEmpty() {
     return this.size == 0;
   }
-  
+
   private void transfer(Queue<T> queue1, Queue<T> queue2) {
-    while(queue1.size() > 0) {
+    while (queue1.size() > 0) {
       queue2.add(queue1.remove());
     }
   }
-  
+
   private Queue<T> current() {
     Queue<T> currentQueue = (pushingToFirstQueue) ? secondQueue : firstQueue;
     return currentQueue;
