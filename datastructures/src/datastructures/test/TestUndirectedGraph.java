@@ -2,6 +2,7 @@ package datastructures.test;
 
 import java.io.FileNotFoundException;
 
+import datastructures.graph.GenericGraph;
 import datastructures.graph.UndirectedGraph;
 import datastructures.graph.Vertex;
 import datastructures.util.InputUtil;
@@ -9,7 +10,7 @@ import datastructures.util.InputUtil;
 public class TestUndirectedGraph {
   public static void main(String[] args) throws FileNotFoundException {
     String[] input = InputUtil.readContents("test_undirected_graph");
-    UndirectedGraph<String> graph = new UndirectedGraph<String>();
+    GenericGraph<String> graph = new UndirectedGraph<String>();
     
     for (String line : input) {
       String[] values = line.split(" ");
