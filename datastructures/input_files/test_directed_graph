@@ -1,0 +1,46 @@
+vertex Chennai
+vertex Banglore
+vertex Mumbai
+vertex Delhi
+vertex London
+vertex Berlin
+vertex Paris
+vertex Qatar
+vertex NY
+vertex Chicago
+vertex Dallas
+vertex SF
+vertex LA
+edge Chennai Banglore
+edge Chennai Delhi
+edge Chennai London
+edge Chennai Berlin
+edge Banglore Chennai
+edge Banglore Mumbai
+edge Banglore Delhi
+edge Mumbai Banglore
+edge Mumbai Delhi
+edge Delhi LA
+edge London Berlin
+edge London NY
+edge London Chicago
+edge Berlin London
+edge Berlin NY
+edge Berlin Dallas
+edge Berlin Paris
+edge Paris LA
+edge Qatar Chennai 
+edge NY Chicago
+edge NY Dallas
+edge NY London
+edge NY Qatar
+edge Chicago NY
+edge Chicago Dallas
+edge Chicago Berlin
+edge Dallas Chicago
+edge Dallas NY
+edge Dallas LA
+edge SF Dallas
+edge SF LA
+edge LA SF
+print
