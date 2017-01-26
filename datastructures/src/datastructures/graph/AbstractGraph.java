@@ -15,10 +15,16 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
     vertices = new HashMap<T, Vertex<T>>();
     this.graphType = graphType;
   }
-
+  
+  @Override
   public boolean addEdge(Vertex<T> sourceVertex, Vertex<T> destVertex) {
+    return addEdge(sourceVertex, destVertex, 0);
+  }
+
+  @Override
+  public boolean addEdge(Vertex<T> sourceVertex, Vertex<T> destVertex, int weight) {
     if (sourceVertex != null && destVertex != null) {
-      Edge<T> edge = new Edge<T>(sourceVertex, destVertex);
+      Edge<T> edge = new Edge<T>(sourceVertex, destVertex, weight);
       sourceVertex.outgoingEdges.add(edge);
       destVertex.incomingEdges.add(edge);
       if (graphType.equals(GraphType.UNDIRECTED)) {
