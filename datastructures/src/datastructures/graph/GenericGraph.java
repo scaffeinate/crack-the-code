@@ -21,4 +21,6 @@ public interface GenericGraph<T> {
   public Edge<T> getEdge(Vertex<T> sourceVertex, Vertex<T> destVertex);
   
   public int numVertices();
+  
+  public void print();
 }
