@@ -1,10 +1,12 @@
 package datastructures.graph;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Queue;
 import java.util.Set;
 
 public abstract class AbstractGraph<T> implements GenericGraph<T> {
@@ -90,6 +92,60 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
     }
 
     return null;
+  }
+
+  @Override
+  public boolean depthFirstSearch(Vertex<T> rootVertex, Vertex<T> resultVertex) {
+    Set<Vertex<T>> visitedSet = new HashSet<Vertex<T>>();
+    return depthFirstSearch(rootVertex, resultVertex, visitedSet);
+  }
+
+  @Override
+  public boolean breadthFirstSearch(Vertex<T> rootVertex, Vertex<T> resultVertex) {
+    if (rootVertex.equals(resultVertex)) {
+      return true;
+    }
+    
+    Queue<Vertex<T>> queue = new LinkedList<Vertex<T>>();
+    Set<Vertex<T>> visitedSet = new HashSet<Vertex<T>>();
+    queue.add(rootVertex);
+    
+    while(!queue.isEmpty()) {
+      Vertex<T> current = queue.poll();
+      visitedSet.add(current);
+      List<Vertex<T>> neighbours = neighboursOf(current);
+      
+      for(Vertex<T> vertex:neighbours) {
+        if(!visitedSet.contains(vertex)) {
+          if(vertex.equals(resultVertex)) {
+            return true;
+          } else {
+            queue.add(vertex);
+          }
+        }
+      }
+    }
+    
+    return false;
+  }
+
+  private boolean depthFirstSearch(Vertex<T> rootVertex, Vertex<T> resultVertex, Set<Vertex<T>> visitedSet) {
+    if (rootVertex.equals(resultVertex)) {
+      return true;
+    }
+
+    visitedSet.add(rootVertex);
+
+    List<Vertex<T>> neighbours = neighboursOf(rootVertex);
+    for (Vertex<T> vertex : neighbours) {
+      if (!visitedSet.contains(vertex)) {
+        if (depthFirstSearch(vertex, resultVertex, visitedSet)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
   @Override
