@@ -2,15 +2,15 @@ package datastructures.test;
 
 import java.io.FileNotFoundException;
 
+import datastructures.graph.DirectedGraph;
 import datastructures.graph.GenericGraph;
-import datastructures.graph.UndirectedGraph;
 import datastructures.graph.Vertex;
 import datastructures.util.InputUtil;
 
-public class TestUndirectedGraph {
+public class TestDirectedGraph {
   public static void main(String[] args) throws FileNotFoundException {
-    String[] input = InputUtil.readContents("test_undirected_graph");
-    GenericGraph<String> graph = new UndirectedGraph<String>();
+    String[] input = InputUtil.readContents("test_directed_graph");
+    GenericGraph<String> graph = new DirectedGraph<String>();
     
     for (String line : input) {
       String[] values = line.split(" ");
