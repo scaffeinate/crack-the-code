@@ -6,6 +6,8 @@ import java.util.Queue;
 import datastructures.stack.GenericStack;
 
 /**
+ * Keep pushing to one queue and when pop/peek is called transfer 0 to n-2
+ * elements to other queue. Pop element or peek. Swap the queues.
  * 
  * @author Sudharsanan Muralidharan
  *
