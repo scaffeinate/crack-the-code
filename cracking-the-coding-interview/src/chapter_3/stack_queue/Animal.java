@@ -1,5 +1,12 @@
 package chapter_3.stack_queue;
 
+/**
+ * abstract class Animal
+ * 
+ * @author Sudharsanan Muralidharan
+ * 
+ * @param <T>
+ */
 public abstract class Animal<T> {
   private T name;
   private int order;

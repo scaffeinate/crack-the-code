@@ -6,6 +6,8 @@ import java.util.Queue;
 import datastructures.stack.GenericStack;
 
 /**
+ * Push into one queue then transfer the other queue elements into current queue
+ * and swap the queues. Pop/peek happens from either of the queues in O(1).
  * 
  * @author Sudharsanan Muralidharan
  *
