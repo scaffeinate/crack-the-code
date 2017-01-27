@@ -1,5 +1,6 @@
 package datastructures.graph;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -100,35 +101,6 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
     return depthFirstSearch(rootVertex, resultVertex, visitedSet);
   }
 
-  @Override
-  public boolean breadthFirstSearch(Vertex<T> rootVertex, Vertex<T> resultVertex) {
-    if (rootVertex.equals(resultVertex)) {
-      return true;
-    }
-    
-    Queue<Vertex<T>> queue = new LinkedList<Vertex<T>>();
-    Set<Vertex<T>> visitedSet = new HashSet<Vertex<T>>();
-    queue.add(rootVertex);
-    
-    while(!queue.isEmpty()) {
-      Vertex<T> current = queue.poll();
-      visitedSet.add(current);
-      List<Vertex<T>> neighbours = neighboursOf(current);
-      
-      for(Vertex<T> vertex:neighbours) {
-        if(!visitedSet.contains(vertex)) {
-          if(vertex.equals(resultVertex)) {
-            return true;
-          } else {
-            queue.add(vertex);
-          }
-        }
-      }
-    }
-    
-    return false;
-  }
-
   private boolean depthFirstSearch(Vertex<T> rootVertex, Vertex<T> resultVertex, Set<Vertex<T>> visitedSet) {
     if (rootVertex.equals(resultVertex)) {
       return true;
@@ -142,6 +114,71 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
         if (depthFirstSearch(vertex, resultVertex, visitedSet)) {
           return true;
         }
+      }
+    }
+
+    return false;
+  }
+
+  @Override
+  public boolean breadthFirstSearch(Vertex<T> rootVertex, Vertex<T> resultVertex) {
+    if (rootVertex.equals(resultVertex)) {
+      return true;
+    }
+
+    Queue<Vertex<T>> queue = new LinkedList<Vertex<T>>();
+    Set<Vertex<T>> visitedSet = new HashSet<Vertex<T>>();
+    queue.add(rootVertex);
+
+    while (!queue.isEmpty()) {
+      Vertex<T> current = queue.poll();
+      visitedSet.add(current);
+      List<Vertex<T>> neighbours = neighboursOf(current);
+
+      for (Vertex<T> vertex : neighbours) {
+        if (!visitedSet.contains(vertex)) {
+          if (vertex.equals(resultVertex)) {
+            return true;
+          } else {
+            queue.add(vertex);
+          }
+        }
+      }
+    }
+
+    return false;
+  }
+
+  public String depthFirstPath(Vertex<T> rootVertex, Vertex<T> resultVertex) {
+    Set<Vertex<T>> visitedSet = new HashSet<Vertex<T>>();
+    List<Vertex<T>> pathList = new ArrayList<Vertex<T>>();
+    depthFirstPath(rootVertex, resultVertex, visitedSet, pathList);
+    StringBuilder builder = new StringBuilder();
+    for(Vertex<T> vertex:pathList) {
+      builder.append(vertex.label).append("->");
+    }
+    
+    return builder.substring(0, builder.length()-2).toString();
+  }
+
+  private boolean depthFirstPath(Vertex<T> rootVertex, Vertex<T> resultVertex, Set<Vertex<T>> visitedSet, 
+      List<Vertex<T>> pathList) {
+    if (rootVertex.equals(resultVertex)) {
+      pathList.add(rootVertex);
+      return true;
+    }
+
+    visitedSet.add(rootVertex);
+    pathList.add(rootVertex);
+
+    List<Vertex<T>> neighbours = neighboursOf(rootVertex);
+    for (Vertex<T> vertex : neighbours) {
+      if (!visitedSet.contains(vertex)) {
+        if(depthFirstPath(vertex, resultVertex, visitedSet, pathList)) {
+          return true;
+        }
+        
+        pathList.remove(vertex);
       }
     }
 

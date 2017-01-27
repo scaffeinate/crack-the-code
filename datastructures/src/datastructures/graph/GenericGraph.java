@@ -26,6 +26,8 @@ public interface GenericGraph<T> {
   
   public boolean breadthFirstSearch(Vertex<T> rootVertex, Vertex<T> resultVertex);
   
+  public String depthFirstPath(Vertex<T> rootVertex, Vertex<T> resultVertex);
+  
   public int numVertices();
   
   public void print();
