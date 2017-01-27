@@ -44,3 +44,15 @@ edge SF Dallas
 edge SF LA
 edge LA SF
 print
+search Paris London
+search Chennai SF
+search Mumbai Qatar
+search NY LA
+search Chicago Chicago
+search London Berlin
+search Banglore Berlin
+search Delhi LA
+search Qatar Dallas
+search Dallas Chennai
+search Chennai Paris
+search Paris NY

@@ -20,6 +20,6 @@ public class Vertex<T> {
 
   @Override
   public String toString() {
-    return "Vertex [label=" + label + "]";
+    return "Vertex [" + label + "]";
   }
 }

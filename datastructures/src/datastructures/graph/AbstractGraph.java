@@ -149,6 +149,7 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
     return false;
   }
 
+  @Override
   public String depthFirstPath(Vertex<T> rootVertex, Vertex<T> resultVertex) {
     Set<Vertex<T>> visitedSet = new HashSet<Vertex<T>>();
     List<Vertex<T>> pathList = new ArrayList<Vertex<T>>();

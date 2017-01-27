@@ -9,7 +9,7 @@ import datastructures.util.InputUtil;
 
 public class TestDirectedGraph {
   public static void main(String[] args) throws FileNotFoundException {
-    String[] input = InputUtil.readContents("test_directed_graph");
+    String[] input = InputUtil.readContents("test_graph");
     GenericGraph<String> graph = new DirectedGraph<String>();
     
     for (String line : input) {
@@ -36,11 +36,18 @@ public class TestDirectedGraph {
         System.out.println("Graph: ");
         graph.print();
         break;
+      case "search":
+        Vertex<String> rootVertex = graph.getVertex(values[1]);
+        Vertex<String> resultVertex = graph.getVertex(values[2]);
+        System.out.println("Searching from " + rootVertex.toString() + " to " + resultVertex.toString());
+        System.out.println("DFS: " + graph.depthFirstSearch(rootVertex, resultVertex));
+        System.out.println("Depth First Path: " + graph.depthFirstPath(rootVertex, resultVertex));
+        System.out.println("BFS: " + graph.breadthFirstSearch(rootVertex, resultVertex));
+        System.out.println();
       }
     }
     
-    System.out.println(graph.breadthFirstSearch(graph.getVertex("Qatar"), graph.getVertex("Delhi")));
-    System.out.println(graph.depthFirstSearch(graph.getVertex("Qatar"), graph.getVertex("Delhi")));
+    
     
   }
 }
