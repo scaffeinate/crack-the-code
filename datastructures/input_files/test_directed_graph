@@ -28,8 +28,8 @@ edge Berlin London
 edge Berlin NY
 edge Berlin Dallas
 edge Berlin Paris
-edge Paris LA
-edge Qatar Chennai 
+edge Qatar Chennai
+edge Qatar Paris 
 edge NY Chicago
 edge NY Dallas
 edge NY London

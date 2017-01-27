@@ -22,6 +22,10 @@ public interface GenericGraph<T> {
   
   public Edge<T> getEdge(Vertex<T> sourceVertex, Vertex<T> destVertex);
   
+  public boolean depthFirstSearch(Vertex<T> rootVertex, Vertex<T> resultVertex);
+  
+  public boolean breadthFirstSearch(Vertex<T> rootVertex, Vertex<T> resultVertex);
+  
   public int numVertices();
   
   public void print();

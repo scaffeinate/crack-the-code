@@ -38,5 +38,9 @@ public class TestDirectedGraph {
         break;
       }
     }
+    
+    System.out.println(graph.breadthFirstSearch(graph.getVertex("Qatar"), graph.getVertex("Delhi")));
+    System.out.println(graph.depthFirstSearch(graph.getVertex("Qatar"), graph.getVertex("Delhi")));
+    
   }
 }
