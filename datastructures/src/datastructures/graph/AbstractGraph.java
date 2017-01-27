@@ -28,8 +28,9 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
       sourceVertex.outgoingEdges.add(edge);
       destVertex.incomingEdges.add(edge);
       if (graphType.equals(GraphType.UNDIRECTED)) {
-        destVertex.outgoingEdges.add(edge);
-        sourceVertex.incomingEdges.add(edge);
+        Edge<T> reverseEdge = new Edge<T>(destVertex, sourceVertex, weight);
+        destVertex.outgoingEdges.add(reverseEdge);
+        sourceVertex.incomingEdges.add(reverseEdge);
       }
       return true;
     }
