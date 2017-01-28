@@ -71,7 +71,7 @@ public class ArrayLeftRotation {
   private static void rotateByReversing(int[] arr, int n, int d) {
     reverseRange(arr, 0, d - 1);
     reverseRange(arr, d, n - 1);
-    reverseRange(arr, 0, n - 1);
+    reverseRange  (arr, 0, n - 1);
     print(arr);
   }
 

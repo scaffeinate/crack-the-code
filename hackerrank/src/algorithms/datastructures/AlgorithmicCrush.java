@@ -8,6 +8,11 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 /**
+ * Challenge: https://www.hackerrank.com/challenges/crush
+ * 
+ * Reference:
+ * http://www.geeksforgeeks.org/find-the-point-where-maximum-intervals-overlap/
+ * 
  * @author Sudharsanan Muralidharan
  */
 public class AlgorithmicCrush {
@@ -15,40 +20,45 @@ public class AlgorithmicCrush {
   static class ArrayElement {
     Long t;
     Long k;
-    Boolean isArrival;
+    boolean isStart;
 
-    ArrayElement(Long t, Long k, Boolean isArrival) {
+    ArrayElement(Long t, Long k, boolean isStart) {
       this.t = t;
       this.k = k;
-      this.isArrival = isArrival;
+      this.isStart = isStart;
     }
   }
 
   public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
-    long n = in.nextLong();
-    long m = in.nextLong();
+    int n = in.nextInt();
+    int m = in.nextInt();
 
-    ArrayElement[] aArr = new ArrayElement[(int) m];
-    ArrayElement[] dArr = new ArrayElement[(int) m];
+    ArrayElement[] startArr = new ArrayElement[(int) m];
+    ArrayElement[] endArr = new ArrayElement[(int) m];
 
     for (int i = 0; i < m; i++) {
       long a = in.nextInt();
       long b = in.nextInt();
       long k = in.nextInt();
 
-      aArr[i] = new ArrayElement(a, k, true);
-      dArr[i] = new ArrayElement(b, k, false);
+      /*
+       * Store the ranges in two separate arrays
+       */
+      startArr[i] = new ArrayElement(a, k, true);
+      endArr[i] = new ArrayElement(b, k, false);
     }
 
-    Arrays.sort(aArr, new Comparator<ArrayElement>() {
+    // Sort startArr
+    Arrays.sort(startArr, new Comparator<ArrayElement>() {
       @Override
       public int compare(ArrayElement e1, ArrayElement e2) {
         return e1.t.compareTo(e2.t);
       }
     });
 
-    Arrays.sort(dArr, new Comparator<ArrayElement>() {
+    // Sort endArr
+    Arrays.sort(endArr, new Comparator<ArrayElement>() {
       @Override
       public int compare(ArrayElement e1, ArrayElement e2) {
         return e1.t.compareTo(e2.t);
@@ -58,22 +68,26 @@ public class AlgorithmicCrush {
     int i = 0, j = 0;
     Long count = (long) 0;
     Long max = Long.MIN_VALUE;
+
+    /*
+     * Merge startArr and endArr. Add the k value for each startRange and
+     * decrement k for each endRange.
+     */
     while (i < m && j < m) {
-      if (aArr[i].t <= dArr[j].t) {
-        count += aArr[i].k;
+      if (startArr[i].t <= endArr[j].t) {
+        count += startArr[i].k;
         i++;
       } else {
-        count -= dArr[j].k;
+        count -= endArr[j].k;
         j++;
       }
-      
-      if(count > max) {
+
+      if (count > max) {
         max = count;
       }
     }
 
     System.out.println(max);
-    
     in.close();
   }
 }
