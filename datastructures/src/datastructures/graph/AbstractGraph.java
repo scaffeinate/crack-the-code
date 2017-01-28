@@ -192,11 +192,12 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
     Stack<Vertex<T>> stack = new Stack<Vertex<T>>();
     Set<Vertex<T>> visitedSet = new HashSet<Vertex<T>>();
     stack.push(rootVertex);
+    StringBuilder builder = new StringBuilder();
 
     while (!stack.isEmpty()) {
       Vertex<T> top = stack.peek();
       if (!visitedSet.contains(top)) {
-        System.out.print(top.label);
+        builder.append(top.label);
         visitedSet.add(top);
       }
 
@@ -213,9 +214,11 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
         stack.pop();
       } else {
         stack.push(vertex);
-        System.out.print("->");
+        builder.append("->");
       }
     }
+    
+    System.out.println(builder.toString());
   }
 
   @Override
@@ -223,20 +226,24 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
     Queue<Vertex<T>> queue = new LinkedList<Vertex<T>>();
     Set<Vertex<T>> visitedSet = new HashSet<Vertex<T>>();
     queue.add(rootVertex);
-    
-    while(!queue.isEmpty()) {
+    StringBuilder builder = new StringBuilder();
+
+    while (!queue.isEmpty()) {
       Vertex<T> current = queue.poll();
-      if(!visitedSet.contains(current)) {
-        System.out.print(current.label);
+      if (!visitedSet.contains(current)) {
+        builder.append(current.label).append("->");
         visitedSet.add(current);
       }
       List<Vertex<T>> neighbours = neighboursOf(current);
-      for(Vertex<T> v:neighbours) {
-        if(!visitedSet.contains(v)) {
+      for (Vertex<T> v : neighbours) {
+        if (!visitedSet.contains(v)) {
           queue.add(v);
         }
       }
     }
+
+    builder.setLength(builder.length() - 2);
+    System.out.println(builder.toString());
   }
 
   @Override
