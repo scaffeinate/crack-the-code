@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import datastructures.graph.DirectedGraph;
 import datastructures.graph.GenericGraph;
 import datastructures.graph.GraphType;
+import datastructures.graph.UndirectedGraph;
 import datastructures.graph.Vertex;
 import datastructures.util.InputUtil;
 
@@ -35,7 +36,7 @@ public class TestGraph {
     if(graphType == GraphType.DIRECTED) {
       graph = new DirectedGraph<String>();
     } else {
-      graph = new DirectedGraph<String>();
+      graph = new UndirectedGraph<String>();
     }
     
     executeActions(graph, input);
@@ -76,10 +77,12 @@ public class TestGraph {
         System.out.println();
         break;
       case "traverse":
+        System.out.println("[Traversing From " + values[1] + "]");
         System.out.println("\nDepth First Traversal: ");
         graph.depthFirstTraversal(graph.getVertex(values[1]));
         System.out.println("\nBreadth First Traversal: ");
         graph.breadthFirstTraversal(graph.getVertex(values[1]));
+        System.out.println();
         break;
       }
     }

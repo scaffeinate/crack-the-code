@@ -19,4 +19,12 @@ edge I H
 edge B J
 edge J A
 edge F E
+print
+search A I
+search D G
+search E J
+search J C
 traverse A
+traverse I
+traverse B
+traverse F
