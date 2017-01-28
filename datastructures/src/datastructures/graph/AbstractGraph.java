@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.Set;
+import java.util.Stack;
 
 public abstract class AbstractGraph<T> implements GenericGraph<T> {
   protected Map<T, Vertex<T>> vertices;
@@ -18,7 +19,7 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
     vertices = new HashMap<T, Vertex<T>>();
     this.graphType = graphType;
   }
-  
+
   @Override
   public boolean addEdge(Vertex<T> sourceVertex, Vertex<T> destVertex) {
     return addEdge(sourceVertex, destVertex, 0);
@@ -155,14 +156,14 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
     List<Vertex<T>> pathList = new ArrayList<Vertex<T>>();
     depthFirstPath(rootVertex, resultVertex, visitedSet, pathList);
     StringBuilder builder = new StringBuilder();
-    for(Vertex<T> vertex:pathList) {
+    for (Vertex<T> vertex : pathList) {
       builder.append(vertex.label).append("->");
     }
-    
-    return builder.substring(0, builder.length()-2).toString();
+
+    return builder.substring(0, builder.length() - 2).toString();
   }
 
-  private boolean depthFirstPath(Vertex<T> rootVertex, Vertex<T> resultVertex, Set<Vertex<T>> visitedSet, 
+  private boolean depthFirstPath(Vertex<T> rootVertex, Vertex<T> resultVertex, Set<Vertex<T>> visitedSet,
       List<Vertex<T>> pathList) {
     if (rootVertex.equals(resultVertex)) {
       pathList.add(rootVertex);
@@ -175,15 +176,67 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
     List<Vertex<T>> neighbours = neighboursOf(rootVertex);
     for (Vertex<T> vertex : neighbours) {
       if (!visitedSet.contains(vertex)) {
-        if(depthFirstPath(vertex, resultVertex, visitedSet, pathList)) {
+        if (depthFirstPath(vertex, resultVertex, visitedSet, pathList)) {
           return true;
         }
-        
+
         pathList.remove(vertex);
       }
     }
 
     return false;
+  }
+
+  @Override
+  public void depthFirstTraversal(Vertex<T> rootVertex) {
+    Stack<Vertex<T>> stack = new Stack<Vertex<T>>();
+    Set<Vertex<T>> visitedSet = new HashSet<Vertex<T>>();
+    stack.push(rootVertex);
+
+    while (!stack.isEmpty()) {
+      Vertex<T> top = stack.peek();
+      if (!visitedSet.contains(top)) {
+        System.out.print(top.label);
+        visitedSet.add(top);
+      }
+
+      List<Vertex<T>> neighbours = neighboursOf(top);
+      Vertex<T> vertex = null;
+      for (Vertex<T> v : neighbours) {
+        if (!visitedSet.contains(v)) {
+          vertex = v;
+          break;
+        }
+      }
+
+      if (vertex == null) {
+        stack.pop();
+      } else {
+        stack.push(vertex);
+        System.out.print("->");
+      }
+    }
+  }
+
+  @Override
+  public void breadthFirstTraversal(Vertex<T> rootVertex) {
+    Queue<Vertex<T>> queue = new LinkedList<Vertex<T>>();
+    Set<Vertex<T>> visitedSet = new HashSet<Vertex<T>>();
+    queue.add(rootVertex);
+    
+    while(!queue.isEmpty()) {
+      Vertex<T> current = queue.poll();
+      if(!visitedSet.contains(current)) {
+        System.out.print(current.label);
+        visitedSet.add(current);
+      }
+      List<Vertex<T>> neighbours = neighboursOf(current);
+      for(Vertex<T> v:neighbours) {
+        if(!visitedSet.contains(v)) {
+          queue.add(v);
+        }
+      }
+    }
   }
 
   @Override

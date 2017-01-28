@@ -29,7 +29,8 @@ edge Berlin NY
 edge Berlin Dallas
 edge Berlin Paris
 edge Qatar Chennai
-edge Qatar Paris 
+edge Qatar Paris
+edge Paris LA
 edge NY Chicago
 edge NY Dallas
 edge NY London
@@ -56,3 +57,4 @@ search Qatar Dallas
 search Dallas Chennai
 search Chennai Paris
 search Paris NY
+traverse Paris
