@@ -53,7 +53,7 @@ public class ACMICPCTeam {
 
     for (int i = 0; i < results.size(); i++) {
       BigInteger e = results.poll();
-      if(e.bitCount() == max.bitCount()) {
+      if (e.bitCount() == max.bitCount()) {
         count++;
       }
     }
