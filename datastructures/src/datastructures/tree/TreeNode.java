@@ -1,9 +1,9 @@
 package datastructures.tree;
 
 public class TreeNode<T> implements Comparable<T> {
-  T data;
-  TreeNode<T> left = null;
-  TreeNode<T> right = null;
+  public T data;
+  public TreeNode<T> left = null;
+  public TreeNode<T> right = null;
   boolean visited = false;
   
   public TreeNode() {

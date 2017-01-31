@@ -286,6 +286,10 @@ public class BinarySearchTree<T> {
   public TreeNode<T> getRoot() {
     return this.treeRoot;
   }
+  
+  public void setRoot(TreeNode<T> root) {
+    this.treeRoot = root;
+  }
 
   public T getMinimum(TreeNode<T> root) {
     while (root.left != null) {
