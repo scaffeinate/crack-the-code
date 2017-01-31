@@ -42,18 +42,33 @@ public class ListOfDepths {
         break;
       case "listOfDepths":
         ArrayList<LinkedList<TreeNode<Integer>>> listOfLists = constructList(tree.getRoot());
-        StringBuilder builder = new StringBuilder();
-        for (LinkedList<TreeNode<Integer>> list : listOfLists) {
-          for (TreeNode<Integer> element : list) {
-            builder.append(element.data).append(" -> ");
-          }
-          builder.setLength(builder.length() - 4);
-          builder.append("\n");
-        }
+        System.out.println("Using Breadth First Approach");
+        printListOfDepths(listOfLists);
 
-        System.out.println(builder.toString());
+        listOfLists = new ArrayList<LinkedList<TreeNode<Integer>>>();
+        constructListDepthFirst(tree.getRoot(), listOfLists, 0);
+        System.out.println("Using Depth First Approach");
+        printListOfDepths(listOfLists);
+
         break;
       }
+    }
+  }
+
+  private void constructListDepthFirst(TreeNode<Integer> root, ArrayList<LinkedList<TreeNode<Integer>>> listOfLists,
+      int depth) {
+    if (root != null) {
+      LinkedList<TreeNode<Integer>> list = new LinkedList<TreeNode<Integer>>();
+      if (listOfLists.size() > depth) {
+        list = listOfLists.get(depth);
+      } else {
+        listOfLists.add(list);
+      }
+
+      list.add(root);
+
+      constructListDepthFirst(root.left, listOfLists, depth + 1);
+      constructListDepthFirst(root.right, listOfLists, depth + 1);
     }
   }
 
@@ -61,30 +76,45 @@ public class ListOfDepths {
     ArrayList<LinkedList<TreeNode<Integer>>> listOfLists = new ArrayList<LinkedList<TreeNode<Integer>>>();
     LinkedList<TreeNode<Integer>> resultList = new LinkedList<TreeNode<Integer>>();
     Queue<TreeNode<Integer>> queue = new LinkedList<TreeNode<Integer>>();
-    queue.add(root);
-    int nodesAtLevel = 1;
 
-    while (!queue.isEmpty()) {
-      TreeNode<Integer> current = queue.poll();
-      resultList.add(current);
-      nodesAtLevel--;
-      
-      if (current.left != null) {
-        queue.add(current.left);
-      }
+    if (root != null) {
+      queue.add(root);
+      int nodesAtLevel = 1;
 
-      if (current.right != null) {
-        queue.add(current.right);
-      }
+      while (!queue.isEmpty()) {
+        TreeNode<Integer> current = queue.poll();
+        resultList.add(current);
+        nodesAtLevel--;
 
-      if (nodesAtLevel == 0) {
-        listOfLists.add(resultList);
-        resultList = new LinkedList<TreeNode<Integer>>();
-        nodesAtLevel = queue.size();
+        if (current.left != null) {
+          queue.add(current.left);
+        }
+
+        if (current.right != null) {
+          queue.add(current.right);
+        }
+
+        if (nodesAtLevel == 0) {
+          listOfLists.add(resultList);
+          resultList = new LinkedList<TreeNode<Integer>>();
+          nodesAtLevel = queue.size();
+        }
       }
     }
-
     return listOfLists;
+  }
+
+  private void printListOfDepths(ArrayList<LinkedList<TreeNode<Integer>>> listOfLists) {
+    StringBuilder builder = new StringBuilder();
+    for (LinkedList<TreeNode<Integer>> list : listOfLists) {
+      for (TreeNode<Integer> element : list) {
+        builder.append(element.data).append(" -> ");
+      }
+      builder.setLength(builder.length() - 4);
+      builder.append("\n");
+    }
+
+    System.out.println(builder.toString());
   }
 
   public static void main(String[] args) throws FileNotFoundException {
