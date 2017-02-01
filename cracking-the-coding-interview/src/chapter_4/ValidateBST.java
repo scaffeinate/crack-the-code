@@ -14,7 +14,9 @@ import datastructures.tree.TreeNode;
 import util.InputUtil;
 
 /**
- * Question 4.5: Implement a function to check if a binary tree is a binary search tree.
+ * Question 4.5: Implement a function to check if a binary tree is a binary
+ * search tree.
+ * 
  * @author Sudharsanan Muralidharan
  */
 public class ValidateBST {
