@@ -1,0 +1,4 @@
+insert 6 4 8 1 9 3 10
+validate
+insert 6 4 8 1 5 7 10
+validate 
