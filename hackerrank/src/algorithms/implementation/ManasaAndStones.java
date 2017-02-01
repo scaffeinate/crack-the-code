@@ -3,9 +3,7 @@
  */
 package algorithms.implementation;
 
-import java.util.LinkedHashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 /**
  * Challenge: https://www.hackerrank.com/challenges/manasa-and-stones
@@ -21,19 +19,20 @@ public class ManasaAndStones {
       int n = in.nextInt() - 1;
       int a = in.nextInt();
       int b = in.nextInt();
-      Set<Integer> valuesSet = new LinkedHashSet<Integer>();
 
       int min = Math.min(a, b);
       int max = Math.max(a, b);
 
-      valuesSet.add(n * min);
+      if(a == b) {
+        System.out.println(n * a);
+        continue;
+      }
+      
+      System.out.print((n * min) + " ");
       for (int i = 0; i < n; i++) {
-        valuesSet.add((max * (i + 1)) + (n - i - 1) * min);
+        System.out.print(((max * (i + 1)) + (n - i - 1) * min) + " ");
       }
 
-      for (Integer val : valuesSet) {
-        System.out.print(val + " ");
-      }
       System.out.println();
 
     }
