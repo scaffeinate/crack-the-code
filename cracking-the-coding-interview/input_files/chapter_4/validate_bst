@@ -1,4 +1,4 @@
-insert 6 4 8 1 9 3 10
+insert 6 4 8 1 5 7 10 1
 validate
-insert 6 4 8 1 5 7 10
+insert 6 4 8 1 5 7 10 1 9
 validate 

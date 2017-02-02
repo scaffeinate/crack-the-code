@@ -23,6 +23,7 @@ public class ValidateBST {
 
   BinaryTree<Integer> tree = null;
   Queue<TreeNode<Integer>> queue = null;
+  Integer mostRecent = null;
 
   public ValidateBST() {
     tree = new BinaryTree<Integer>();
@@ -61,22 +62,67 @@ public class ValidateBST {
         System.out.println(tree.breadthFirstTraversal(tree.getRoot()));
         break;
       case "validate":
-        System.out.println("Is valid BST? " + validate());
+        System.out.println("Is valid BST Method1? " + validate(tree.getRoot()));
+        System.out.println("Is valid BST Method2? " + validate2(tree.getRoot()));
+        System.out.println("Is valid BST Method3? " + validate3(tree.getRoot()));
+        mostRecent = null;
         System.out.println();
         break;
       }
     }
   }
 
-  private boolean validate() {
-    return validateBST(tree.getRoot(), Integer.MIN_VALUE, Integer.MAX_VALUE);
+  private boolean validate(TreeNode<Integer> root) {
+    return validateBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+  }
+
+  private boolean validate2(TreeNode<Integer> root) {
+    if (root != null) {
+      if (!validate2(root.left)) {
+        return false;
+      }
+
+      if (mostRecent != null) {
+        if (root.data.compareTo(mostRecent) < 0) {
+          return false;
+        }
+      }
+      mostRecent = root.data;
+
+      if (!validate2(root.right)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  private boolean validate3(TreeNode<Integer> root) {
+    List<Integer> elements = new ArrayList<Integer>();
+    inOrder(root, elements);
+
+    for (int i = 0; i < elements.size() - 1; i++) {
+      if(elements.get(i) > elements.get(i+1)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  private void inOrder(TreeNode<Integer> root, List<Integer> list) {
+    if (root != null) {
+      inOrder(root.left, list);
+      list.add(root.data);
+      inOrder(root.right, list);
+    }
   }
 
   private boolean validateBST(TreeNode<Integer> root, int min, int max) {
     if (root == null) {
       return true;
     }
-    if (root.data >= min && root.data < max) {
+    if (root.data > min && root.data <= max) {
       return validateBST(root.left, min, root.data) && validateBST(root.right, root.data, max);
     }
     return false;
