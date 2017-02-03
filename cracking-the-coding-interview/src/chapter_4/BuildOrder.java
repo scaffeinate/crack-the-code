@@ -59,33 +59,37 @@ public class BuildOrder {
         return Integer.valueOf(o1.outgoingEdges.size()).compareTo(Integer.valueOf(o2.outgoingEdges.size()));
       }
     });
-
+    
     Set<Vertex<Character>> visitedSet = new HashSet<Vertex<Character>>();
     StringBuilder builder = new StringBuilder();
-    for (Vertex<Character> project : projects) {
-      if (!visitedSet.contains(project)) {
-        depthFirstTraversal(project, builder, visitedSet);
+    for(Vertex<Character> project:projects) {
+      if(project.outgoingEdges.size() == 0) {
+        visitedSet.add(project);
+        builder.append(project.label).append(" ");
+      } else {
+        if(!visitedSet.contains(project)) {
+          depthFirstTraversal(project, builder, visitedSet);
+        }
       }
     }
-
+    
     return builder.toString();
   }
-
-  private void depthFirstTraversal(Vertex<Character> sourceVertex, StringBuilder builder,
-      Set<Vertex<Character>> visitedSet) {
-    if (sourceVertex == null) {
+  
+  private void depthFirstTraversal(Vertex<Character> sourceVertex, StringBuilder builder, Set<Vertex<Character>> visitedSet) {
+    if(sourceVertex == null) {
       return;
     }
-
+    
     visitedSet.add(sourceVertex);
-
+    
     List<Vertex<Character>> neighbours = graph.neighboursOf(sourceVertex);
-    for (Vertex<Character> vertex : neighbours) {
-      if (!visitedSet.contains(vertex)) {
+    for(Vertex<Character> vertex : neighbours) {
+      if(!visitedSet.contains(vertex)) {
         depthFirstTraversal(vertex, builder, visitedSet);
       }
     }
-
+    
     builder.append(sourceVertex.label).append(" ");
   }
 
@@ -95,11 +99,11 @@ public class BuildOrder {
     buildOrder.constructGraph(input);
     System.out.println(buildOrder.fetchBuildOrder());
   }
-
+  
   class Project {
     char label;
     int numDependencies = 0;
-
+    
     public Project(char label, int numDependencies) {
       this.label = label;
       this.numDependencies = numDependencies;
