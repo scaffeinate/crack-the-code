@@ -5,10 +5,15 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class BinarySearchTree<T> {
-  TreeNode<T> treeRoot = null;
+  private TreeNode<T> treeRoot = null;
+  private boolean linkToParent = false;
 
   public BinarySearchTree() {
 
+  }
+  
+  public BinarySearchTree(boolean linkToParent) {
+    this.linkToParent = linkToParent;
   }
 
   public TreeNode<T> insertRoot(T data) {
@@ -20,10 +25,19 @@ public class BinarySearchTree<T> {
     if (root == null) {
       root = new TreeNode<T>(data);
     } else {
+      TreeNode<T> node = null;
       if (root.compareTo(data) >= 0) {
-        root.left = insert(root.left, data);
+        node = insert(root.left, data);
+        root.left = node;
+        if(linkToParent) {
+          node.parent = root;
+        }
       } else {
-        root.right = insert(root.right, data);
+        node = insert(root.right, data);
+        root.right = node;
+        if(linkToParent) {
+          node.parent = root;
+        }
       }
     }
     return root;
@@ -194,13 +208,13 @@ public class BinarySearchTree<T> {
     return builder.toString();
   }
 
-  public T find(TreeNode<T> root, T data) {
+  public TreeNode<T> find(TreeNode<T> root, T data) {
     if (root == null) {
       return null;
     }
 
     if (root.data.equals(data)) {
-      return data;
+      return root;
     } else {
       if (root.compareTo(data) >= 0) {
         return find(root.left, data);

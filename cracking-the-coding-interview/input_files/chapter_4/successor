@@ -1,0 +1,21 @@
+insertRoot 6
+insert 2
+insert 9
+insert 0
+insert 1
+insert 5
+insert 4
+insert 3
+insert 11
+insert 8
+insert 7
+insert 10
+insert 12
+insert 13
+print
+successor 13
+successor 5
+successor 7
+successor 1
+successor 9
+successor 6
