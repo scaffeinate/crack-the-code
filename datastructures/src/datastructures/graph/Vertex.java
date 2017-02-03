@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Vertex<T> {
-  T label;
+  public T label;
   public List<Edge<T>> incomingEdges;
   public List<Edge<T>> outgoingEdges;
 
