@@ -6,6 +6,8 @@ package algorithms.implementation;
 import java.util.Scanner;
 
 /**
+ * Challenge: https://www.hackerrank.com/challenges/the-grid-search
+ * 
  * @author Sudharsanan Muralidharan
  */
 public class GridSearch {
@@ -32,33 +34,25 @@ public class GridSearch {
       searchString = builder.toString();
 
       int startColumn = 0, startRow = 0;
-      boolean matching = true;
-      while (startRow <= R - r) {
-        matching = true;
-        while (startColumn <= (C - c)) {
-          matching = true;
+      boolean matching = false;
+      while (startRow <= R - r && !matching) {
+        while (startColumn <= (C - c) && !matching) {
           for (int i = 0, I = startRow; i < r; i++, I++) {
             for (int j = 0, J = startColumn; (j < c); j++, J++) {
-              if (gridString.charAt(I * C + J) != searchString.charAt(i * c + j)) {
-                matching = false;
+              matching = gridString.charAt(I * C + J) == searchString.charAt(i * c + j);
+              if(!matching) {
                 break;
               }
             }
-
+            
             if (!matching) {
               break;
             }
           }
           startColumn++;
-          if (matching) {
-            break;
-          }
         }
         startRow++;
         startColumn = 0;
-        if (matching) {
-          break;
-        }
       }
 
       System.out.println(matching ? "YES" : "NO");
