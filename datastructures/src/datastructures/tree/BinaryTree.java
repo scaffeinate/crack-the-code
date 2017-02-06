@@ -18,7 +18,7 @@ public class BinaryTree<T> {
   public TreeNode<T> getRoot() {
     return this.root;
   }
-  
+
   public void setRoot(TreeNode<T> root) {
     this.root = root;
   }
@@ -27,7 +27,7 @@ public class BinaryTree<T> {
     if (root == null) {
       return null;
     }
-    
+
     if (left) {
       root.left = node;
     } else {
@@ -36,7 +36,7 @@ public class BinaryTree<T> {
 
     return node;
   }
-  
+
   public String breadthFirstTraversal(TreeNode<T> root) {
     Queue<TreeNode<T>> queue = new LinkedList<TreeNode<T>>();
     int depth = 0, numElementsAtDepth = 0;
@@ -69,7 +69,7 @@ public class BinaryTree<T> {
       }
     }
     builder.append("]").append("\n\n");
-    builder.append("Height of the Tree: " + depth);
+    builder.append("Height of the Tree: " + (depth - 1));
 
     return builder.toString();
   }
