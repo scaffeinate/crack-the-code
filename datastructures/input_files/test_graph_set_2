@@ -1,0 +1,30 @@
+vertex A
+vertex B
+vertex C
+vertex D
+vertex E
+vertex F
+vertex G
+vertex H
+vertex I
+vertex J
+edge A B
+edge A E
+edge A F
+edge B D
+edge B C
+edge D G
+edge C H
+edge I H
+edge B J
+edge J A
+edge F E
+print
+search A I
+search D G
+search E J
+search J C
+traverse A
+traverse I
+traverse B
+traverse F

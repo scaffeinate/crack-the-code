@@ -1,0 +1,18 @@
+vertex a
+vertex b
+vertex c
+vertex d
+vertex e
+vertex f
+vertex g
+vertex h
+edge e a
+edge e b
+edge a f
+edge a c
+edge a b
+edge h b
+edge c f
+edge b f
+edge g d
+print

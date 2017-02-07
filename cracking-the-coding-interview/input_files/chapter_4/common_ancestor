@@ -1,0 +1,6 @@
+insert 5 6 7 2 1 12 11 8 3 9 7 15 13 12 17
+print
+findAncestor 8 9
+findAncestor 11 17
+findAncestor 5 12
+findAncestor 2 8
