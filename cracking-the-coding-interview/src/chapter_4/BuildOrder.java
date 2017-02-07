@@ -6,6 +6,7 @@ package chapter_4;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -53,15 +54,22 @@ public class BuildOrder {
   private String fetchBuildOrder() {
     Set<Vertex<Character>> visitedSet = new HashSet<Vertex<Character>>();
     StringBuilder builder = new StringBuilder();
+    Iterator<Vertex<Character>> iterator = projects.iterator();
+
+    while (iterator.hasNext()) {
+      Vertex<Character> project = iterator.next();
+      if (project.outgoingEdges.size() == 0) {
+        visitedSet.add(project);
+        builder.append(project.label).append(" ");
+        iterator.remove();
+      }
+    }
+
     for (Vertex<Character> project : projects) {
       if (!visitedSet.contains(project)) {
-        if (project.outgoingEdges.size() == 0) {
-          visitedSet.add(project);
-          builder.append(project.label).append(" ");
-        } else {
-          depthFirstTraversal(project, builder, visitedSet);
-        }
+        depthFirstTraversal(project, builder, visitedSet);
       }
+
     }
 
     return builder.toString();
@@ -80,10 +88,8 @@ public class BuildOrder {
       }
     }
 
-    if (!visitedSet.contains(sourceVertex)) {
-      visitedSet.add(sourceVertex);
-      builder.append(sourceVertex.label).append(" ");
-    }
+    visitedSet.add(sourceVertex);
+    builder.append(sourceVertex.label).append(" ");
   }
 
   public static void main(String[] args) throws FileNotFoundException {
