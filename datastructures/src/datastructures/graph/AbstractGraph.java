@@ -217,7 +217,7 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
         builder.append("->");
       }
     }
-    
+
     System.out.println(builder.toString());
   }
 
@@ -257,5 +257,14 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
   @Override
   public int numVertices() {
     return vertices.size();
+  }
+
+  public Set<Vertex<T>> verticesSet() {
+    Set<Vertex<T>> verticesSet = new HashSet<Vertex<T>>();
+    Set<Entry<T, Vertex<T>>> entrySet = vertices.entrySet();
+    for(Entry<T, Vertex<T>> entry:entrySet) {
+      verticesSet.add(entry.getValue());
+    }
+    return verticesSet;
   }
 }
