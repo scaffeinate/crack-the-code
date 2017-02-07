@@ -1,18 +1,25 @@
 package datastructures.lists;
 
+/**
+ * Generic List Interface
+ *
+ * @param <T>
+ * 
+ * @author Sudharsanan Muralidharan
+ */
 public interface GenericList<T> {
   public boolean add(T data);
 
   public boolean add(int index, T data);
-  
+
   public boolean addToFront(T data);
 
   public boolean remove(Object o);
 
   public boolean remove(int index);
-  
+
   public boolean removeFirst();
-  
+
   public boolean removeLast();
 
   public T get(int index);
@@ -28,7 +35,7 @@ public interface GenericList<T> {
   public LinkedListNode<T> tail();
 
   public void tail(LinkedListNode<T> node);
-  
+
   public Object[] toArray();
 
   public int size();

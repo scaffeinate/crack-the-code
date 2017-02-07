@@ -1,7 +1,23 @@
 package datastructures.lists;
 
+/**
+ * DoubleLinkedList - Double LinkedList implementation.
+ *
+ * @param <T>
+ * 
+ * @extends AbstractList<T>
+ * 
+ * @author Sudharsanan Muralidharan
+ */
 public class DoubleLinkedList<T> extends AbstractList<T> {
 
+  /**
+   * Add to the DoubleLinkedList
+   * 
+   * @param data
+   * 
+   * @return added
+   */
   @Override
   public boolean add(T data) {
     boolean added = false;
@@ -20,6 +36,14 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
     return added;
   }
 
+  /**
+   * Add data at the index
+   * 
+   * @param index
+   * @param data
+   * 
+   * @return added
+   */
   @Override
   public boolean add(int index, T data) {
     if (index < 0 || index >= size) {
@@ -35,6 +59,13 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
     }
   }
 
+  /**
+   * Remove data from LinkedList
+   * 
+   * @param o
+   * 
+   * @return removed
+   */
   @Override
   public boolean remove(Object o) {
     if (head.data.equals(o)) {
@@ -57,6 +88,13 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
     return false;
   }
 
+  /**
+   * Remove element at index
+   * 
+   * @param index
+   * 
+   * @return removed
+   */
   @Override
   public boolean remove(int index) {
     if (index < 0 || index >= size) {
@@ -86,6 +124,13 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
     return false;
   }
 
+  /**
+   * Get element at index
+   * 
+   * @param index
+   * 
+   * @return T data
+   */
   @Override
   public T get(int index) {
     LinkedListNode<T> current = head;
@@ -101,6 +146,14 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
     return null;
   }
 
+  /**
+   * Sets element at index to data
+   * 
+   * @param index
+   * @param data
+   * 
+   * @return addedData
+   */
   @Override
   public T set(int index, T data) {
     LinkedListNode<T> current = head;
@@ -116,6 +169,13 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
     return null;
   }
 
+  /**
+   * Add to front of the DoubleLinkedList
+   * 
+   * @param data
+   * 
+   * @return added
+   */
   public boolean addToFront(T data) {
     LinkedListNode<T> node = new LinkedListNode<T>(data, head);
     head.prev = node;
@@ -124,6 +184,11 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
     return true;
   }
 
+  /**
+   * Remove the front of the DoubleLinkedList
+   * 
+   * @return removed
+   */
   public boolean removeFirst() {
     if (head == null) {
       return false;
@@ -134,6 +199,11 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
     return true;
   }
 
+  /**
+   * Remove back of the DoubleLinkedList
+   * 
+   * @return removed
+   */
   public boolean removeLast() {
     if (tail == null) {
       return false;
@@ -144,6 +214,14 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
     return true;
   }
 
+  /**
+   * Add data at index of the DoubleLinkedList
+   * 
+   * @param data
+   * @param index
+   * 
+   * @return added
+   */
   private boolean addAt(T data, int index) {
     LinkedListNode<T> current = head;
     int i = 1;
@@ -164,10 +242,16 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
     return false;
   }
 
+  /**
+   * Prints DoubleLinkedList
+   */
   public void print() {
     System.out.println(this.toString());
   }
 
+  /**
+   * Prints the DoubleLinkedList in reverse
+   */
   public void printReverse() {
     StringBuilder builder = new StringBuilder();
     LinkedListNode<T> current = tail;
@@ -181,6 +265,11 @@ public class DoubleLinkedList<T> extends AbstractList<T> {
     System.out.println(builder.toString());
   }
 
+  /*
+   * Override toString() (non-Javadoc)
+   * 
+   * @see java.lang.Object#toString()
+   */
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();

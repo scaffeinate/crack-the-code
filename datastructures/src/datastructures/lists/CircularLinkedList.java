@@ -1,5 +1,14 @@
 package datastructures.lists;
 
+/**
+ * CircularLinkedList implementation
+ * 
+ * @param <T>
+ * 
+ * @extends AbstractList<T>
+ * 
+ * @author Sudharsanan Muralidharan
+ */
 public class CircularLinkedList<T> extends AbstractList<T> {
 
   public CircularLinkedList() {
@@ -57,29 +66,29 @@ public class CircularLinkedList<T> extends AbstractList<T> {
 
   @Override
   public boolean remove(Object o) {
-    if(head == null) {
+    if (head == null) {
       return false;
     }
-    
-    if(head.data.equals(o)) {
+
+    if (head.data.equals(o)) {
       return removeFirst();
     }
-    
-    if(tail.data.equals(o)) {
+
+    if (tail.data.equals(o)) {
       return removeLast();
     }
-    
+
     LinkedListNode<T> current = head;
     LinkedListNode<T> runner = current.next;
-    
-    while(!runner.equals(head)) {
-      if(runner.data.equals(o)) {
+
+    while (!runner.equals(head)) {
+      if (runner.data.equals(o)) {
         current.next = runner.next;
         size--;
         return true;
       }
     }
-    
+
     return false;
   }
 
@@ -96,18 +105,18 @@ public class CircularLinkedList<T> extends AbstractList<T> {
     if (index == size - 1) {
       return removeLast();
     }
-    
+
     LinkedListNode<T> current = head;
     LinkedListNode<T> runner = head.next;
     int i = 1;
-    
-    while(runner != null) {
-      if(i == size) {
+
+    while (runner != null) {
+      if (i == size) {
         current.next = runner.next;
-        size--;       
+        size--;
         return true;
       }
-      
+
       current = current.next;
       i++;
     }
@@ -146,51 +155,51 @@ public class CircularLinkedList<T> extends AbstractList<T> {
 
   @Override
   public T get(int index) {
-    if(index == 0) {
+    if (index == 0) {
       return head.data;
     }
-    
-    if(index == size-1) {
+
+    if (index == size - 1) {
       return tail.data;
     }
-    
+
     LinkedListNode<T> current = head;
     int i = 0;
-    
-    while(current != null) {
-      if(i == index) {
+
+    while (current != null) {
+      if (i == index) {
         return current.data;
       }
-      
+
       i++;
       current = current.next;
     }
-    
+
     return null;
   }
 
   @Override
   public T set(int index, T data) {
-    if(index == 0) {
+    if (index == 0) {
       head.data = data;
     }
-    
-    if(index == size-1) {
+
+    if (index == size - 1) {
       tail.data = data;
     }
-    
+
     LinkedListNode<T> current = head;
     int i = 0;
-    
-    while(current != null) {
-      if(i == index) {
+
+    while (current != null) {
+      if (i == index) {
         current.data = data;
         return current.data;
       }
       i++;
       current = current.next;
     }
-    
+
     return null;
   }
 

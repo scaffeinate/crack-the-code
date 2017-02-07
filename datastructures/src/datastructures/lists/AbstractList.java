@@ -1,5 +1,12 @@
 package datastructures.lists;
 
+/**
+ * AbstractList(Abstract class) implementation
+ * 
+ * @author Sudharsanan Muralidharan
+ *
+ * @param <T>
+ */
 public abstract class AbstractList<T> implements GenericList<T> {
   protected LinkedListNode<T> head = null;
   protected LinkedListNode<T> tail = null;
@@ -24,7 +31,7 @@ public abstract class AbstractList<T> implements GenericList<T> {
 
     return false;
   }
-  
+
   /**
    * Returns the head
    * 
@@ -45,7 +52,6 @@ public abstract class AbstractList<T> implements GenericList<T> {
     this.head = head;
   }
 
-
   /**
    * Returns the tail
    * 
@@ -55,8 +61,7 @@ public abstract class AbstractList<T> implements GenericList<T> {
   public LinkedListNode<T> tail() {
     return this.tail;
   }
-  
-  
+
   /**
    * Sets the tail
    * 

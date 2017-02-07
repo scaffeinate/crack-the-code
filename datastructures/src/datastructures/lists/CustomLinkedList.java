@@ -6,19 +6,36 @@ package datastructures.lists;
 import datastructures.util.ListUtil;
 
 /**
- * CustomLinkedList: Simple LinkedList implementation.
+ * CustomLinkedList: Single LinkedList implementation
+ * 
+ * @param<T>
+ * 
+ * @extends AbstractList<T>
  * 
  * @author Sudharsanan Muralidharan
  */
 public class CustomLinkedList<T> extends AbstractList<T> {
 
+  /**
+   * Default Constructor
+   */
   public CustomLinkedList() {
   }
 
+  /**
+   * Constructor which takes the head node. Shallow copy.
+   * 
+   * @param head
+   */
   public CustomLinkedList(LinkedListNode<T> head) {
     this.head = head;
   }
 
+  /**
+   * Copy an existing CustomLinkedList<T>. Deep copy.
+   * 
+   * @param copyList
+   */
   public CustomLinkedList(CustomLinkedList<T> copyList) {
     LinkedListNode<T> current = copyList.head;
     while (current != null) {
@@ -162,6 +179,11 @@ public class CustomLinkedList<T> extends AbstractList<T> {
     return false;
   }
 
+  /**
+   * Removed the front of the LinkedList
+   * 
+   * @return removed
+   */
   @Override
   public boolean removeFirst() {
     if (head == null) {
@@ -173,6 +195,11 @@ public class CustomLinkedList<T> extends AbstractList<T> {
     return true;
   }
 
+  /**
+   * Remove the back of the LinkedList
+   * 
+   * @return removed
+   */
   @Override
   public boolean removeLast() {
     if (tail == null) {
@@ -225,6 +252,12 @@ public class CustomLinkedList<T> extends AbstractList<T> {
     return null;
   }
 
+  /**
+   * Add to front of the LinkedList
+   * 
+   * @param e
+   * @return added
+   */
   public boolean addToFront(T e) {
     boolean added = false;
 
