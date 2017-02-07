@@ -22,7 +22,7 @@ public class CommonAncestor {
   private Map<Integer, TreeNode<Integer>> nodesMap = null;
 
   public CommonAncestor() {
-    tree = new BinaryTree<Integer>();
+    tree = new BinaryTree<Integer>(true);
     nodesMap = new HashMap<Integer, TreeNode<Integer>>();
   }
 
@@ -92,6 +92,52 @@ public class CommonAncestor {
       }
     }
     return null;
+  }
+
+  private TreeNode<Integer> findCommonAncestor2(TreeNode<Integer> root, TreeNode<Integer> nodeA,
+      TreeNode<Integer> nodeB) {
+    int nodeADepth = depth(root, nodeA);
+    int nodeBDepth = depth(root, nodeB);
+
+    TreeNode<Integer> longerNode = (nodeADepth > nodeBDepth) ? nodeA : nodeB;
+    TreeNode<Integer> shorterNode = (nodeADepth > nodeBDepth) ? nodeB : nodeA;
+    int diff = Math.abs(nodeADepth - nodeBDepth);
+
+    for (int i = 0; i < diff; i++) {
+      longerNode = longerNode.parent;
+    }
+    
+    while(!longerNode.equals(shorterNode)) {
+      longerNode = longerNode.parent;
+      shorterNode = shorterNode.parent;
+    }
+
+    return longerNode;
+  }
+
+  private int depth(TreeNode<Integer> root, TreeNode<Integer> node) {
+    if (root == null) {
+      return -1;
+    }
+
+    int depth = 0;
+
+    if (root.equals(node)) {
+      return depth;
+    } else {
+      int leftDepth = depth(root.left, node);
+      int rightDepth = depth(root.right, node);
+
+      if (leftDepth == -1 && rightDepth == -1) {
+        depth = -1;
+      } else if (leftDepth == -1) {
+        depth = rightDepth + 1;
+      } else if (rightDepth == -1) {
+        depth = leftDepth + 1;
+      }
+    }
+
+    return depth;
   }
 
   public static void main(String[] args) throws FileNotFoundException {

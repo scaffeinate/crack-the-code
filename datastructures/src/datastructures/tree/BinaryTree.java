@@ -11,8 +11,14 @@ import java.util.Queue;
  */
 public class BinaryTree<T> {
   private TreeNode<T> root = null;
+  private boolean linkToParent;
 
   public BinaryTree() {
+    this(false);
+  }
+
+  public BinaryTree(boolean linkToParent) {
+    this.linkToParent = linkToParent;
   }
 
   public TreeNode<T> getRoot() {
@@ -32,6 +38,10 @@ public class BinaryTree<T> {
       root.left = node;
     } else {
       root.right = node;
+    }
+    
+    if(linkToParent) {
+      node.parent = root;
     }
 
     return node;
