@@ -179,6 +179,6 @@ public class BuildOrder {
     System.out.println();
     System.out.println("Using A->B (denoting A should be built before B) \n" + buildOrder.fetchBuildOrder2());
     System.out.println();
-    System.out.println("Using A->B (denoting A should be built before B) \n" + buildOrder.fetchBuildOrder3());
+    System.out.println("Using A->B (denoting A should be built before B) and Build pipeline \n" + buildOrder.fetchBuildOrder3());
   }
 }
