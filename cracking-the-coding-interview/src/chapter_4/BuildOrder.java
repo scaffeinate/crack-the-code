@@ -4,6 +4,7 @@
 package chapter_4;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -101,6 +102,37 @@ public class BuildOrder {
     return builder.toString();
   }
 
+  private String fetchBuildOrder3() {
+    StringBuilder builder = new StringBuilder();
+    Set<Vertex<Character>> projects = graph2.verticesSet();
+    List<Vertex<Character>> buildOrderPipeline = new ArrayList<Vertex<Character>>();
+    int processAt = 0;
+
+    for (Vertex<Character> project : projects) {
+      if (project.numberOfIncomingEdges == 0) {
+        buildOrderPipeline.add(project);
+      }
+    }
+
+    while (processAt < buildOrderPipeline.size()) {
+      Vertex<Character> project = buildOrderPipeline.get(processAt);
+      builder.append(project.label).append(" ");
+      List<Vertex<Character>> neighbours = graph2.neighboursOf(project);
+      
+      for(Vertex<Character> neighbour:neighbours) {
+        neighbour.numberOfIncomingEdges--;
+        
+        if(neighbour.numberOfIncomingEdges == 0) {
+          buildOrderPipeline.add(neighbour);
+        }
+      }
+      
+      processAt++;
+    }
+
+    return builder.toString();
+  }
+
   private void depthFirstTraversal(Vertex<Character> sourceVertex, StringBuilder builder,
       Set<Vertex<Character>> visitedSet) {
     if (sourceVertex == null) {
@@ -146,5 +178,7 @@ public class BuildOrder {
     System.out.println("Using A->B (denoting A is dependent on B): \n" + buildOrder.fetchBuildOrder());
     System.out.println();
     System.out.println("Using A->B (denoting A should be built before B) \n" + buildOrder.fetchBuildOrder2());
+    System.out.println();
+    System.out.println("Using A->B (denoting A should be built before B) and Build pipeline \n" + buildOrder.fetchBuildOrder3());
   }
 }
