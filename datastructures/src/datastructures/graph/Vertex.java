@@ -7,6 +7,8 @@ public class Vertex<T> {
   public T label;
   public List<Edge<T>> incomingEdges;
   public List<Edge<T>> outgoingEdges;
+  public int numberOfIncomingEdges = 0;
+  public int numberOfOutgoingEdges = 0;
 
   public Vertex() {
     this(null);

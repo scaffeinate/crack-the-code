@@ -30,11 +30,15 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
     if (sourceVertex != null && destVertex != null) {
       Edge<T> edge = new Edge<T>(sourceVertex, destVertex, weight);
       sourceVertex.outgoingEdges.add(edge);
+      sourceVertex.numberOfOutgoingEdges++;
       destVertex.incomingEdges.add(edge);
+      destVertex.numberOfIncomingEdges++;
       if (graphType.equals(GraphType.UNDIRECTED)) {
         Edge<T> reverseEdge = new Edge<T>(destVertex, sourceVertex, weight);
         destVertex.outgoingEdges.add(reverseEdge);
+        destVertex.numberOfOutgoingEdges++;
         sourceVertex.incomingEdges.add(reverseEdge);
+        sourceVertex.numberOfIncomingEdges++;
       }
       return true;
     }
@@ -262,7 +266,7 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
   public Set<Vertex<T>> verticesSet() {
     Set<Vertex<T>> verticesSet = new HashSet<Vertex<T>>();
     Set<Entry<T, Vertex<T>>> entrySet = vertices.entrySet();
-    for(Entry<T, Vertex<T>> entry:entrySet) {
+    for (Entry<T, Vertex<T>> entry : entrySet) {
       verticesSet.add(entry.getValue());
     }
     return verticesSet;
