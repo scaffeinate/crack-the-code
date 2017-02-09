@@ -30,22 +30,17 @@ public class StringWithDuplicatesCombinations {
   }
 
   private void combination(List<Entry<Character, Integer>> counterList, int index, StringBuilder builder) {
-    int counterSum = 0;
+    System.out.println(builder.toString());
     for (int i = index; i < counterList.size(); i++) {
       Entry<Character, Integer> entry = counterList.get(i);
       int count = entry.getValue();
       if (count > 0) {
-        counterSum++;
         entry.setValue(count - 1);
         builder.append(entry.getKey());
         combination(counterList, index + 1, builder);
         builder.setLength(builder.length() - 1);
         entry.setValue(count);
       }
-    }
-    
-    if(counterSum == 0) {
-      System.out.println(builder.toString());
     }
   }
 
