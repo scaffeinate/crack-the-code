@@ -12,10 +12,15 @@ import algorithms.util.InputUtil;
  * http://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a
  * -given-string/
  * 
+ * Complexity: O(n * n!)
+ * 
  * @author Sudharsanan Muralidharan
  */
-public class Permutations {
+public class StringPermutations {
 
+  /**
+   * @param arr
+   */
   private void generatePermuations(char[] arr) {
     printPermuatations(arr, 0);
   }
@@ -52,7 +57,7 @@ public class Permutations {
 
   public static void main(String[] args) throws FileNotFoundException {
     String[] input = InputUtil.readContents("permutations");
-    Permutations permutations = new Permutations();
+    StringPermutations permutations = new StringPermutations();
     for (String line : input) {
       permutations.generatePermuations(line.toCharArray());
     }
