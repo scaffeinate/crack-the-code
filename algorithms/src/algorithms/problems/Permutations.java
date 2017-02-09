@@ -27,20 +27,20 @@ public class Permutations {
     }
 
     for (int i = start; i < arr.length; i++) {
-      char[] newArr = swap(arr, i, start);
-      printPermuatations(newArr, start + 1);
+      swap(arr, i, start);
+      printPermuatations(arr, start + 1);
+      swap(arr, start, i);
     }
   }
 
   private char[] swap(char[] arr, int i, int j) {
-    char[] newArr = arr.clone();
     if (i == j) {
-      return newArr;
+      return arr;
     }
-    newArr[i] = (char) (newArr[i] + newArr[j]);
-    newArr[j] = (char) (newArr[i] - newArr[j]);
-    newArr[i] = (char) (newArr[i] - newArr[j]);
-    return newArr;
+    arr[i] = (char) (arr[i] + arr[j]);
+    arr[j] = (char) (arr[i] - arr[j]);
+    arr[i] = (char) (arr[i] - arr[j]);
+    return arr;
   }
 
   private void print(char[] arr) {
