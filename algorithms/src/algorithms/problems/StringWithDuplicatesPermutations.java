@@ -12,6 +12,10 @@ import java.util.TreeMap;
 import algorithms.util.InputUtil;
 
 /**
+ * Problem: https://www.youtube.com/watch?v=nYFd7VHKyWQ
+ * 
+ * Complexity: O(n)
+ * 
  * @author Sudharsanan Muralidharan
  */
 public class StringWithDuplicatesPermutations {
@@ -22,10 +26,10 @@ public class StringWithDuplicatesPermutations {
       counterMap.put(Character.valueOf(c), counterMap.getOrDefault(c, 0) + 1);
     }
 
-    permutate(arr, counterMap, new StringBuilder());
+    permutate(counterMap, new StringBuilder());
   }
 
-  private void permutate(char[] arr, Map<Character, Integer> counterMap, StringBuilder builder) {
+  private void permutate(Map<Character, Integer> counterMap, StringBuilder builder) {
     int counterSum = 0;
     Set<Entry<Character, Integer>> entrySet = counterMap.entrySet();
     for (Entry<Character, Integer> entry : entrySet) {
@@ -35,7 +39,7 @@ public class StringWithDuplicatesPermutations {
         counterSum++;
         counterMap.put(c, count - 1);
         builder.append(c);
-        permutate(arr, counterMap, builder);
+        permutate(counterMap, builder);
         builder.setLength(builder.length() - 1);
         counterMap.put(c, count);
       }
