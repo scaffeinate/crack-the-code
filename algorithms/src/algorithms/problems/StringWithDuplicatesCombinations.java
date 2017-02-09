@@ -37,7 +37,7 @@ public class StringWithDuplicatesCombinations {
       if (count > 0) {
         entry.setValue(count - 1);
         builder.append(entry.getKey());
-        combination(counterList, index + 1, builder);
+        combination(counterList, i + 1, builder);
         builder.setLength(builder.length() - 1);
         entry.setValue(count);
       }
