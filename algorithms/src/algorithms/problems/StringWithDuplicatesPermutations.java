@@ -26,28 +26,34 @@ public class StringWithDuplicatesPermutations {
       counterMap.put(Character.valueOf(c), counterMap.getOrDefault(c, 0) + 1);
     }
 
-    permutate(counterMap, new StringBuilder());
+    permutate(counterMap, new char[arr.length], 0);
   }
 
-  private void permutate(Map<Character, Integer> counterMap, StringBuilder builder) {
-    int counterSum = 0;
+  private void permutate(Map<Character, Integer> counterMap, char[] result, int index) {
+    boolean allZeros = true;
     Set<Entry<Character, Integer>> entrySet = counterMap.entrySet();
     for (Entry<Character, Integer> entry : entrySet) {
       char c = entry.getKey();
       int count = entry.getValue();
       if (count > 0) {
-        counterSum++;
+        allZeros = false;
         counterMap.put(c, count - 1);
-        builder.append(c);
-        permutate(counterMap, builder);
-        builder.setLength(builder.length() - 1);
+        result[index] = c;
+        permutate(counterMap, result, index + 1);
         counterMap.put(c, count);
       }
     }
 
-    if (counterSum == 0) {
-      System.out.println(builder.toString());
+    if (allZeros) {
+      print(result);
     }
+  }
+
+  private void print(char[] arr) {
+    for (int i = 0; i < arr.length; i++) {
+      System.out.print(arr[i]);
+    }
+    System.out.println();
   }
 
   public static void main(String[] args) throws FileNotFoundException {

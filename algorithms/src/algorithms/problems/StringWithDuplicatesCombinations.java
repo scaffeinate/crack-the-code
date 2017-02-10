@@ -26,22 +26,28 @@ public class StringWithDuplicatesCombinations {
     }
 
     List<Entry<Character, Integer>> counterList = counterMap.entrySet().stream().collect(Collectors.toList());
-    combination(counterList, 0, new StringBuilder());
+    combination(counterList, 0, new char[arr.length], 0);
   }
 
-  private void combination(List<Entry<Character, Integer>> counterList, int index, StringBuilder builder) {
-    System.out.println(builder.toString());
-    for (int i = index; i < counterList.size(); i++) {
+  private void combination(List<Entry<Character, Integer>> counterList, int start, char[] result, int index) {
+    print(result, index);
+    for (int i = start; i < counterList.size(); i++) {
       Entry<Character, Integer> entry = counterList.get(i);
       int count = entry.getValue();
       if (count > 0) {
         entry.setValue(count - 1);
-        builder.append(entry.getKey());
-        combination(counterList, i + 1, builder);
-        builder.setLength(builder.length() - 1);
+        result[index] = entry.getKey();
+        combination(counterList, i + 1, result, index + 1);
         entry.setValue(count);
       }
     }
+  }
+
+  private void print(char[] arr, int index) {
+    for (int i = 0; i < index; i++) {
+      System.out.print(arr[i]);
+    }
+    System.out.println();
   }
 
   public static void main(String[] args) throws FileNotFoundException {
