@@ -1,0 +1,20 @@
+tree
+insertRoot 4
+insertLeft 4->7
+insertRight 4->5
+insertLeft 7->1
+insertRight 7->10
+insertRight 1->4
+insertLeft 10->8
+insertRight 10->15
+insertLeft 5->6
+insertRight 5->7
+print
+subTree
+insertRoot 7
+insertLeft 7->1
+insertRight 7->10
+insertLeft 10->8
+insertRight 1->4
+print
+checkSubTree
