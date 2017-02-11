@@ -6,8 +6,10 @@ package chapter_4;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 import datastructures.tree.BinaryTree;
 import datastructures.tree.TreeNode;
@@ -56,6 +58,7 @@ public class CheckSubTree {
         break;
       case "checkSubTree":
         System.out.println(checkSubTree(tree, subTree));
+        System.out.println(checkSubTree2(tree, subTree));
         break;
       }
     }
@@ -95,6 +98,41 @@ public class CheckSubTree {
       if (matches) {
         return true;
       }
+    }
+
+    return false;
+  }
+
+  private boolean checkSubTree2(BinaryTree<Integer> tree, BinaryTree<Integer> subTree) {
+    return preOrder2(tree.getRoot(), subTree.getRoot());
+  }
+
+  private boolean preOrder2(TreeNode<Integer> root, TreeNode<Integer> subRoot) {
+    Queue<TreeNode<Integer>> queue = new LinkedList<TreeNode<Integer>>();
+    queue.add(root);
+    while (!queue.isEmpty()) {
+      TreeNode<Integer> current = queue.poll();
+      if (compareSubTrees(current, subRoot)) {
+        return true;
+      }
+      if (current.left != null) {
+        queue.add(current.left);
+      }
+
+      if (current.right != null) {
+        queue.add(current.right);
+      }
+    }
+
+    return false;
+  }
+
+  private boolean compareSubTrees(TreeNode<Integer> root, TreeNode<Integer> subRoot) {
+    if (root != null && subRoot != null) {
+      return root.data.equals(subRoot.data) && compareSubTrees(root.left, subRoot.left)
+          && compareSubTrees(root.right, subRoot.right);
+    } else if ((root == null && subRoot == null) || (root != null && subRoot == null)) {
+      return true;
     }
 
     return false;
