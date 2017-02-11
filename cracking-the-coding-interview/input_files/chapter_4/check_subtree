@@ -13,6 +13,7 @@ insertLeft 1->6
 print
 subTree
 insertRoot 5
+insertLeft 5->6
 insertRight 5->7
 insertRight 7->10
 insertLeft 10->8

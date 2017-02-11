@@ -81,7 +81,7 @@ public class CheckSubTree {
 
     int delta = treeList.size() - subTreeList.size();
     int i = 0, j = 0;
-
+    
     while (i < delta) {
       boolean matches = true;
       while (j < subTreeList.size()) {
@@ -102,6 +102,19 @@ public class CheckSubTree {
 
     return false;
   }
+  
+  private List<Integer> preOrder(TreeNode<Integer> root) {
+    List<Integer> result = new ArrayList<Integer>();
+    if (root != null) {
+      result.add(root.data);
+      result.addAll(preOrder(root.left));
+      result.addAll(preOrder(root.right));
+    } else {
+      result.add(Integer.MIN_VALUE);
+    }
+
+    return result;
+  }
 
   private boolean checkSubTree2(BinaryTree<Integer> tree, BinaryTree<Integer> subTree) {
     return preOrder2(tree.getRoot(), subTree.getRoot());
@@ -112,7 +125,7 @@ public class CheckSubTree {
     queue.add(root);
     while (!queue.isEmpty()) {
       TreeNode<Integer> current = queue.poll();
-      if (compareSubTrees(current, subRoot)) {
+      if (current.data == subRoot.data && compareSubTrees(current, subRoot)) {
         return true;
       }
       if (current.left != null) {
@@ -136,19 +149,6 @@ public class CheckSubTree {
     }
 
     return false;
-  }
-
-  private List<Integer> preOrder(TreeNode<Integer> root) {
-    List<Integer> result = new ArrayList<Integer>();
-    if (root != null) {
-      result.add(root.data);
-      result.addAll(preOrder(root.left));
-      result.addAll(preOrder(root.right));
-    } else {
-      result.add(Integer.MIN_VALUE);
-    }
-
-    return result;
   }
 
   public static void main(String[] args) throws FileNotFoundException {
