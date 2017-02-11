@@ -2,13 +2,13 @@ package algorithms.sort.test;
 
 import java.io.FileNotFoundException;
 
-import algorithms.sort.MergeSort;
+import algorithms.sort.InsertionSort;
 import algorithms.util.InputUtil;
 
-public class TestMergeSort {
+public class TestInsertionSort {
   public static void main(String[] args) throws FileNotFoundException {
     String[] input = InputUtil.readContents("test_sort");
-    MergeSort<Integer> mergeSort = new MergeSort<Integer>(Integer.class);
+    InsertionSort<Integer> mergeSort = new InsertionSort<Integer>();
     for (String line : input) {
       String[] elements = line.split(" ");
       Integer[] arr = new Integer[elements.length];

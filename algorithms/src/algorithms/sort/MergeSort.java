@@ -3,7 +3,7 @@ package algorithms.sort;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
-public class MergeSort<T> {
+public class MergeSort<T> extends Sort<T> {
   private Class<?> clazz;
 
   public MergeSort(Class<?> clazz) {
@@ -57,21 +57,6 @@ public class MergeSort<T> {
     }
 
     return result;
-  }
-
-  private int compare(T a, T b) {
-    if (a instanceof Integer && b instanceof Integer) {
-      return ((Integer) a).compareTo((Integer) b);
-    } else if (a instanceof Float) {
-      return ((Float) a).compareTo((Float) b);
-    } else if (a instanceof Double) {
-      return ((Double) a).compareTo((Double) b);
-    } else if (a instanceof Character) {
-      return ((Character) a).compareTo((Character) b);
-    } else if (a instanceof String) {
-      return ((String) a).compareTo((String) b);
-    }
-    return -1;
   }
 
 }
