@@ -51,7 +51,7 @@ public class StringWithDuplicatesCombinations {
   }
 
   public static void main(String[] args) throws FileNotFoundException {
-    String[] input = InputUtil.readContents("permutations");
+    String[] input = InputUtil.readContents("test_permutations");
     StringWithDuplicatesCombinations combinations = new StringWithDuplicatesCombinations();
     for (String line : input) {
       combinations.generateCombinations(line.toCharArray());

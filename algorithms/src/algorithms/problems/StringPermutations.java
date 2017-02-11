@@ -56,7 +56,7 @@ public class StringPermutations {
   }
 
   public static void main(String[] args) throws FileNotFoundException {
-    String[] input = InputUtil.readContents("permutations");
+    String[] input = InputUtil.readContents("test_permutations");
     StringPermutations permutations = new StringPermutations();
     for (String line : input) {
       permutations.generatePermuations(line.toCharArray());

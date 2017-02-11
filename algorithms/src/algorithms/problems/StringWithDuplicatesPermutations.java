@@ -57,7 +57,7 @@ public class StringWithDuplicatesPermutations {
   }
 
   public static void main(String[] args) throws FileNotFoundException {
-    String[] input = InputUtil.readContents("permutations");
+    String[] input = InputUtil.readContents("test_permutations");
     StringWithDuplicatesPermutations permuations = new StringWithDuplicatesPermutations();
     for (String line : input) {
       permuations.generatePermutations(line.toCharArray());
