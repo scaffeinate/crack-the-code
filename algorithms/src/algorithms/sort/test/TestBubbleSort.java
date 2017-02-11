@@ -2,13 +2,13 @@ package algorithms.sort.test;
 
 import java.io.FileNotFoundException;
 
-import algorithms.sort.MergeSort;
+import algorithms.sort.BubbleSort;
 import algorithms.util.InputUtil;
 
-public class TestMergeSort {
+public class TestBubbleSort {
   public static void main(String[] args) throws FileNotFoundException {
     String[] input = InputUtil.readContents("test_sort");
-    MergeSort<Integer> mergeSort = new MergeSort<Integer>(Integer.class);
+    BubbleSort<Integer> bubbleSort = new BubbleSort<Integer>();
     for (String line : input) {
       String[] elements = line.split(" ");
       Integer[] arr = new Integer[elements.length];
@@ -17,7 +17,7 @@ public class TestMergeSort {
         arr[i] = Integer.parseInt(elements[i]);
       }
 
-      arr = mergeSort.sort(arr);
+      arr = bubbleSort.sort(arr);
       System.out.print("Sorted Array: ");
       for (int i = 0; i < arr.length; i++) {
         System.out.print(arr[i] + " ");
