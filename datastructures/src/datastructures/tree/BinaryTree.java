@@ -28,6 +28,11 @@ public class BinaryTree<T> {
   public void setRoot(TreeNode<T> root) {
     this.root = root;
   }
+  
+  public TreeNode<T> insertRoot(T data) {
+    root = new TreeNode<T>(data);
+    return root;
+  }
 
   public TreeNode<T> insert(TreeNode<T> root, TreeNode<T> node, boolean left) {
     if (root == null) {
