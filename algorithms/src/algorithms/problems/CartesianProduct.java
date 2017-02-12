@@ -21,19 +21,21 @@ public class CartesianProduct {
     return results;
   }
 
+  @SuppressWarnings("unchecked")
   private void product(List<List<String>> lists, Stack<String> temp, List<List<String>> results, int index) {
     if (temp.size() == lists.size()) {
       results.add((List<String>) temp.clone());
       return;
     }
 
-    for (int i = index; i < lists.size(); i++) {
-      List<String> list = lists.get(i);
-      for (int j = 0; j < list.size(); j++) {
-        temp.push(list.remove(j));
-        product(lists, temp, results, i + 1);
-        list.add(j, temp.pop());
+    while (index < lists.size()) {
+      List<String> list = lists.get(index);
+      for (int i = 0; i < list.size(); i++) {
+        temp.push(list.get(i));
+        product(lists, temp, results, index + 1);
+        temp.pop();
       }
+      index++;
     }
   }
 
