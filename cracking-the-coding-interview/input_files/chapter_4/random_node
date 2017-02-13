@@ -1,0 +1,23 @@
+insertRoot 5
+insert 4
+insert 6
+insert 3
+insert 9
+insert 1
+insert 7
+insert 8
+insert 2
+insert 10
+insert 0
+print
+getRandom
+getRandom
+getRandom
+getRandom
+getRandom
+getRandom
+getRandom
+getRandom
+getRandom
+getRandom
+getRandom
