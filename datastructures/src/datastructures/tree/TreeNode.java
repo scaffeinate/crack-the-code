@@ -37,4 +37,15 @@ public class TreeNode<T> implements Comparable<T> {
 
     return -1;
   }
+
+  @Override
+  public String toString() {
+    StringBuilder builder = new StringBuilder();
+    builder.append("[").append(this.data);
+    /*builder.append(", left=").append(this.left);
+    builder.append(", right=").append(this.right);*/
+    builder.append("]");
+    return builder.toString();
+  }
+  
 }
