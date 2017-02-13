@@ -37,9 +37,15 @@ public class RandomNode {
         break;
       case "print":
         randomTree.inOrder(root);
+        System.out.println();
+        System.out.println(randomTree.getTreeCount());
+        break;
+      case "delete":
+        randomTree.delete(root, Integer.parseInt(values[1]));
         break;
       case "getRandom":
         System.out.print(randomTree.getRandom(root) + " ");
+        break;
       }
     }
   }

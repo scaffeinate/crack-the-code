@@ -46,6 +46,54 @@ public class BSTRandom<T> {
     return root;
   }
 
+  public TreeNode<T> delete(TreeNode<T> root, T data) {
+    if (root == null) {
+      return null;
+    }
+
+    if (root.data.equals(data)) {
+      if (root.left != null && root.right != null) {
+        T val = null;
+        // Immediate child is the maximum of the left subtree
+        if (root.left.right == null) {
+          val = root.left.data;
+        } else {
+          val = findReplacement(root.left);
+        }
+        delete(root, val);
+        root.data = val;
+        return root;
+      } else if (root.left != null && root.right == null) {
+        treeCount.remove(root);
+        return root.left;
+      } else if (root.left == null && root.right != null) {
+        treeCount.remove(root);
+        return root.right;
+      } else {
+        treeCount.remove(root);
+        return null;
+      }
+    }
+
+    if (root.compareTo(data) > 0) {
+      root.left = delete(root.left, data);
+      treeCount.put(root, treeCount.get(root) - 1);
+    } else {
+      root.right = delete(root.right, data);
+      treeCount.put(root, treeCount.get(root) - 1);
+    }
+
+    return root;
+  }
+
+  private T findReplacement(TreeNode<T> root) {
+    if (root.right == null) {
+      return root.data;
+    }
+
+    return findReplacement(root.right);
+  }
+
   public TreeNode<T> find(TreeNode<T> root, T data) {
     if (root == null) {
       return null;
@@ -93,5 +141,15 @@ public class BSTRandom<T> {
       System.out.print(root.data + " ");
       inOrder(root.right);
     }
+  }
+
+  public Map<TreeNode<T>, Integer> getTreeCount() {
+    return this.treeCount;
+  }
+  
+  private class TreeNodeWrapper<T> {
+    private TreeNode<T> root = null;
+    private TreeNode<T> deletedNode = null;
+    private boolean deleted = false;
   }
 }

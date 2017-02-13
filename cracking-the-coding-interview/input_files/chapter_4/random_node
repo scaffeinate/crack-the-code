@@ -10,14 +10,8 @@ insert 2
 insert 10
 insert 0
 print
-getRandom
-getRandom
-getRandom
-getRandom
-getRandom
-getRandom
-getRandom
-getRandom
-getRandom
-getRandom
-getRandom
+delete 9
+delete 5
+delete 0
+delete 1
+print
