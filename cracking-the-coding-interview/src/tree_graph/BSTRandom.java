@@ -46,44 +46,53 @@ public class BSTRandom<T> {
     return root;
   }
 
-  public TreeNode<T> delete(TreeNode<T> root, T data) {
-    if (root == null) {
-      return null;
+  public boolean delete(TreeNode<T> root, T data) {
+    TreeNodeWrapper<T> nodeWrapper = new TreeNodeWrapper<T>(root);
+    TreeNodeWrapper<T> deletedNodeWrapper = delete(nodeWrapper, data);
+    return deletedNodeWrapper.deleted;
+  }
+
+  public TreeNodeWrapper<T> delete(TreeNodeWrapper<T> rootWrapper, T data) {
+    if (rootWrapper.root == null) {
+      return new TreeNodeWrapper<T>(false);
     }
+
+    TreeNode<T> root = rootWrapper.root;
 
     if (root.data.equals(data)) {
       if (root.left != null && root.right != null) {
-        T val = null;
-        // Immediate child is the maximum of the left subtree
-        if (root.left.right == null) {
-          val = root.left.data;
-        } else {
-          val = findReplacement(root.left);
-        }
-        delete(root, val);
+        T val = findReplacement(root.left);
+        root.left = delete(new TreeNodeWrapper<T>(root.left), val).root;
         root.data = val;
-        return root;
+        treeCount.put(root, treeCount.get(root) - 1);
       } else if (root.left != null && root.right == null) {
         treeCount.remove(root);
-        return root.left;
-      } else if (root.left == null && root.right != null) {
+        rootWrapper.root = root.left;
+      } else if (root.right != null && root.left == null) {
         treeCount.remove(root);
-        return root.right;
+        rootWrapper.root = root.right;
       } else {
         treeCount.remove(root);
-        return null;
+        return new TreeNodeWrapper<T>(true);
+      }
+      rootWrapper.deleted = true;
+    } else {
+      TreeNodeWrapper<T> deletedNodeWrapper = null;
+      if (root.compareTo(data) > 0) {
+        deletedNodeWrapper = delete(new TreeNodeWrapper<T>(root.left), data);
+        root.left = deletedNodeWrapper.root;
+      } else {
+        deletedNodeWrapper = delete(new TreeNodeWrapper<T>(root.right), data);
+        root.right = deletedNodeWrapper.root;
+      }
+
+      rootWrapper.deleted = deletedNodeWrapper.deleted;
+      if (deletedNodeWrapper.deleted) {
+        treeCount.put(root, treeCount.getOrDefault(root, 1) - 1);
       }
     }
 
-    if (root.compareTo(data) > 0) {
-      root.left = delete(root.left, data);
-      treeCount.put(root, treeCount.get(root) - 1);
-    } else {
-      root.right = delete(root.right, data);
-      treeCount.put(root, treeCount.get(root) - 1);
-    }
-
-    return root;
+    return rootWrapper;
   }
 
   private T findReplacement(TreeNode<T> root) {
@@ -146,10 +155,18 @@ public class BSTRandom<T> {
   public Map<TreeNode<T>, Integer> getTreeCount() {
     return this.treeCount;
   }
-  
+
+  @SuppressWarnings("hiding")
   private class TreeNodeWrapper<T> {
     private TreeNode<T> root = null;
-    private TreeNode<T> deletedNode = null;
     private boolean deleted = false;
+
+    public TreeNodeWrapper(TreeNode<T> root) {
+      this.root = root;
+    }
+
+    public TreeNodeWrapper(boolean deleted) {
+      this.deleted = deleted;
+    }
   }
 }
