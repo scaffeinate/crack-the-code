@@ -117,9 +117,9 @@ public class BSTRandom<T> {
     }
   }
 
-  public TreeNode<T> getRandom(TreeNode<T> root) {
+  public TreeNode<T> getRandom() {
     int randomNum = new Random().nextInt(treeCount.get(root));
-    return getRandom(root, randomNum);
+    return getRandom(this.root, randomNum);
   }
 
   private TreeNode<T> getRandom(TreeNode<T> root, int randomNum) {
@@ -134,7 +134,23 @@ public class BSTRandom<T> {
     }
   }
 
- 
+  public TreeNode<T> getRandom2() {
+    return getRandom2(this.root);
+  }
+
+  private TreeNode<T> getRandom2(TreeNode<T> root) {
+    int subTreeCount = treeCount.get(root);
+    int randomNum = new Random().nextInt(subTreeCount);
+    int leftTreeCount = getLeftTreeCount(root);
+    if (randomNum < leftTreeCount) {
+      return getRandom2(root.left);
+    } else if (randomNum == leftTreeCount) {
+      return root;
+    } else {
+      return getRandom2(root.right);
+    }
+  }
+
   private int getLeftTreeCount(TreeNode<T> root) {
     if (root.left == null) {
       return 0;
