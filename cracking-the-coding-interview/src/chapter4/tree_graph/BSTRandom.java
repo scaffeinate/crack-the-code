@@ -1,7 +1,7 @@
 /**
  * 
  */
-package tree_graph;
+package chapter4.tree_graph;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -118,29 +118,28 @@ public class BSTRandom<T> {
   }
 
   public TreeNode<T> getRandom(TreeNode<T> root) {
-    TreeNode<T> randomNode = randomize(root);
-    if (randomNode.equals(root)) {
+    int randomNum = new Random().nextInt(treeCount.get(root));
+    return getRandom(root, randomNum);
+  }
+
+  private TreeNode<T> getRandom(TreeNode<T> root, int randomNum) {
+    int leftTreeCount = getLeftTreeCount(root);
+    if (randomNum < leftTreeCount) {
+      return getRandom(root.left, randomNum);
+    } else if (randomNum == leftTreeCount) {
       return root;
     } else {
-      return getRandom(randomNode);
+      randomNum -= (leftTreeCount + 1);
+      return getRandom(root.right, randomNum);
     }
   }
 
-  private TreeNode<T> randomize(TreeNode<T> root) {
-    int subTreeCount = treeCount.get(root);
-    if (subTreeCount == 1) {
-      return root;
-    }
-
-    int randomNum = new Random().nextInt(subTreeCount);
-    if (randomNum == 0) {
-      return root;
+ 
+  private int getLeftTreeCount(TreeNode<T> root) {
+    if (root.left == null) {
+      return 0;
     } else {
-      if (randomNum % 2 == 0) {
-        return root.left == null ? root.right : root.left;
-      } else {
-        return root.right == null ? root.left : root.right;
-      }
+      return treeCount.get(root.left);
     }
   }
 
