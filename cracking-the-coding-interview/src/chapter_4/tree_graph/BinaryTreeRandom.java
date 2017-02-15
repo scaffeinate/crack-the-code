@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Random;
 
 import datastructures.tree.TreeNode;
 
@@ -124,6 +125,47 @@ public class BinaryTreeRandom<T> {
       inOrder(root.left);
       System.out.print(root + " ");
       inOrder(root.right);
+    }
+  }
+  
+  public TreeNode<T> getRandom() {
+    int random = new Random().nextInt(subtreeCountMap.get(this.root));
+    return getRandom(this.root, random);
+  }
+  
+  private TreeNode<T> getRandom(TreeNode<T> root, int random) {
+    int leftSubTreeCount = 0;
+    if(root.left != null) {
+      leftSubTreeCount = subtreeCountMap.get(root.left);
+    }
+    
+    if(random < leftSubTreeCount) {
+      return getRandom(root.left, random);
+    } else if(random == leftSubTreeCount) {
+      return root;
+    } else {
+      random -= (leftSubTreeCount + 1);
+      return getRandom(root.right, random);
+    }
+  }
+  
+  public TreeNode<T> getRandom2() {
+    return getRandom2(this.root);
+  }
+  
+  private TreeNode<T> getRandom2(TreeNode<T> root) {
+    int random = new Random().nextInt(subtreeCountMap.get(root));
+    int leftSubTreeCount = 0;
+    if(root.left != null) {
+      leftSubTreeCount = subtreeCountMap.get(root.left);
+    }
+    
+    if(random < leftSubTreeCount) {
+      return getRandom2(root.left);
+    } else if(random == leftSubTreeCount) {
+      return root;
+    } else {
+      return getRandom2(root.right);
     }
   }
 
