@@ -51,7 +51,7 @@ public class RandomNodeBinaryTree {
         System.out.println();
         break;
       case "delete":
-        //System.out.println(randomTree.delete(root, Integer.parseInt(values[1])));
+        System.out.println(randomTree.delete(Integer.parseInt(values[1])));
         break;
       case "getRandom":
         //System.out.print(randomTree.getRandom() + " ");
