@@ -22,9 +22,7 @@ public class BinaryTreeRandom<T> {
   }
 
   public TreeNode<T> insertRoot(T data) {
-    this.root = new TreeNode<T>(data);
-    subtreeCountMap.put(this.root, 1);
-    return this.root;
+    return this.root = new TreeNode<T>(data);
   }
 
   public TreeNode<T> insert(TreeNode<T> root, T data, boolean isLeft) {
@@ -39,7 +37,6 @@ public class BinaryTreeRandom<T> {
       root.right = node;
     }
 
-    subtreeCountMap.put(root, subtreeCountMap.getOrDefault(root, 1) + 1);
     return node;
   }
 
@@ -65,9 +62,9 @@ public class BinaryTreeRandom<T> {
 
     return null;
   }
-  
+
   public void inOrder(TreeNode<T> root) {
-    if(root != null) {
+    if (root != null) {
       inOrder(root.left);
       System.out.print(root + " ");
       inOrder(root.right);
@@ -75,6 +72,19 @@ public class BinaryTreeRandom<T> {
   }
 
   public Map<TreeNode<T>, Integer> getSubTreeCountMap() {
-    return this.subtreeCountMap;
+    updateSubTreeMap(this.root, subtreeCountMap);
+    return subtreeCountMap;
+  }
+  
+  private Integer updateSubTreeMap(TreeNode<T> root, Map<TreeNode<T>, Integer> subtreeCountMap) {
+    if(root == null) {
+      return 0;
+    }
+    
+    int leftCount = updateSubTreeMap(root.left, subtreeCountMap);
+    int rightCount = updateSubTreeMap(root.right, subtreeCountMap);
+    
+    subtreeCountMap.put(root, (leftCount + rightCount + 1));
+    return (leftCount + rightCount + 1);
   }
 }

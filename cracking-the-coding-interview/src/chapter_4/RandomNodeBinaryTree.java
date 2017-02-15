@@ -46,7 +46,9 @@ public class RandomNodeBinaryTree {
         System.out.println(result);
         break;
       case "print":
+        System.out.println(randomTree.getSubTreeCountMap());
         randomTree.inOrder(root);
+        System.out.println();
         break;
       case "delete":
         //System.out.println(randomTree.delete(root, Integer.parseInt(values[1])));
