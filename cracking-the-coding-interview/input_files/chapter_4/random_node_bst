@@ -10,11 +10,17 @@ insert 2
 insert 10
 insert 0
 print
+find 4
+find 10
+find 21
 delete 9
 delete 5
 delete 3
 delete 1
 delete 17
+find 0
+find 1
+find 9
 print
 getRandom
 getRandom

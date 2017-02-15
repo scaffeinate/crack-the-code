@@ -14,12 +14,12 @@ import util.InputUtil;
  * 
  * @author Sudharsanan Muralidharan
  */
-public class RandomNode {
+public class RandomNodeBST {
 
   private BSTRandom<Integer> randomTree = null;
   private TreeNode<Integer> root = null;
   
-  public RandomNode() {
+  public RandomNodeBST() {
     randomTree = new BSTRandom<Integer>();
   }
   
@@ -43,6 +43,9 @@ public class RandomNode {
       case "delete":
         System.out.println(randomTree.delete(root, Integer.parseInt(values[1])));
         break;
+      case "find":
+        System.out.println(randomTree.find(root, Integer.parseInt(values[1])));
+        break;
       case "getRandom":
         System.out.print(randomTree.getRandom() + " ");
         System.out.print(randomTree.getRandom2() + " ");
@@ -53,8 +56,8 @@ public class RandomNode {
   }
 
   public static void main(String[] args) throws FileNotFoundException {
-    String[] input = InputUtil.readContents(4, "random_node");
-    RandomNode randomNode = new RandomNode();
+    String[] input = InputUtil.readContents(4, "random_node_bst");
+    RandomNodeBST randomNode = new RandomNodeBST();
     randomNode.constructTree(input);
   }
 }
