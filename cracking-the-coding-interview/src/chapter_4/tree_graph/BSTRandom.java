@@ -1,7 +1,7 @@
 /**
  * 
  */
-package chapter4.tree_graph;
+package chapter_4.tree_graph;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

@@ -5,7 +5,7 @@ package chapter_4;
 
 import java.io.FileNotFoundException;
 
-import chapter4.tree_graph.BSTRandom;
+import chapter_4.tree_graph.BSTRandom;
 import datastructures.tree.TreeNode;
 import util.InputUtil;
 
