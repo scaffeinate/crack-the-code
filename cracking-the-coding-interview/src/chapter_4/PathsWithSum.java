@@ -94,18 +94,6 @@ public class PathsWithSum {
     return counter;
   }
 
-  /*
-   * @SuppressWarnings("unchecked") private int
-   * calculateNumPaths2(TreeNode<Integer> root, Integer sum, HashSet<Integer>
-   * valuesSet) { if (root == null) { return 0; }
-   * 
-   * HashSet<Integer> clone = (HashSet<Integer>) valuesSet.clone(); int count =
-   * 0; int delta = sum - (root.data); clone.add(delta);
-   * 
-   * return count + calculateNumPaths2(root.left, sum, clone) +
-   * calculateNumPaths2(root.right, sum, clone); }
-   */
-
   public static void main(String[] args) throws FileNotFoundException {
     String[] input = InputUtil.readContents(4, "paths_with_sum");
     PathsWithSum pathsWithSum = new PathsWithSum();
