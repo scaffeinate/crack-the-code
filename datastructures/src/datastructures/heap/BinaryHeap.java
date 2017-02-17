@@ -111,6 +111,14 @@ public abstract class BinaryHeap<T> {
     }
   }
 
+  /**
+   * Extracts the min/max element in the heap based on heapType(root of the
+   * heap). Remove root, replace with last leaf element then Heapify.
+   * 
+   * Complexity: O(lgn)
+   * 
+   * @return root
+   */
   public T extract() {
     T data = heapArr[1];
     heapArr[1] = heapArr[size()];
@@ -120,14 +128,38 @@ public abstract class BinaryHeap<T> {
     return data;
   }
 
+  /**
+   * Returns the root of the heap. This is the min/max in the heap based on
+   * heapType.
+   * 
+   * Complexity: O(1)
+   * 
+   * @return root
+   */
   public T peek() {
     return heapArr[1];
   }
 
+  /**
+   * Returns the size of the heap. Since we start from index=1 this returns
+   * size-1
+   * 
+   * @return size
+   */
   public int size() {
     return (this.size - 1);
   }
 
+  /**
+   * Perform HeapSort. BuildHeap using the arr. For sorting in ascending order
+   * build a MAX_HEAP, Otherwise MIN_HEAP. Swap the root with the last leaf
+   * element. Heapify(1). Continue this until we reach the root node. i.e n to
+   * 2.
+   * 
+   * Complexity: O(nlgn)
+   * 
+   * @param arr
+   */
   public void sort(T[] arr) {
     buildHeap(arr);
     int n = size();
@@ -141,10 +173,20 @@ public abstract class BinaryHeap<T> {
     print();
   }
 
+  /**
+   * Prints the heapArr
+   */
   public void print() {
     System.out.println("Heap: " + this.toString());
   }
 
+  /*
+   * @Override toString()
+   * 
+   * (non-Javadoc)
+   * 
+   * @see java.lang.Object#toString()
+   */
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
@@ -157,25 +199,54 @@ public abstract class BinaryHeap<T> {
     return builder.toString();
   }
 
+  /**
+   * Perform Heapify from the specified index. Heapify checks the node at index
+   * with it's children and if the heap property is violated then swap the node
+   * with the most appropriate child element. i.e. In MIN_HEAP with the
+   * smallest, MAX_HEAP largest of the three.
+   * 
+   * @param index
+   */
   private void heapify(int index) {
     int leftChild = 2 * index;
     int rightChild = (2 * index) + 1;
     int current = index;
 
+    /*
+     * Check to see if leftChild index is within bounds and violatesProperty. If
+     * it does update current index with leftChild.
+     */
     if (leftChild < size && violatesProperty(leftChild, current)) {
       current = leftChild;
     }
 
+    /*
+     * Check to see if rightChild index is within bounds and violatesProperty.
+     * If it does update the current with rightChild.
+     */
     if (rightChild < size && violatesProperty(rightChild, current)) {
       current = rightChild;
     }
 
+    /*
+     * If we need a swap with any of the children then we continue piping down
+     * the element. So swap and call heapify with the current index.
+     */
     if (index != current) {
       swapElements(index, current);
       heapify(current);
     }
   }
 
+  /**
+   * Important function to check if heap property is in violation. Given the
+   * child and parent indices check if to see the parent is greater than child
+   * in a MAX_HEAP and lesser than child in MIN_HEAP.
+   * 
+   * @param childIndex
+   * @param parentIndex
+   * @return violates
+   */
   protected boolean violatesProperty(int childIndex, int parentIndex) {
     int compare = compare(heapArr[childIndex], heapArr[parentIndex]);
     if (type == HeapType.MIN_HEAP) {
@@ -187,6 +258,13 @@ public abstract class BinaryHeap<T> {
     return false;
   }
 
+  /**
+   * Compare T data, T o
+   * 
+   * @param data
+   * @param o
+   * @return compare
+   */
   protected int compare(T data, T o) {
     if (o instanceof Integer) {
       return ((Integer) data).compareTo((Integer) o);
@@ -202,12 +280,22 @@ public abstract class BinaryHeap<T> {
     return -1;
   }
 
+  /**
+   * Swap two elements at index i and index j
+   * 
+   * @param i
+   * @param j
+   */
   protected void swapElements(int i, int j) {
     T temp = heapArr[i];
     heapArr[i] = heapArr[j];
     heapArr[j] = temp;
   }
 
+  /**
+   * If the heap capacity is reached then growheap(). Double the size and copy
+   * the heapArr to newHeap.
+   */
   @SuppressWarnings("unchecked")
   private void growHeap() {
     T[] newHeap = (T[]) new Object[heapCapacity * 2];

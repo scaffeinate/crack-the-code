@@ -1,5 +1,13 @@
 package datastructures.heap;
 
+/**
+ * PriorityQueueElement class to hold the priority(key) and value
+ *
+ * @param <P>
+ * @param <V>
+ * 
+ * @author Sudharsanan Muralidharan
+ */
 public class PriorityQueueElement<P, V> {
   P priority;
   V value;
