@@ -4,6 +4,8 @@
 package chapter_4;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
 
 import datastructures.tree.BinarySearchTree;
 import datastructures.tree.TreeNode;
@@ -36,7 +38,8 @@ public class PathsWithSum {
         System.out.println(tree.breadthFirstTraversal(root));
         break;
       case "pathsSum":
-        System.out.println(calculatePathsWithSum(root, Integer.parseInt(values[1])));
+        System.out.println(calculatePathsWithSum(root, Integer.parseInt(values[1])) + " "
+            + calculatePathsWithSum2(root, Integer.parseInt(values[1])));
         break;
       }
     }
@@ -61,6 +64,47 @@ public class PathsWithSum {
     }
     return 0;
   }
+
+  private int calculatePathsWithSum2(TreeNode<Integer> root, Integer sum) {
+    return calculateNumPaths2(root, 0, sum, new HashMap<Integer, Integer>());
+  }
+
+  private int calculateNumPaths2(TreeNode<Integer> root, Integer sum, Integer targetSum,
+      Map<Integer, Integer> pathMap) {
+    if (root == null) {
+      return 0;
+    }
+
+    int counter = 0;
+    sum += root.data;
+    pathMap.put(sum, pathMap.getOrDefault(sum, 0) + 1);
+    if (sum == targetSum || pathMap.getOrDefault(sum - targetSum, 0) > 0) {
+      counter++;
+    }
+
+    counter += calculateNumPaths2(root.left, sum, targetSum, pathMap);
+    counter += calculateNumPaths2(root.right, sum, targetSum, pathMap);
+
+    if (pathMap.get(sum) > 0) {
+      pathMap.put(sum, pathMap.get(sum) - 1);
+    } else {
+      pathMap.remove(sum);
+    }
+
+    return counter;
+  }
+
+  /*
+   * @SuppressWarnings("unchecked") private int
+   * calculateNumPaths2(TreeNode<Integer> root, Integer sum, HashSet<Integer>
+   * valuesSet) { if (root == null) { return 0; }
+   * 
+   * HashSet<Integer> clone = (HashSet<Integer>) valuesSet.clone(); int count =
+   * 0; int delta = sum - (root.data); clone.add(delta);
+   * 
+   * return count + calculateNumPaths2(root.left, sum, clone) +
+   * calculateNumPaths2(root.right, sum, clone); }
+   */
 
   public static void main(String[] args) throws FileNotFoundException {
     String[] input = InputUtil.readContents(4, "paths_with_sum");
