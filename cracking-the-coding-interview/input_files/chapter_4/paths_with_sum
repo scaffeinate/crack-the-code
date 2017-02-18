@@ -1,0 +1,23 @@
+insertRoot 5
+insert 2
+insert 8
+insert 1
+insert 4
+insert 7
+insert 10
+insert -1
+insert 2
+insert 3
+insert 6
+insert 9
+insert 11
+insert 12
+insert -1
+print
+pathsSum 23
+pathsSum 34
+pathsSum 7
+pathsSum 21
+pathsSum 3
+pathsSum 6
+pathsSum -1
