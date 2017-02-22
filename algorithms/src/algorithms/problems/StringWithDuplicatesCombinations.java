@@ -47,14 +47,16 @@ public class StringWithDuplicatesCombinations {
     for (int i = 0; i < index; i++) {
       System.out.print(arr[i]);
     }
-    System.out.println();
+    System.out.print(", ");
   }
 
   public static void main(String[] args) throws FileNotFoundException {
-    String[] input = InputUtil.readContents("test_permutations");
+    String[] input = InputUtil.readContents("test_permutations_duplicates");
     StringWithDuplicatesCombinations combinations = new StringWithDuplicatesCombinations();
     for (String line : input) {
+      System.out.print("[ ");
       combinations.generateCombinations(line.toCharArray());
+      System.out.println("]");
     }
   }
 }

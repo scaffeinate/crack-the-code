@@ -21,8 +21,37 @@ public class StringPermutations {
   /**
    * @param arr
    */
-  private void generatePermuations(char[] arr) {
+  private void generatePermutations(char[] arr) {
     printPermuatations(arr, 0);
+  }
+
+  private void generatePermutationsIterative(char[] arr) {
+    int n = arr.length;
+    int fact = fact(n);
+    int m = fact / n;
+
+    for (int i = 0; i < n; i++) {
+      swap(arr, 0, i);
+      int j = 0, k = 1;
+      while (j < m) {
+        if (k < n - 1) {
+          swap(arr, k, k + 1);
+          print(arr);
+          k++;
+          j++;
+        } else {
+          k = 1;
+        }
+      }
+    }
+  }
+
+  private int fact(int n) {
+    if (n == 0) {
+      return 1;
+    }
+
+    return n * fact(n - 1);
   }
 
   private void printPermuatations(char[] arr, int start) {
@@ -52,14 +81,24 @@ public class StringPermutations {
     for (int i = 0; i < arr.length; i++) {
       System.out.print(arr[i]);
     }
-    System.out.println();
+    System.out.print(", ");
   }
 
   public static void main(String[] args) throws FileNotFoundException {
     String[] input = InputUtil.readContents("test_permutations");
     StringPermutations permutations = new StringPermutations();
+    System.out.println("Permutations using Recursion: ");
     for (String line : input) {
-      permutations.generatePermuations(line.toCharArray());
+      System.out.print("[ ");
+      permutations.generatePermutations(line.toCharArray());
+      System.out.println("]");
+    }
+
+    System.out.println("\nPermutations using Iteration: ");
+    for (String line : input) {
+      System.out.print("[ ");
+      permutations.generatePermutationsIterative(line.toCharArray());
+      System.out.println("]");
     }
   }
 }
