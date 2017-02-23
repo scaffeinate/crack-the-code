@@ -13,10 +13,10 @@ import java.util.Stack;
  */
 public class LongestAbsoluteFilePath {
 
-  private static int findLongestAbsoluteFilePath(String input) {
+  private static String findLongestAbsoluteFilePath(String input) {
     Stack<String> stack = new Stack<String>();
     String[] lines = input.split("\n");
-    int longest = 0;
+    String longest = "";
     StringBuilder builder = new StringBuilder();
     stack.push("/");
     builder.append("/");
@@ -25,17 +25,17 @@ public class LongestAbsoluteFilePath {
       String fileName = lines[i];
       while (level(fileName) <= level(stack.peek())) {
         String top = stack.pop().trim();
-        builder.setLength(builder.length() - top.length());
+        builder.setLength(builder.length() - top.length() - 1);
       }
 
       stack.push(fileName);
-      builder.append(fileName.trim());
-      if (isImgFile(fileName.trim()) && builder.length() > longest) {
-        longest = builder.length();
+      builder.append(fileName.trim()).append("/");
+      if (isImgFile(fileName.trim()) && builder.length() > longest.length()) {
+        longest = (builder.length() > longest.length()) ? builder.toString() : longest;
       }
     }
 
-    return longest;
+    return longest.substring(0, longest.length() - 1);
   }
 
   private static boolean isImgFile(String fileName) {
@@ -43,7 +43,7 @@ public class LongestAbsoluteFilePath {
   }
 
   private static int level(String fileName) {
-    if(fileName.equals("/")) {
+    if (fileName.equals("/")) {
       return -1;
     }
 

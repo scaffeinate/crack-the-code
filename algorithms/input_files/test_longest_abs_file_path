@@ -1,22 +1,22 @@
--dir1
- -dir2
-  -dir7
-  -img.jpg
-  -img.png
-  -dir3
-   -test.png
-  -dir7
- -dir4
-  -img.jpg
- -dir5
- -dir6
- -abcdefghijklmnsss.jpg
-----
--dir1
- -dir11
- -dir12
-  -picture.jpg
-  -dir 121
-   -file1.txt
--dir2
- -file2.gif
+dir1
+ dir2
+  dir7
+  img.jpg
+  img.png
+  dir3
+   test.png
+  dir7
+ dir4
+  img.jpg
+ dir5
+ dir6
+ abcdefghijklmnsss.jpg
+---
+dir1
+ dir11
+ dir12
+  picture.jpg
+  dir 121
+   file1.txt
+dir2
+ file2.gif
