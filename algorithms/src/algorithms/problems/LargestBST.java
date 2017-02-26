@@ -66,7 +66,7 @@ public class LargestBST {
   }
 
   private int findLargestBST(TreeNode<Integer> root) {
-    return largestBST(root).largest;
+    return largestBST(root).size;
   }
 
   private Wrapper largestBST(TreeNode<Integer> root) {
@@ -84,9 +84,9 @@ public class LargestBST {
     int largest = 0;
 
     if (isBST) {
-      largest = leftWrapper.largest + rightWrapper.largest + 1;
+      largest = leftWrapper.size + rightWrapper.size + 1;
     } else {
-      largest = Math.max(leftWrapper.largest, rightWrapper.largest);
+      largest = Math.max(leftWrapper.size, rightWrapper.size);
     }
 
     return new Wrapper(minOf(root.data, leftWrapper.min, rightWrapper.min),
@@ -118,16 +118,16 @@ public class LargestBST {
   class Wrapper {
     int min;
     int max;
-    int largest;
+    int size;
     boolean isBST;
 
     public Wrapper() {
     }
 
-    public Wrapper(int min, int max, int largest, boolean isBST) {
+    public Wrapper(int min, int max, int size, boolean isBST) {
       this.min = min;
       this.max = max;
-      this.largest = largest;
+      this.size = size;
       this.isBST = isBST;
     }
   }

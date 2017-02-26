@@ -1,13 +1,17 @@
-insertRoot 5
-insertLeft 5 4
-insertLeft 4 6
-insertRight 5 3
-insertRight 4 9
-insertLeft 9 2
-insertLeft 2 0
-insertRight 2 10
-insertLeft 3 2
-insertRight 3 10
-insertLeft 10 9
+insertRoot 25
+insertLeft 25 18
+insertRight 25 50
+insertLeft 18 19
+insertRight 18 20
+insertRight 19 15
+insertLeft 20 18
+insertRight 20 25
+insertLeft 50 35
+insertRight 50 60
+insertLeft 35 20
+insertRight 35 40
+insertRight 20 25
+insertLeft 60 55
+insertRight 60 70
 print
 largestBST
