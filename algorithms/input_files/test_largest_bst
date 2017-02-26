@@ -1,0 +1,13 @@
+insertRoot 5
+insertLeft 5 4
+insertLeft 4 6
+insertRight 5 3
+insertRight 4 9
+insertLeft 9 2
+insertLeft 2 0
+insertRight 2 10
+insertLeft 3 2
+insertRight 3 10
+insertLeft 10 9
+print
+largestBST
