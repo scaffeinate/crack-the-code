@@ -1,7 +1,7 @@
 /**
  * 
  */
-package algorithms.datastructures;
+package algorithms.datastructures.arrays;
 
 import java.util.Arrays;
 import java.util.Comparator;
