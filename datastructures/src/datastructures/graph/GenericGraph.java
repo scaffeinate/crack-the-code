@@ -22,15 +22,15 @@ public interface GenericGraph<T> {
   
   public Edge<T> getEdge(Vertex<T> sourceVertex, Vertex<T> destVertex);
   
-  public boolean depthFirstSearch(Vertex<T> rootVertex, Vertex<T> resultVertex);
+  public boolean depthFirstSearch(Vertex<T> sourceVertex, Vertex<T> resultVertex);
   
-  public boolean breadthFirstSearch(Vertex<T> rootVertex, Vertex<T> resultVertex);
+  public boolean breadthFirstSearch(Vertex<T> sourceVertex, Vertex<T> resultVertex);
   
-  public void depthFirstTraversal(Vertex<T> rootVertex);
+  public void depthFirstTraversal(Vertex<T> sourceVertex);
   
-  public void breadthFirstTraversal(Vertex<T> rootVertex);
+  public void breadthFirstTraversal(Vertex<T> sourceVertex);
   
-  public String depthFirstPath(Vertex<T> rootVertex, Vertex<T> resultVertex);
+  public String depthFirstPath(Vertex<T> sourceVertex, Vertex<T> resultVertex);
   
   public int numVertices();
   

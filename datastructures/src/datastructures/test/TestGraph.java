@@ -46,6 +46,7 @@ public class TestGraph {
     for (String line : input) {
       String[] values = line.split(" ");
       String action = values[0];
+      Vertex<String> sourceVertex, destVertex, resultVertex;
       switch (action) {
       case "vertex":
         if (graph.createVertex(values[1]) != null) {
@@ -55,8 +56,8 @@ public class TestGraph {
         }
         break;
       case "edge":
-        Vertex<String> sourceVertex = graph.getVertex(values[1]);
-        Vertex<String> destVertex = graph.getVertex(values[2]);
+        sourceVertex = graph.getVertex(values[1]);
+        destVertex = graph.getVertex(values[2]);
         if (graph.addEdge(sourceVertex, destVertex)) {
           System.out.println("Edge created between: " + values[1] + " and " + values[2]);
         } else {
@@ -68,12 +69,12 @@ public class TestGraph {
         graph.print();
         break;
       case "search":
-        Vertex<String> rootVertex = graph.getVertex(values[1]);
-        Vertex<String> resultVertex = graph.getVertex(values[2]);
-        System.out.println("\nSearching from " + rootVertex.toString() + " to " + resultVertex.toString());
-        System.out.println("DFS: " + graph.depthFirstSearch(rootVertex, resultVertex));
-        System.out.println("Depth First Path: " + graph.depthFirstPath(rootVertex, resultVertex));
-        System.out.println("BFS: " + graph.breadthFirstSearch(rootVertex, resultVertex));
+        sourceVertex = graph.getVertex(values[1]);
+        resultVertex = graph.getVertex(values[2]);
+        System.out.println("\nSearching from " + sourceVertex.toString() + " to " + resultVertex.toString());
+        System.out.println("DFS: " + graph.depthFirstSearch(sourceVertex, resultVertex));
+        System.out.println("Depth First Path: " + graph.depthFirstPath(sourceVertex, resultVertex));
+        System.out.println("BFS: " + graph.breadthFirstSearch(sourceVertex, resultVertex));
         System.out.println();
         break;
       case "traverse":

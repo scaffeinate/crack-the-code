@@ -101,19 +101,19 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
   }
 
   @Override
-  public boolean depthFirstSearch(Vertex<T> rootVertex, Vertex<T> resultVertex) {
+  public boolean depthFirstSearch(Vertex<T> sourceVertex, Vertex<T> resultVertex) {
     Set<Vertex<T>> visitedSet = new HashSet<Vertex<T>>();
-    return depthFirstSearch(rootVertex, resultVertex, visitedSet);
+    return depthFirstSearch(sourceVertex, resultVertex, visitedSet);
   }
 
-  private boolean depthFirstSearch(Vertex<T> rootVertex, Vertex<T> resultVertex, Set<Vertex<T>> visitedSet) {
-    if (rootVertex.equals(resultVertex)) {
+  private boolean depthFirstSearch(Vertex<T> sourceVertex, Vertex<T> resultVertex, Set<Vertex<T>> visitedSet) {
+    if (sourceVertex.equals(resultVertex)) {
       return true;
     }
 
-    visitedSet.add(rootVertex);
+    visitedSet.add(sourceVertex);
 
-    List<Vertex<T>> neighbours = neighboursOf(rootVertex);
+    List<Vertex<T>> neighbours = neighboursOf(sourceVertex);
     for (Vertex<T> vertex : neighbours) {
       if (!visitedSet.contains(vertex)) {
         if (depthFirstSearch(vertex, resultVertex, visitedSet)) {
@@ -126,15 +126,15 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
   }
 
   @Override
-  public boolean breadthFirstSearch(Vertex<T> rootVertex, Vertex<T> resultVertex) {
-    if (rootVertex.equals(resultVertex)) {
+  public boolean breadthFirstSearch(Vertex<T> sourceVertex, Vertex<T> resultVertex) {
+    if (sourceVertex.equals(resultVertex)) {
       return true;
     }
 
     Queue<Vertex<T>> queue = new LinkedList<Vertex<T>>();
     Set<Vertex<T>> visitedSet = new HashSet<Vertex<T>>();
-    queue.add(rootVertex);
-    visitedSet.add(rootVertex);
+    queue.add(sourceVertex);
+    visitedSet.add(sourceVertex);
 
     while (!queue.isEmpty()) {
       Vertex<T> current = queue.poll();
@@ -156,10 +156,10 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
   }
 
   @Override
-  public String depthFirstPath(Vertex<T> rootVertex, Vertex<T> resultVertex) {
+  public String depthFirstPath(Vertex<T> sourceVertex, Vertex<T> resultVertex) {
     Set<Vertex<T>> visitedSet = new HashSet<Vertex<T>>();
     List<Vertex<T>> pathList = new ArrayList<Vertex<T>>();
-    depthFirstPath(rootVertex, resultVertex, visitedSet, pathList);
+    depthFirstPath(sourceVertex, resultVertex, visitedSet, pathList);
     StringBuilder builder = new StringBuilder();
     for (Vertex<T> vertex : pathList) {
       builder.append(vertex.label).append("->");
@@ -168,17 +168,17 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
     return builder.substring(0, builder.length() - 2).toString();
   }
 
-  private boolean depthFirstPath(Vertex<T> rootVertex, Vertex<T> resultVertex, Set<Vertex<T>> visitedSet,
+  private boolean depthFirstPath(Vertex<T> sourceVertex, Vertex<T> resultVertex, Set<Vertex<T>> visitedSet,
       List<Vertex<T>> pathList) {
-    if (rootVertex.equals(resultVertex)) {
-      pathList.add(rootVertex);
+    if (sourceVertex.equals(resultVertex)) {
+      pathList.add(sourceVertex);
       return true;
     }
 
-    visitedSet.add(rootVertex);
-    pathList.add(rootVertex);
+    visitedSet.add(sourceVertex);
+    pathList.add(sourceVertex);
 
-    List<Vertex<T>> neighbours = neighboursOf(rootVertex);
+    List<Vertex<T>> neighbours = neighboursOf(sourceVertex);
     for (Vertex<T> vertex : neighbours) {
       if (!visitedSet.contains(vertex)) {
         if (depthFirstPath(vertex, resultVertex, visitedSet, pathList)) {
@@ -193,10 +193,10 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
   }
 
   @Override
-  public void depthFirstTraversal(Vertex<T> rootVertex) {
+  public void depthFirstTraversal(Vertex<T> sourceVertex) {
     Stack<Vertex<T>> stack = new Stack<Vertex<T>>();
     Set<Vertex<T>> visitedSet = new HashSet<Vertex<T>>();
-    stack.push(rootVertex);
+    stack.push(sourceVertex);
     StringBuilder builder = new StringBuilder();
 
     while (!stack.isEmpty()) {
@@ -227,11 +227,11 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
   }
 
   @Override
-  public void breadthFirstTraversal(Vertex<T> rootVertex) {
+  public void breadthFirstTraversal(Vertex<T> sourceVertex) {
     Queue<Vertex<T>> queue = new LinkedList<Vertex<T>>();
     Set<Vertex<T>> visitedSet = new HashSet<Vertex<T>>();
-    queue.add(rootVertex);
-    visitedSet.add(rootVertex);
+    queue.add(sourceVertex);
+    visitedSet.add(sourceVertex);
     StringBuilder builder = new StringBuilder();
 
     while (!queue.isEmpty()) {
