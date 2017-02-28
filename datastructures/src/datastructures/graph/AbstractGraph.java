@@ -134,10 +134,10 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
     Queue<Vertex<T>> queue = new LinkedList<Vertex<T>>();
     Set<Vertex<T>> visitedSet = new HashSet<Vertex<T>>();
     queue.add(rootVertex);
+    visitedSet.add(rootVertex);
 
     while (!queue.isEmpty()) {
       Vertex<T> current = queue.poll();
-      visitedSet.add(current);
       List<Vertex<T>> neighbours = neighboursOf(current);
 
       for (Vertex<T> vertex : neighbours) {
@@ -146,6 +146,7 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
             return true;
           } else {
             queue.add(vertex);
+            visitedSet.add(current);
           }
         }
       }
@@ -230,18 +231,18 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
     Queue<Vertex<T>> queue = new LinkedList<Vertex<T>>();
     Set<Vertex<T>> visitedSet = new HashSet<Vertex<T>>();
     queue.add(rootVertex);
+    visitedSet.add(rootVertex);
     StringBuilder builder = new StringBuilder();
 
     while (!queue.isEmpty()) {
       Vertex<T> current = queue.poll();
-      if (!visitedSet.contains(current)) {
-        builder.append(current.label).append("->");
-        visitedSet.add(current);
-      }
+      builder.append(current.label).append("->");
+      
       List<Vertex<T>> neighbours = neighboursOf(current);
       for (Vertex<T> v : neighbours) {
         if (!visitedSet.contains(v)) {
           queue.add(v);
+          visitedSet.add(v);
         }
       }
     }
