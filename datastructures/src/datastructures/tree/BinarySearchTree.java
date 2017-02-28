@@ -1,24 +1,15 @@
 package datastructures.tree;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Stack;
 
-public class BinarySearchTree<T> {
-  private TreeNode<T> treeRoot = null;
-  private boolean linkToParent = false;
-
+public class BinarySearchTree<T> extends AbstractBinaryTree<T> {
+  
   public BinarySearchTree() {
 
   }
   
   public BinarySearchTree(boolean linkToParent) {
-    this.linkToParent = linkToParent;
-  }
-
-  public TreeNode<T> insertRoot(T data) {
-    this.treeRoot = new TreeNode<T>(data);
-    return this.treeRoot;
+    super.linkToParent = linkToParent;
   }
 
   public TreeNode<T> insert(TreeNode<T> root, T data) {
@@ -82,43 +73,6 @@ public class BinarySearchTree<T> {
     }
   }
 
-  public String breadthFirstTraversal(TreeNode<T> root) {
-    Queue<TreeNode<T>> queue = new LinkedList<TreeNode<T>>();
-    int depth = 0, numElementsAtDepth = 0;
-    StringBuilder builder = new StringBuilder();
-
-    queue.add(root);
-    builder.append("Level: ").append(depth).append(" => [ ");
-    numElementsAtDepth = queue.size();
-
-    while (!queue.isEmpty()) {
-      TreeNode<T> node = queue.poll();
-      numElementsAtDepth--;
-      builder.append(node.data).append(" ");
-
-      if (node.left != null) {
-        queue.add(node.left);
-      }
-
-      if (node.right != null) {
-        queue.add(node.right);
-      }
-
-      if (numElementsAtDepth == 0) {
-        depth++;
-        if (!queue.isEmpty()) {
-          builder.append("]").append("\n");
-          builder.append("Level: ").append(depth).append(" => [ ");
-          numElementsAtDepth = queue.size();
-        }
-      }
-    }
-    builder.append("]").append("\n\n");
-    builder.append("Height of the Tree: " + depth);
-
-    return builder.toString();
-  }
-
   public String depthFirstPreOrder(TreeNode<T> root) {
     Stack<TreeNode<T>> stack = new Stack<TreeNode<T>>();
     StringBuilder builder = new StringBuilder();
@@ -148,7 +102,7 @@ public class BinarySearchTree<T> {
     }
 
     builder.append("]");
-    resetVisited(treeRoot);
+    resetVisited(getRoot());
     return builder.toString();
   }
 
@@ -178,7 +132,7 @@ public class BinarySearchTree<T> {
     }
 
     builder.append("]");
-    resetVisited(treeRoot);
+    resetVisited(getRoot());
     return builder.toString();
   }
 
@@ -204,7 +158,7 @@ public class BinarySearchTree<T> {
     }
 
     builder.append("]");
-    resetVisited(treeRoot);
+    resetVisited(getRoot());
     return builder.toString();
   }
 
@@ -262,47 +216,6 @@ public class BinarySearchTree<T> {
     }
 
     return (builder == null) ? null : builder.toString();
-  }
-
-  public String inOrder(TreeNode<T> root) {
-    StringBuilder builder = new StringBuilder();
-    if (root != null) {
-      builder.append(inOrder(root.left));
-      builder.append(root.data).append(" ");
-      builder.append(inOrder(root.right));
-    }
-
-    return builder.toString();
-  }
-
-  public String preOrder(TreeNode<T> root) {
-    StringBuilder builder = new StringBuilder();
-    if (root != null) {
-      builder.append(root.data).append(" ");
-      builder.append(preOrder(root.left));
-      builder.append(preOrder(root.right));
-    }
-
-    return builder.toString();
-  }
-
-  public String postOrder(TreeNode<T> root) {
-    StringBuilder builder = new StringBuilder();
-    if (root != null) {
-      builder.append(postOrder(root.left));
-      builder.append(postOrder(root.right));
-      builder.append(root.data).append(" ");
-    }
-
-    return builder.toString();
-  }
-
-  public TreeNode<T> getRoot() {
-    return this.treeRoot;
-  }
-
-  public void setRoot(TreeNode<T> root) {
-    this.treeRoot = root;
   }
 
   public T getMinimum(TreeNode<T> root) {
