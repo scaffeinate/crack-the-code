@@ -12,6 +12,8 @@ public interface GenericGraph<T> {
   
   public boolean addEdge(Vertex<T> sourceVertex, Vertex<T> destVertex, int weight);
   
+  public boolean removeEdge(Vertex<T> sourceVertex, Vertex<T> destVertex);
+  
   public boolean containsVertex(T label);
   
   public Vertex<T> getVertex(T label);

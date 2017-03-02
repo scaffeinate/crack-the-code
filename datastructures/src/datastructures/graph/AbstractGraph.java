@@ -58,6 +58,22 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
   }
 
   @Override
+  public boolean removeEdge(Vertex<T> sourceVertex, Vertex<T> destVertex) {
+    Edge<T> edge = getEdge(sourceVertex, destVertex);
+    
+    sourceVertex.outgoingEdges.remove(edge);
+    destVertex.incomingEdges.remove(edge);
+
+    if(graphType == GraphType.UNDIRECTED) {
+      Edge<T> reverseEdge = getEdge(destVertex, sourceVertex);
+      sourceVertex.incomingEdges.remove(reverseEdge);
+      destVertex.outgoingEdges.remove(reverseEdge);
+    }
+    
+    return true;
+  }
+
+  @Override
   public boolean containsVertex(T label) {
     return vertices.containsKey(label);
   }
@@ -237,7 +253,7 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
     while (!queue.isEmpty()) {
       Vertex<T> current = queue.poll();
       builder.append(current.label).append("->");
-      
+
       List<Vertex<T>> neighbours = neighboursOf(current);
       for (Vertex<T> v : neighbours) {
         if (!visitedSet.contains(v)) {
