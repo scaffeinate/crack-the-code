@@ -16,7 +16,7 @@ import datastructures.graph.Vertex;
 
 /**
  * Problem: http://www.geeksforgeeks.org/strongly-connected-components/
- * Solution: https://www.youtube.com/watch?v=RpgcYiky7uw
+ * Problem Explanation: https://www.youtube.com/watch?v=RpgcYiky7uw
  * 
  * @author Sudharsanan Muralidharan
  */
@@ -124,15 +124,5 @@ public class StronglyConnectedComponents {
     }
 
     return graph2;
-  }
-
-  public static void main(String[] args) throws FileNotFoundException {
-    String[] input = InputUtil.readContents("test_strong_connected_components");
-    StronglyConnectedComponents stronglyConnectedComponents = new StronglyConnectedComponents();
-    DirectedGraph<String> graph = stronglyConnectedComponents.constructGraph(input);
-    List<List<Vertex<String>>> connectedComponents = stronglyConnectedComponents.getConnectedComponents(graph);
-    for (List<Vertex<String>> component : connectedComponents) {
-      System.out.println(component);
-    }
   }
 }
