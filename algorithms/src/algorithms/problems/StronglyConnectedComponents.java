@@ -3,14 +3,12 @@
  */
 package algorithms.problems;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
-import algorithms.util.InputUtil;
 import datastructures.graph.DirectedGraph;
 import datastructures.graph.Vertex;
 
@@ -62,8 +60,7 @@ public class StronglyConnectedComponents {
       Vertex<String> top = stack.pop();
       Vertex<String> vertex = graph2.getVertex(top.label);
       if (!visited.contains(vertex)) {
-        List<Vertex<String>> component = dfsVisit(graph2, vertex, visited);
-        connectedComponents.add(component);
+        connectedComponents.add(dfsVisit(graph2, vertex, visited));
       }
     }
 
@@ -76,7 +73,7 @@ public class StronglyConnectedComponents {
     Set<Vertex<String>> visited = new HashSet<Vertex<String>>();
     for (Vertex<String> vertex : vertices) {
       if (!visited.contains(vertex)) {
-        dfsVisit(graph, vertex, visited, stack, new ArrayList<Vertex<String>>());
+        dfsVisit(graph, vertex, visited, stack);
       }
     }
 
@@ -85,28 +82,25 @@ public class StronglyConnectedComponents {
 
   private List<Vertex<String>> dfsVisit(DirectedGraph<String> graph, Vertex<String> sourceVertex,
       Set<Vertex<String>> visited) {
-    List<Vertex<String>> vertices = new ArrayList<Vertex<String>>();
-    dfsVisit(graph, sourceVertex, visited, null, vertices);
-    return vertices;
+    Stack<Vertex<String>> stack = new Stack<Vertex<String>>();
+    dfsVisit(graph, sourceVertex, visited, stack);
+    return stack;
   }
 
   private void dfsVisit(DirectedGraph<String> graph, Vertex<String> sourceVertex, Set<Vertex<String>> visited,
-      Stack<Vertex<String>> stack, List<Vertex<String>> vertices) {
+      Stack<Vertex<String>> stack) {
     if (sourceVertex == null)
       return;
 
     visited.add(sourceVertex);
-    vertices.add(sourceVertex);
     List<Vertex<String>> neighbours = graph.neighboursOf(sourceVertex);
     for (Vertex<String> vertex : neighbours) {
       if (!visited.contains(vertex)) {
-        dfsVisit(graph, vertex, visited, stack, vertices);
+        dfsVisit(graph, vertex, visited, stack);
       }
     }
-
-    if (stack != null) {
-      stack.push(sourceVertex);
-    }
+    
+    stack.push(sourceVertex);
   }
 
   private DirectedGraph<String> reverseGraph(DirectedGraph<String> graph) {
