@@ -51,6 +51,10 @@ public class DisjointSets {
     Node parent1 = parent(node1);
     Node parent2 = parent(node2);
 
+    if(parent1.data == parent2.data) {
+      return;
+    }
+    
     if (parent1.rank == parent2.rank) {
       parent2.parent = parent1;
       parent1.rank++;
