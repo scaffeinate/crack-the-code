@@ -1,0 +1,18 @@
+make 1
+make 2
+make 3
+make 4
+make 5
+make 6
+make 7
+union 1 2
+union 2 3
+union 4 5
+union 6 7
+union 5 6
+find 2
+find 3
+find 7
+find 6
+find 4
+find 1
