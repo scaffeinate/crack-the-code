@@ -92,7 +92,9 @@ public class BuildOrder {
     Stack<Vertex<Character>> stack = new Stack<Vertex<Character>>();
 
     for (Vertex<Character> project : projects) {
-      depthFirstTraversal(project, stack, visitedSet);
+      if (!visitedSet.contains(project)) {
+        depthFirstTraversal(project, stack, visitedSet);
+      }
     }
 
     while (!stack.isEmpty()) {
@@ -118,19 +120,23 @@ public class BuildOrder {
       Vertex<Character> project = buildOrderPipeline.get(processAt);
       builder.append(project.label).append(" ");
       List<Vertex<Character>> neighbours = graph2.neighboursOf(project);
-      
-      for(Vertex<Character> neighbour:neighbours) {
+
+      for (Vertex<Character> neighbour : neighbours) {
         neighbour.numberOfIncomingEdges--;
-        
-        if(neighbour.numberOfIncomingEdges == 0) {
+
+        if (neighbour.numberOfIncomingEdges == 0) {
           buildOrderPipeline.add(neighbour);
         }
       }
-      
+
       processAt++;
     }
 
-    return builder.toString();
+    if (buildOrderPipeline.size() != projects.size()) {
+      return "Circular Dependecy";
+    } else {
+      return builder.toString();
+    }
   }
 
   private void depthFirstTraversal(Vertex<Character> sourceVertex, StringBuilder builder,
@@ -139,6 +145,8 @@ public class BuildOrder {
       return;
     }
 
+    visitedSet.add(sourceVertex);
+
     List<Vertex<Character>> neighbours = graph.neighboursOf(sourceVertex);
     for (Vertex<Character> vertex : neighbours) {
       if (!visitedSet.contains(vertex)) {
@@ -146,16 +154,16 @@ public class BuildOrder {
       }
     }
 
-    visitedSet.add(sourceVertex);
     builder.append(sourceVertex.label).append(" ");
   }
 
   private void depthFirstTraversal(Vertex<Character> sourceVertex, Stack<Vertex<Character>> stack,
       Set<Vertex<Character>> visitedSet) {
-
     if (sourceVertex == null) {
       return;
     }
+
+    visitedSet.add(sourceVertex);
 
     List<Vertex<Character>> neighbours = graph2.neighboursOf(sourceVertex);
     for (Vertex<Character> neighbour : neighbours) {
@@ -164,10 +172,7 @@ public class BuildOrder {
       }
     }
 
-    if (!visitedSet.contains(sourceVertex)) {
-      visitedSet.add(sourceVertex);
-      stack.add(sourceVertex);
-    }
+    stack.add(sourceVertex);
   }
 
   public static void main(String[] args) throws FileNotFoundException {
@@ -179,6 +184,7 @@ public class BuildOrder {
     System.out.println();
     System.out.println("Using A->B (denoting A should be built before B) \n" + buildOrder.fetchBuildOrder2());
     System.out.println();
-    System.out.println("Using A->B (denoting A should be built before B) and Build pipeline \n" + buildOrder.fetchBuildOrder3());
+    System.out.println(
+        "Using A->B (denoting A should be built before B) and Build pipeline \n" + buildOrder.fetchBuildOrder3());
   }
 }
