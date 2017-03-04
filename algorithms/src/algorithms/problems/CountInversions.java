@@ -3,10 +3,7 @@
  */
 package algorithms.problems;
 
-import java.io.FileNotFoundException;
 import java.util.Arrays;
-
-import algorithms.util.InputUtil;
 
 /**
  * @author Sudharsanan Muralidharan
@@ -18,7 +15,7 @@ public class CountInversions {
     int inversionCount = 0;
   }
 
-  private int countInversions(int[] arr) {
+  public int countInversions(int[] arr) {
     int count = 0;
     for (int i = 0; i < arr.length; i++) {
       for (int j = i + 1; j < arr.length; j++) {
@@ -30,7 +27,7 @@ public class CountInversions {
     return count;
   }
 
-  private int countInversions2(int[] arr) {
+  public int countInversions2(int[] arr) {
     return sortAndCountInverse(arr, 0, arr.length - 1).inversionCount;
   }
 
@@ -89,20 +86,5 @@ public class CountInversions {
     inversionArray.inversionCount = inversionCount;
     
     return inversionArray;
-  }
-
-  public static void main(String[] args) throws FileNotFoundException {
-    String[] input = InputUtil.readContents("test_count_inversions");
-    CountInversions countInversions = new CountInversions();
-    for (String line : input) {
-      String[] values = line.split(" ");
-      int[] arr = new int[values.length];
-      for (int i = 0; i < values.length; i++) {
-        arr[i] = Integer.parseInt(values[i]);
-      }
-      System.out.println("Number of Inversions using brute force: " + countInversions.countInversions(arr));
-      System.out.println("Number of Inversions using divide and conquer: " + countInversions.countInversions2(arr));
-      System.out.println();
-    }
   }
 }
