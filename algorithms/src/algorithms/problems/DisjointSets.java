@@ -39,22 +39,23 @@ public class DisjointSets {
           union(nodesMap.get(node1), nodesMap.get(node2));
         }
         break;
-      case "find":
-        node = nodesMap.get(Integer.parseInt(values[1]));
-        System.out.println(find(node).data);
-        break;
       }
     }
+  }
+
+  public int find(int val) {
+    Node node = nodesMap.get(val);
+    return find(node).data;
   }
 
   private void union(Node node1, Node node2) {
     Node parent1 = parent(node1);
     Node parent2 = parent(node2);
 
-    if(parent1.data == parent2.data) {
+    if (parent1.data == parent2.data) {
       return;
     }
-    
+
     if (parent1.rank == parent2.rank) {
       parent2.parent = parent1;
       parent1.rank++;
