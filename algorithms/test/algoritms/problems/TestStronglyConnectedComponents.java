@@ -11,8 +11,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import algorithms.problems.StronglyConnectedComponents;
@@ -22,25 +22,32 @@ import datastructures.graph.Vertex;
 
 public class TestStronglyConnectedComponents {
 
-  private StronglyConnectedComponents stronglyConnectedComponents = null;
-  private String basePath = "input_files/problems/strongly_connected_components/";
-  private DirectedGraph<String> graph = null;
+  private static StronglyConnectedComponents stronglyConnectedComponents = null;
+  private static String basePath = "input_files/problems/strongly_connected_components/";
+  private static DirectedGraph<String> graph = null;
+  private static String[] testCases = new String[] { "test_case_1", "test_case_2" };
+  private static List<String[]> inputList = new ArrayList<String[]>();
 
-  @Before
-  public void setup() {
+  @BeforeClass
+  public static void setup() {
     stronglyConnectedComponents = new StronglyConnectedComponents();
+    for (String testCase : testCases) {
+      String inputFile = basePath + testCase;
+      inputList.add(InputUtil.readContents(inputFile));
+    }
   }
 
-  @After
-  public void teardownClass() {
+  @AfterClass
+  public static void teardownClass() {
     stronglyConnectedComponents = null;
     graph = null;
+    testCases = null;
+    inputList = null;
   }
 
   @Test
   public void testStronglyConnectedComponentsTestCase1() {
-    String inputFile = basePath + "test_case_1";
-    String[] input = InputUtil.readContents(inputFile);
+    String[] input = inputList.get(0);
     graph = stronglyConnectedComponents.constructGraph(input);
     List<List<Vertex<String>>> connectedComponents = stronglyConnectedComponents.getConnectedComponents(graph);
     List<List<String>> actualComponents = new ArrayList<List<String>>();
@@ -70,8 +77,7 @@ public class TestStronglyConnectedComponents {
   
   @Test
   public void testStronglyConnectedComponentsTestCase2() {
-    String inputFile = basePath + "test_case_2";
-    String[] input = InputUtil.readContents(inputFile);
+    String[] input = inputList.get(1);
     graph = stronglyConnectedComponents.constructGraph(input);
     List<List<Vertex<String>>> connectedComponents = stronglyConnectedComponents.getConnectedComponents(graph);
     List<List<String>> actualComponents = new ArrayList<List<String>>();
