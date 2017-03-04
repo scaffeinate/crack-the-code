@@ -1,0 +1,20 @@
+make 1
+make 2
+make 3
+make 4
+make 5
+union 1 5
+union 2 3
+union 3 4
+union 2 4
+union 5 1
+union 3 2
+union 4 3
+union 1 1
+union 5 5
+union 4 4
+find 1
+find 2
+find 3
+find 4
+find 5

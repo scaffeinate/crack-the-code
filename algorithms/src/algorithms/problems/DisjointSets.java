@@ -6,8 +6,6 @@ package algorithms.problems;
 import java.util.HashMap;
 import java.util.Map;
 
-import algorithms.util.InputUtil;
-
 /**
  * Problem Explanation: https://www.youtube.com/watch?v=ID00PMy0-vE
  * 
@@ -79,12 +77,6 @@ public class DisjointSets {
     }
 
     return node;
-  }
-
-  public static void main(String[] args) {
-    String[] input = InputUtil.readContents("input_files/problems/disjoint_sets/test_case_1");
-    DisjointSets disjointSets = new DisjointSets();
-    disjointSets.constructDisjointSet(input);
   }
 
   private class Node {
