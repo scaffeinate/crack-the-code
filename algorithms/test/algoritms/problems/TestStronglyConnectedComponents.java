@@ -25,7 +25,7 @@ public class TestStronglyConnectedComponents {
   private static StronglyConnectedComponents stronglyConnectedComponents = null;
   private static String basePath = "input_files/problems/strongly_connected_components/";
   private static DirectedGraph<String> graph = null;
-  private static String[] testCases = new String[] { "test_case_1", "test_case_2" };
+  private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3" };
   private static List<String[]> inputList = new ArrayList<String[]>();
 
   @BeforeClass
@@ -99,6 +99,34 @@ public class TestStronglyConnectedComponents {
     sort(actualComponents);
 
     assertThat(actualComponents, hasSize(4));
+    assertEquals(actualComponents.size(), expectedComponents.size());
+
+    for (int i = 0; i < actualComponents.size(); i++) {
+      assertThat(actualComponents.get(i), containsInAnyOrder(expectedComponents.get(i).toArray()));
+    }
+  }
+  
+  @Test
+  public void testStronglyConnectedComponentsTestCase3() {
+    String[] input = inputList.get(2);
+    graph = stronglyConnectedComponents.constructGraph(input);
+    List<List<Vertex<String>>> connectedComponents = stronglyConnectedComponents.getConnectedComponents(graph);
+    List<List<String>> actualComponents = new ArrayList<List<String>>();
+
+    for (List<Vertex<String>> component : connectedComponents) {
+      List<String> list = new ArrayList<String>();
+      for (Vertex<String> vertex : component) {
+        list.add(vertex.label);
+      }
+      actualComponents.add(list);
+    }
+
+    List<List<String>> expectedComponents = new ArrayList<List<String>>();
+    expectedComponents.add(Arrays.asList(new String[] { "j", "e", "f", "g", "h", "i", "a", "b", "c", "d" }));
+    
+    sort(actualComponents);
+
+    assertThat(actualComponents, hasSize(1));
     assertEquals(actualComponents.size(), expectedComponents.size());
 
     for (int i = 0; i < actualComponents.size(); i++) {
