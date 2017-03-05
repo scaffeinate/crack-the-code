@@ -6,7 +6,7 @@ package datastructures.disjointsets;
 /**
  * @author Sudharsanan Muralidharan
  */
-public class DisjointSet<T> {
+public class DisjointSetNaive<T> {
 
   public DisjointSetListNode<T> makeSet(T data) {
     DisjointSetList<T> DisjointSetList = new DisjointSetList<T>();

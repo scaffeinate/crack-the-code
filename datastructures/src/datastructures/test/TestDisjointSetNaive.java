@@ -5,15 +5,15 @@ package datastructures.test;
 
 import java.util.HashMap;
 
-import datastructures.disjointsets.DisjointSet;
+import datastructures.disjointsets.DisjointSetNaive;
 import datastructures.disjointsets.DisjointSetListNode;
 
 /**
  * @author Sudharsanan Muralidharan
  */
-public class TestDisjointSets {
+public class TestDisjointSetNaive {
   public static void main(String[] args) {
-    DisjointSet<Integer> disjointSet = new DisjointSet<Integer>();
+    DisjointSetNaive<Integer> disjointSet = new DisjointSetNaive<Integer>();
     HashMap<Integer, DisjointSetListNode> elementsMap = new HashMap<Integer, DisjointSetListNode>();
     elementsMap.put(1, disjointSet.makeSet(1));
     elementsMap.put(2, disjointSet.makeSet(2));
