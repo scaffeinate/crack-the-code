@@ -8,69 +8,31 @@ package datastructures.disjointsets;
  */
 public class DisjointSet<T> {
 
-  public SetElement<T> makeSet(T data) {
-    SetList<T> setList = new SetList<T>();
-    return setList.insert(data);
+  public DisjointSetListNode<T> makeSet(T data) {
+    DisjointSetList<T> DisjointSetList = new DisjointSetList<T>();
+    return DisjointSetList.insert(data);
   }
 
-  public void union(SetElement<T> setElement1, SetElement<T> setElement2) {
-    if (setElement1.listRef.equals(setElement2.listRef)) {
+  public void union(DisjointSetListNode<T> setElement1, DisjointSetListNode<T> setElement2) {
+    DisjointSetList<T> list1 = setElement1.listRef;
+    DisjointSetList<T> list2 = setElement2.listRef;
+
+    if (list1.equals(list2)) {
       return;
     }
 
-    if (setElement1.listRef.size >= setElement2.listRef.size) {
-      setElement1.listRef.append(setElement2.listRef);
+    if (list1.size() >= list2.size()) {
+      list1.append(list2);
     } else {
-      setElement2.listRef.append(setElement1.listRef);
+      list2.append(list1);
     }
   }
 
-  public SetElement<T> findSet(SetElement<T> setElement) {
+  public T findSet(DisjointSetListNode<T> setElement) {
     if (setElement == null || setElement.listRef == null) {
       return null;
     }
-    
-    return setElement.listRef.head;
-  }
 
-  public class SetList<T> {
-    SetElement<T> head = null;
-    SetElement<T> tail = null;
-    int size = 0;
-
-    public SetElement<T> insert(T data) {
-      SetElement<T> setElement = new SetElement<T>(data);
-      head = tail = setElement;
-      setElement.listRef = this;
-      this.size++;
-      return setElement;
-    }
-
-    public void append(SetList<T> set) {
-      this.tail.next = set.head;
-      this.tail = set.tail;
-      SetElement<T> current = set.head;
-      while (current != null) {
-        current.listRef = this;
-        current = current.next;
-      }
-
-      this.size += set.size;
-    }
-  }
-
-  public class SetElement<T> {
-    public T data;
-    SetElement<T> next = null;
-    SetList<T> listRef = null;
-
-    public SetElement(T data) {
-      this(data, null);
-    }
-
-    public SetElement(T data, SetList<T> listRef) {
-      this.data = data;
-      this.listRef = listRef;
-    }
+    return setElement.listRef.head().data;
   }
 }
