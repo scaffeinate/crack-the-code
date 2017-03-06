@@ -3,19 +3,38 @@
  */
 package datastructures.disjointsets;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Sudharsanan Muralidharan
  */
 public class DisjointSetNaive<T> {
 
-  public DisjointSetListNode<T> makeSet(T data) {
-    DisjointSetList<T> DisjointSetList = new DisjointSetList<T>();
-    return DisjointSetList.insert(data);
+  private Map<T, DisjointSetListNode<T>> nodesMap = null;
+
+  public DisjointSetNaive() {
+    nodesMap = new HashMap<T, DisjointSetListNode<T>>();
   }
 
-  public void union(DisjointSetListNode<T> setElement1, DisjointSetListNode<T> setElement2) {
-    DisjointSetList<T> list1 = setElement1.listRef;
-    DisjointSetList<T> list2 = setElement2.listRef;
+  public DisjointSetListNode<T> makeSet(T data) {
+    DisjointSetList<T> DisjointSetList = new DisjointSetList<T>();
+    DisjointSetListNode<T> node = DisjointSetList.insert(data);
+    nodesMap.put(data, node);
+    return node;
+  }
+
+  public void union(T setElement1, T setElement2) {
+
+    DisjointSetListNode<T> node1 = nodesMap.get(setElement1);
+    DisjointSetListNode<T> node2 = nodesMap.get(setElement2);
+
+    if (node1 == null || node2 == null) {
+      return;
+    }
+
+    DisjointSetList<T> list1 = node1.listRef;
+    DisjointSetList<T> list2 = node2.listRef;
 
     if (list1.equals(list2)) {
       return;
@@ -28,11 +47,12 @@ public class DisjointSetNaive<T> {
     }
   }
 
-  public T findSet(DisjointSetListNode<T> setElement) {
-    if (setElement == null || setElement.listRef == null) {
+  public T findSet(T setElement) {
+    DisjointSetListNode<T> node = nodesMap.get(setElement);
+    if (node == null || node.listRef == null) {
       return null;
     }
 
-    return setElement.listRef.head().data;
+    return node.listRef.head().data;
   }
 }
