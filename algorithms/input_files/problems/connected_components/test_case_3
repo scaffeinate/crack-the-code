@@ -1,0 +1,20 @@
+vertex 1
+vertex 2
+vertex 3
+vertex 4
+vertex 5
+vertex 6
+vertex 7
+vertex 8
+vertex 9
+vertex 10
+sameComponent 1 5 false
+sameComponent 2 1 false
+sameComponent 3 5 false
+sameComponent 7 10 false
+sameComponent 6 8 false
+sameComponent 1 10 false
+sameComponent 9 5 false
+sameComponent 6 4 false
+sameComponent 5 6 false
+sameComponent 5 5 true
