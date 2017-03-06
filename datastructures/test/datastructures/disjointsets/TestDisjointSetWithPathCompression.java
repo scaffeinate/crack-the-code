@@ -34,21 +34,21 @@ public class TestDisjointSetWithPathCompression {
   }
 
   @Test
-  public void testDisjointSetNaiveTestCase1() {
+  public void testDisjointSetWithPathCompressionTestCase1() {
     String[] input = inputList.get(0);
     Integer[] expected = new Integer[] { 4, 4, 4, 4, 4, 4 };
     assertDisjointSet(input, expected);
   }
 
   @Test
-  public void testDisjointSetNaiveTestCase2() {
+  public void testDisjointSetWithPathCompressionTestCase2() {
     String[] input = inputList.get(1);
     Integer[] expected = new Integer[] { 1, 1, 4, 4, 4, 1 };
     assertDisjointSet(input, expected);
   }
 
   @Test
-  public void testDisjointSetNaiveTestCase3() {
+  public void testDisjointSetWithPathCompressionTestCase3() {
     String[] input = inputList.get(2);
     Integer[] expected = new Integer[] { 1, 2, 2, 2, 1 };
     assertDisjointSet(input, expected);

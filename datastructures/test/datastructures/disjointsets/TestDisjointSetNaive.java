@@ -75,6 +75,6 @@ public class TestDisjointSetNaive {
       }
     }
 
-    assertArrayEquals(actual, expected);
+    assertArrayEquals(expected, actual);
   }
 }
