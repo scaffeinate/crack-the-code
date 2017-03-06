@@ -1,0 +1,19 @@
+makeSet 1
+makeSet 2
+makeSet 3
+makeSet 4
+makeSet 5
+makeSet 6
+makeSet 7
+union 1 2
+union 2 3
+union 4 5
+union 6 7
+union 5 6
+union 1 7
+findSet 2
+findSet 3
+findSet 7
+findSet 6
+findSet 4
+findSet 1
