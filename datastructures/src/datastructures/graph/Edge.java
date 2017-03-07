@@ -18,4 +18,9 @@ public class Edge<T> {
     this.destVertex = destVertex;
     this.weight = weight;
   }
+
+  @Override
+  public String toString() {
+    return "Edge [ sourceVertex=" + sourceVertex + ", destVertex=" + destVertex + ", weight=" + weight + " ]";
+  }
 }
