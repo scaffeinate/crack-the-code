@@ -48,16 +48,14 @@ public class DisjointSetWithPathCompression<T> {
       return null;
     }
 
-    DisjointSetNode<T> parent = parent(node);
-    node.parent = parent;
-    return parent.data;
+    return parent(node).data;
   }
 
   private DisjointSetNode<T> parent(DisjointSetNode<T> node) {
-    if (node != null && node.parent.equals(node)) {
-      return node;
-    } else {
-      return parent(node.parent);
+    if(!node.parent.equals(node)) {
+      node.parent = parent(node.parent);
     }
+    
+    return node.parent;
   }
 }
