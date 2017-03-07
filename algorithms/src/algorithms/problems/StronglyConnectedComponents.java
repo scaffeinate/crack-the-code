@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.Stack;
 
 import datastructures.graph.DirectedGraph;
+import datastructures.graph.Edge;
 import datastructures.graph.Vertex;
 
 /**
@@ -105,16 +106,14 @@ public class StronglyConnectedComponents {
 
   private DirectedGraph<String> reverseGraph(DirectedGraph<String> graph) {
     Set<Vertex<String>> vertices = graph.verticesSet();
+    Set<Edge<String>> edges = graph.edgesSet();
     DirectedGraph<String> graph2 = new DirectedGraph<String>();
     for (Vertex<String> vertex : vertices) {
       graph2.createVertex(vertex.label);
     }
 
-    for (Vertex<String> vertex : vertices) {
-      List<Vertex<String>> neighbours = graph.neighboursOf(vertex);
-      for (Vertex<String> neighbour : neighbours) {
-        graph2.addEdge(graph2.getVertex(neighbour.label), graph2.getVertex(vertex.label));
-      }
+    for (Edge<String> edge : edges) {
+      graph2.addEdge(graph2.getVertex(edge.destVertex.label), graph2.getVertex(edge.sourceVertex.label));
     }
 
     return graph2;
