@@ -23,24 +23,21 @@ public class CartesianProduct {
 
   @SuppressWarnings("unchecked")
   private void product(List<List<String>> lists, Stack<String> temp, List<List<String>> results, int index) {
-    if (temp.size() == lists.size()) {
+    if (index >= lists.size()) {
       results.add((List<String>) temp.clone());
       return;
     }
 
-    while (index < lists.size()) {
-      List<String> list = lists.get(index);
-      for (int i = 0; i < list.size(); i++) {
-        temp.push(list.get(i));
-        product(lists, temp, results, index + 1);
-        temp.pop();
-      }
-      index++;
+    List<String> list = lists.get(index);
+    for (int i = 0; i < list.size(); i++) {
+      temp.push(list.get(i));
+      product(lists, temp, results, index + 1);
+      temp.pop();
     }
   }
 
   public static void main(String[] args) throws FileNotFoundException {
-    String[] input = InputUtil.readContents("test_cartesian_product");
+    String[] input = InputUtil.readContents("input_files/test_cartesian_product");
     List<List<String>> listOfLists = new ArrayList<List<String>>();
     CartesianProduct cartesian = new CartesianProduct();
     for (String line : input) {

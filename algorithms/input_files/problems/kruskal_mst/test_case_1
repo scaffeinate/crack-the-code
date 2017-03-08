@@ -1,0 +1,9 @@
+vertex A
+vertex B
+vertex C
+vertex D
+edge A B 1
+edge B C 2
+edge A C 3
+edge B D 1
+edge D C 1

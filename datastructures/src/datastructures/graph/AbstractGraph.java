@@ -12,11 +12,15 @@ import java.util.Set;
 import java.util.Stack;
 
 public abstract class AbstractGraph<T> implements GenericGraph<T> {
-  protected Map<T, Vertex<T>> vertices;
-  private GraphType graphType;
+  protected Map<T, Vertex<T>> vertices = null;
+  protected Set<Vertex<T>> verticesSet = null;
+  protected Set<Edge<T>> edgesSet = null;
+  private GraphType graphType = null;
 
   public AbstractGraph(GraphType graphType) {
     vertices = new HashMap<T, Vertex<T>>();
+    verticesSet = new HashSet<Vertex<T>>();
+    edgesSet = new HashSet<Edge<T>>();
     this.graphType = graphType;
   }
 
@@ -33,15 +37,20 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
       sourceVertex.numberOfOutgoingEdges++;
       destVertex.incomingEdges.add(edge);
       destVertex.numberOfIncomingEdges++;
+      edgesSet.add(edge);
+      
       if (graphType.equals(GraphType.UNDIRECTED)) {
         Edge<T> reverseEdge = new Edge<T>(destVertex, sourceVertex, weight);
         destVertex.outgoingEdges.add(reverseEdge);
         destVertex.numberOfOutgoingEdges++;
         sourceVertex.incomingEdges.add(reverseEdge);
         sourceVertex.numberOfIncomingEdges++;
+        edgesSet.add(reverseEdge);
       }
+      
       return true;
     }
+    
     return false;
   }
 
@@ -49,12 +58,14 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
   public Vertex<T> createVertex(T label) {
     Vertex<T> v = new Vertex<T>(label);
     vertices.put(label, v);
+    verticesSet.add(v);
     return v;
   }
 
   @Override
   public boolean addVertex(Vertex<T> v, T label) {
-    return (vertices.put(label, v)) != null;
+    vertices.put(label, v);
+    return verticesSet.add(v);
   }
 
   @Override
@@ -63,11 +74,13 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
     
     sourceVertex.outgoingEdges.remove(edge);
     destVertex.incomingEdges.remove(edge);
+    edgesSet.remove(edge);
 
     if(graphType == GraphType.UNDIRECTED) {
       Edge<T> reverseEdge = getEdge(destVertex, sourceVertex);
       sourceVertex.incomingEdges.remove(reverseEdge);
       destVertex.outgoingEdges.remove(reverseEdge);
+      edgesSet.remove(reverseEdge);
     }
     
     return true;
@@ -281,11 +294,10 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
   }
 
   public Set<Vertex<T>> verticesSet() {
-    Set<Vertex<T>> verticesSet = new HashSet<Vertex<T>>();
-    Set<Entry<T, Vertex<T>>> entrySet = vertices.entrySet();
-    for (Entry<T, Vertex<T>> entry : entrySet) {
-      verticesSet.add(entry.getValue());
-    }
-    return verticesSet;
+    return this.verticesSet;
+  }
+  
+  public Set<Edge<T>> edgesSet() {
+    return this.edgesSet;
   }
 }
