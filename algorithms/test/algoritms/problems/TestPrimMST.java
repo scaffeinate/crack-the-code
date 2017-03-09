@@ -15,15 +15,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.problems.KruskalMST;
+import algorithms.problems.PrimMST;
 import algorithms.util.InputUtil;
 import datastructures.graph.Edge;
 
-public class TestKruskalMST {
+public class TestPrimMST {
   private static final String basePath = "input_files/problems/minimum_spanning_tree/";
   private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3", "test_case_4" };
   private static List<String[]> inputList = new ArrayList<String[]>();
-  private KruskalMST kruskalMST = null;
+  private PrimMST primMST = null;
 
   @BeforeClass
   public static void setup() {
@@ -41,43 +41,42 @@ public class TestKruskalMST {
 
   @Before
   public void setupTest() {
-    kruskalMST = new KruskalMST();
+    primMST = new PrimMST();
   }
 
   @After
   public void tearDownTest() {
-    kruskalMST = null;
+    primMST = null;
   }
 
   @Test
-  public void testKruskalMSTTestCase1() {
+  public void testPrimMSTTestCase1() {
     String[] input = inputList.get(0);
-    kruskalMST.constructGraph(input);
-    List<Edge<String>> mst = kruskalMST.minimumSpanningTree();
-    String[] expected = new String[] { "AB", "BD", "CD"};
+    primMST.constructGraph(input);
+    List<Edge<String>> mst = primMST.minimumSpanningTree();
+    String[] expected = new String[] { "AB", "BD", "CD" };
     assertMST(mst, expected, 3);
   }
-  
 
   @Test
-  public void testKruskalMSTTestCase2() {
+  public void testPrimMSTTestCase2() {
     String[] input = inputList.get(1);
-    kruskalMST.constructGraph(input);
-    List<Edge<String>> mst = kruskalMST.minimumSpanningTree();
-    String[] expected = new String[] { "AD", "BC", "CD", "EF", "CF"};
+    primMST.constructGraph(input);
+    List<Edge<String>> mst = primMST.minimumSpanningTree();
+    String[] expected = new String[] { "AD", "BC", "CD", "EF", "CF" };
     assertMST(mst, expected, 9);
   }
-  
+
   @Test
-  public void testKruskalMSTTestCase3() {
+  public void testPrimMSTTestCase3() {
     String[] input = inputList.get(2);
-    kruskalMST.constructGraph(input);
-    List<Edge<String>> mst = kruskalMST.minimumSpanningTree();
-    String[] expected = new String[] { "AD", "AB", "AC", "CH", "GH", "FG", "AE"};
+    primMST.constructGraph(input);
+    List<Edge<String>> mst = primMST.minimumSpanningTree();
+    String[] expected = new String[] { "AD", "AB", "AC", "CH", "GH", "FG", "AE" };
     assertMST(mst, expected, 19);
-    
+
   }
-  
+
   private void assertMST(List<Edge<String>> mst, String[] expected, int expectedWeight) {
     List<String> actual = new ArrayList<String>();
     int weight = 0;
