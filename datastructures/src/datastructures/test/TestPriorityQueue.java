@@ -21,7 +21,7 @@ public class TestPriorityQueue {
       } else if(line.startsWith("increaseKey")) {
         String[] values = line.split(" ");
         System.out.print("\nIncreasing Priority for Process at: " + values[1] + " to " + values[2]);
-        priorityQueue.increaseKey(Integer.parseInt(values[1]), Integer.parseInt(values[2]));
+        priorityQueue.increaseKey(values[1], Integer.parseInt(values[2]));
         System.out.println();
       } else if(line.startsWith("extractAll")) {
         int size = priorityQueue.size();
@@ -51,7 +51,7 @@ public class TestPriorityQueue {
       } else if(line.startsWith("decreaseKey")) {
         String[] values = line.split(" ");
         System.out.print("\nDecreasing Time for Algo at: " + values[1] + " to " + values[2]);
-        priorityQueue.decreaseKey(Integer.parseInt(values[1]), Integer.parseInt(values[2]));
+        priorityQueue.decreaseKey(values[1], Integer.parseInt(values[2]));
         System.out.println();
       } else if(line.startsWith("extractAll")) {
         int size = priorityQueue.size();
@@ -72,13 +72,13 @@ public class TestPriorityQueue {
   
   public static void main(String[] args) throws FileNotFoundException {
     TestPriorityQueue testPriorityQueue = new TestPriorityQueue();
-    String[] input = InputUtil.readContents("test_max_priority_queue");
+    String[] input = InputUtil.readContents("input_files/test_max_priority_queue");
     System.out.println("-------Testing Max Priority Queue-------");
     testPriorityQueue.buildMaxPriorityQueue(input);
     
     System.out.println();
     System.out.println("-------Testing Min Priority Queue-------");
-    input = InputUtil.readContents("test_min_priority_queue");
+    input = InputUtil.readContents("input_files/test_min_priority_queue");
     testPriorityQueue.buildMinPriorityQueue(input);
   }
 }
