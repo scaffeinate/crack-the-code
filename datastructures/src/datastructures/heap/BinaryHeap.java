@@ -1,6 +1,8 @@
 package datastructures.heap;
 
 import java.lang.reflect.Array;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Abstract class BinaryHeap
@@ -16,6 +18,7 @@ public abstract class BinaryHeap<T> {
 
   protected HeapType type;
   protected T[] heapArr;
+  protected Map<T, Integer> indexesMap = null;
   /*
    * Since the heapArr operations start from index = 1, index = 0 is left empty.
    * So set initial size = 1.
@@ -37,6 +40,7 @@ public abstract class BinaryHeap<T> {
      */
     heapCapacity = (initialCapacity == -1) ? DEFAULT_INITIAL_CAPACITY : initialCapacity;
     heapArr = (T[]) Array.newInstance(clazz, heapCapacity);
+    indexesMap = new HashMap<T, Integer>();
     this.type = type;
   }
 
@@ -85,6 +89,8 @@ public abstract class BinaryHeap<T> {
       current = parent;
       parent = (current / 2);
     }
+    
+    indexesMap.put(data, current);
     size++;
   }
 
@@ -123,6 +129,7 @@ public abstract class BinaryHeap<T> {
     T data = heapArr[1];
     heapArr[1] = heapArr[size()];
     heapArr[size()] = null;
+    indexesMap.remove(heapArr[1]);
     size--;
     heapify(1);
     return data;
@@ -290,6 +297,8 @@ public abstract class BinaryHeap<T> {
     T temp = heapArr[i];
     heapArr[i] = heapArr[j];
     heapArr[j] = temp;
+    indexesMap.put(heapArr[i], i);
+    indexesMap.put(heapArr[j], j);
   }
 
   /**

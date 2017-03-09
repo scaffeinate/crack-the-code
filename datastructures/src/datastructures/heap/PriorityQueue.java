@@ -1,5 +1,8 @@
 package datastructures.heap;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 
  * PriorityQueue Implementation using BinaryHeap. PriorityQueue is nothing but a
@@ -14,7 +17,9 @@ package datastructures.heap;
  * @author Sudharsanan Muralidharan
  */
 public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> {
-
+  
+  private Map<V, PriorityQueueElement<P, V>> elementsMap = null;
+  
   /**
    * InitialCapacity is not set since it's -1.
    * 
@@ -32,6 +37,7 @@ public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> 
    */
   public PriorityQueue(int initialCapacity, HeapType type) {
     super(PriorityQueueElement.class, initialCapacity, type);
+    elementsMap = new HashMap<V, PriorityQueueElement<P, V>>();
   }
 
   /**
@@ -42,6 +48,7 @@ public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> 
    */
   public void insert(P priority, V val) {
     PriorityQueueElement<P, V> element = new PriorityQueueElement<P, V>(priority, val);
+    elementsMap.put(val, element);
     super.insert(element);
   }
 
@@ -54,18 +61,16 @@ public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> 
    * @param index
    * @param priority
    */
-  public void increaseKey(int index, P priority) {
-    PriorityQueueElement<P, V> element = null;
-    if (index > super.size()) {
-      System.out.print(" => [Invalid index]");
+  public void increaseKey(V val, P priority) {
+    PriorityQueueElement<P, V> element = elementsMap.get(val);
+    if(element == null) {
+      System.out.print(" => [Invalid element]");
     } else {
-      element = heapArr[index];
       if (type == HeapType.MAX_HEAP && comparePriority(priority, element.priority) <= 0) {
         System.out.print(" => [Priority is not greater than current.]");
       } else {
-        element = heapArr[index];
         element.priority = priority;
-        int current = index;
+        int current = indexesMap.get(element);
         int parent = (current / 2);
         while (parent > 0 && violatesProperty(current, parent)) {
           swapElements(current, parent);
@@ -85,16 +90,16 @@ public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> 
    * @param index
    * @param priority
    */
-  public void decreaseKey(int index, P priority) {
-    PriorityQueueElement<P, V> element = heapArr[index];
+  public void decreaseKey(V val, P priority) {
+    PriorityQueueElement<P, V> element = elementsMap.get(val);
     if (element == null) {
-      System.out.print(" => [Invalid index]");
+      System.out.print(" => [Invalid element]");
     } else {
       if (type == HeapType.MIN_HEAP && comparePriority(priority, element.priority) >= 0) {
         System.out.print(" => [Priority is not lesser than current.]");
       } else {
         element.priority = priority;
-        int current = index;
+        int current = indexesMap.get(element);
         int parent = (current / 2);
         while (parent > 0 && violatesProperty(current, parent)) {
           swapElements(current, parent);
@@ -132,6 +137,13 @@ public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> 
   @Override
   protected int compare(PriorityQueueElement<P, V> data, PriorityQueueElement<P, V> o) {
     return comparePriority(data.priority, o.priority);
+  }
+
+  @Override
+  public PriorityQueueElement<P, V> extract() {
+    PriorityQueueElement<P, V> element = super.extract();
+    elementsMap.remove(element);
+    return element;
   }
 
   /**
