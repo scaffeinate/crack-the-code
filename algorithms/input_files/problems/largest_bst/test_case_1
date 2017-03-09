@@ -13,5 +13,3 @@ insertRight 35 40
 insertRight 20 25
 insertLeft 60 55
 insertRight 60 70
-print
-largestBST

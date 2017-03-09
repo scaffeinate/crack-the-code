@@ -3,11 +3,9 @@
  */
 package algorithms.problems;
 
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
-import algorithms.util.InputUtil;
 import datastructures.tree.BinaryTree;
 import datastructures.tree.TreeNode;
 
@@ -27,7 +25,7 @@ public class LargestBST {
     nodesMap = new HashMap<Integer, TreeNode<Integer>>();
   }
 
-  private void constructTree(String[] input) {
+  public void constructTree(String[] input) {
     for (String line : input) {
       String[] values = line.split(" ");
       String action = values[0];
@@ -44,11 +42,6 @@ public class LargestBST {
       case "insertRight":
         insertNode(values[1], values[2], false);
         break;
-      case "print":
-        System.out.println(tree.breadthFirstTraversal(root));
-        break;
-      case "largestBST":
-        System.out.println(findLargestBST(root));
       }
     }
   }
@@ -65,7 +58,7 @@ public class LargestBST {
     nodesMap.put(nodeVal, node);
   }
 
-  private int findLargestBST(TreeNode<Integer> root) {
+  public int findLargestBST() {
     return largestBST(root).size;
   }
 
@@ -109,20 +102,11 @@ public class LargestBST {
     return max;
   }
 
-  public static void main(String[] args) throws FileNotFoundException {
-    String[] input = InputUtil.readContents("test_largest_bst");
-    LargestBST largestBST = new LargestBST();
-    largestBST.constructTree(input);
-  }
-
-  class Wrapper {
+  private class Wrapper {
     int min;
     int max;
     int size;
     boolean isBST;
-
-    public Wrapper() {
-    }
 
     public Wrapper(int min, int max, int size, boolean isBST) {
       this.min = min;
