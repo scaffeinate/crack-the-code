@@ -64,6 +64,7 @@ public abstract class BinaryHeap<T> {
     heapArr[size] = data;
     // Insert the root
     if (size == 1) {
+      indexesMap.put(data, 1);
       size++;
       return;
     }
@@ -89,7 +90,7 @@ public abstract class BinaryHeap<T> {
       current = parent;
       parent = (current / 2);
     }
-    
+
     indexesMap.put(data, current);
     size++;
   }
@@ -127,9 +128,10 @@ public abstract class BinaryHeap<T> {
    */
   public T extract() {
     T data = heapArr[1];
+    indexesMap.remove(heapArr[1]);
+    indexesMap.put(heapArr[size()], 1);
     heapArr[1] = heapArr[size()];
     heapArr[size()] = null;
-    indexesMap.remove(heapArr[1]);
     size--;
     heapify(1);
     return data;
@@ -204,6 +206,15 @@ public abstract class BinaryHeap<T> {
 
     builder.append("]");
     return builder.toString();
+  }
+
+  /**
+   * Returns if the BinaryHeap is empty
+   * 
+   * @return isEmpty
+   */
+  public boolean isEmpty() {
+    return this.size() == 0;
   }
 
   /**

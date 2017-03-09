@@ -9,14 +9,30 @@ package datastructures.heap;
  * @author Sudharsanan Muralidharan
  */
 public class PriorityQueueElement<P, V> {
-  P priority;
-  V value;
+  protected P priority;
+  protected V value;
 
   public PriorityQueueElement() {
   }
 
   public PriorityQueueElement(P priority, V value) {
     this.priority = priority;
+    this.value = value;
+  }
+
+  public P getPriority() {
+    return priority;
+  }
+
+  public void setPriority(P priority) {
+    this.priority = priority;
+  }
+
+  public V getValue() {
+    return value;
+  }
+
+  public void setValue(V value) {
     this.value = value;
   }
 

@@ -17,9 +17,9 @@ import java.util.Map;
  * @author Sudharsanan Muralidharan
  */
 public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> {
-  
+
   private Map<V, PriorityQueueElement<P, V>> elementsMap = null;
-  
+
   /**
    * InitialCapacity is not set since it's -1.
    * 
@@ -61,13 +61,13 @@ public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> 
    * @param index
    * @param priority
    */
-  public void increaseKey(V val, P priority) {
+  public boolean increaseKey(V val, P priority) {
     PriorityQueueElement<P, V> element = elementsMap.get(val);
-    if(element == null) {
-      System.out.print(" => [Invalid element]");
+    if (element == null) {
+      return false;
     } else {
       if (type == HeapType.MAX_HEAP && comparePriority(priority, element.priority) <= 0) {
-        System.out.print(" => [Priority is not greater than current.]");
+        return false;
       } else {
         element.priority = priority;
         int current = indexesMap.get(element);
@@ -77,6 +77,8 @@ public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> 
           current = parent;
           parent = (current / 2);
         }
+
+        return true;
       }
     }
   }
@@ -90,13 +92,13 @@ public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> 
    * @param index
    * @param priority
    */
-  public void decreaseKey(V val, P priority) {
+  public boolean decreaseKey(V val, P priority) {
     PriorityQueueElement<P, V> element = elementsMap.get(val);
     if (element == null) {
-      System.out.print(" => [Invalid element]");
+      return false;
     } else {
       if (type == HeapType.MIN_HEAP && comparePriority(priority, element.priority) >= 0) {
-        System.out.print(" => [Priority is not lesser than current.]");
+        return false;
       } else {
         element.priority = priority;
         int current = indexesMap.get(element);
@@ -106,6 +108,8 @@ public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> 
           current = parent;
           parent = (current / 2);
         }
+
+        return true;
       }
     }
   }
@@ -118,16 +122,16 @@ public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> 
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
-    builder.append("Priority Queue: ").append("[").append(this.size()).append("]\n");
+    builder.append("Priority Queue: Size=").append("[").append(this.size()).append("]\n");
     for (int i = 1; i < size; i++) {
-      builder.append(heapArr[i].toString()).append("\n");
+      builder.append(i + "::" + heapArr[i].toString()).append("\n");
     }
     return builder.toString();
   }
 
   /*
    * Override super.compare() to compare the priority of the
-   * PriorityQueueElement rather than the actual object. 
+   * PriorityQueueElement rather than the actual object.
    * 
    * (non-Javadoc)
    * 
