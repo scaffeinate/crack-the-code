@@ -146,8 +146,12 @@ public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> 
   @Override
   public PriorityQueueElement<P, V> extract() {
     PriorityQueueElement<P, V> element = super.extract();
-    elementsMap.remove(element);
+    elementsMap.remove(element.getValue());
     return element;
+  }
+
+  public boolean contains(V val) {
+    return elementsMap.containsKey(val);
   }
 
   /**
