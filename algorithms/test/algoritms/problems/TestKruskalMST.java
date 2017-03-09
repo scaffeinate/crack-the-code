@@ -75,7 +75,15 @@ public class TestKruskalMST {
     List<Edge<String>> mst = kruskalMST.minimumSpanningTree();
     String[] expected = new String[] { "AD", "AB", "AC", "CH", "GH", "FG", "AE"};
     assertMST(mst, expected, 19);
-    
+  }
+  
+  @Test
+  public void testKruskalMSTTestCase4() {
+    String[] input = inputList.get(3);
+    kruskalMST.constructGraph(input);
+    List<Edge<String>> mst = kruskalMST.minimumSpanningTree();
+    String[] expected = new String[] { "AD", "CD", "BC", "CF", "EF" };
+    assertMST(mst, expected, 9);
   }
   
   private void assertMST(List<Edge<String>> mst, String[] expected, int expectedWeight) {
