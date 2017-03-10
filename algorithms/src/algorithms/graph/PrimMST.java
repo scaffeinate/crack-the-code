@@ -57,16 +57,15 @@ public class PrimMST {
     int i = 0;
 
     for (Vertex<String> vertex : vertices) {
-      priorityQueue.insert(Integer.MAX_VALUE, vertex);
+      if (i == 0) {
+        priorityQueue.insert(0, vertex);
+        i++;
+      } else {
+        priorityQueue.insert(Integer.MAX_VALUE, vertex);
+      }
     }
 
     while (!priorityQueue.isEmpty()) {
-      if (i == 0) {
-        priorityQueue.decreaseKey(priorityQueue.peek().getValue(), 0);
-        i++;
-        continue;
-      }
-
       Vertex<String> minVertex = priorityQueue.extract().getValue();
       if (edgesMap.containsKey(minVertex)) {
         resultList.add(edgesMap.get(minVertex));
@@ -74,7 +73,7 @@ public class PrimMST {
 
       List<Edge<String>> outgoingEdges = minVertex.outgoingEdges;
       for (Edge<String> edge : outgoingEdges) {
-        if (priorityQueue.decreaseKey(edge.destVertex, edge.weight)) {
+        if (priorityQueue.contains(edge.destVertex) && priorityQueue.decreaseKey(edge.destVertex, edge.weight)) {
           edgesMap.put(edge.destVertex, edge);
         }
       }
