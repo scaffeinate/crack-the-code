@@ -1,27 +1,23 @@
-package algorithms.problems;
+package algorithms.graph;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
+import datastructures.disjointsets.DisjointSetWithPathCompression;
 import datastructures.graph.AbstractGraph;
 import datastructures.graph.Edge;
 import datastructures.graph.UndirectedGraph;
 import datastructures.graph.Vertex;
-import datastructures.heap.HeapType;
-import datastructures.heap.PriorityQueue;
 
-public class PrimMST {
+public class KruskalMST {
   private AbstractGraph<String> graph = null;
-  private PriorityQueue<Integer, Vertex<String>> priorityQueue = null;
-  private Map<Vertex<String>, Edge<String>> edgesMap = null;
+  private DisjointSetWithPathCompression<Vertex<String>> disjointSet = null;
 
-  public PrimMST() {
+  public KruskalMST() {
     graph = new UndirectedGraph<String>();
-    edgesMap = new HashMap<Vertex<String>, Edge<String>>();
-    priorityQueue = new PriorityQueue<Integer, Vertex<String>>(HeapType.MIN_HEAP);
+    disjointSet = new DisjointSetWithPathCompression<Vertex<String>>();
   }
 
   public void constructGraph(String[] input) {
@@ -33,6 +29,7 @@ public class PrimMST {
       case "vertex":
         Vertex<String> vertex = graph.createVertex(values[1]);
         if (vertex != null) {
+          disjointSet.makeSet(vertex);
           System.out.println("Created Vertex with label: " + values[1]);
         } else {
           System.out.println("Vertex creation failed for label: " + values[1]);
@@ -52,34 +49,30 @@ public class PrimMST {
   }
 
   public List<Edge<String>> minimumSpanningTree() {
-    List<Edge<String>> resultList = new ArrayList<Edge<String>>();
-    Set<Vertex<String>> vertices = graph.verticesSet();
-    int i = 0;
+    List<Edge<String>> result = new ArrayList<Edge<String>>();
+    List<Edge<String>> edges = new ArrayList<Edge<String>>();
+    edges.addAll(graph.edgesSet());
+    sort(edges);
 
-    for (Vertex<String> vertex : vertices) {
-      priorityQueue.insert(Integer.MAX_VALUE, vertex);
-    }
+    for (Edge<String> edge : edges) {
+      Vertex<String> sourceVertex = edge.sourceVertex;
+      Vertex<String> destVertex = edge.destVertex;
 
-    while (!priorityQueue.isEmpty()) {
-      if (i == 0) {
-        priorityQueue.decreaseKey(priorityQueue.peek().getValue(), 0);
-        i++;
-        continue;
-      }
-
-      Vertex<String> minVertex = priorityQueue.extract().getValue();
-      if (edgesMap.containsKey(minVertex)) {
-        resultList.add(edgesMap.get(minVertex));
-      }
-
-      List<Edge<String>> outgoingEdges = minVertex.outgoingEdges;
-      for (Edge<String> edge : outgoingEdges) {
-        if (priorityQueue.decreaseKey(edge.destVertex, edge.weight)) {
-          edgesMap.put(edge.destVertex, edge);
-        }
+      if (!disjointSet.findSet(sourceVertex).equals(disjointSet.findSet(destVertex))) {
+        disjointSet.union(sourceVertex, destVertex);
+        result.add(edge);
       }
     }
 
-    return resultList;
+    return result;
+  }
+
+  private void sort(List<Edge<String>> edges) {
+    Collections.sort(edges, new Comparator<Edge<String>>() {
+      @Override
+      public int compare(Edge<String> e1, Edge<String> e2) {
+        return Integer.valueOf(e1.weight).compareTo(e2.weight);
+      }
+    });
   }
 }

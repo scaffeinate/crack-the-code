@@ -1,4 +1,4 @@
-package algoritms.problems;
+package algorithms.graph;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
@@ -14,11 +14,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.problems.ConnectedComponents;
 import algorithms.util.InputUtil;
 
 public class TestConnectedComponents {
-  private static final String basePath = "input_files/problems/connected_components/";
+  private static final String basePath = "input_files/graph/connected_components/";
   private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3" };
   private static List<String[]> inputList = new ArrayList<String[]>();
   private ConnectedComponents connectedComponents = null;

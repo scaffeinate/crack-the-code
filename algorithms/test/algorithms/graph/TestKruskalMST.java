@@ -1,4 +1,4 @@
-package algoritms.problems;
+package algorithms.graph;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
@@ -15,12 +15,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.problems.KruskalMST;
 import algorithms.util.InputUtil;
 import datastructures.graph.Edge;
 
 public class TestKruskalMST {
-  private static final String basePath = "input_files/problems/minimum_spanning_tree/";
+  private static final String basePath = "input_files/graph/minimum_spanning_tree/";
   private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3", "test_case_4" };
   private static List<String[]> inputList = new ArrayList<String[]>();
   private KruskalMST kruskalMST = null;

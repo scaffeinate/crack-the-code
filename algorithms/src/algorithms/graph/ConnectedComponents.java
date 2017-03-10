@@ -1,4 +1,4 @@
-package algorithms.problems;
+package algorithms.graph;
 
 import java.util.HashSet;
 import java.util.Set;

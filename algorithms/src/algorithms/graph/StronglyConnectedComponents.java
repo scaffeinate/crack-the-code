@@ -1,7 +1,7 @@
 /**
  * 
  */
-package algorithms.problems;
+package algorithms.graph;
 
 import java.util.ArrayList;
 import java.util.HashSet;

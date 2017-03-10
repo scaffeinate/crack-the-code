@@ -1,4 +1,4 @@
-package algoritms.problems;
+package algorithms.graph;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
@@ -15,7 +15,6 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.problems.StronglyConnectedComponents;
 import algorithms.util.InputUtil;
 import datastructures.graph.DirectedGraph;
 import datastructures.graph.Vertex;
@@ -23,7 +22,7 @@ import datastructures.graph.Vertex;
 public class TestStronglyConnectedComponents {
 
   private static StronglyConnectedComponents stronglyConnectedComponents = null;
-  private static String basePath = "input_files/problems/strongly_connected_components/";
+  private static String basePath = "input_files/graph/strongly_connected_components/";
   private static DirectedGraph<String> graph = null;
   private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3" };
   private static List<String[]> inputList = new ArrayList<String[]>();
