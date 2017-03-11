@@ -1,0 +1,17 @@
+insert 0 quick_sort
+insert 0 insertion_sort
+insert 0 bubble_sort
+insert 0 heap_sort
+insert 0 merge_sort
+insert 0 double_pivoted_quick_sort
+insert 0 radix_sort
+insert 0 tree_sort
+increaseKey quick_sort 5
+increaseKey bubble_sort 0
+increaseKey heap_sort 4
+increaseKey merge_sort 8
+increaseKey double_pivoted_quick_sort 6
+increaseKey tree_sort 3
+increaseKey radix_sort 7
+increaseKey insertion_sort 2
+extractAll

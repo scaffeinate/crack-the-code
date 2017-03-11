@@ -2,22 +2,18 @@ insert 10 quick_sort
 insert 6 insertion_sort
 peek
 decreaseKey quick_sort 2
-print
 insert 8 bubble_sort
 insert 5 heap_sort
-print
 peek
 decreaseKey bubble_sort 7
-print
 decreaseKey heap_sort 3
 insert 1 merge_sort
 insert 0 double_pivoted_quick_sort
 peek
 insert 4 radix_sort
 insert 7 tree_sort
-print
 decreaseKey merge_sort -1
-print
 decreaseKey double_pivoted_quick_sort 3
+peek
 decreaseKey tree_sort 5
 extractAll
