@@ -17,7 +17,7 @@ import datastructures.util.InputUtil;
 
 public class TestMaxPriorityQueue {
   private static final String basePath = "input_files/max_priority_queue/";
-  private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3" };
+  private static String[] testCases = new String[] { "test_case_1", "test_case_2" };
   private static List<String[]> inputList = new ArrayList<String[]>();
   private PriorityQueue<Integer, String> priorityQueue = null;
 
@@ -56,14 +56,8 @@ public class TestMaxPriorityQueue {
   @Test
   public void testMaxPriorityQueueTestCase2() {
     String[] input = inputList.get(1);
-    String[] expected = new String[] {};
-    assertMaxPriorityQueue(input, expected);
-  }
-
-  @Test
-  public void testMaxPriorityQueueTestCase3() {
-    String[] input = inputList.get(2);
-    String[] expected = new String[] {};
+    String[] expected = new String[] { "prepare_algos", "practice_leetcode", "practice_hackerrank", "do_side_projects",
+        "find_job", "network" };
     assertMaxPriorityQueue(input, expected);
   }
 

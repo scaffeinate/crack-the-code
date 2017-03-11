@@ -1,0 +1,14 @@
+insert 1 prepare_algos
+insert 2 practice_hackerrank
+increaseKey prepare_algos 8
+insert 5 practice_leetcode
+increaseKey practice_hackerrank 6
+insert 5 do_side_projects
+insert 3 network
+increaseKey practice_leetcode 7
+increaseKey find_job 7
+insert 5 find_job
+increaseKey do_side_projects 6
+increaseKey prepare_algos 8
+extractAll
+ 

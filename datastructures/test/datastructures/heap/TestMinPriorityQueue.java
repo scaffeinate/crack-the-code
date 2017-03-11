@@ -17,7 +17,7 @@ import datastructures.util.InputUtil;
 
 public class TestMinPriorityQueue {
   private static final String basePath = "input_files/min_priority_queue/";
-  private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3" };
+  private static String[] testCases = new String[] { "test_case_1", "test_case_2" };
   private static List<String[]> inputList = new ArrayList<String[]>();
   private PriorityQueue<Integer, String> priorityQueue = null;
 
@@ -56,14 +56,8 @@ public class TestMinPriorityQueue {
   @Test
   public void testMinPriorityQueueTestCase2() {
     String[] input = inputList.get(1);
-    String[] expected = new String[] {};
-    assertMinPriorityQueue(input, expected);
-  }
-
-  @Test
-  public void testMinPriorityQueueTestCase3() {
-    String[] input = inputList.get(2);
-    String[] expected = new String[] {};
+    String[] expected = new String[] { "network", "find_job", "do_side_projects", "practice_hackerrank",
+        "practice_leetcode", "prepare_algos" };
     assertMinPriorityQueue(input, expected);
   }
 
