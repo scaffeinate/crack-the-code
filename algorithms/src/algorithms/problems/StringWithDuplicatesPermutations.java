@@ -4,6 +4,8 @@
 package algorithms.problems;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -14,22 +16,24 @@ import algorithms.util.InputUtil;
 /**
  * Problem: https://www.youtube.com/watch?v=nYFd7VHKyWQ
  * 
- * Complexity: O(n)
+ * Complexity: O(n * n!)
  * 
  * @author Sudharsanan Muralidharan
  */
 public class StringWithDuplicatesPermutations {
 
-  public void generatePermutations(char[] arr) {
+  public List<String> generatePermutations(char[] arr) {
     Map<Character, Integer> counterMap = new TreeMap<Character, Integer>();
+    List<String> resultList = new ArrayList<String>();
     for (char c : arr) {
       counterMap.put(Character.valueOf(c), counterMap.getOrDefault(c, 0) + 1);
     }
 
-    permutate(counterMap, new char[arr.length], 0);
+    permutate(counterMap, new char[arr.length], 0, resultList);
+    return resultList;
   }
 
-  private void permutate(Map<Character, Integer> counterMap, char[] result, int index) {
+  private void permutate(Map<Character, Integer> counterMap, char[] result, int index, List<String> resultList) {
     boolean allZeros = true;
     Set<Entry<Character, Integer>> entrySet = counterMap.entrySet();
     for (Entry<Character, Integer> entry : entrySet) {
@@ -39,30 +43,30 @@ public class StringWithDuplicatesPermutations {
         allZeros = false;
         counterMap.put(c, count - 1);
         result[index] = c;
-        permutate(counterMap, result, index + 1);
+        permutate(counterMap, result, index + 1, resultList);
         counterMap.put(c, count);
       }
     }
 
     if (allZeros) {
-      print(result);
+      resultList.add(stringify(result));
     }
   }
 
-  private void print(char[] arr) {
+  private String stringify(char[] arr) {
+    StringBuilder builder = new StringBuilder();
     for (int i = 0; i < arr.length; i++) {
-      System.out.print(arr[i]);
+      builder.append(arr[i]);
     }
-    System.out.print(", ");
+    
+    return builder.toString();
   }
 
   public static void main(String[] args) throws FileNotFoundException {
-    String[] input = InputUtil.readContents("test_permutations_duplicates");
+    String[] input = InputUtil.readContents("input_files/test_permutations_duplicates");
     StringWithDuplicatesPermutations permuations = new StringWithDuplicatesPermutations();
     for (String line : input) {
-      System.out.print("[ ");
-      permuations.generatePermutations(line.toCharArray());
-      System.out.println("]");
+      System.out.println(permuations.generatePermutations(line.toCharArray()));
     }
   }
 }
