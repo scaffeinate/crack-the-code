@@ -16,11 +16,11 @@ import datastructures.heap.PriorityQueue;
 public class PrimMST {
   private AbstractGraph<String> graph = null;
   private PriorityQueue<Integer, Vertex<String>> priorityQueue = null;
-  private Map<Vertex<String>, Edge<String>> edgesMap = null;
+  private Map<Vertex<String>, Edge<String>> parentEdgesMap = null;
 
   public PrimMST() {
     graph = new UndirectedGraph<String>();
-    edgesMap = new HashMap<Vertex<String>, Edge<String>>();
+    parentEdgesMap = new HashMap<Vertex<String>, Edge<String>>();
     priorityQueue = new PriorityQueue<Integer, Vertex<String>>(HeapType.MIN_HEAP);
   }
 
@@ -67,14 +67,14 @@ public class PrimMST {
 
     while (!priorityQueue.isEmpty()) {
       Vertex<String> minVertex = priorityQueue.extract().getValue();
-      if (edgesMap.containsKey(minVertex)) {
-        resultList.add(edgesMap.get(minVertex));
+      if (parentEdgesMap.containsKey(minVertex)) {
+        resultList.add(parentEdgesMap.get(minVertex));
       }
 
       List<Edge<String>> outgoingEdges = minVertex.outgoingEdges;
       for (Edge<String> edge : outgoingEdges) {
         if (priorityQueue.contains(edge.destVertex) && priorityQueue.decreaseKey(edge.destVertex, edge.weight)) {
-          edgesMap.put(edge.destVertex, edge);
+          parentEdgesMap.put(edge.destVertex, edge);
         }
       }
     }
