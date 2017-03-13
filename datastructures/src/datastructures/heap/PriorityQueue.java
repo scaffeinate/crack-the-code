@@ -153,6 +153,10 @@ public class PriorityQueue<P, V> extends BinaryHeap<PriorityQueueElement<P, V>> 
   public boolean contains(V val) {
     return elementsMap.containsKey(val) && indexesMap.containsKey(elementsMap.get(val));
   }
+  
+  public V extractValue() {
+    return extract().getValue();
+  }
 
   /**
    * Compare the priority(key) of two elements
