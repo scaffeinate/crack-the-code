@@ -56,10 +56,10 @@ public class DijkstraShortestPath {
 
   public void computeShortestPath(String sourceLabel) {
     Vertex<String> sourceVertex = graph.getVertex(sourceLabel);
-    if(sourceVertex == null) {
+    if (sourceVertex == null) {
       return;
     }
-    
+
     this.sourceVertex = sourceVertex;
     Set<Vertex<String>> vertices = graph.verticesSet();
     int defaultDistance = Integer.MAX_VALUE;
@@ -67,10 +67,11 @@ public class DijkstraShortestPath {
       if (vertex.equals(sourceVertex)) {
         priorityQueue.insert(0, vertex);
         distancesMap.put(vertex, 0);
-        parentVerticesMap.put(vertex, null);
       } else {
         priorityQueue.insert(defaultDistance, vertex);
+        distancesMap.put(vertex, defaultDistance);
       }
+      parentVerticesMap.put(vertex, null);
     }
 
     while (!priorityQueue.isEmpty()) {
@@ -79,7 +80,8 @@ public class DijkstraShortestPath {
       List<Edge<String>> outgoingEdges = vertex.outgoingEdges;
       for (Edge<String> edge : outgoingEdges) {
         Vertex<String> neighbor = edge.destVertex;
-        int distance = distancesMap.get(vertex) + edge.weight;
+        int distance = (distancesMap.get(vertex) == Integer.MAX_VALUE) ? Integer.MAX_VALUE
+            : distancesMap.get(vertex) + edge.weight;
         if (priorityQueue.contains(neighbor) && priorityQueue.decreaseKey(neighbor, (distance))) {
           parentVerticesMap.put(neighbor, vertex);
           distancesMap.put(neighbor, distance);
@@ -89,26 +91,35 @@ public class DijkstraShortestPath {
   }
 
   public List<String> getShortestPathTo(String label) {
-    List<String> resultList = new ArrayList<String>();
     Vertex<String> vertex = graph.getVertex(label);
-    Vertex<String> parent = parentVerticesMap.get(vertex);
-    resultList.add(vertex.label);
-    
-    while(!parent.equals(sourceVertex)) {
-      resultList.add(parent.label);
-      parent = parentVerticesMap.get(parent);
-      if(parent == null) {
-        return null;
-      }
+    if (vertex == null) {
+      return new ArrayList<String>();
     }
-    
-    resultList.add(parent.label);
+
+    List<String> resultList = new ArrayList<String>();
+    getShortestPath(vertex, sourceVertex, resultList);
     return resultList;
   }
-  
+
+  private boolean getShortestPath(Vertex<String> vertex, Vertex<String> sourceVertex, List<String> shortestPathList) {
+    if (vertex == null) {
+      shortestPathList.clear();
+    } else if (vertex.equals(sourceVertex)) {
+      shortestPathList.add(vertex.label);
+      return true;
+    } else {
+      if (getShortestPath(parentVerticesMap.get(vertex), sourceVertex, shortestPathList)) {
+        shortestPathList.add(vertex.label);
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   public Integer getShortestDistanceTo(String label) {
     Vertex<String> vertex = graph.getVertex(label);
-    if(vertex != null) {
+    if (vertex != null) {
       return distancesMap.get(vertex);
     } else {
       return Integer.MAX_VALUE;
