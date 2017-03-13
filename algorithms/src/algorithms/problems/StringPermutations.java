@@ -3,9 +3,8 @@
  */
 package algorithms.problems;
 
-import java.io.FileNotFoundException;
-
-import algorithms.util.InputUtil;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Problem:
@@ -21,11 +20,14 @@ public class StringPermutations {
   /**
    * @param arr
    */
-  private void generatePermutations(char[] arr) {
-    printPermuatations(arr, 0);
+  public List<String> generatePermutations(char[] arr) {
+    List<String> resultList = new ArrayList<String>();
+    generatePermutations(arr, 0, resultList);
+    return resultList;
   }
 
-  private void generatePermutationsIterative(char[] arr) {
+  public List<String> generatePermutationsIterative(char[] arr) {
+    List<String> resultList = new ArrayList<String>();
     int n = arr.length;
     int fact = fact(n);
     int m = fact / n;
@@ -36,7 +38,7 @@ public class StringPermutations {
       while (j < m) {
         if (k < n - 1) {
           swap(arr, k, k + 1);
-          print(arr);
+          resultList.add(stringify(arr));
           k++;
           j++;
         } else {
@@ -44,6 +46,8 @@ public class StringPermutations {
         }
       }
     }
+    
+    return resultList;
   }
 
   private int fact(int n) {
@@ -54,15 +58,15 @@ public class StringPermutations {
     return n * fact(n - 1);
   }
 
-  private void printPermuatations(char[] arr, int start) {
+  private void generatePermutations(char[] arr, int start, List<String> resultList) {
     if (start == arr.length - 1) {
-      print(arr);
+      resultList.add(stringify(arr));
       return;
     }
 
     for (int i = start; i < arr.length; i++) {
       swap(arr, i, start);
-      printPermuatations(arr, start + 1);
+      generatePermutations(arr, start + 1, resultList);
       swap(arr, start, i);
     }
   }
@@ -77,28 +81,12 @@ public class StringPermutations {
     return arr;
   }
 
-  private void print(char[] arr) {
+  private String stringify(char[] arr) {
+    StringBuilder builder = new StringBuilder();
     for (int i = 0; i < arr.length; i++) {
-      System.out.print(arr[i]);
+      builder.append(arr[i]);
     }
-    System.out.print(", ");
-  }
-
-  public static void main(String[] args) throws FileNotFoundException {
-    String[] input = InputUtil.readContents("test_permutations");
-    StringPermutations permutations = new StringPermutations();
-    System.out.println("Permutations using Recursion: ");
-    for (String line : input) {
-      System.out.print("[ ");
-      permutations.generatePermutations(line.toCharArray());
-      System.out.println("]");
-    }
-
-    System.out.println("\nPermutations using Iteration: ");
-    for (String line : input) {
-      System.out.print("[ ");
-      permutations.generatePermutationsIterative(line.toCharArray());
-      System.out.println("]");
-    }
+    
+    return builder.toString();
   }
 }
