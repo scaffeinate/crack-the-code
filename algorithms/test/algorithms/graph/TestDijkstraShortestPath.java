@@ -8,6 +8,7 @@ import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hamcrest.collection.IsEmptyCollection;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,7 +19,7 @@ import algorithms.util.InputUtil;
 
 public class TestDijkstraShortestPath {
   private static final String basePath = "input_files/graph/shortest_path/";
-  private static String[] testCases = new String[] { "test_case_1" };
+  private static String[] testCases = new String[] { "test_case_1", "test_case_2" };
   private static List<String[]> inputList = new ArrayList<String[]>();
   private DijkstraShortestPath dijkstra = null;
 
@@ -52,6 +53,13 @@ public class TestDijkstraShortestPath {
     dijkstra.constructGraph(input);
     assertShortestPath(input);
   }
+  
+  @Test
+  public void testDijkstraShortestPathTestCase2() {
+    String[] input = inputList.get(1);
+    dijkstra.constructGraph(input);
+    assertShortestPath(input);
+  }
 
   private void assertShortestPath(String[] input) {
     for (String line : input) {
@@ -61,10 +69,19 @@ public class TestDijkstraShortestPath {
         dijkstra.computeShortestPath(values[1]);
         break;
       case "shortestPath":
-        assertThat(dijkstra.getShortestPathTo(values[1]), contains(values[2].split(",")));
+        String[] expected = values[2].split(",");
+        if(expected[0].equals("empty")) {
+          assertThat(dijkstra.getShortestPathTo(values[1]), IsEmptyCollection.empty());
+        } else {
+          assertThat(dijkstra.getShortestPathTo(values[1]), contains(expected));
+        }
         break;
       case "shortestDistance":
-        assertThat(dijkstra.getShortestDistanceTo(values[1]), is(Integer.parseInt(values[2])));
+        Integer expectedDistance = Integer.MAX_VALUE;
+        if(!values[2].equals("infinity")) {
+          expectedDistance = Integer.parseInt(values[2]);
+        }
+        assertThat(dijkstra.getShortestDistanceTo(values[1]), is(expectedDistance));
         break;
       }
     }

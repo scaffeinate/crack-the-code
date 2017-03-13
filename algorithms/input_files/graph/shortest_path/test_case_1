@@ -12,9 +12,13 @@ edge A E 2
 edge E F 3
 edge F D 2
 compute A
-shortestPath C C,B,A
+shortestPath C A,B,C
 shortestDistance C 7
-shortestPath D D,F,E,A
+shortestPath D A,E,F,D
 shortestDistance D 7
-shortestPath E E,A
+shortestPath E A,E
 shortestDistance E 2
+shortestPath G empty
+shortestDistance G infinity
+shortestPath A A
+shortestDistance A 0
