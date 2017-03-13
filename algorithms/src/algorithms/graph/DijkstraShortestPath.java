@@ -54,9 +54,14 @@ public class DijkstraShortestPath {
     }
   }
 
-  public void computeShortestPath(Vertex<String> sourceVertex) {
-    Set<Vertex<String>> vertices = graph.verticesSet();
+  public void computeShortestPath(String sourceLabel) {
+    Vertex<String> sourceVertex = graph.getVertex(sourceLabel);
+    if(sourceVertex == null) {
+      return;
+    }
+    
     this.sourceVertex = sourceVertex;
+    Set<Vertex<String>> vertices = graph.verticesSet();
     int defaultDistance = Integer.MAX_VALUE;
     for (Vertex<String> vertex : vertices) {
       if (vertex.equals(sourceVertex)) {
@@ -83,14 +88,14 @@ public class DijkstraShortestPath {
     }
   }
 
-  public List<String> getShortestPath(String label) {
+  public List<String> getShortestPathTo(String label) {
     List<String> resultList = new ArrayList<String>();
     Vertex<String> vertex = graph.getVertex(label);
     Vertex<String> parent = parentVerticesMap.get(vertex);
     resultList.add(vertex.label);
     
     while(!parent.equals(sourceVertex)) {
-      resultList.add(vertex.label);
+      resultList.add(parent.label);
       parent = parentVerticesMap.get(parent);
       if(parent == null) {
         return null;
@@ -101,7 +106,7 @@ public class DijkstraShortestPath {
     return resultList;
   }
   
-  public Integer getShortestDistance(String label) {
+  public Integer getShortestDistanceTo(String label) {
     Vertex<String> vertex = graph.getVertex(label);
     if(vertex != null) {
       return distancesMap.get(vertex);
