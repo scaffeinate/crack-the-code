@@ -1,0 +1,14 @@
+vertex 0
+vertex 1
+vertex 2
+vertex 3
+edge 0 1 1
+edge 1 2 3
+edge 2 3 2
+edge 3 1 -6
+compute 0
+shortestDistance 2 -infinity
+shortestDistance 3 -infinity
+shortestDistance 1 -infinity
+shortestPath 2 negative_cycle
+shortestPath 3 negative_cycle
