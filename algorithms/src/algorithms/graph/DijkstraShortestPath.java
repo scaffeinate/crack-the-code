@@ -82,7 +82,7 @@ public class DijkstraShortestPath {
         Vertex<String> neighbor = edge.destVertex;
         int distance = (distancesMap.get(vertex) == Integer.MAX_VALUE) ? Integer.MAX_VALUE
             : distancesMap.get(vertex) + edge.weight;
-        if (priorityQueue.contains(neighbor) && priorityQueue.decreaseKey(neighbor, (distance))) {
+        if (priorityQueue.contains(neighbor) && priorityQueue.decreaseKey(neighbor, distance)) {
           parentVerticesMap.put(neighbor, vertex);
           distancesMap.put(neighbor, distance);
         }
@@ -101,20 +101,15 @@ public class DijkstraShortestPath {
     return resultList;
   }
 
-  private boolean getShortestPath(Vertex<String> vertex, Vertex<String> sourceVertex, List<String> shortestPathList) {
+  private void getShortestPath(Vertex<String> vertex, Vertex<String> sourceVertex, List<String> shortestPathList) {
     if (vertex == null) {
       shortestPathList.clear();
     } else if (vertex.equals(sourceVertex)) {
       shortestPathList.add(vertex.label);
-      return true;
     } else {
-      if (getShortestPath(parentVerticesMap.get(vertex), sourceVertex, shortestPathList)) {
-        shortestPathList.add(vertex.label);
-        return true;
-      }
+      shortestPathList.add(vertex.label);
+      getShortestPath(parentVerticesMap.get(vertex), sourceVertex, shortestPathList);
     }
-
-    return false;
   }
 
   public Integer getShortestDistanceTo(String label) {

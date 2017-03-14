@@ -15,18 +15,18 @@ edge D E 1
 edge F D 2
 edge G H 4
 compute F
-shortestPath E F,D,E
+shortestPath E E,D,F
 shortestDistance E 3
-shortestPath B F,A,B
+shortestPath B B,A,F
 shortestDistance B 6
 shortestPath G empty
 shortestDistance G infinity
 shortestPath H empty
 shortestDistance H infinity
 compute A
-shortestPath E A,D,E
+shortestPath E E,D,A
 shortestDistance E 6
-shortestPath B A,B
+shortestPath B B,A
 shortestDistance B 2
 shortestPath G empty
 shortestDistance G infinity
