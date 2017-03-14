@@ -1,6 +1,7 @@
 package algorithms.graph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ public class BellmanFordShortestPath {
   private Map<Vertex<String>, Vertex<String>> parentVerticesMap = null;
   private Map<Vertex<String>, Integer> distancesMap = null;
   private Vertex<String> sourceVertex = null;
+  private boolean containsNegativeWeightCycle = false;
 
   public BellmanFordShortestPath() {
     graph = new UndirectedGraph<String>();
@@ -57,6 +59,7 @@ public class BellmanFordShortestPath {
     }
 
     this.sourceVertex = sourceVertex;
+    containsNegativeWeightCycle = false;
     distancesMap = new HashMap<Vertex<String>, Integer>();
     parentVerticesMap = new HashMap<Vertex<String>, Vertex<String>>();
     distancesMap.put(sourceVertex, 0);
@@ -71,6 +74,10 @@ public class BellmanFordShortestPath {
   }
 
   public Integer getShortestDistanceTo(String label) {
+    if (containsNegativeWeightCycle) {
+      return Integer.MIN_VALUE;
+    }
+
     Vertex<String> vertex = graph.getVertex(label);
     if (vertex == null || distancesMap.get(vertex) == null) {
       return Integer.MAX_VALUE;
@@ -83,6 +90,10 @@ public class BellmanFordShortestPath {
     Vertex<String> vertex = graph.getVertex(label);
     if (vertex == null) {
       return new ArrayList<String>();
+    }
+
+    if (containsNegativeWeightCycle) {
+      return Arrays.asList(new String[] { "negative_cycle" });
     }
 
     List<String> minimumPath = new ArrayList<String>();
@@ -116,7 +127,7 @@ public class BellmanFordShortestPath {
     int distance = (sourceDistance == Integer.MAX_VALUE) ? Integer.MAX_VALUE : (sourceDistance + edge.weight);
     if (destDistance > distance) {
       if (detectNegativeCycle) {
-        System.out.println("Negative Weight Cycle");
+        containsNegativeWeightCycle = true;
       }
       distancesMap.put(destVertex, distance);
       parentVerticesMap.put(destVertex, sourceVertex);
