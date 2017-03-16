@@ -1,8 +1,5 @@
 package algorithms.graph;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
@@ -50,36 +47,24 @@ public class TestConnectedComponents {
   public void testConnectedComponentsTestCase1() {
     String[] input = inputList.get(0);
     connectedComponents.constructGraph(input);
-    Integer[] expected = new Integer[] { 1, 3, 6, 7, 10 };
-    List<Integer> actual = new ArrayList<Integer>();
-    actual.addAll(connectedComponents.connectedComponents());
-    assertConnectedComponents(input, expected, actual);
+    assertConnectedComponents(input);
   }
 
   @Test
   public void testConnectedComponentsTestCase2() {
     String[] input = inputList.get(1);
     connectedComponents.constructGraph(input);
-    Integer[] expected = new Integer[] { 6 };
-    List<Integer> actual = new ArrayList<Integer>();
-    actual.addAll(connectedComponents.connectedComponents());
-    assertConnectedComponents(input, expected, actual);
+    assertConnectedComponents(input);
   }
 
   @Test
   public void testConnectedComponentsTestCase3() {
     String[] input = inputList.get(2);
     connectedComponents.constructGraph(input);
-    Integer[] expected = new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    List<Integer> actual = new ArrayList<Integer>();
-    actual.addAll(connectedComponents.connectedComponents());
-    assertConnectedComponents(input, expected, actual);
+    assertConnectedComponents(input);
   }
 
-  private void assertConnectedComponents(String[] input, Integer[] expected, List<Integer> actual) {
-    assertThat(actual, hasSize(expected.length));
-    assertThat(actual, containsInAnyOrder(expected));
-
+  private void assertConnectedComponents(String[] input) {
     for (String line : input) {
       String[] values = line.split(" ");
       if (values[0].equals("sameComponent")) {

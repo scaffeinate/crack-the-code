@@ -4,63 +4,51 @@ import java.util.HashSet;
 import java.util.Set;
 
 import datastructures.disjointsets.DisjointSetWithPathCompression;
-import datastructures.graph.AbstractGraph;
+import datastructures.graph.Edge;
 import datastructures.graph.UndirectedGraph;
 import datastructures.graph.Vertex;
+import datastructures.util.GraphUtil;
 
 public class ConnectedComponents {
 
-  private DisjointSetWithPathCompression<Vertex<Integer>> disjointSet = null;
-  private AbstractGraph<Integer> graph = null;
+  private DisjointSetWithPathCompression<Vertex<String>> disjointSet = null;
+  private UndirectedGraph<String> graph = null;
 
   public ConnectedComponents() {
-    disjointSet = new DisjointSetWithPathCompression<Vertex<Integer>>();
-    graph = new UndirectedGraph<Integer>();
+    disjointSet = new DisjointSetWithPathCompression<Vertex<String>>();
+    graph = new UndirectedGraph<String>();
   }
 
   public void constructGraph(String[] input) {
-    for (String line : input) {
-      String[] values = line.split(" ");
-      String action = values[0];
-      Vertex<Integer> sourceVertex = null, destVertex = null;
-      switch (action) {
-      case "vertex":
-        Vertex<Integer> vertex = graph.createVertex(Integer.parseInt(values[1]));
-        if (vertex != null) {
-          disjointSet.makeSet(vertex);
-          System.out.println("Created Vertex with label: " + values[1]);
-        } else {
-          System.out.println("Vertex creation failed for label: " + values[1]);
-        }
-        break;
-      case "edge":
-        sourceVertex = graph.getVertex(Integer.parseInt(values[1]));
-        destVertex = graph.getVertex(Integer.parseInt(values[2]));
-        if (graph.addEdge(sourceVertex, destVertex)) {
-          disjointSet.union(sourceVertex, destVertex);
-          System.out.println("Edge created between: " + values[1] + " and " + values[2]);
-        } else {
-          System.out.println("Either of the vertices dont exist");
-        }
-        break;
-      }
+    GraphUtil.constructGraph(graph, input);
+
+    Set<Vertex<String>> vertices = graph.verticesSet();
+    for (Vertex<String> vertex : vertices) {
+      disjointSet.makeSet(vertex);
+    }
+
+    Set<Edge<String>> edges = graph.edgesSet();
+    for (Edge<String> edge : edges) {
+      disjointSet.union(edge.sourceVertex, edge.destVertex);
     }
   }
 
-  public Set<Integer> connectedComponents() {
-    Set<Integer> componentSet = new HashSet<Integer>();
-    Set<Vertex<Integer>> vertices = graph.verticesSet();
+  public Set<String> connectedComponents() {
+    Set<String> componentSet = new HashSet<String>();
+    Set<Vertex<String>> disjointSets = disjointSet.disjointSets();
 
-    for (Vertex<Integer> vertex : vertices) {
+    for (Vertex<String> vertex : disjointSets) {
       componentSet.add(disjointSet.findSet(vertex).label);
     }
+    
+    System.out.println(componentSet);
 
     return componentSet;
   }
 
   public boolean sameComponent(String value1, String value2) {
-    Vertex<Integer> vertex1 = graph.getVertex(Integer.parseInt(value1));
-    Vertex<Integer> vertex2 = graph.getVertex(Integer.parseInt(value2));
+    Vertex<String> vertex1 = graph.getVertex(value1);
+    Vertex<String> vertex2 = graph.getVertex(value2);
 
     return disjointSet.findSet(vertex1).equals(disjointSet.findSet(vertex2));
   }
