@@ -12,6 +12,7 @@ import java.util.Stack;
 import datastructures.graph.DirectedGraph;
 import datastructures.graph.Edge;
 import datastructures.graph.Vertex;
+import datastructures.util.GraphUtil;
 
 /**
  * Problem: http://www.geeksforgeeks.org/strongly-connected-components/
@@ -25,30 +26,7 @@ public class StronglyConnectedComponents {
 
   public DirectedGraph<String> constructGraph(String[] input) {
     DirectedGraph<String> graph = new DirectedGraph<String>();
-    for (String line : input) {
-      String[] values = line.split(" ");
-      String action = values[0];
-      Vertex<String> sourceVertex = null, destVertex = null;
-      switch (action) {
-      case "vertex":
-        if (graph.createVertex(values[1]) != null) {
-          System.out.println("Created Vertex with label: " + values[1]);
-        } else {
-          System.out.println("Vertex creation failed for label: " + values[1]);
-        }
-        break;
-      case "edge":
-        sourceVertex = graph.getVertex(values[1]);
-        destVertex = graph.getVertex(values[2]);
-        if (graph.addEdge(sourceVertex, destVertex)) {
-          System.out.println("Edge created between: " + values[1] + " and " + values[2]);
-        } else {
-          System.out.println("Either of the vertices dont exist");
-        }
-        break;
-      }
-    }
-
+    GraphUtil.constructGraph(graph, input);
     return graph;
   }
 

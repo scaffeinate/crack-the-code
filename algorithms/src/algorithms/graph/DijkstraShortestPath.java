@@ -12,6 +12,7 @@ import datastructures.graph.UndirectedGraph;
 import datastructures.graph.Vertex;
 import datastructures.heap.HeapType;
 import datastructures.heap.PriorityQueue;
+import datastructures.util.GraphUtil;
 
 public class DijkstraShortestPath {
   private AbstractGraph<String> graph = null;
@@ -28,30 +29,7 @@ public class DijkstraShortestPath {
   }
 
   public void constructGraph(String[] input) {
-    for (String line : input) {
-      String[] values = line.split(" ");
-      String action = values[0];
-      Vertex<String> sourceVertex = null, destVertex = null;
-      switch (action) {
-      case "vertex":
-        Vertex<String> vertex = graph.createVertex(values[1]);
-        if (vertex != null) {
-          System.out.println("Created Vertex with label: " + values[1]);
-        } else {
-          System.out.println("Vertex creation failed for label: " + values[1]);
-        }
-        break;
-      case "edge":
-        sourceVertex = graph.getVertex(values[1]);
-        destVertex = graph.getVertex(values[2]);
-        if (graph.addEdge(sourceVertex, destVertex, Integer.parseInt(values[3]))) {
-          System.out.println("Edge created between: " + values[1] + " and " + values[2] + " with weight: " + values[3]);
-        } else {
-          System.out.println("Either of the vertices dont exist");
-        }
-        break;
-      }
-    }
+    GraphUtil.constructGraph(graph, input);
   }
 
   public void computeShortestPath(String sourceLabel) {
