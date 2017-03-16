@@ -53,6 +53,7 @@ public class TopologicalSort {
       }
     }
 
+    visited.add(vertex);
     stack.push(vertex);
   }
 }
