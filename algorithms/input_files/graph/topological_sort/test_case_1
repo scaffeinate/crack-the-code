@@ -1,0 +1,25 @@
+vertex undershorts
+vertex pants
+vertex belt
+vertex shirt
+vertex tie
+vertex jacket
+vertex shoes
+vertex socks
+vertex watch
+edge undershorts pants
+edge undershorts shoes
+edge pants shoes
+edge pants belt
+edge belt jacket
+edge socks shoes
+edge shirt belt
+edge shirt tie
+edge tie jacket
+check belt->jacket true
+check shirt->belt true
+check pants->shoes true
+check socks->shoes true
+check undershorts->shoes true
+check belt->undershorts false
+check tie->shirt false
