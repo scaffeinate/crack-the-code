@@ -1,19 +1,24 @@
 package datastructures.disjointsets;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class DisjointSetWithPathCompression<T> {
 
   private Map<T, DisjointSetNode<T>> nodesMap = null;
+  private Set<DisjointSetNode<T>> disjointSets = null;
 
   public DisjointSetWithPathCompression() {
     nodesMap = new HashMap<T, DisjointSetNode<T>>();
+    disjointSets = new HashSet<DisjointSetNode<T>>();
   }
 
   public DisjointSetNode<T> makeSet(T data) {
     DisjointSetNode<T> node = new DisjointSetNode<T>(data);
     nodesMap.put(data, node);
+    disjointSets.add(node);
     return node;
   }
 
@@ -34,11 +39,13 @@ public class DisjointSetWithPathCompression<T> {
 
     if (parent1.rank == parent2.rank) {
       parent2.parent = parent1;
+      disjointSets.remove(parent2);
       parent1.rank++;
     } else {
       DisjointSetNode<T> greater = (parent1.rank > parent2.rank) ? parent1 : parent2;
       DisjointSetNode<T> smaller = (parent1.rank > parent2.rank) ? parent2 : parent1;
       smaller.parent = greater;
+      disjointSets.remove(smaller);
     }
   }
 
@@ -49,6 +56,14 @@ public class DisjointSetWithPathCompression<T> {
     }
 
     return parent(node).data;
+  }
+  
+  public Set<T> disjointSets() {
+    Set<T> disjointSetValues = new HashSet<T>();
+    for(DisjointSetNode<T> node:disjointSets) {
+      disjointSetValues.add(node.data);
+    }
+    return disjointSetValues;
   }
 
   private DisjointSetNode<T> parent(DisjointSetNode<T> node) {
