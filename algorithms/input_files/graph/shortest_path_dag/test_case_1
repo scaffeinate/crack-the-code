@@ -1,0 +1,15 @@
+vertex A
+vertex B
+vertex C
+vertex D
+edge A B 1
+edge B C 3
+edge C D 2
+edge B D 2
+compute A
+shortestDistance C 4
+shortestDistance B 1
+shortestDistance D 3
+shortestPath D D,B,A
+shortestPath B B,A
+shortestPath C C,B,A
