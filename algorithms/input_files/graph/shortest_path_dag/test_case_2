@@ -1,0 +1,23 @@
+vertex A
+vertex B
+vertex C
+vertex D
+vertex F
+vertex G
+edge A B 2
+edge B C 1
+edge C D 4
+edge F G 0
+compute A
+shortestDistance C 3
+shortestDistance D 7
+shortestDistance G infinity
+shortestDistance F infinity
+shortestPath D D,C,B,A
+shortestPath B B,A
+shortestPath G empty
+shortestPath F empty
+compute F
+shortestDistance A infinity
+shortestDistance G 0
+

@@ -52,6 +52,12 @@ public class TestShortestPathDAG {
     shortestPathDAG.constructGraph(input);
     assertShortestPath(input);
   }
+  @Test
+  public void testShortestPathDAGTestCase2() {
+    String[] input = inputList.get(1);
+    shortestPathDAG.constructGraph(input);
+    assertShortestPath(input);
+  }
   
   private void assertShortestPath(String[] input) {
     for (String line : input) {
