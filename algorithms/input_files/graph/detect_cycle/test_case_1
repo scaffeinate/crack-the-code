@@ -1,0 +1,12 @@
+vertex a
+vertex b
+vertex c
+vertex d
+vertex e
+vertex f
+edge a f
+edge a b
+edge b e
+edge e d
+edge d c
+edge b c
