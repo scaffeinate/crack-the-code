@@ -15,7 +15,8 @@ import algorithms.util.InputUtil;
 
 public class TestDetectCycleUndirectedGraph {
   private static final String basePath = "input_files/graph/detect_cycle/";
-  private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3" };
+  private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3", "test_case_4",
+      "test_case_5" };
   private static List<String[]> inputList = new ArrayList<String[]>();
   private DetectCycleUndirectedGraph detectCycleUndirectedGraph = null;
 
@@ -49,17 +50,31 @@ public class TestDetectCycleUndirectedGraph {
     detectCycleUndirectedGraph.constructGraph(input);
     assertEquals(true, detectCycleUndirectedGraph.detectCycle());
   }
-  
+
   @Test
   public void testDetectCycleUndirectedGraphTestCase2() {
     String[] input = inputList.get(1);
     detectCycleUndirectedGraph.constructGraph(input);
     assertEquals(false, detectCycleUndirectedGraph.detectCycle());
   }
-  
+
   @Test
   public void testDetectCycleUndirectedGraphTestCase3() {
     String[] input = inputList.get(2);
+    detectCycleUndirectedGraph.constructGraph(input);
+    assertEquals(true, detectCycleUndirectedGraph.detectCycle());
+  }
+
+  @Test
+  public void testDetectCycleUndirectedGraphTestCase4() {
+    String[] input = inputList.get(3);
+    detectCycleUndirectedGraph.constructGraph(input);
+    assertEquals(true, detectCycleUndirectedGraph.detectCycle());
+  }
+
+  @Test
+  public void testDetectCycleUndirectedGraphTestCase5() {
+    String[] input = inputList.get(4);
     detectCycleUndirectedGraph.constructGraph(input);
     assertEquals(true, detectCycleUndirectedGraph.detectCycle());
   }
