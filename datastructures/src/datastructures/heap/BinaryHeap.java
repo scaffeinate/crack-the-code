@@ -1,6 +1,7 @@
 package datastructures.heap;
 
 import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -169,7 +170,7 @@ public abstract class BinaryHeap<T> {
    * 
    * @param arr
    */
-  public void sort(T[] arr) {
+  public T[] sort(T[] arr) {
     buildHeap(arr);
     int n = size();
     for (int i = n; i >= 2; i--) {
@@ -179,7 +180,7 @@ public abstract class BinaryHeap<T> {
     }
 
     size = n;
-    print();
+    return Arrays.copyOfRange(heapArr, 1, heapArr.length);
   }
 
   /**
