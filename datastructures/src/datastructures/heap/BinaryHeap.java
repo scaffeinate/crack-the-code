@@ -114,7 +114,7 @@ public abstract class BinaryHeap<T> {
     heapCapacity = size;
     System.arraycopy(arr, 0, heapArr, 1, size());
 
-    for (int i = size / 2; i >= 1; i--) {
+    for (int i = size / 2; i > 0; i--) {
       heapify(i);
     }
   }
@@ -173,7 +173,7 @@ public abstract class BinaryHeap<T> {
   public T[] sort(T[] arr) {
     buildHeap(arr);
     int n = size();
-    for (int i = n; i >= 2; i--) {
+    for (int i = n; i > 1; i--) {
       swapElements(1, i);
       size--;
       heapify(1);
