@@ -1,6 +1,7 @@
 package algorithms.graph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,6 +88,10 @@ public class FloydWarshallShortestPath {
       return Integer.MAX_VALUE;
     }
 
+    if (containsNegativeWeightCycle()) {
+      return Integer.MIN_VALUE;
+    }
+
     int i = indexesMap.get(sourceVertex);
     int j = indexesMap.get(destVertex);
 
@@ -95,6 +100,9 @@ public class FloydWarshallShortestPath {
 
   public List<String> getShortestPathTo(String sourceLabel, String destLabel) {
     List<String> shortestPath = new ArrayList<String>();
+    if (containsNegativeWeightCycle()) {
+      return Arrays.asList(new String[] { "negative_cycle" });
+    }
     Vertex<String> sourceVertex = graph.getVertex(sourceLabel);
     Vertex<String> destVertex = graph.getVertex(destLabel);
 
@@ -106,9 +114,9 @@ public class FloydWarshallShortestPath {
   }
 
   private void getShortestPathTo(Vertex<String> sourceVertex, Vertex<String> destVertex, List<String> shortestPath) {
-    if(destVertex == null) {
+    if (destVertex == null) {
       shortestPath.clear();
-    } else if(destVertex.equals(sourceVertex)) {
+    } else if (destVertex.equals(sourceVertex)) {
       shortestPath.add(sourceVertex.label);
     } else {
       int i = indexesMap.get(sourceVertex);
@@ -116,5 +124,18 @@ public class FloydWarshallShortestPath {
       shortestPath.add(destVertex.label);
       getShortestPathTo(sourceVertex, pathMatrix[i][j], shortestPath);
     }
+  }
+
+  private boolean containsNegativeWeightCycle() {
+    int i = 0, j = 0;
+    while (i < numVertices && j < numVertices) {
+      if (distancesMatrix[i][j] < 0) {
+        return true;
+      }
+      i++;
+      j++;
+    }
+
+    return false;
   }
 }
