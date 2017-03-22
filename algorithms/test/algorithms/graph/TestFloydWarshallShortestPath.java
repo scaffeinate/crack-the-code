@@ -2,10 +2,12 @@ package algorithms.graph;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hamcrest.collection.IsEmptyCollection;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -51,11 +53,19 @@ public class TestFloydWarshallShortestPath {
     floydWarshall.computeShortestPath();
     assertShortestPath(input);
   }
-  
+
   private void assertShortestPath(String[] input) {
     for (String line : input) {
       String[] values = line.split(" ");
       switch (values[0]) {
+      case "shortestPath":
+        String[] expected = values[3].split(",");
+        if (expected[0].equals("empty")) {
+          assertThat(floydWarshall.getShortestPathTo(values[1], values[2]), IsEmptyCollection.empty());
+        } else {
+          assertThat(floydWarshall.getShortestPathTo(values[1], values[2]), contains(expected));
+        }
+        break;
       case "shortestDistance":
         Integer expectedDistance = null;
         if (values[3].equals("infinity")) {

@@ -14,3 +14,6 @@ shortestDistance 1 2 -2
 shortestDistance 0 3 3
 shortestDistance 3 3 0
 shortestDistance 3 4 infinity
+shortestPath 0 2 2,1,0
+shortestPath 3 2 2,1,0,3
+shortestPath 3 4 empty
