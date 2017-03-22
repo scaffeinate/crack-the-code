@@ -1,6 +1,8 @@
 package algorithms.graph;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -77,17 +79,43 @@ public class FloydWarshallShortestPath {
     }
   }
 
-  public Integer getShortestDistanceTo(String vertex1Label, String vertex2Label) {
-    Vertex<String> vertex1 = graph.getVertex(vertex1Label);
-    Vertex<String> vertex2 = graph.getVertex(vertex2Label);
+  public Integer getShortestDistanceTo(String sourceLabel, String destLabel) {
+    Vertex<String> sourceVertex = graph.getVertex(sourceLabel);
+    Vertex<String> destVertex = graph.getVertex(destLabel);
 
-    if (vertex1 == null || vertex2 == null) {
+    if (sourceVertex == null || destVertex == null) {
       return Integer.MAX_VALUE;
     }
 
-    int i = indexesMap.get(vertex1);
-    int j = indexesMap.get(vertex2);
+    int i = indexesMap.get(sourceVertex);
+    int j = indexesMap.get(destVertex);
 
     return distancesMatrix[i][j];
+  }
+
+  public List<String> getShortestPathTo(String sourceLabel, String destLabel) {
+    List<String> shortestPath = new ArrayList<String>();
+    Vertex<String> sourceVertex = graph.getVertex(sourceLabel);
+    Vertex<String> destVertex = graph.getVertex(destLabel);
+
+    if (sourceVertex != null && destVertex != null) {
+      getShortestPathTo(sourceVertex, destVertex, shortestPath);
+    }
+
+    return shortestPath;
+  }
+
+  private void getShortestPathTo(Vertex<String> sourceVertex, Vertex<String> destVertex, List<String> shortestPath) {
+    int i = indexesMap.get(sourceVertex);
+    int j = indexesMap.get(destVertex);
+    
+    if(destVertex == null) {
+      shortestPath.clear();
+    } else if(destVertex.equals(sourceVertex)) {
+      shortestPath.add(sourceVertex.label);
+    } else {
+      shortestPath.add(destVertex.label);
+      getShortestPathTo(sourceVertex, pathMatrix[i][j], shortestPath);
+    }
   }
 }
