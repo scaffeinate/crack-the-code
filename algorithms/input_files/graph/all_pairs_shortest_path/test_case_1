@@ -1,0 +1,16 @@
+vertex 0
+vertex 1
+vertex 2
+vertex 3
+edge 0 1 3
+edge 0 3 15
+edge 0 2 6
+edge 1 2 -2
+edge 2 3 2
+edge 3 0 1
+shortestDistance 0 2 1
+shortestDistance 3 2 2
+shortestDistance 1 2 -2
+shortestDistance 0 3 3
+shortestDistance 3 3 0
+shortestDistance 3 4 infinity
