@@ -106,14 +106,13 @@ public class FloydWarshallShortestPath {
   }
 
   private void getShortestPathTo(Vertex<String> sourceVertex, Vertex<String> destVertex, List<String> shortestPath) {
-    int i = indexesMap.get(sourceVertex);
-    int j = indexesMap.get(destVertex);
-    
     if(destVertex == null) {
       shortestPath.clear();
     } else if(destVertex.equals(sourceVertex)) {
       shortestPath.add(sourceVertex.label);
     } else {
+      int i = indexesMap.get(sourceVertex);
+      int j = indexesMap.get(destVertex);
       shortestPath.add(destVertex.label);
       getShortestPathTo(sourceVertex, pathMatrix[i][j], shortestPath);
     }
