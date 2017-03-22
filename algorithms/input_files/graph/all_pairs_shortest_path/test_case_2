@@ -1,0 +1,33 @@
+vertex a
+vertex b
+vertex c
+vertex d
+vertex e
+vertex f
+vertex g
+vertex h
+vertex i
+edge a b 7
+edge b d -1
+edge b c 2
+edge d c 3
+edge c a 1
+edge c d 4
+edge c f -4
+edge e c 2
+edge g h 8
+edge g i 10
+edge h i 2
+edge i g -6
+shortestDistance a f 5
+shortestDistance f e infinity
+shortestDistance e d 6
+shortestDistance b g infinity
+shortestDistance g i 10
+shortestDistance h h 0
+shortestPath a f f,c,b,a
+shortestPath f e empty
+shortestPath e d d,c,e
+shortestPath b g empty
+shortestPath g i i,g
+shortestPath h h h

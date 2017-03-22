@@ -53,6 +53,14 @@ public class TestFloydWarshallShortestPath {
     floydWarshall.computeShortestPath();
     assertShortestPath(input);
   }
+  
+  @Test
+  public void testFloydWarshallShortestPathTestCase2() {
+    String[] input = inputList.get(1);
+    floydWarshall.constructGraph(input);
+    floydWarshall.computeShortestPath();
+    assertShortestPath(input);
+  }
 
   private void assertShortestPath(String[] input) {
     for (String line : input) {
