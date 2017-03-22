@@ -1,0 +1,18 @@
+vertex a
+vertex b
+vertex c
+vertex d
+vertex e
+edge a b 1
+edge b c 2
+edge b d -4
+edge d e 6
+edge e b -7
+shortestDistance a b -infinity
+shortestDistance b b -infinity
+shortestDistance d b -infinity
+shortestDistance c a -infinity
+shortestPath a b negative_cycle
+shortestPath b b negative_cycle
+shortestPath d b negative_cycle
+shortestPath c a negative_cycle

@@ -18,7 +18,7 @@ import algorithms.util.InputUtil;
 
 public class TestFloydWarshallShortestPath {
   private static final String basePath = "input_files/graph/all_pairs_shortest_path/";
-  private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3", "test_case_4" };
+  private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3" };
   private static List<String[]> inputList = new ArrayList<String[]>();
   private FloydWarshallShortestPath floydWarshall = null;
 
@@ -53,10 +53,18 @@ public class TestFloydWarshallShortestPath {
     floydWarshall.computeShortestPath();
     assertShortestPath(input);
   }
-  
+
   @Test
   public void testFloydWarshallShortestPathTestCase2() {
     String[] input = inputList.get(1);
+    floydWarshall.constructGraph(input);
+    floydWarshall.computeShortestPath();
+    assertShortestPath(input);
+  }
+
+  @Test
+  public void testFloydWarshallShortestPathTestCase3() {
+    String[] input = inputList.get(2);
     floydWarshall.constructGraph(input);
     floydWarshall.computeShortestPath();
     assertShortestPath(input);
