@@ -38,7 +38,7 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
       destVertex.incomingEdges.add(edge);
       destVertex.numberOfIncomingEdges++;
       edgesSet.add(edge);
-      
+
       if (graphType.equals(GraphType.UNDIRECTED)) {
         Edge<T> reverseEdge = new Edge<T>(destVertex, sourceVertex, weight);
         destVertex.outgoingEdges.add(reverseEdge);
@@ -47,10 +47,10 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
         sourceVertex.numberOfIncomingEdges++;
         edgesSet.add(reverseEdge);
       }
-      
+
       return true;
     }
-    
+
     return false;
   }
 
@@ -71,18 +71,18 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
   @Override
   public boolean removeEdge(Vertex<T> sourceVertex, Vertex<T> destVertex) {
     Edge<T> edge = getEdge(sourceVertex, destVertex);
-    
+
     sourceVertex.outgoingEdges.remove(edge);
     destVertex.incomingEdges.remove(edge);
     edgesSet.remove(edge);
 
-    if(graphType == GraphType.UNDIRECTED) {
+    if (graphType == GraphType.UNDIRECTED) {
       Edge<T> reverseEdge = getEdge(destVertex, sourceVertex);
       sourceVertex.incomingEdges.remove(reverseEdge);
       destVertex.outgoingEdges.remove(reverseEdge);
       edgesSet.remove(reverseEdge);
     }
-    
+
     return true;
   }
 
@@ -108,7 +108,7 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
   public List<Vertex<T>> neighboursOf(Vertex<T> v) {
     List<Vertex<T>> neighbours = null;
     if (v != null) {
-      neighbours = new LinkedList<Vertex<T>>();
+      neighbours = new ArrayList<Vertex<T>>();
       List<Edge<T>> outgoingEdges = v.outgoingEdges;
       for (Edge<T> edge : outgoingEdges) {
         neighbours.add(edge.destVertex);
@@ -296,7 +296,7 @@ public abstract class AbstractGraph<T> implements GenericGraph<T> {
   public Set<Vertex<T>> verticesSet() {
     return this.verticesSet;
   }
-  
+
   public Set<Edge<T>> edgesSet() {
     return this.edgesSet;
   }

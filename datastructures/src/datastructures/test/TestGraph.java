@@ -91,7 +91,7 @@ public class TestGraph {
 
   public static void main(String[] args) throws FileNotFoundException {
     TestGraph testGraph = new TestGraph();
-    testGraph.testInput("test_graph");
-    testGraph.testInput("test_graph_set_2");
+    testGraph.testInput("input_files/test_graph");
+    testGraph.testInput("input_files/test_graph_set_2");
   }
 }
