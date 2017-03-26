@@ -1,4 +1,4 @@
-package algoritms.problems;
+package algorithms.tree;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,7 +9,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.problems.DeepestNodeBinaryTree;
+import algorithms.tree.DeepestNodeBinaryTree;
 import algorithms.util.InputUtil;
 
 public class TestDeepestNodeBinaryTree {
