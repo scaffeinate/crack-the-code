@@ -1,0 +1,10 @@
+insertRoot 1
+insertLeft 1 2
+insertLeft 2 4
+insertRight 1 3
+insertLeft 3 5
+insertRight 3 6
+insertRight 5 7
+insertLeft 7 9
+insertRight 6 8
+insertRight 8 10
