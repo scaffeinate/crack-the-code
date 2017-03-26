@@ -8,7 +8,7 @@ import datastructures.util.InputUtil;
 public class TestTrie {
   public static void main(String[] args) throws FileNotFoundException {
     Trie trie = new Trie();
-    String[] input = InputUtil.readContents("test_trie");
+    String[] input = InputUtil.readContents("input_files/test_trie");
 
     for (String line : input) {
       String[] values = line.split(" ");

@@ -1,0 +1,33 @@
+insert Longing Rusted Seventeen Daybreak Furnace Nine Benign Homecoming One FreightCar
+print
+insert Long Seven Riots Seventy Days Futuristic NinetyNine Home OneWorld Freight Car Zero
+print
+prefixSearch One
+prefixSearch Ninety
+prefixSearch Longer
+prefixSearch Sewen
+prefixSearch Freight
+prefixSearch DaysOf
+search Ninety
+search Benign
+search Car
+search CarFax
+search Freight
+search Rusted*
+remove Long
+remove Seven
+remove Riots
+remove Seventy
+remove NinetyNine
+remove Zero
+remove DayBreaks
+remove Lone
+print
+prefixRemove Days
+prefixRemove Fut
+prefixRemove Car
+prefixRemove One
+prefixRemove Freight
+prefixRemove Home
+insert FreightCar Homecoming One
+print
