@@ -17,5 +17,6 @@ include 'services:webservice'
 
 include 'algorithms'
 include 'datastructures'
+include 'cracking-the-coding-interview'
 
 rootProject.name = 'cracking-the-code'
