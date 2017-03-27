@@ -7,8 +7,8 @@ public class Insertion {
   }
 
   private int clearBits(int n, int i, int j) {
-    int val = Integer.MAX_VALUE >>> (31 - j - 1);
-    int val2 = Integer.MAX_VALUE << i;
+    int val = ~(0) >>> (31 - j);
+    int val2 = ~(0) << i;
     int mask = val & val2;
     return n & ~(mask);
   }
