@@ -27,14 +27,4 @@ public class FlipBitToWin {
   private boolean isBitSet(int val, int i) {
     return (val & (1 << i)) != 0;
   }
-  
-  public static void main(String[] args) {
-    FlipBitToWin f = new FlipBitToWin();
-    System.out.println(f.flipBitToWin("11111110101101111"));
-    System.out.println(f.flipBitToWin("11011101111"));
-    System.out.println(f.flipBitToWin("00000000000000"));
-    System.out.println(f.flipBitToWin("1010101010101010"));
-    System.out.println(f.flipBitToWin("00001100110101011101101110"));
-    System.out.println(f.flipBitToWin("111111"));
-  }
 }
