@@ -27,29 +27,38 @@ public class TestBinaryString {
 
   @Test
   public void testBinaryStringTestCase1() {
-    String[] values = input[0].split(" ");
-    Double num = Double.parseDouble(values[0]);
-    assertEquals(values[1], binaryString.toBinaryString(num));
+    assertBinaryString(input[0]);
   }
   
   @Test
   public void testBinaryStringTestCase2() {
-    String[] values = input[1].split(" ");
-    Double num = Double.parseDouble(values[0]);
-    assertEquals(values[1], binaryString.toBinaryString(num));
+    assertBinaryString(input[1]);
   }
   
   @Test
   public void testBinaryStringTestCase3() {
-    String[] values = input[2].split(" ");
-    Double num = Double.parseDouble(values[0]);
-    assertEquals(values[1], binaryString.toBinaryString(num));
+    assertBinaryString(input[2]);
   }
   
   @Test
   public void testBinaryStringTestCase4() {
-    String[] values = input[3].split(" ");
+    assertBinaryString(input[3]);
+  }
+  
+  @Test
+  public void testBinaryStringTestCase5() {
+    assertBinaryString(input[4]);
+  }
+  
+  @Test
+  public void testBinaryStringTestCase6() {
+    assertBinaryString(input[5]);
+  }
+  
+  private void assertBinaryString(String input) {
+    String[] values = input.split(" ");
     Double num = Double.parseDouble(values[0]);
     assertEquals(values[1], binaryString.toBinaryString(num));
+    assertEquals(values[1], binaryString.toBinaryString2(num));
   }
 }
