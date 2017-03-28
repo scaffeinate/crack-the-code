@@ -5,18 +5,17 @@ public class FlipBitToWin {
   public int flipBitToWin(String binaryString) {
     int max = Integer.MIN_VALUE;
     int val = Integer.parseInt(binaryString, 2);
-    int i = 0, counter = 0; 
-    boolean canFlipBit = true;
+    int i = 0, counter = 0, numFlipsLeft = 1; 
     while (val > 0) {
       if(isBitSet(val, i)) {
         counter++;
-      } else if(canFlipBit) {
+      } else if(numFlipsLeft > 0) {
         counter++;
-        canFlipBit = false;
+        numFlipsLeft--;
       } else {
         max = Math.max(max, counter);
         counter = 0;
-        canFlipBit = true;
+        numFlipsLeft = 1;
       }
       
       val >>= 1;
@@ -31,10 +30,11 @@ public class FlipBitToWin {
   
   public static void main(String[] args) {
     FlipBitToWin f = new FlipBitToWin();
-    //System.out.println(f.flipBitToWin("11111110101101111"));
-    //System.out.println(f.flipBitToWin("11011101111"));
-    //System.out.println(f.flipBitToWin("00000000000000"));
-    //System.out.println(f.flipBitToWin("1010101010101010"));
-    //System.out.println(f.flipBitToWin("00001100110101011101101110"));
+    System.out.println(f.flipBitToWin("11111110101101111"));
+    System.out.println(f.flipBitToWin("11011101111"));
+    System.out.println(f.flipBitToWin("00000000000000"));
+    System.out.println(f.flipBitToWin("1010101010101010"));
+    System.out.println(f.flipBitToWin("00001100110101011101101110"));
+    System.out.println(f.flipBitToWin("111111"));
   }
 }
