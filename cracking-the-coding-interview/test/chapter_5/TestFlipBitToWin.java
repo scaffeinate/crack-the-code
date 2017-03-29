@@ -66,8 +66,13 @@ public class TestFlipBitToWin {
   }
   
   @Test
-  public void testFlipBitToWinTestCase69() {
+  public void testFlipBitToWinTestCase9() {
     assertFlipBitToWin(input[8]);
+  }
+  
+  @Test
+  public void testFlipBitToWinTestCase10() {
+    assertFlipBitToWin(input[9]);
   }
   
   private void assertFlipBitToWin(String input) {

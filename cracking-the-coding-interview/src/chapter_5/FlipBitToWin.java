@@ -5,26 +5,23 @@ public class FlipBitToWin {
   public int flipBitToWin(String binaryString) {
     int max = Integer.MIN_VALUE;
     int val = Integer.parseInt(binaryString, 2);
-    int i = 0, counter = 0, numFlipsLeft = 1; 
+    int leftCounter = 0, rightCounter = 0, zeroVal = 0;
+    boolean firstZero = true;
     while (val > 0) {
-      if(isBitSet(val, i)) {
-        counter++;
-      } else if(numFlipsLeft > 0) {
-        counter++;
-        numFlipsLeft--;
+      if ((val & (1 << 0)) != 0) {
+        leftCounter++;
       } else {
-        max = Math.max(max, counter);
-        counter = 0;
-        numFlipsLeft = 1;
+        max = firstZero ? max : Math.max(max, (leftCounter + rightCounter + 1));
+        firstZero = false;
+        rightCounter = leftCounter;
+        leftCounter = 0;
+        zeroVal = 1;
       }
-      
+
       val >>= 1;
     }
 
-    return Math.max(max, counter);
+    return Math.max(max, (leftCounter + rightCounter + zeroVal));
   }
 
-  private boolean isBitSet(int val, int i) {
-    return (val & (1 << i)) != 0;
-  }
 }
