@@ -69,14 +69,10 @@ public class TestFlipBitToWin {
   public void testFlipBitToWinTestCase9() {
     assertFlipBitToWin(input[8]);
   }
-  
-  @Test
-  public void testFlipBitToWinTestCase10() {
-    assertFlipBitToWin(input[9]);
-  }
-  
+
   private void assertFlipBitToWin(String input) {
     String[] values = input.split(" ");
     assertEquals(Integer.parseInt(values[1]), flipBit.flipBitToWin(values[0]));
+    assertEquals(Integer.parseInt(values[1]), flipBit.flipBitToWin2(values[0]));
   }
 }
