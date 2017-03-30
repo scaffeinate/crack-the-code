@@ -26,24 +26,18 @@ public class TestNextNumber {
   }
 
   @Test
-  public void testNextNumberTestCase1() {
-    assertNextNumber(input[0]);
-  }
-  
-  @Test
-  public void testNextNumberTestCase2() {
-    assertNextNumber(input[1]);
-  }
-  
-  @Test
-  public void testNextNumberTestCase3() {
-    assertNextNumber(input[2]);
+  public void testNextNumberTestCase() {
+    for(String line:input) {
+      assertNextNumber(line);
+    }
   }
 
   private void assertNextNumber(String input) {
     String[] values = input.split(" ");
     int n = Integer.parseInt(values[0]);
     assertEquals(Integer.parseInt(values[1]), nextNumber.getNext(n));
+    assertEquals(Integer.parseInt(values[1]), nextNumber.getNext2(n));
     assertEquals(Integer.parseInt(values[2]), nextNumber.getPrevious(n));
+    assertEquals(Integer.parseInt(values[2]), nextNumber.getPrevious2(n));
   }
 }
