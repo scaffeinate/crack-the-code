@@ -76,10 +76,10 @@ public class NextNumber {
 
   private int countOnes(int n) {
     int numOnes = 0;
-    for (int i = 0; i < 32; i++) {
-      numOnes += (isBitSet(n, i)) ? 1 : 0;
+    while(n > 0) {
+      numOnes += ((n & 1) != 0) ? 1 : 0;
+      n >>>= 1;
     }
-
     return numOnes;
   }
 
