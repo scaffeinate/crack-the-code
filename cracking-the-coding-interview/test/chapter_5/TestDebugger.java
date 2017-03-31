@@ -29,7 +29,7 @@ public class TestDebugger {
   public void testDebuggerCase() {
     for(String line:input) {
       String[] values = line.split(" ");
-      assertEquals(debugger.powerOfTwo(Integer.parseInt(values[0])), Boolean.parseBoolean(values[1]));
+      assertEquals(Boolean.parseBoolean(values[1]), debugger.powerOfTwo(Integer.parseInt(values[0])));
     }
   }
 }
