@@ -26,7 +26,7 @@ public class TestDebugger {
   }
 
   @Test
-  public void testDebuggerCase() {
+  public void testDebuggerTestCase() {
     for(String line:input) {
       String[] values = line.split(" ");
       assertEquals(Boolean.parseBoolean(values[1]), debugger.powerOfTwo(Integer.parseInt(values[0])));
