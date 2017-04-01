@@ -58,5 +58,7 @@ public class TestCountSubstringsFirstLastCharacters {
   private void assertFlipBitToWin(String input) {
     String[] values = input.split(" ");
     assertEquals(Integer.parseInt(values[1]), countSubstrings.countSubstrings(values[0]));
+    assertEquals(Integer.parseInt(values[1]), countSubstrings.countSubstrings2(values[0]));
+    assertEquals(Integer.parseInt(values[1]), countSubstrings.countSubstrings3(values[0]));
   }
 }
