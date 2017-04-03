@@ -19,5 +19,7 @@ include 'algorithms'
 include 'datastructures'
 include 'cracking-the-coding-interview'
 include 'leetcode'
+include 'geeks-for-geeks'
+include 'hackerrank'
 
 rootProject.name = 'cracking-the-code'
