@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Question: http://www.geeksforgeeks.org/find-sum-non-repeating-distinct-elements-array/
+ * @author Sudharsanan Muralidharan
+ */
 public class SumOfDistinctInArray {
 
   public int getSum(int[] arr) {
