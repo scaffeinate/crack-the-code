@@ -15,7 +15,8 @@ import datastructures.util.InputUtil;
 
 public class TestDrawLine {
   private static String basePath = "input_files/chapter_5/draw_line/";
-  private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3", "test_case_4" };
+  private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3", "test_case_4",
+      "test_case_5" };
   private static DrawLine drawLine;
   private static List<String[]> inputList = new ArrayList<String[]>();
 
@@ -53,6 +54,11 @@ public class TestDrawLine {
   public void testDrawLineTestCase4() {
     assertDrawLine(inputList.get(3));
   }
+  
+  @Test
+  public void testDrawLineTestCase5() {
+    assertDrawLine(inputList.get(4));
+  }
 
   private void assertDrawLine(String[] input) {
     String[] values = input[0].split(" ");
@@ -61,7 +67,7 @@ public class TestDrawLine {
     int x1 = Integer.parseInt(values[1]);
     int x2 = Integer.parseInt(values[2]);
     int y = Integer.parseInt(values[3]);
-    
+
     byte[] screen = new byte[Integer.parseInt(input[1])];
     readByteArray(i, input, width, screen);
 

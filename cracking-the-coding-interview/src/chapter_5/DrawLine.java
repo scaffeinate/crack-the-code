@@ -3,7 +3,8 @@ package chapter_5;
 public class DrawLine {
 
   public byte[] drawLine(byte[] screen, int width, int x1, int x2, int y) {
-    if (x1 >= width || x2 >= width) {
+    int rows = ((screen.length * 8) / width);
+    if (x1 >= width || x2 >= width || (y >= rows)) {
       return screen;
     }
 
