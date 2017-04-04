@@ -2,32 +2,34 @@ package chapter_5;
 
 public class DrawLine {
 
-  public String drawLine(byte[] screen, int width, int x1, int x2, int y) {
+  public byte[] drawLine(byte[] screen, int width, int x1, int x2, int y) {
     if (x1 >= width || x2 >= width) {
-      return printScreen(screen, width);
+      return screen;
     }
 
-    int startIndex = (x1 % 8);
     int startArrIndex = ((y * width) + x1) / 8;
-    int lineLength = (x2 - x1) + 1;
-    while (lineLength > 0) {
-      int j = (8 - startIndex - 1), i = 0;
-      if ((startIndex + lineLength) >= 8) {
-        i = 0;
-        lineLength -= (8 - startIndex);
+    int startPos = (x1 % 8), endPos = (x2 > 8) ? 7 : x2;
+    int lineLengthLeft = (x2 - x1) + 1;
+
+    while (lineLengthLeft > 0) {
+      screen[startArrIndex] |= fetchMask(startPos, endPos);
+
+      if ((startPos + lineLengthLeft) < 8) {
+        endPos = lineLengthLeft;
+        lineLengthLeft = 0;
       } else {
-        i = lineLength - 1;
-        lineLength = 0;
+        lineLengthLeft -= ((endPos - startPos) + 1);
+        startPos = 0;
+        endPos = (lineLengthLeft > 8) ? 7 : (lineLengthLeft - 1);
       }
-      screen[startArrIndex] = (byte) (screen[startArrIndex] | fetchMask(i, j));
-      startIndex = 0;
+
       startArrIndex++;
     }
 
-    return printScreen(screen, width);
+    return screen;
   }
 
-  private String printScreen(byte[] screen, int width) {
+  public String printScreen(byte[] screen, int width) {
     StringBuilder builder = new StringBuilder();
     for (int i = 0; i < screen.length; i++) {
       builder.append(Integer.toBinaryString(screen[i] & 255 | 256).substring(1));
@@ -39,11 +41,8 @@ public class DrawLine {
   }
 
   private byte fetchMask(int i, int j) {
-    return (byte) ((~0 << i) & ((1 << (j + 1)) - 1));
-  }
-
-  public static void main(String[] args) {
-    // System.out.println(Integer.toBinaryString(fetchMask(0, 6)));
-    new DrawLine().drawLine(new byte[8], 16, 0, 7, 2);
+    byte leftMask = (byte) ((~0) << (8 - j - 1));
+    byte rightMask = (byte) ((1 << (8 - i)) - 1);
+    return (byte) (leftMask & rightMask);
   }
 }
