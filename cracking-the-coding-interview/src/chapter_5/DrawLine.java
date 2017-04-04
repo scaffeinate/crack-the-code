@@ -13,7 +13,11 @@ public class DrawLine {
     int lineLengthLeft = (x2 - x1) + 1;
 
     while (lineLengthLeft > 0) {
-      screen[startArrIndex] |= fetchMask(startPos, endPos);
+      if ((endPos - startPos + 1) == 8) {
+        screen[startArrIndex] = (byte) 0xff;
+      } else {
+        screen[startArrIndex] |= fetchMask(startPos, endPos);
+      }
 
       if ((startPos + lineLengthLeft) < 8) {
         endPos = lineLengthLeft;
