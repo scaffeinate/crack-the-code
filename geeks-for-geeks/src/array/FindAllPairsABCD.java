@@ -6,10 +6,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+/**
+ * Question: http://www.geeksforgeeks.org/find-pairs-ab-cd-array-satisfy-ab-cd/
+ * 
+ * @author Sudharsanan Muralidharan
+ */
 public class FindAllPairsABCD {
 
-  public List<Integer[]> findAllPairs(int[] arr) {
-    List<Integer[]> resultList = new ArrayList<Integer[]>();
+  public Map<Integer, List<Integer[]>> findAllPairs(int[] arr) {
+    Map<Integer, List<Integer[]>> resultMap = new HashMap<Integer, List<Integer[]>>();
     Map<Integer, List<Integer[]>> productMap = new HashMap<Integer, List<Integer[]>>();
 
     for (int i = 0; i < arr.length; i++) {
@@ -27,18 +32,10 @@ public class FindAllPairsABCD {
 
     for (Entry<Integer, List<Integer[]>> entry : productMap.entrySet()) {
       if (entry.getValue().size() > 1) {
-        resultList.addAll(entry.getValue());
+        resultMap.put(entry.getKey(), entry.getValue());
       }
     }
 
-    return resultList;
-  }
-
-  public static void main(String[] args) {
-    FindAllPairsABCD findAllPairsABCD = new FindAllPairsABCD();
-    List<Integer[]> allPairs = findAllPairsABCD.findAllPairs(new int[] { 3, 4, 7, 1, 2, 9, 8 });
-    for (Integer[] pair : allPairs) {
-      System.out.println(pair[0] + "," + pair[1]);
-    }
+    return resultMap;
   }
 }
