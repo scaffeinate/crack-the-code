@@ -3,6 +3,12 @@ package linked_list;
 import datastructures.lists.CustomLinkedList;
 import datastructures.lists.LinkedListNode;
 
+/**
+ * Question:
+ * http://www.geeksforgeeks.org/move-occurrences-element-end-linked-list/
+ * 
+ * @author Sudharsanan Muralidharan
+ */
 public class MoveAllOccurancesToEnd {
 
   private CustomLinkedList<Integer> linkedList = null;
@@ -28,7 +34,7 @@ public class MoveAllOccurancesToEnd {
       linkedList.tail().next = head;
       linkedList.tail(head);
     }
-    
+
     LinkedListNode<Integer> current = head;
     LinkedListNode<Integer> runner = current.next;
 
@@ -36,8 +42,8 @@ public class MoveAllOccurancesToEnd {
       int data = runner.data;
       if (data == key) {
         current.next = runner.next;
-        runner.next = null;
         linkedList.tail().next = runner;
+        runner.next = null;
         linkedList.tail(runner);
         runner = current.next;
       } else {
