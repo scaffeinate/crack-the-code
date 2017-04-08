@@ -27,11 +27,11 @@ public class MoveAllOccurancesToEnd {
   public CustomLinkedList<Integer> moveAllOccurancesToEnd(int key) {
     LinkedListNode<Integer> head = linkedList.head();
     LinkedListNode<Integer> tail = linkedList.tail();
-    
-    if(head.equals(tail)) {
+
+    if (head.equals(tail)) {
       return linkedList;
     }
-    
+
     while ((head = linkedList.head()) != null && head.data == key) {
       linkedList.head(head.next);
       head.next = null;
@@ -56,6 +56,29 @@ public class MoveAllOccurancesToEnd {
       }
     }
 
+    return linkedList;
+  }
+
+  public CustomLinkedList<Integer> moveAllOccurancesToEnd2(int key) {
+    LinkedListNode<Integer> current = linkedList.head();
+    LinkedListNode<Integer> keyNode = current;
+
+    while (current != null) {
+      int data = keyNode.data;
+      
+      if (!current.data.equals(keyNode.data)) {
+        keyNode.data += current.data;
+        current.data = keyNode.data - current.data;
+        keyNode.data = keyNode.data - current.data;
+        keyNode = keyNode.next;
+      }
+      
+      if (data != key) {
+        keyNode = keyNode.next;
+      }
+      
+      current = current.next;
+    }
     return linkedList;
   }
 }
