@@ -3,6 +3,12 @@ package linked_list;
 import datastructures.lists.CustomLinkedList;
 import datastructures.lists.LinkedListNode;
 
+/**
+ * Question:
+ * http://www.geeksforgeeks.org/adding-two-polynomials-using-linked-list/
+ * 
+ * @author Sudharsanan Muralidharan
+ */
 public class AddPolynomialsLinkedList {
 
   private CustomLinkedList<Variable> linkedList = null;
@@ -48,13 +54,13 @@ public class AddPolynomialsLinkedList {
         current2 = current2.next;
       }
     }
-    
-    while(current != null) {
+
+    while (current != null) {
       builder.append(current.data.getVariableString());
       current = current.next;
     }
-    
-    while(current2 != null) {
+
+    while (current2 != null) {
       builder.append(current2.data.getVariableString());
       current2 = current2.next;
     }
@@ -70,7 +76,7 @@ public class AddPolynomialsLinkedList {
       this.coefficient = coefficent;
       this.power = power;
     }
-    
+
     public String getVariableString() {
       StringBuilder builder = new StringBuilder();
       builder.append(coefficient).append("x^").append(power).append(" + ");
