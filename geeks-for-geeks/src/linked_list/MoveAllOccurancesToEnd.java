@@ -27,8 +27,12 @@ public class MoveAllOccurancesToEnd {
   public CustomLinkedList<Integer> moveAllOccurancesToEnd(int key) {
     LinkedListNode<Integer> head = linkedList.head();
     LinkedListNode<Integer> tail = linkedList.tail();
-
-    while ((head = linkedList.head()).data == key) {
+    
+    if(head.equals(tail)) {
+      return linkedList;
+    }
+    
+    while ((head = linkedList.head()) != null && head.data == key) {
       linkedList.head(head.next);
       head.next = null;
       linkedList.tail().next = head;

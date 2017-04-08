@@ -44,6 +44,27 @@ public class TestMoveAllOccurancesToEnd {
     assertMoveAllOccurances(values[0].trim(), expected, Integer.parseInt(values[1].trim()));
   }
 
+  @Test
+  public void testMoveAllOccurancesToEndTestCase3() {
+    Integer[] expected = new Integer[] { 1, 2, 3, 5, 6, 4 };
+    String[] values = input[2].split(",");
+    assertMoveAllOccurances(values[0].trim(), expected, Integer.parseInt(values[1].trim()));
+  }
+
+  @Test
+  public void testMoveAllOccurancesToEndTestCase4() {
+    Integer[] expected = new Integer[] { 1, 4, 5, 2, 3, 8, 7, 7, 7 };
+    String[] values = input[3].split(",");
+    assertMoveAllOccurances(values[0].trim(), expected, Integer.parseInt(values[1].trim()));
+  }
+
+  @Test
+  public void testMoveAllOccurancesToEndTestCase5() {
+    Integer[] expected = new Integer[] { 1 };
+    String[] values = input[4].split(",");
+    assertMoveAllOccurances(values[0].trim(), expected, Integer.parseInt(values[1].trim()));
+  }
+
   private void assertMoveAllOccurances(String line, Integer[] expected, int key) {
     moveAllOccurances.constructLinkedList(line);
     CustomLinkedList<Integer> output = moveAllOccurances.moveAllOccurancesToEnd(key);
