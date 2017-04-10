@@ -12,7 +12,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import datastructures.lists.CustomLinkedList;
 import datastructures.util.InputUtil;
 
 public class TestMergeSortedLinkedListReverse {
@@ -66,7 +65,6 @@ public class TestMergeSortedLinkedListReverse {
   @SuppressWarnings("unchecked")
   private void assertMergeSortedLists(String[] input) {
     mergeSorted.constructLists(input[0].split(" "), input[1].split(" "));
-    CustomLinkedList<Integer> resultList = mergeSorted.merge();
     String[] values = input[2].split(" ");
     List<Integer> expected = new ArrayList<Integer>();
     for (String v : values) {
@@ -75,6 +73,7 @@ public class TestMergeSortedLinkedListReverse {
       }
     }
 
-    assertThat(Arrays.asList(expected), contains(Arrays.asList(resultList.toArray())));
+    assertThat(Arrays.asList(expected), contains(Arrays.asList(mergeSorted.merge().toArray())));
+    assertThat(Arrays.asList(expected), contains(Arrays.asList(mergeSorted.merge2().toArray())));
   }
 }
