@@ -91,20 +91,20 @@ public class ReverseLinkedList {
    * @return resultHead
    */
   private LinkedListNode<String> reverseInline(LinkedListNode<String> head) {
-    LinkedListNode<String> resultHead = head;
-    LinkedListNode<String> runner = resultHead.next;
+    LinkedListNode<String> current = head;
+    LinkedListNode<String> runner = current.next;
     LinkedListNode<String> temp;
 
-    resultHead.next = null;
+    current.next = null;
 
     while (runner != null) {
       temp = runner.next;
-      runner.next = resultHead;
-      resultHead = runner;
+      runner.next = current;
+      current = runner;
       runner = temp;
     }
 
-    return resultHead;
+    return current;
   }
 
   public static void main(String[] args) throws FileNotFoundException {
