@@ -61,8 +61,36 @@ public class MergeSortedLinkedListsReverse {
 
     return resultList;
   }
-
+  
   public CustomLinkedList<Integer> merge2() {
+    CustomLinkedList<Integer> resultList = new CustomLinkedList<Integer>();
+    LinkedListNode<Integer> current = list.head();
+    LinkedListNode<Integer> current2 = list2.head();
+
+    while (current != null && current2 != null) {
+      if (current.data < current2.data) {
+        resultList.addToFront(current.data);
+        current = current.next;
+      } else {
+        resultList.addToFront(current2.data);
+        current2 = current2.next;
+      }
+    }
+
+    while (current != null) {
+      resultList.addToFront(current.data);
+      current = current.next;
+    }
+
+    while (current2 != null) {
+      resultList.addToFront(current2.data);
+      current2 = current2.next;
+    }
+
+    return resultList;
+  }
+  
+  public CustomLinkedList<Integer> merge3() {
     CustomLinkedList<Integer> resultList = new CustomLinkedList<Integer>();
     reverseLinkedList(list);
     reverseLinkedList(list2);

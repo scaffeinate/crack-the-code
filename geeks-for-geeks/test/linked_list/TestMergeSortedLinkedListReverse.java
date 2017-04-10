@@ -75,5 +75,6 @@ public class TestMergeSortedLinkedListReverse {
 
     assertThat(Arrays.asList(expected), contains(Arrays.asList(mergeSorted.merge().toArray())));
     assertThat(Arrays.asList(expected), contains(Arrays.asList(mergeSorted.merge2().toArray())));
+    assertThat(Arrays.asList(expected), contains(Arrays.asList(mergeSorted.merge3().toArray())));
   }
 }

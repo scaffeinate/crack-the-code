@@ -275,6 +275,7 @@ public class CustomLinkedList<T> extends AbstractList<T> {
       added = true;
     }
 
+    size++;
     return added;
   }
 
