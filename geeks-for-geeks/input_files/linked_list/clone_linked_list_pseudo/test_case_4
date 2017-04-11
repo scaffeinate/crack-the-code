@@ -1,0 +1,6 @@
+insert 1->2->3->4->5
+psuedoLink 2 1
+psuedoLink 3 2
+psuedoLink 4 3
+psuedoLink 5 1
+psuedoLink 1 5

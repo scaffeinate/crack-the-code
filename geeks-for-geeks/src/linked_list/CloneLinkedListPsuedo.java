@@ -4,15 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CloneLinkedListPsuedo {
-  private CustomLinkedListPsuedo linkedList = null;
-  private Map<Integer, LinkedListNodePsuedo> nodesMap = null;
-
-  public CloneLinkedListPsuedo() {
-    linkedList = new CustomLinkedListPsuedo();
-    nodesMap = new HashMap<Integer, LinkedListNodePsuedo>();
-  }
-
-  public void constructList(String[] input) {
+  public CustomLinkedListPsuedo constructList(String[] input) {
+    CustomLinkedListPsuedo linkedList = new CustomLinkedListPsuedo();
+    Map<Integer, LinkedListNodePsuedo> nodesMap = new HashMap<Integer, LinkedListNodePsuedo>();
     for (String line : input) {
       String[] values = line.split(" ");
       switch (values[0]) {
@@ -30,36 +24,32 @@ public class CloneLinkedListPsuedo {
         break;
       }
     }
-    
-    linkedList.print();
+
+    return linkedList;
   }
 
-  public CustomLinkedListPsuedo clone() {
+  public CustomLinkedListPsuedo clone(CustomLinkedListPsuedo linkedList) {
     CustomLinkedListPsuedo resultList = new CustomLinkedListPsuedo();
     LinkedListNodePsuedo current = linkedList.head;
     LinkedListNodePsuedo current2 = null;
     LinkedListNodePsuedo temp = null;
-    
+
     while (current != null) {
       current2 = resultList.insert(current.data);
       temp = current.next;
       current.next = current2;
-      current2.psuedo = current;
+      if(current.psuedo != null) {
+        current2.psuedo = current;
+      }
       current = temp;
     }
 
-    current = linkedList.head;
     current2 = resultList.head;
-
-    while (current != null) {
-      if(current.next != null && current.psuedo != null) {
-        current.next.psuedo = current.psuedo.next;
+    while (current2 != null) {
+      if (current2.psuedo != null && current2.psuedo.psuedo != null) {
+        current2.psuedo = current2.psuedo.psuedo.next;
       }
-      if(current.next != null && current.next.next != null) {
-        current.next = current.next.next.psuedo;
-      }
-
-      current = current.next;
+      current2 = current2.next;
     }
 
     return resultList;
@@ -80,15 +70,6 @@ public class CloneLinkedListPsuedo {
 
       return tail;
     }
-
-    public void print() {
-      LinkedListNodePsuedo current = head;
-      while (current != null) {
-        System.out.print(current.toString() + " -> ");
-        current = current.next;
-      }
-      System.out.println();
-    }
   }
 
   public class LinkedListNodePsuedo {
@@ -98,12 +79,6 @@ public class CloneLinkedListPsuedo {
 
     public LinkedListNodePsuedo(int data) {
       this.data = data;
-    }
-
-    @Override
-    public String toString() {
-      return "LinkedListNodePsuedo [data=" + data + ", next=" + (next != null ? next.data : "null") + ", psuedo="
-          + (psuedo != null ? psuedo.data : "null") + "]";
     }
   }
 }
