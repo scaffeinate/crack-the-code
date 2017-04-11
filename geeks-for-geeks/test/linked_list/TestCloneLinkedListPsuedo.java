@@ -68,6 +68,10 @@ public class TestCloneLinkedListPsuedo {
     CustomLinkedListPsuedo output = cloneLinkedList.clone(original);
     String actualOutput = formatList(output);
     assertEquals(expectedOutput, actualOutput);
+    
+    CustomLinkedListPsuedo output2 = cloneLinkedList.clone2(original);
+    String actualOutput2 = formatList(output2);
+    assertEquals(expectedOutput, actualOutput2);
   }
 
   private String formatList(CustomLinkedListPsuedo list) {
