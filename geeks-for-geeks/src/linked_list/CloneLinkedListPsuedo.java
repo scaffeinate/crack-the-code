@@ -3,6 +3,11 @@ package linked_list;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * http://www.geeksforgeeks.org/clone-linked-list-next-random-pointer-o1-space/
+ * 
+ * @author Sudharsanan Muralidharan
+ */
 public class CloneLinkedListPsuedo {
   public CustomLinkedListPsuedo constructList(String[] input) {
     CustomLinkedListPsuedo linkedList = new CustomLinkedListPsuedo();
@@ -53,7 +58,7 @@ public class CloneLinkedListPsuedo {
 
     while (runner != null) {
       LinkedListNodePsuedo temp = (runner.next != null) ? runner.next.next : runner.next;
-      current.next = (current.next != null) ? current.next.next :current.next;
+      current.next = (current.next != null) ? current.next.next : current.next;
       resultList.insert(runner);
       runner = temp;
       current = current.next;
