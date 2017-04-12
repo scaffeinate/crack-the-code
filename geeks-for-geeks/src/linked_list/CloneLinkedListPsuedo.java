@@ -69,6 +69,28 @@ public class CloneLinkedListPsuedo {
 
   public CustomLinkedListPsuedo clone2(CustomLinkedListPsuedo linkedList) {
     CustomLinkedListPsuedo resultList = new CustomLinkedListPsuedo();
+    Map<Integer, LinkedListNodePsuedo> cloneNodesMap = new HashMap<Integer, LinkedListNodePsuedo>();
+    LinkedListNodePsuedo current = linkedList.head;
+
+    while (current != null) {
+      cloneNodesMap.put(current.data, resultList.insert(current.data));
+      current = current.next;
+    }
+
+    current = linkedList.head;
+    while (current != null) {
+      LinkedListNodePsuedo psuedo = current.psuedo;
+      if (psuedo != null) {
+        cloneNodesMap.get(current.data).psuedo = cloneNodesMap.get(psuedo.data);
+      }
+      current = current.next;
+    }
+
+    return resultList;
+  }
+
+  public CustomLinkedListPsuedo clone3(CustomLinkedListPsuedo linkedList) {
+    CustomLinkedListPsuedo resultList = new CustomLinkedListPsuedo();
     LinkedListNodePsuedo current = linkedList.head;
     LinkedListNodePsuedo current2 = null;
     LinkedListNodePsuedo temp = null;
