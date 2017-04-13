@@ -3,6 +3,12 @@ package binarytree;
 import datastructures.tree.BinarySearchTree;
 import datastructures.tree.TreeNode;
 
+/**
+ * Question:
+ * http://www.geeksforgeeks.org/check-if-given-sorted-sub-sequence-exists-in-binary-search-tree/
+ * 
+ * @author Sudharsanan Muralidharan
+ */
 public class CheckSortedSubSequenceBST {
   private BinarySearchTree<Integer> tree = null;
   private TreeNode<Integer> root = null;
