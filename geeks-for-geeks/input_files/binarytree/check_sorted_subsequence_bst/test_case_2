@@ -1,0 +1,4 @@
+insertRoot 5
+checkSeq 5 true
+checkSeq 1 false
+checkSeq 5,10 false

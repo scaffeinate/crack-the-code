@@ -1,0 +1,16 @@
+insertRoot 1
+insert 2
+insert 3
+insert 4
+insert 5
+insert 6
+insert 7
+insert 8
+insert 9
+insert 10
+checkSeq 1,4,6,8,10 true
+checkSeq 10 true
+checkSeq 5,8,9,10,11 false
+checkSeq 3,6,8,9,10 true
+checkSeq 1,1,1,1 false
+checkSeq 3,8,7,5,10 false
