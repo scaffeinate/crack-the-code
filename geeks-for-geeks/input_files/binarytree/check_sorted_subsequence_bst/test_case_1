@@ -1,0 +1,11 @@
+insertRoot 8
+insert 3
+insert 1
+insert 6
+insert 4
+insert 7
+insert 10
+insert 14
+insert 13
+checkSeq 4,6,8,14 true
+checkSeq 1,2,3,8 false
