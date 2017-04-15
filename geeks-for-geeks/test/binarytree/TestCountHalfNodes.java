@@ -62,6 +62,7 @@ public class TestCountHalfNodes {
       String[] values = line.split(" ");
       if (values[0].equals("count")) {
         assertEquals(Integer.parseInt(values[1]), countHalfNodesBinaryTree.countHalfNodes());
+        assertEquals(Integer.parseInt(values[1]), countHalfNodesBinaryTree.countHalfNodesIterative());
       }
     }
   }

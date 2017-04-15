@@ -1,11 +1,19 @@
 package binarytree;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 
 import datastructures.tree.BinaryTree;
 import datastructures.tree.TreeNode;
 
+/**
+ * Question:
+ * http://www.geeksforgeeks.org/count-half-nodes-in-a-binary-tree-iterative-and-recursive/
+ * 
+ * @author Sudharsanan Muralidharan
+ */
 public class CountHalfNodesBinaryTree {
   private BinaryTree<Integer> tree = null;
   private Map<Integer, TreeNode<Integer>> nodesMap = null;
@@ -53,6 +61,31 @@ public class CountHalfNodesBinaryTree {
 
   public int countHalfNodes() {
     return countHalfNodes(root);
+  }
+
+  public int countHalfNodesIterative() {
+    int count = 0;
+    Queue<TreeNode<Integer>> queue = new LinkedList<TreeNode<Integer>>();
+    queue.add(root);
+
+    while (!queue.isEmpty()) {
+      TreeNode<Integer> current = queue.poll();
+      boolean halfNode = false;
+
+      if (current.left != null) {
+        queue.add(current.left);
+        halfNode = !halfNode;
+      }
+
+      if (current.right != null) {
+        queue.add(current.right);
+        halfNode = !halfNode;
+      }
+
+      count += halfNode ? 1 : 0;
+    }
+
+    return count;
   }
 
   private int countHalfNodes(TreeNode<Integer> root) {
