@@ -1,0 +1,6 @@
+insertRoot 5
+insertLeft 5 3
+insertRight 5 6
+insertLeft 3 2
+insertRight 3 4
+count 0
