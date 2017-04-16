@@ -1,7 +1,13 @@
 package array;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
+/**
+ * Question: http://www.geeksforgeeks.org/split-array-two-equal-sum-subarrays/
+ * 
+ * @author Sudharsanan Muralidharan
+ */
 public class EqualSumSubArrays {
   public Result subArrays(int[] arr) {
     Result result = new Result();
@@ -10,6 +16,8 @@ public class EqualSumSubArrays {
     for (int i = 0; i < arr.length; i++) {
       sum += arr[i];
     }
+    
+    Scanner s;
 
     for (int i = 0; i < arr.length; i++) {
       leftSum += arr[i];
@@ -24,8 +32,8 @@ public class EqualSumSubArrays {
       result.leftArr = Arrays.copyOfRange(arr, 0, index + 1);
       result.rightArr = Arrays.copyOfRange(arr, index + 1, arr.length);
     } else {
-      result.leftArr = new int[]{};
-      result.rightArr = new int[]{};
+      result.leftArr = new int[] {};
+      result.rightArr = new int[] {};
     }
 
     return result;
