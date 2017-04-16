@@ -1,4 +1,4 @@
-package medium;
+package leetcode.medium;
 
 /**
  * Problem: https://leetcode.com/problems/copy-list-with-random-pointer
