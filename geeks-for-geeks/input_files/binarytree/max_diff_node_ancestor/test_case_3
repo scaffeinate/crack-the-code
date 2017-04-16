@@ -1,0 +1,8 @@
+insertRoot 1
+insertLeft 1 2
+insertLeft 2 3
+insertLeft 3 4
+insertLeft 4 5
+insertLeft 5 6
+insertLeft 6 7
+maxDiff -1

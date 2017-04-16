@@ -52,7 +52,7 @@ public class MaxDifferenceNodeAncestor {
   }
 
   public int maximumDifference() {
-    return maximumDifference(root, root.data, Integer.MIN_VALUE);
+    return maximumDifference(root, Integer.MIN_VALUE, Integer.MIN_VALUE);
   }
 
   private int maximumDifference(TreeNode<Integer> root, int maxAncestor, int maxDiff) {
@@ -60,7 +60,9 @@ public class MaxDifferenceNodeAncestor {
       return Integer.MIN_VALUE;
     }
 
-    maxDiff = Math.max((maxAncestor - root.data), maxDiff);
+    if (maxAncestor != Integer.MIN_VALUE) {
+      maxDiff = Math.max((maxAncestor - root.data), maxDiff);
+    }
 
     maxAncestor = Math.max(root.data, maxAncestor);
     maxDiff = Math.max(maximumDifference(root.left, maxAncestor, maxDiff), maxDiff);

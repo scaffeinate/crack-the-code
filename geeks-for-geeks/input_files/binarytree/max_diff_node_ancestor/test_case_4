@@ -1,0 +1,10 @@
+insertRoot 0
+insertLeft 0 -5
+insertRight 0 5
+insertLeft -5 10
+insertLeft 10 20
+insertRight 10 -20
+insertRight 5 -10
+insertLeft -10 -30
+insertRight -10 30
+maxDiff 35
