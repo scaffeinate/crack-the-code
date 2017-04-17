@@ -1,0 +1,9 @@
+insertRoot 20
+insertLeft 20 8
+insertRight 20 22
+insertLeft 8 4
+insertRight 8 12
+insertLeft 12 10
+insertRight 12 14
+lca 10 14 12
+lca 8 14 8

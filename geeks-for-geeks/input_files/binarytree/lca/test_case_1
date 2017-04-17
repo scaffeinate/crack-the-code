@@ -1,0 +1,7 @@
+insertRoot 4
+insertLeft 4 2
+insertRight 4 7
+insertLeft 2 1
+insertRight 2 3
+insertLeft 7 6
+lca 1 7 4
