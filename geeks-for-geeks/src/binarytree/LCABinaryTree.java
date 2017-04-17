@@ -8,16 +8,16 @@ import datastructures.tree.TreeNode;
 
 /**
  * Question:
- * http://www.geeksforgeeks.org/maximum-difference-between-node-and-its-ancestor-in-binary-tree/
+ * http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/
  * 
  * @author Sudharsanan Muralidharan
  */
-public class MaxDifferenceNodeAncestor {
+public class LCABinaryTree {
   private BinaryTree<Integer> tree = null;
   private Map<Integer, TreeNode<Integer>> nodesMap = null;
   private TreeNode<Integer> root = null;
 
-  public MaxDifferenceNodeAncestor() {
+  public LCABinaryTree() {
     tree = new BinaryTree<Integer>();
     nodesMap = new HashMap<Integer, TreeNode<Integer>>();
   }
@@ -57,23 +57,22 @@ public class MaxDifferenceNodeAncestor {
     nodesMap.put(nodeVal, tree.insert(parentNode, node, isLeft));
   }
 
-  public int maximumDifference() {
-    return maximumDifference(root, Integer.MIN_VALUE, Integer.MIN_VALUE);
+  public TreeNode<Integer> lca(int nodeData, int node2Data) {
+    return lca(root, nodeData, node2Data);
   }
 
-  private int maximumDifference(TreeNode<Integer> root, int maxAncestor, int maxDiff) {
-    if (root == null) {
-      return Integer.MIN_VALUE;
+  private TreeNode<Integer> lca(TreeNode<Integer> root, Integer nodeData, Integer node2Data) {
+    if (root != null) {
+      TreeNode<Integer> leftNode = lca(root.left, nodeData, node2Data);
+      TreeNode<Integer> rightNode = lca(root.right, nodeData, node2Data);
+
+      if ((leftNode != null && rightNode != null) || (root.data == nodeData || root.data == node2Data)) {
+        return root;
+      } else if (leftNode != null || rightNode != null) {
+        return (leftNode != null) ? leftNode : rightNode;
+      }
     }
-
-    if (maxAncestor != Integer.MIN_VALUE) {
-      maxDiff = Math.max((maxAncestor - root.data), maxDiff);
-    }
-
-    maxAncestor = Math.max(root.data, maxAncestor);
-    maxDiff = Math.max(maximumDifference(root.left, maxAncestor, maxDiff), maxDiff);
-    maxDiff = Math.max(maximumDifference(root.right, maxAncestor, maxDiff), maxDiff);
-
-    return maxDiff;
+    return null;
   }
+
 }
