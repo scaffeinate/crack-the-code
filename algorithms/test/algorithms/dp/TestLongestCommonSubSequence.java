@@ -54,6 +54,12 @@ public class TestLongestCommonSubSequence {
     String[] values = input[4].split(" ");
     assertLCS(values);
   }
+  
+  @Test
+  public void testLongestCommonSubSequenceTestCase6() {
+    String[] values = input[5].split(" ");
+    assertLCS(values);
+  }
 
   private void assertLCS(String[] values) {
     assertEquals(Integer.parseInt(values[2]), longestCommonSubSeq.lcsTabulated(values[0], values[1]));
