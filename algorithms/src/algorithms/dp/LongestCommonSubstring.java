@@ -1,5 +1,10 @@
 package algorithms.dp;
 
+/**
+ * Question: http://www.geeksforgeeks.org/longest-common-substring/
+ * 
+ * @author Sudharsanan Muralidharan
+ */
 public class LongestCommonSubstring {
 
   public int lcsTabulated(String s1, String s2) {
