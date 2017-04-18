@@ -32,9 +32,30 @@ public class LongestCommonSubsequence {
     return table[s1.length()][s2.length()];
   }
 
+  public int lcsMemoized(String s1, String s2) {
+    return lcsMemoized(s1, s2, s1.length(), s2.length(), new int[s1.length()][s2.length()]);
+  }
+
+  private int lcsMemoized(String s1, String s2, int i, int j, int[][] results) {
+    if (i == 0 || j == 0) {
+      return 0;
+    }
+
+    if (results[i - 1][j - 1] == 0) {
+      if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
+        results[i - 1][j - 1] = lcsMemoized(s1, s2, i - 1, j - 1, results) + 1;
+      } else {
+        results[i - 1][j - 1] = Math.max(lcsMemoized(s1, s2, i, j - 1, results),
+            lcsMemoized(s1, s2, i - 1, j, results));
+      }
+    }
+    return results[i - 1][j - 1];
+  }
+
   public static void main(String[] args) {
     LongestCommonSubsequence lcs = new LongestCommonSubsequence();
-    System.out.println(lcs.lcsTabulated("Aerodrone", "Airpod"));
-    System.out.println(lcs.lcsTabulated("AGGRTAB", "GXTXAYB"));
+    System.out.println(lcs.lcsTabulated("AerodroneAerodroneAerodrone", "AirpodAiAirpodrpod"));
+    //System.out.println(lcs.lcsTabulated("AGGRTAB", "GXTXAYB"));
+    System.out.println(lcs.lcsMemoized("AerodroneAerodroneAerodrone", "AirpodAiAirpodrpod"));
   }
 }
