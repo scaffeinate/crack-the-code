@@ -68,6 +68,7 @@ public class CommonAncestor {
         TreeNode<Integer> nodeB = nodesMap.get(Integer.parseInt(values[2]));
         TreeNode<Integer> ancestor = findCommonAncestor(tree.getRoot(), nodeA, nodeB);
         System.out.println(ancestor.data);
+        System.out.println(findCommonAncestor2(tree.getRoot(), nodeA, nodeB));
         break;
       }
     }
@@ -76,19 +77,13 @@ public class CommonAncestor {
   private TreeNode<Integer> findCommonAncestor(TreeNode<Integer> root, TreeNode<Integer> nodeA,
       TreeNode<Integer> nodeB) {
     if (root != null) {
-      if (root.equals(nodeA) || root.equals(nodeB)) {
-        return root;
-      }
-
       TreeNode<Integer> leftNode = findCommonAncestor(root.left, nodeA, nodeB);
       TreeNode<Integer> rightNode = findCommonAncestor(root.right, nodeA, nodeB);
 
-      if (leftNode != null && rightNode != null) {
+      if ((leftNode != null && rightNode != null) || (root.equals(nodeA) || root.equals(nodeB))) {
         return root;
-      } else if (leftNode != null) {
-        return leftNode;
-      } else if (rightNode != null) {
-        return rightNode;
+      } else if (leftNode != null || rightNode != null) {
+        return (leftNode != null) ? leftNode : rightNode;
       }
     }
     return null;
@@ -106,8 +101,8 @@ public class CommonAncestor {
     for (int i = 0; i < diff; i++) {
       longerNode = longerNode.parent;
     }
-    
-    while(!longerNode.equals(shorterNode)) {
+
+    while (!longerNode.equals(shorterNode)) {
       longerNode = longerNode.parent;
       shorterNode = shorterNode.parent;
     }
