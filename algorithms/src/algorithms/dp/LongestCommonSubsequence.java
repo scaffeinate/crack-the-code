@@ -1,5 +1,11 @@
 package algorithms.dp;
 
+/**
+ * Question:
+ * http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/
+ * 
+ * @author Sudharsanan Muralidharan
+ */
 public class LongestCommonSubsequence {
 
   public int lcs(String s1, String s2) {
@@ -33,7 +39,13 @@ public class LongestCommonSubsequence {
   }
 
   public int lcsMemoized(String s1, String s2) {
-    return lcsMemoized(s1, s2, s1.length(), s2.length(), new int[s1.length()][s2.length()]);
+    int[][] results = new int[s1.length()][s2.length()];
+    for (int i = 0; i < results.length; i++) {
+      for (int j = 0; j < results[0].length; j++) {
+        results[i][j] = -1;
+      }
+    }
+    return lcsMemoized(s1, s2, s1.length(), s2.length(), results);
   }
 
   private int lcsMemoized(String s1, String s2, int i, int j, int[][] results) {
@@ -41,7 +53,7 @@ public class LongestCommonSubsequence {
       return 0;
     }
 
-    if (results[i - 1][j - 1] == 0) {
+    if (results[i - 1][j - 1] == -1) {
       if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
         results[i - 1][j - 1] = lcsMemoized(s1, s2, i - 1, j - 1, results) + 1;
       } else {
@@ -50,12 +62,5 @@ public class LongestCommonSubsequence {
       }
     }
     return results[i - 1][j - 1];
-  }
-
-  public static void main(String[] args) {
-    LongestCommonSubsequence lcs = new LongestCommonSubsequence();
-    System.out.println(lcs.lcsTabulated("AerodroneAerodroneAerodrone", "AirpodAiAirpodrpod"));
-    //System.out.println(lcs.lcsTabulated("AGGRTAB", "GXTXAYB"));
-    System.out.println(lcs.lcsMemoized("AerodroneAerodroneAerodrone", "AirpodAiAirpodrpod"));
   }
 }
