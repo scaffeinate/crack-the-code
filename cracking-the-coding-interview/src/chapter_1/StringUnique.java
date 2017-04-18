@@ -1,11 +1,8 @@
 package chapter_1;
 
-import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
-import util.InputUtil;
 
 /**
  * Question 1.1 : Implement an algorithm to determine if a string has all unique
@@ -22,7 +19,7 @@ public class StringUnique {
    * @param word
    * @return isUniqueChars
    */
-  private boolean checkUniqueChars(String word) {
+  public boolean checkUniqueChars(String word) {
     char[] characters = word.toCharArray();
 
     for (int i = 0; i < characters.length - 1; i++) {
@@ -43,7 +40,7 @@ public class StringUnique {
    * @param word
    * @return isUniqueChars
    */
-  private boolean checkUniqueCharsSorted(String word) {
+  public boolean checkUniqueCharsSorted(String word) {
     char[] characters = word.toCharArray();
     Arrays.sort(characters);
 
@@ -64,7 +61,7 @@ public class StringUnique {
    * @param word
    * @return isUniqueChars
    */
-  private boolean checkUniqueCharsArray(String word) {
+  public boolean checkUniqueCharsArray(String word) {
     int counter[] = new int[128];
     char[] characters = word.toCharArray();
 
@@ -90,7 +87,7 @@ public class StringUnique {
    * @param word
    * @return isUniqueChars
    */
-  private boolean checkUniqueCharsBits(String word) {
+  public boolean checkUniqueCharsBits(String word) {
     int checker = 0;
     char[] characters = word.toCharArray();
 
@@ -123,7 +120,7 @@ public class StringUnique {
    * @param word
    * @return isUniqueChars
    */
-  private boolean checkUniqueCharsSet(String word) {
+  public boolean checkUniqueCharsSet(String word) {
     Set<Character> characterSet = new HashSet<Character>();
     char[] characters = word.toCharArray();
 
@@ -135,23 +132,5 @@ public class StringUnique {
     }
 
     return true;
-  }
-
-  public static void main(String[] args) throws FileNotFoundException {
-
-    StringUnique stringUnique = new StringUnique();
-    String[] input = InputUtil.readContents(1, "string_unique");
-    String word;
-
-    for (String line : input) {
-      word = line.toLowerCase();
-      System.out.println("Input: " + word);
-      System.out.println("Is string unique? " + stringUnique.checkUniqueChars(word));
-      System.out.println("Is string unique using sorting? " + stringUnique.checkUniqueCharsSorted(word));
-      System.out.println("Is string unique using array? " + stringUnique.checkUniqueCharsArray(word));
-      System.out.println("Is string unique using bit? " + stringUnique.checkUniqueCharsBits(word));
-      System.out.println("Is string unique using set? " + stringUnique.checkUniqueCharsSet(word));
-      System.out.println();
-    }
   }
 }

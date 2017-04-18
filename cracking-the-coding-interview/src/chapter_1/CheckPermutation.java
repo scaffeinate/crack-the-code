@@ -1,9 +1,6 @@
 package chapter_1;
 
-import java.io.FileNotFoundException;
 import java.util.Arrays;
-
-import util.InputUtil;
 
 /**
  * Question 1.2: Given two strings, write a method to determine whether one is a
@@ -21,7 +18,7 @@ public class CheckPermutation {
    * @param second
    * @return isPermuatation
    */
-  private boolean isPermutationSorted(String first, String second) {
+  public boolean isPermutationSorted(String first, String second) {
 
     if (first.length() != second.length()) {
       return false;
@@ -45,7 +42,7 @@ public class CheckPermutation {
    * @param second
    * @return isPermutation
    */
-  private boolean isPermutationArray(String first, String second) {
+  public boolean isPermutationArray(String first, String second) {
     int[] counter = new int[128];
 
     if (first.length() != second.length()) {
@@ -81,7 +78,7 @@ public class CheckPermutation {
    * @param second
    * @return isPermutation
    */
-  private boolean isPermutationBitWise(String first, String second) {
+  public boolean isPermutationBitWise(String first, String second) {
     int checker = 0, checker2 = 0;
 
     if (first.length() != second.length()) {
@@ -98,26 +95,5 @@ public class CheckPermutation {
     }
 
     return (checker ^ checker2) == 0;
-  }
-
-  public static void main(String[] args) throws FileNotFoundException {
-
-    CheckPermutation checkPermutation = new CheckPermutation();
-    String[] input = InputUtil.readContents(1, "check_permutation");
-    String first, second;
-
-    for (String line : input) {
-      first = line.split(":")[0].trim();
-      second = line.split(":")[1].trim();
-
-      if (first != null && second != null && !first.isEmpty() && !second.isEmpty()) {
-        System.out.println("Input: " + line);
-        System.out.println("Permutation check using sorted: " + checkPermutation.isPermutationSorted(first, second));
-        System.out.println("Permutation check using array: " + checkPermutation.isPermutationArray(first, second));
-        System.out.println("Permutation check using bitwise: " + checkPermutation.isPermutationBitWise(first, second));
-        System.out.println();
-      }
-    }
-
   }
 }
