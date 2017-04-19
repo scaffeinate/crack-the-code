@@ -29,7 +29,7 @@ public class PalindromePermutation {
    * @param input
    * @return isPalindromePermutation
    */
-  private boolean isPalindromePermutationMap(String input) {
+  public boolean isPalindromePermutationMap(String input) {
     Map<Character, Integer> characterMap = new HashMap<Character, Integer>();
     char[] characters = input.toCharArray();
     int sum = 0;
@@ -62,7 +62,7 @@ public class PalindromePermutation {
    * @param input
    * @return isPalindromePermutation
    */
-  private boolean isPalindromePermutationArr(String input) {
+  public boolean isPalindromePermutationArr(String input) {
     int[] counter = new int[26];
     char[] characters = input.toCharArray();
     int sum = 0;
@@ -91,7 +91,7 @@ public class PalindromePermutation {
    * @param input
    * @return isPalindromePermutation
    */
-  private boolean isPalindromePermutationBit(String input) {
+  public boolean isPalindromePermutationBit(String input) {
     int checker = 0;
     char[] characters = input.toCharArray();
 
