@@ -7,7 +7,7 @@ package algorithms.dp;
  */
 public class LongestCommonSubstring {
 
-  public int lcsTabulated(String s1, String s2) {
+  public String lcsTabulated(String s1, String s2) {
     int[][] table = new int[s1.length() + 1][s2.length() + 1];
     int longest = table[0][0];
     for (int i = 1; i < table.length; i++) {
@@ -18,12 +18,29 @@ public class LongestCommonSubstring {
       }
     }
 
+    int[] longestTuple = new int[2];
+
     for (int i = 1; i < table.length; i++) {
       for (int j = 1; j < table[0].length; j++) {
-        longest = Math.max(table[i][j], longest);
+        if (table[i][j] > longest) {
+          longest = table[i][j];
+          longestTuple[0] = i;
+          longestTuple[1] = j;
+        }
       }
     }
 
-    return longest;
+    return lcsString(s1, table, longestTuple[0], longestTuple[1]);
+  }
+
+  private String lcsString(String s1, int[][] table, int i, int j) {
+    StringBuilder builder = new StringBuilder();
+    while(table[i][j] != 0) {
+      builder.append(s1.charAt(i-1));
+      i--;
+      j--;
+    }
+    
+    return builder.reverse().toString();
   }
 }

@@ -42,19 +42,19 @@ public class TestLongestCommonSubstring {
     String[] values = input[2].split(" ");
     assertLCS(values);
   }
-  
+
   @Test
   public void testLongestCommonSubstringTestCase4() {
     String[] values = input[3].split(" ");
     assertLCS(values);
   }
-  
+
   @Test
   public void testLongestCommonSubstringTestCase5() {
     String[] values = input[4].split(" ");
     assertLCS(values);
   }
-  
+
   @Test
   public void testLongestCommonSubstringTestCase6() {
     String[] values = input[5].split(" ");
@@ -62,6 +62,10 @@ public class TestLongestCommonSubstring {
   }
 
   private void assertLCS(String[] values) {
-    assertEquals(Integer.parseInt(values[2]), longestCommonSubstring.lcsTabulated(values[0], values[1]));
+    String lcsString = longestCommonSubstring.lcsTabulated(values[0], values[1]);
+    assertEquals(Integer.parseInt(values[2]), lcsString.length());
+    if (lcsString.length() > 0) {
+      assertEquals(values[3], lcsString);
+    }
   }
 }
