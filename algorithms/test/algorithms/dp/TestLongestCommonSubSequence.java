@@ -62,7 +62,9 @@ public class TestLongestCommonSubsequence {
   }
 
   private void assertLCS(String[] values) {
-    assertEquals(Integer.parseInt(values[2]), longestCommonSubSeq.lcsTabulated(values[0], values[1]));
+    String lcsString = longestCommonSubSeq.lcsTabulated(values[0], values[1]);
+    assertEquals(Integer.parseInt(values[2]), lcsString.length());
+    assertEquals(values[3], lcsString);
     assertEquals(Integer.parseInt(values[2]), longestCommonSubSeq.lcsMemoized(values[0], values[1]));
   }
 }

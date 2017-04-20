@@ -22,7 +22,7 @@ public class LongestCommonSubsequence {
     }
   }
 
-  public int lcsTabulated(String s1, String s2) {
+  public String lcsTabulated(String s1, String s2) {
     int[][] table = new int[s1.length() + 1][s2.length() + 1];
 
     for (int i = 1; i < table.length; i++) {
@@ -35,7 +35,26 @@ public class LongestCommonSubsequence {
       }
     }
 
-    return table[s1.length()][s2.length()];
+    return lcsString(s1, s2, table);
+  }
+
+  private String lcsString(String s1, String s2, int[][] table) {
+    int i = table.length - 1, j = table[0].length - 1;
+    StringBuilder builder = new StringBuilder();
+    while (i != 0 && j != 0) {
+      int currentVal = table[i][j];
+      if (table[i - 1][j] == currentVal) {
+        i--;
+      } else if (table[i][j - 1] == currentVal) {
+        j--;
+      } else if ((table[i - 1][j - 1] + 1) == currentVal) {
+        builder.append(s1.charAt(i - 1));
+        i--;
+        j--;
+      }
+    }
+
+    return builder.reverse().toString();
   }
 
   public int lcsMemoized(String s1, String s2) {
