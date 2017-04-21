@@ -61,7 +61,9 @@ public class TestRobotInAGrid {
       }
     }
     int output = robotInAGrid.numPaths(grid);
-
+    assertEquals(expected, output);
+    
+    output = robotInAGrid.numPathsMemoized(grid);
     assertEquals(expected, output);
   }
 }
