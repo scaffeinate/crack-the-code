@@ -13,7 +13,7 @@ import datastructures.util.InputUtil;
 
 public class TestRobotInAGrid {
   private static String basePath = "input_files/chapter_6/robot_in_a_grid/";
-  private static String[] testCases = new String[] { "test_case_1" };;
+  private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3" };;
   private static RobotInAGrid robotInAGrid = null;
   private static List<String[]> inputList = new ArrayList<String[]>();
 
@@ -36,6 +36,18 @@ public class TestRobotInAGrid {
   public void testRobotInAGrid1() {
     String[] input = inputList.get(0);
     assertRobotInAGrid(input, 27);
+  }
+  
+  @Test
+  public void testRobotInAGrid2() {
+    String[] input = inputList.get(1);
+    assertRobotInAGrid(input, 1);
+  }
+  
+  @Test
+  public void testRobotInAGrid3() {
+    String[] input = inputList.get(2);
+    assertRobotInAGrid(input, 0);
   }
 
   private void assertRobotInAGrid(String[] input, int expected) {
