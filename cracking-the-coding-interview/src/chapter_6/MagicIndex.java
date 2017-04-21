@@ -2,16 +2,21 @@ package chapter_6;
 
 public class MagicIndex {
   public int findMagicIndex(int[] arr) {
-    return findMagicIndex(arr, arr.length / 2);
+    return findMagicIndex(arr, 0, arr.length);
   }
 
-  private int findMagicIndex(int[] arr, int index) {
-    if (index == 0) {
-      return (arr[0] == 0) ? 0 : -1;
-    } else if (arr[index] == index) {
-      return index;
+  private int findMagicIndex(int[] arr, int start, int end) {
+    int middle = (start + end) / 2;
+    if (middle == 0 || middle == arr.length - 1) {
+      return arr[middle] == middle ? middle : -1;
+    }
+
+    if (arr[middle] == middle) {
+      return middle;
+    } else if (arr[middle] > middle) {
+      return findMagicIndex(arr, start, middle);
     } else {
-      return findMagicIndex(arr, index / 2);
+      return findMagicIndex(arr, middle + 1, end);
     }
   }
 }

@@ -43,6 +43,21 @@ public class TestMagicIndex {
     assertMagicIndex(input[2]);
   }
 
+  @Test
+  public void testMagicIndexTestCase4() {
+    assertMagicIndex(input[3]);
+  }
+  
+  @Test
+  public void testMagicIndexTestCase5() {
+    assertMagicIndex(input[4]);
+  }
+  
+  @Test
+  public void testMagicIndexTestCase6() {
+    assertMagicIndex(input[5]);
+  }
+
   private void assertMagicIndex(String input) {
     String[] values = input.split(" ");
     String[] arrValues = values[0].split(",");
