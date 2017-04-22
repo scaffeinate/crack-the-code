@@ -13,6 +13,7 @@ public class PowerSet {
     return subsets;
   }
 
+  @SuppressWarnings("unchecked")
   private void subsets(String[] set, int index, Stack<String> result, List<List<String>> subsets) {
     subsets.add((List<String>) result.clone());
     for (int i = index; i < set.length; i++) {
