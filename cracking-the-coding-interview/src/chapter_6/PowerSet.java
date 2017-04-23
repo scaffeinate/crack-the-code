@@ -43,6 +43,28 @@ public class PowerSet {
     return subsets;
   }
 
+  public List<List<String>> subsetsUsingBits(String[] set) {
+    List<List<String>> subsets = new ArrayList<List<String>>();
+    int num = (1 << (set.length));
+    for (int i = 0; i < num; i++) {
+      subsets.add(translateBitToSet(i, set));
+    }
+    return subsets;
+  }
+
+  private List<String> translateBitToSet(int n, String[] set) {
+    int i = 0;
+    List<String> subset = new ArrayList<String>();
+    while (n > 0) {
+      if ((n & 1) == 1) {
+        subset.add(set[i]);
+      }
+      i++;
+      n >>= 1;
+    }
+    return subset;
+  }
+
   class Wrapper {
     Stack<String> stack = new Stack<String>();
     int startIndex;

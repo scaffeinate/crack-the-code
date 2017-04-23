@@ -1,5 +1,7 @@
 package chapter_6;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -86,15 +88,31 @@ public class TestPowerSet {
 
   private void assertPowerSet(String input, List<List<String>> expected) {
     String[] values = input.split(" ");
-    List<List<String>> output = powerSet.subsets(values);
     Set<String> set = new HashSet<String>();
-
     for (List<String> list : expected) {
       set.add(listToString(list));
     }
 
+    List<List<String>> output = powerSet.subsets(values);
+    assertPowerSet(set, output);
+
+    output = powerSet.subsetsIterative(values);
+    assertPowerSet(set, output);
+
+    output = powerSet.subsetsUsingBits(values);
+    assertPowerSet(set, output);
+  }
+
+  private void assertPowerSet(Set<String> set, List<List<String>> output) {
+    assertThat(output, hasSize(set.size()));
+    Set<String> outputSet = new HashSet<String>();
+
     for (List<String> list : output) {
-      assertTrue(set.contains(listToString(list)));
+      outputSet.add(listToString(list));
+    }
+
+    for (String s : set) {
+      assertTrue(outputSet.contains(s));
     }
   }
 
