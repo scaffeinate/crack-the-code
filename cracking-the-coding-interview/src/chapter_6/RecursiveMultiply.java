@@ -17,7 +17,7 @@ public class RecursiveMultiply {
     if (m == 1) {
       return n;
     } else {
-      return (recursiveMultiply(m / 2, n) << 1) + ((m % 2 != 0) ? n : 0);
+      return (recursiveMultiply((m >> 1), n) << 1) + ((m % 2 != 0) ? n : 0);
     }
   }
 }
