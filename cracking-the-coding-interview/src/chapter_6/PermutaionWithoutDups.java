@@ -11,7 +11,7 @@ public class PermutaionWithoutDups {
   }
 
   private void permutate(char[] ch, int index, List<String> results) {
-    if (index == ch.length) {
+    if (index == ch.length - 1) {
       results.add(constructString(ch));
       return;
     }
@@ -32,9 +32,12 @@ public class PermutaionWithoutDups {
   }
 
   private void swap(char[] arr, int i, int j) {
-    char c = arr[i];
-    arr[i] = arr[j];
-    arr[j] = c;
+    if (i == j) {
+      return;
+    }
+    arr[i] = (char) (arr[i] + arr[j]);
+    arr[j] = (char) (arr[i] - arr[j]);
+    arr[i] = (char) (arr[i] - arr[j]);
   }
 
   public static void main(String[] args) {
