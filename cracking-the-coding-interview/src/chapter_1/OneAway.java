@@ -1,9 +1,5 @@
 package chapter_1;
 
-import java.io.FileNotFoundException;
-
-import util.InputUtil;
-
 /**
  * Question 1.5: There are three types of edits that can be performed on
  * strings: insert a character, remove a character, or replace a character.
@@ -25,7 +21,7 @@ public class OneAway {
    * @param input2
    * @return isOneInsertAway
    */
-  private boolean isEditInsert(String input1, String input2) {
+  public boolean isEditInsert(String input1, String input2) {
     int i = 0, j = 0, changes = 0;
 
     while (i < input1.length() && j < input2.length()) {
@@ -52,7 +48,7 @@ public class OneAway {
    * @param input2
    * @return isOneReplaceAway
    */
-  private boolean isEditReplace(String input1, String input2) {
+  public boolean isEditReplace(String input1, String input2) {
     int i = 0, changes = 0;
     while (i < input1.length()) {
       // For mismatch in characters increment changes
@@ -80,7 +76,7 @@ public class OneAway {
    * @param input2
    * @return isOneInsertAway
    */
-  private boolean isEditInsert2(String input1, String input2) {
+  public boolean isEditInsert2(String input1, String input2) {
     int i = 0, j = 0;
 
     /*
@@ -110,7 +106,7 @@ public class OneAway {
    * @param input2
    * @return isOneReplaceAway
    */
-  private boolean isEditReplace2(String input1, String input2) {
+  public boolean isEditReplace2(String input1, String input2) {
     int i = 0;
     boolean isChanged = false;
 
@@ -141,7 +137,7 @@ public class OneAway {
    * @param input2
    * @return isOneAway
    */
-  private boolean checkOneAway(String input1, String input2) {
+  public boolean checkOneAway(String input1, String input2) {
     int len1 = input1.length();
     int len2 = input2.length();
 
@@ -180,7 +176,7 @@ public class OneAway {
    * @param input2
    * @return isOneAway
    */
-  private boolean checkOneAway2(String input1, String input2) {
+  public boolean checkOneAway2(String input1, String input2) {
     int len1 = input1.length();
     int len2 = input2.length();
 
@@ -222,7 +218,7 @@ public class OneAway {
    * @param input2
    * @return isOneAway
    */
-  private boolean checkOneAway3(String input1, String input2) {
+  public boolean checkOneAway3(String input1, String input2) {
     int i = 0, j = 0;
     boolean isChanged = false;
 
@@ -255,26 +251,5 @@ public class OneAway {
     }
 
     return true;
-  }
-
-  public static void main(String[] args) throws FileNotFoundException {
-    OneAway oneAway = new OneAway();
-    String[] input = InputUtil.readContents(1, "one_away");
-    String first, second;
-
-    for (String line : input) {
-      first = line.split(":")[0].trim();
-      second = line.split(":")[1].trim();
-
-      if (first != null && second != null && !first.isEmpty() && !second.isEmpty()) {
-        System.out.println("Input: " + line);
-        System.out.println("Is less than or equal to one edit away? " + oneAway.checkOneAway(first, second));
-        System.out
-            .println("Is less than or equal to one edit away using method 2? " + oneAway.checkOneAway2(first, second));
-        System.out
-            .println("Is less than or equal to one edit away using method 3? " + oneAway.checkOneAway3(first, second));
-        System.out.println();
-      }
-    }
   }
 }
