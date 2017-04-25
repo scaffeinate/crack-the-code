@@ -42,7 +42,8 @@ public class TestPermutationsWithoutDups {
         "2413", "2431", "3124", "3142", "3214", "3241", "3412", "3421", "4123", "4132", "4213", "4231", "4312",
         "4321" };
     List<String> actual = permutations.permutations(input[0]);
-    assertStringPermutations(actual, expected);
+    List<String> actual2 = permutations.permutationsIterative(input[0]);
+    assertStringPermutations(actual, actual2, expected);
   }
 
   @Test
@@ -52,11 +53,15 @@ public class TestPermutationsWithoutDups {
         "bdac", "bdca", "cabd", "cadb", "cbad", "cbda", "cdab", "cdba", "dabc", "dacb", "dbac", "dbca", "dcab",
         "dcba" };
     List<String> actual = permutations.permutations(input[0]);
-    assertStringPermutations(actual, expected);
+    List<String> actual2 = permutations.permutationsIterative(input[0]);
+    assertStringPermutations(actual, actual2, expected);
   }
 
-  private void assertStringPermutations(List<String> actual, String[] expected) {
+  private void assertStringPermutations(List<String> actual, List<String> actual2, String[] expected) {
     assertThat(actual, hasSize(expected.length));
     assertThat(actual, containsInAnyOrder(expected));
+
+    assertThat(actual, hasSize(actual2.size()));
+    assertThat(actual, containsInAnyOrder(actual2.toArray()));
   }
 }

@@ -10,6 +10,27 @@ public class PermutaionWithoutDups {
     return results;
   }
 
+  public List<String> permutationsIterative(String s) {
+    List<String> results = new ArrayList<String>();
+    int numPermutations = fact(s.length());
+    char[] ch = s.toCharArray();
+    for (int i = 0; i < ch.length; i++) {
+      swap(ch, 0, i);
+      int j = 0, k = 1;
+      while (j < (numPermutations / ch.length)) {
+        if (k == ch.length - 1) {
+          k = 1;
+        }
+        swap(ch, k, k + 1);
+        results.add(constructString(ch));
+        k++;
+        j++;
+      }
+    }
+
+    return results;
+  }
+
   private void permutate(char[] ch, int index, List<String> results) {
     if (index == ch.length - 1) {
       results.add(constructString(ch));
@@ -40,8 +61,11 @@ public class PermutaionWithoutDups {
     arr[i] = (char) (arr[i] - arr[j]);
   }
 
-  public static void main(String[] args) {
-    PermutaionWithoutDups p = new PermutaionWithoutDups();
-    System.out.println(p.permutations("Rubix"));
+  private int fact(int n) {
+    if (n == 1) {
+      return 1;
+    }
+
+    return n * fact(n - 1);
   }
 }
