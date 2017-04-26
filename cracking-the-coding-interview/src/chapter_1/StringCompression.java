@@ -3,10 +3,6 @@
  */
 package chapter_1;
 
-import java.io.FileNotFoundException;
-
-import util.InputUtil;
-
 /**
  * Question 1.6: Implement a method to perform basic string compression using
  * the counts of repeated characters. For example, the string aabcccccaaa would
@@ -21,12 +17,12 @@ public class StringCompression {
   /**
    * Compresses the input string and returns the shorter of the two strings
    * 
-   * Complexity: O(n), Space: O(n) for the String builder
+   * Complexity: O(n), Additional Space: O(1)
    * 
    * @param input
    * @return compressedString
    */
-  private String compressString(String input) {
+  public String compressString(String input) {
     StringBuilder builder = new StringBuilder();
     int i = 0, counter = 1;
 
@@ -44,22 +40,6 @@ public class StringCompression {
 
     // return the shorter of the compressed and original string
     return (builder.length() < input.length()) ? builder.toString() : input;
-  }
-
-  /**
-   * @param args
-   * @throws FileNotFoundException
-   */
-  public static void main(String[] args) throws FileNotFoundException {
-    // TODO Auto-generated method stub
-    StringCompression stringCompression = new StringCompression();
-    String[] input = InputUtil.readContents(1, "string_compression");
-
-    for (String line : input) {
-      System.out.println("Input: " + line);
-      System.out.println("Compressed: " + stringCompression.compressString(line));
-      System.out.println();
-    }
   }
 
 }
