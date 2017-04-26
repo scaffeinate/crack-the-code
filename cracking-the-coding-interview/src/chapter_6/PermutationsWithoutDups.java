@@ -3,7 +3,7 @@ package chapter_6;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PermutaionWithoutDups {
+public class PermutationsWithoutDups {
   public List<String> permutations(String s) {
     List<String> results = new ArrayList<String>();
     permutate(s.toCharArray(), 0, results);
