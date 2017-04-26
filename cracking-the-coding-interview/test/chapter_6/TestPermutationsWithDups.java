@@ -13,15 +13,15 @@ import org.junit.Test;
 
 import datastructures.util.InputUtil;
 
-public class TestPermutationsWithoutDups {
-  private static final String basePath = "input_files/chapter_6/permutations_without_dups/";
-  private static String[] testCases = new String[] { "test_case_1", "test_case_2" };
+public class TestPermutationsWithDups {
+  private static final String basePath = "input_files/chapter_6/permutations_with_dups/";
+  private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3" };
   private static List<String[]> inputList = new ArrayList<String[]>();
-  private static PermutationsWithoutDups permutations = null;
+  private static PermutationsWithDups permutations = null;
 
   @BeforeClass
   public static void setup() {
-    permutations = new PermutationsWithoutDups();
+    permutations = new PermutationsWithDups();
     for (String testCase : testCases) {
       String inputFile = basePath + testCase;
       inputList.add(InputUtil.readContents(inputFile));
@@ -42,8 +42,7 @@ public class TestPermutationsWithoutDups {
         "2413", "2431", "3124", "3142", "3214", "3241", "3412", "3421", "4123", "4132", "4213", "4231", "4312",
         "4321" };
     List<String> actual = permutations.permutations(input[0]);
-    List<String> actual2 = permutations.permutationsIterative(input[0]);
-    assertStringPermutations(actual, actual2, expected);
+    assertStringPermutations(actual, expected);
   }
 
   @Test
@@ -53,15 +52,20 @@ public class TestPermutationsWithoutDups {
         "bdac", "bdca", "cabd", "cadb", "cbad", "cbda", "cdab", "cdba", "dabc", "dacb", "dbac", "dbca", "dcab",
         "dcba" };
     List<String> actual = permutations.permutations(input[0]);
-    List<String> actual2 = permutations.permutationsIterative(input[0]);
-    assertStringPermutations(actual, actual2, expected);
+    assertStringPermutations(actual, expected);
   }
 
-  private void assertStringPermutations(List<String> actual, List<String> actual2, String[] expected) {
+  @Test
+  public void testStringPermutationsTestCase3() {
+    String[] input = inputList.get(2);
+    String[] expected = new String[] { "aabc", "aacb", "abac", "abca", "acab", "acba", "baac", "baca", "bcaa", "caab",
+        "caba", "cbaa" };
+    List<String> actual = permutations.permutations(input[0]);
+    assertStringPermutations(actual, expected);
+  }
+
+  private void assertStringPermutations(List<String> actual, String[] expected) {
     assertThat(actual, hasSize(expected.length));
     assertThat(actual, containsInAnyOrder(expected));
-
-    assertThat(actual, hasSize(actual2.size()));
-    assertThat(actual, containsInAnyOrder(actual2.toArray()));
   }
 }
