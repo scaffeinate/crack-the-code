@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import datastructures.util.InputUtil;
 
-public class TestTripeStep {
+public class TestTripleStep {
   private static String inputFile = "input_files/chapter_6/triple_step/test_case";
   private static TripleStep tripleStep;
   private static String[] input = null;
