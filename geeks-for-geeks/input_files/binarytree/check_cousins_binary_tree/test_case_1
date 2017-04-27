@@ -1,0 +1,10 @@
+insertRoot 6
+insertLeft 6 3
+insertRight 6 5
+insertLeft 3 7
+insertRight 3 8
+insertLeft 5 1
+insertRight 5 3
+checkCousins 7 1 true
+checkCousins 3 5 false
+checkCousins 7 5 false
