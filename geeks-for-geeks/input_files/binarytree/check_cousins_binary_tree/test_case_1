@@ -4,7 +4,14 @@ insertRight 6 5
 insertLeft 3 7
 insertRight 3 8
 insertLeft 5 1
-insertRight 5 3
+insertRight 5 4
 checkCousins 7 1 true
 checkCousins 3 5 false
 checkCousins 7 5 false
+checkCousins 8 1 true
+checkCousins 8 4 true
+checkCousins 7 4 true
+checkCousins 7 8 false
+checkCousins 1 4 false
+checkCousins 3 5 false
+checkCousins 7 6 false

@@ -13,7 +13,7 @@ import algorithms.util.InputUtil;
 
 public class TestCheckCousinsBinaryTree {
   private static final String basePath = "input_files/binarytree/check_cousins_binary_tree/";
-  private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3" };
+  private static String[] testCases = new String[] { "test_case_1", "test_case_2" };
   private static List<String[]> inputList = new ArrayList<String[]>();
   private static CheckCousinsBinaryTree checkBinaryTree = null;
 
