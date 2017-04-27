@@ -11,8 +11,11 @@ public class TowersOfHanoi {
 
   private void towersOfHanoi(int n, Stack<Integer> source, Stack<Integer> temp, Stack<Integer> dest) {
     if (n > 0) {
+      // Move N-1 disks from source to temp
       towersOfHanoi(n - 1, source, dest, temp);
+      // Move Nth disk from source to dest
       dest.push(source.pop());
+      // Move back the N-1 disks from temo to dest
       towersOfHanoi(n - 1, temp, source, dest);
     }
   }
