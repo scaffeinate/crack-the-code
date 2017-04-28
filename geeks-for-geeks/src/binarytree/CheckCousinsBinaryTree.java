@@ -6,6 +6,11 @@ import java.util.Map;
 import datastructures.tree.BinaryTree;
 import datastructures.tree.TreeNode;
 
+/**
+ * Question: http://www.geeksforgeeks.org/?p=130442
+ * 
+ * @author Sudharsanan Muralidharan
+ */
 public class CheckCousinsBinaryTree {
   private BinaryTree<Integer> tree = null;
   private Map<Integer, TreeNode<Integer>> nodesMap = null;
