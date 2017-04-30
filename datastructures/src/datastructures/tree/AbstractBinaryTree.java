@@ -27,7 +27,6 @@ public abstract class AbstractBinaryTree<T> implements GenericBinaryTree<T> {
 
   @Override
   public String depthFirstTraversal(TreeNode<T> root) {
-    // TODO Auto-generated method stub
     return null;
   }
 
