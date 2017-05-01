@@ -13,15 +13,22 @@ Practice solutions for:
 
 Datastructure Implementations:
 
-- ~~LinkedList~~
-- ~~Double Linked List~~
-- ~~Circular Linked List~~
-- ~~Stack~~
-- ~~Queue~~
-- ~~Binary Search Tree~~
-- ~~HashTable~~
-- ~~Min & Max Heaps~~
-- ~~Min & Max Priority Queues~~
-- ~~Graphs~~
+- LinkedList
+- Double Linked List
+- Circular Linked List
+- Stack
+- Queue
+- Binary Search Tree
+- HashTable
+- Min & Max Heaps
+- Min & Max Priority Queues
+- Directed Graph
+- Undirected Graph
+- Weighted Graph
+- Disjoint Sets with Path Compression
+- LRU Cache
 - TODO: AVL Tree
 - TODO: Red Black Tree
+
+Algorithms:
+ 
