@@ -31,4 +31,22 @@ Datastructure Implementations:
 - TODO: Red Black Tree
 
 Algorithms:
- 
+- Graph Algorithms
+  - Traversal:
+    - DFS
+    - BFS  
+  - Connected Components:
+    - Strongly Connected Components
+  - Minimum Spanning Tree:
+    - Kruskal's Algorithm
+    - Prim's Algorithm
+  - Single Source Shortest Path:
+    - BellmanFord Algorithm
+    - Djikstra's Algorithm
+    - Shortest Path DAG
+  - All Source Shortest Path:
+    - Floyd Warshall Algorithm
+    - TODO: Johnson's Algorithm
+  - Other Graph Problems:
+    - Topological Sort
+    - Detect Cycle in a Graph(Directed & Undirected)
