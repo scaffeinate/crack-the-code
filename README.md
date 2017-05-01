@@ -11,8 +11,8 @@ Practice solutions for:
 - Hackerrank
 - Leetcode
 
-Datastructure Implementations:
-
+Datastructures:
+--------------
 - LinkedList
 - Double Linked List
 - Circular Linked List
@@ -31,7 +31,8 @@ Datastructure Implementations:
 - TODO: Red Black Tree
 
 Algorithms:
-- Graph Algorithms
+-----------
+- **Graph Algorithms:**
   - Traversal:
     - DFS
     - BFS  
@@ -50,3 +51,21 @@ Algorithms:
   - Other Graph Problems:
     - Topological Sort
     - Detect Cycle in a Graph(Directed & Undirected)
+- **Sorting:**
+  - Bubble Sort
+  - Insertion Sort
+  - Selection Sort
+  - Merge Sort
+  - Heap Sort
+  - TODO: Quick Sort
+  - TODO: Radix Sort
+- **Dynamic Programming:**
+  - Fibonacci Number
+  - Count Ways To Reach N
+  - Longest Common Subsequence
+  - Longest Common Substring
+  - TODO: Longest Palindromic Substring
+  - TODO: Longest Palindromic Subsequence
+  - TODO: Palindromic Substring search
+- **TODO: Greedy Algorithms:**
+- **TODO: String Matching:**
