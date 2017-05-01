@@ -10,21 +10,21 @@ public class Parens {
     return result;
   }
 
-  private void getParans(int n, int numOpeningParams, int numClosingParamsToInsert, StringBuffer buffer,
+  private void getParans(int n, int numOpeningParams, int numClosingParams, StringBuffer buffer,
       List<String> result) {
 
-    if (numOpeningParams == n && numClosingParamsToInsert == 0) {
+    if (numOpeningParams == n && numClosingParams == n) {
       result.add(buffer.toString());
     } else {
       if (numOpeningParams < n) {
         buffer.append('(');
-        getParans(n, numOpeningParams + 1, numClosingParamsToInsert + 1, buffer, result);
+        getParans(n, numOpeningParams + 1, numClosingParams, buffer, result);
         buffer.setLength(buffer.length() - 1);
       }
 
-      if (numClosingParamsToInsert > 0) {
+      if (numClosingParams < numOpeningParams) {
         buffer.append(')');
-        getParans(n, numOpeningParams, numClosingParamsToInsert - 1, buffer, result);
+        getParans(n, numOpeningParams, numClosingParams + 1, buffer, result);
         buffer.setLength(buffer.length() - 1);
       }
     }
