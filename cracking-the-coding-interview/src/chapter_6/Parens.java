@@ -10,22 +10,25 @@ public class Parens {
     return result;
   }
 
-  private void getParans(int n, int numOpeningParams, int numClosingParams, StringBuffer buffer,
-      List<String> result) {
+  private void getParans(int n, int numOpeningParams, int numClosingParams, StringBuffer buffer, List<String> result) {
 
     if (numOpeningParams == n && numClosingParams == n) {
       result.add(buffer.toString());
     } else {
       if (numOpeningParams < n) {
         buffer.append('(');
-        getParans(n, numOpeningParams + 1, numClosingParams, buffer, result);
+        numOpeningParams++;
+        getParans(n, numOpeningParams, numClosingParams, buffer, result);
         buffer.setLength(buffer.length() - 1);
+        numOpeningParams--;
       }
 
       if (numClosingParams < numOpeningParams) {
         buffer.append(')');
-        getParans(n, numOpeningParams, numClosingParams + 1, buffer, result);
+        numClosingParams++;
+        getParans(n, numOpeningParams, numClosingParams, buffer, result);
         buffer.setLength(buffer.length() - 1);
+        numClosingParams--;
       }
     }
   }
