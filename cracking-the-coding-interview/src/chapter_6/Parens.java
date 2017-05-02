@@ -1,7 +1,9 @@
 package chapter_6;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Parens {
   public List<String> getParans(int n) {
@@ -11,7 +13,6 @@ public class Parens {
   }
 
   private void getParans(int n, int numOpeningParams, int numClosingParams, StringBuffer buffer, List<String> result) {
-
     if (numOpeningParams == n && numClosingParams == n) {
       result.add(buffer.toString());
     } else {
@@ -31,5 +32,32 @@ public class Parens {
         numClosingParams--;
       }
     }
+  }
+
+  public List<String> getParans2(int n) {
+    List<String> results = new ArrayList<String>();
+    Set<String> set = getParans2Set(n);
+    results.addAll(set);
+    return results;
+  }
+
+  private Set<String> getParans2Set(int n) {
+    Set<String> set = new HashSet<String>();
+    String base = "()";
+    if (n == 1) {
+      set.add(base);
+    } else {
+      Set<String> prevSet = getParans2Set(n - 1);
+      for (String s : prevSet) {
+        for (int i = 0; i < s.length(); i++) {
+          if (s.charAt(i) == '(') {
+            set.add(s.substring(0, i + 1) + base + s.substring(i + 1, s.length()));
+          }
+        }
+        set.add(base + s);
+      }
+    }
+
+    return set;
   }
 }

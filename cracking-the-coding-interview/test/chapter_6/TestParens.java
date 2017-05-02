@@ -54,5 +54,12 @@ public class TestParens {
     }
 
     assertEquals(Integer.parseInt(expectedSize), output.size());
+
+    output = parens.getParans2(Integer.parseInt(inputVal));
+    for (String s : output) {
+      assertTrue(balancedBrackets.isBalanced(s));
+    }
+
+    assertEquals(Integer.parseInt(expectedSize), output.size());
   }
 }
