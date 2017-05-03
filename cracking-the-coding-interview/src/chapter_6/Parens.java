@@ -54,7 +54,7 @@ public class Parens {
             set.add(s.substring(0, i + 1) + base + s.substring(i + 1, s.length()));
           }
         }
-        set.add(base + s);
+        set.add(s + base);
       }
     }
 
