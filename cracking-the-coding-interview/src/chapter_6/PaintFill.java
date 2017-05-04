@@ -39,12 +39,12 @@ public class PaintFill {
     }
   }
 
-  public String printDisplay(Point[][] display) {
+  public static String printDisplay(Point[][] display) {
     StringBuilder builder = new StringBuilder();
 
     for (int i = 0; i < display.length; i++) {
       for (int j = 0; j < display[0].length; j++) {
-        builder.append(display[i][j].color.toString()).append(" ");
+        builder.append(display[i][j].color.colorCode).append(" ");
       }
       builder.append("\n");
     }
@@ -54,74 +54,5 @@ public class PaintFill {
 
   private boolean liesWithin(Point[][] display, int x, int y) {
     return x < display.length && x >= 0 && y < display[0].length && y >= 0;
-  }
-
-  class Color {
-    private int colorCode = 0;
-    private String color;
-
-    public Color(int colorCode, String color) {
-      this.colorCode = colorCode;
-      this.color = color;
-    }
-
-    @Override
-    public String toString() {
-      return this.colorCode + ":" + this.color;
-    }
-  }
-
-  class Point {
-    int x = 0, y = 0;
-    Color color;
-
-    public Point(int x, int y, Color color) {
-      this.x = x;
-      this.y = y;
-      this.color = color;
-    }
-
-    @Override
-    public int hashCode() {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + getOuterType().hashCode();
-      result = prime * result + ((color == null) ? 0 : color.hashCode());
-      result = prime * result + x;
-      result = prime * result + y;
-      return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-      if (this == obj)
-        return true;
-      if (obj == null)
-        return false;
-      if (getClass() != obj.getClass())
-        return false;
-      Point other = (Point) obj;
-      if (!getOuterType().equals(other.getOuterType()))
-        return false;
-      if (color == null) {
-        if (other.color != null)
-          return false;
-      } else if (!color.equals(other.color))
-        return false;
-      if (x != other.x)
-        return false;
-      if (y != other.y)
-        return false;
-      return true;
-    }
-
-    @Override
-    public String toString() {
-      return "[" + x + ", " + y + "] => " + color.toString();
-    }
-
-    private PaintFill getOuterType() {
-      return PaintFill.this;
-    }
   }
 }
