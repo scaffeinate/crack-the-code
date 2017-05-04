@@ -84,7 +84,7 @@ public class TestPaintFill {
     }
 
     paintFill.fill(display, display[x][y], colorMap.get(colorCode));
-    assertEquals(PaintFill.printDisplay(expected), PaintFill.printDisplay(display));
+    assertEquals(printDisplay(expected), printDisplay(display));
   }
 
   private void loadInputMatrix() {
@@ -109,6 +109,19 @@ public class TestPaintFill {
       int colorCode = Integer.parseInt(values[0]);
       colorMap.put(colorCode, new Color(colorCode, values[1]));
     }
+  }
+  
+  private static String printDisplay(Point[][] display) {
+    StringBuilder builder = new StringBuilder();
+
+    for (int i = 0; i < display.length; i++) {
+      for (int j = 0; j < display[0].length; j++) {
+        builder.append(display[i][j].color.colorCode).append(" ");
+      }
+      builder.append("\n");
+    }
+
+    return builder.toString();
   }
 
 }

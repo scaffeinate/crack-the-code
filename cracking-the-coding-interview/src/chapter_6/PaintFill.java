@@ -39,19 +39,6 @@ public class PaintFill {
     }
   }
 
-  public static String printDisplay(Point[][] display) {
-    StringBuilder builder = new StringBuilder();
-
-    for (int i = 0; i < display.length; i++) {
-      for (int j = 0; j < display[0].length; j++) {
-        builder.append(display[i][j].color.colorCode).append(" ");
-      }
-      builder.append("\n");
-    }
-
-    return builder.toString();
-  }
-
   private boolean liesWithin(Point[][] display, int x, int y) {
     return x < display.length && x >= 0 && y < display[0].length && y >= 0;
   }
