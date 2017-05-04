@@ -48,28 +48,52 @@ public class TestPaintFill {
   @Test
   public void testPaintFillTestCase1() {
     String[] input = inputList.get(0);
-    assertPaintFill(input);
+    assertPaintFill(input, 1);
   }
 
   @Test
   public void testPaintFillTestCase2() {
     String[] input = inputList.get(1);
-    assertPaintFill(input);
+    assertPaintFill(input, 1);
   }
 
   @Test
   public void testPaintFillTestCase3() {
     String[] input = inputList.get(2);
-    assertPaintFill(input);
+    assertPaintFill(input, 1);
   }
-  
+
   @Test
   public void testPaintFillTestCase4() {
     String[] input = inputList.get(3);
-    assertPaintFill(input);
+    assertPaintFill(input, 1);
   }
 
-  private void assertPaintFill(String[] input) {
+  @Test
+  public void testPaintFillTestCase5() {
+    String[] input = inputList.get(0);
+    assertPaintFill(input, 2);
+  }
+
+  @Test
+  public void testPaintFillTestCase6() {
+    String[] input = inputList.get(1);
+    assertPaintFill(input, 2);
+  }
+
+  @Test
+  public void testPaintFillTestCase7() {
+    String[] input = inputList.get(2);
+    assertPaintFill(input, 2);
+  }
+
+  @Test
+  public void testPaintFillTestCase8() {
+    String[] input = inputList.get(3);
+    assertPaintFill(input, 2);
+  }
+
+  private void assertPaintFill(String[] input, int method) {
     String[] values = input[0].split(" ");
     int x = Integer.parseInt(values[0]);
     int y = Integer.parseInt(values[1]);
@@ -83,7 +107,11 @@ public class TestPaintFill {
       }
     }
 
-    paintFill.fill(display, display[x][y], colorMap.get(colorCode));
+    if (method == 1) {
+      paintFill.fill(display, display[x][y], colorMap.get(colorCode));
+    } else if (method == 2) {
+      paintFill.fill2(display, display[x][y], colorMap.get(colorCode));
+    }
     assertEquals(printDisplay(expected), printDisplay(display));
   }
 
@@ -110,7 +138,7 @@ public class TestPaintFill {
       colorMap.put(colorCode, new Color(colorCode, values[1]));
     }
   }
-  
+
   private static String printDisplay(Point[][] display) {
     StringBuilder builder = new StringBuilder();
 

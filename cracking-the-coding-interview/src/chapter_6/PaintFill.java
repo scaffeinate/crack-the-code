@@ -1,6 +1,8 @@
 package chapter_6;
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Set;
 
 public class PaintFill {
@@ -36,6 +38,42 @@ public class PaintFill {
 
     if (liesWithin(display, x, y - 1) && !visited.contains(display[x][y - 1])) {
       fill(display, display[x][y - 1], originalColor, newColor, visited);
+    }
+  }
+
+  public void fill2(Point[][] display, Point point, Color newColor) {
+    Set<Point> visited = new HashSet<Point>();
+    Queue<Point> queue = new LinkedList<Point>();
+    Color originalColor = point.color;
+    
+    queue.add(point);
+    while (!queue.isEmpty()) {
+      Point current = queue.poll();
+      int x = current.x;
+      int y = current.y;
+      visited.add(current);
+
+      if (current.color.colorCode == originalColor.colorCode) {
+        current.color = newColor;
+      } else {
+        continue;
+      }
+
+      if (liesWithin(display, x + 1, y) && !visited.contains(display[x + 1][y])) {
+        queue.add(display[x + 1][y]);
+      }
+
+      if (liesWithin(display, x, y + 1) && !visited.contains(display[x][y + 1])) {
+        queue.add(display[x][y + 1]);
+      }
+
+      if (liesWithin(display, x - 1, y) && !visited.contains(display[x - 1][y])) {
+        queue.add(display[x - 1][y]);
+      }
+
+      if (liesWithin(display, x, y - 1) && !visited.contains(display[x][y - 1])) {
+        queue.add(display[x][y - 1]);
+      }
     }
   }
 
