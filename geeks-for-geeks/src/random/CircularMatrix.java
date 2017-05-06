@@ -1,5 +1,10 @@
 package random;
 
+/**
+ * Question: http://www.geeksforgeeks.org/?p=141853
+ * 
+ * @author Sudharsanan Muralidharan
+ */
 public class CircularMatrix {
   public static int[][] constructMatrix(int m, int n) {
     int[][] result = new int[m][n];
