@@ -1,10 +1,10 @@
 package chapter_6;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 import datastructures.util.InputUtil;
 
@@ -59,5 +59,8 @@ public class TestRecursiveMultiply {
     String[] values = input.split(" ");
     assertEquals(Long.parseLong(values[2]),
         recursiveMultiply.multiply(Integer.parseInt(values[0]), Integer.parseInt(values[1])));
+    
+    assertEquals(Long.parseLong(values[2]),
+        recursiveMultiply.multiply2(Integer.parseInt(values[0]), Integer.parseInt(values[1])));
   }
 }
