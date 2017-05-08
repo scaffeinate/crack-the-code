@@ -45,23 +45,4 @@ public class EightQueens {
 
     return true;
   }
-
-  private void printBoard(int[][] chessBoard) {
-    for (int i = 0; i < chessBoard.length; i++) {
-      for (int j = 0; j < chessBoard[0].length; j++) {
-        System.out.print(chessBoard[i][j] + " ");
-      }
-      System.out.println();
-    }
-  }
-
-  public static void main(String[] args) {
-    EightQueens eightQueens = new EightQueens();
-    int[][] chessBoard = new int[][] { new int[] { 0, 0, 0, 0, 0, 0, 0, 0 }, new int[] { 0, 0, 0, 0, 0, 0, 0, 0 },
-        new int[] { 0, 0, 0, 0, 0, 0, 0, 0 }, new int[] { 0, 0, 0, 0, 0, 0, 0, 0 },
-        new int[] { 0, 0, 0, 0, 0, 0, 0, 0 }, new int[] { 0, 0, 0, 0, 0, 0, 0, 0 },
-        new int[] { 0, 0, 0, 0, 0, 0, 0, 0 }, new int[] { 0, 0, 0, 0, 0, 0, 0, 0 } };
-    eightQueens.arrangeQueens(chessBoard);
-    eightQueens.printBoard(chessBoard);
-  }
 }
