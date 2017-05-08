@@ -3,10 +3,6 @@
  */
 package chapter_1;
 
-import java.io.FileNotFoundException;
-
-import util.InputUtil;
-
 /**
  * Question 1.9: Assume you have a method isSubstring which checks if one word
  * is a substring of another. Given two strings s1 and s2, write code to check
@@ -29,7 +25,7 @@ public class StringRotation {
    * @param s2
    * @return isRotation
    */
-  private boolean isStringRotation(String s1, String s2) {
+  public boolean isStringRotation(String s1, String s2) {
 
     // check if they are of equal length
     if (s1.length() == s2.length()) {
@@ -57,27 +53,5 @@ public class StringRotation {
     String shorter = (s1.length() > s2.length()) ? s2 : s1;
 
     return longer.toLowerCase().contains(shorter.toLowerCase());
-  }
-
-  /**
-   * @param args
-   * @throws FileNotFoundException
-   */
-  public static void main(String[] args) throws FileNotFoundException {
-    // TODO Auto-generated method stub
-    StringRotation stringRotation = new StringRotation();
-    String[] input = InputUtil.readContents(1, "string_rotation");
-    String s1, s2;
-
-    for (String line : input) {
-      s1 = line.split(":")[0].trim();
-      s2 = line.split(":")[1].trim();
-
-      if (s1 != null && s2 != null && !s1.isEmpty() && !s2.isEmpty()) {
-        System.out.println("Input: " + line);
-        System.out.println("Is Rotation?: " + stringRotation.isStringRotation(s1, s2));
-        System.out.println();
-      }
-    }
   }
 }
