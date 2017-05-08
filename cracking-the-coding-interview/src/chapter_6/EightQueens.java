@@ -1,30 +1,31 @@
 package chapter_6;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EightQueens {
-  public void arrangeQueens(int[][] chessBoard) {
-    arrange8Queens(0, 0, chessBoard);
+  public List<Integer[][]> arrangeQueens(Integer[][] chessBoard) {
+    List<Integer[][]> results = new ArrayList<Integer[][]>();
+    arrange8Queens(0, 0, chessBoard, results);
+    return results;
   }
 
-  private boolean arrange8Queens(int column, int n, int[][] chessBoard) {
+  private void arrange8Queens(int column, int n, Integer[][] chessBoard, List<Integer[][]> results) {
     if (n == chessBoard.length) {
-      return true;
+      results.add(chessBoard);
+      return;
     }
 
     for (int i = 0; i < chessBoard.length; i++) {
       if (canPlaceQueen(i, column, chessBoard)) {
         chessBoard[i][column] = 1;
-        if (arrange8Queens(column + 1, n + 1, chessBoard)) {
-          return true;
-        } else {
-          chessBoard[i][column] = 0;
-        }
+        arrange8Queens(column + 1, n + 1, chessBoard, results);
+        chessBoard[i][column] = 0;
       }
     }
-
-    return false;
   }
 
-  private boolean canPlaceQueen(int row, int column, int[][] chessBoard) {
+  private boolean canPlaceQueen(int row, int column, Integer[][] chessBoard) {
     for (int i = 0; i < column; i++) {
       if (chessBoard[row][i] == 1) {
         return false;
