@@ -12,7 +12,7 @@ public class EightQueens {
 
   private void arrange8Queens(int column, int n, Integer[][] chessBoard, List<Integer[][]> results) {
     if (n == chessBoard.length) {
-      results.add(chessBoard);
+      results.add(deepCopy(chessBoard));
       return;
     }
 
@@ -45,5 +45,16 @@ public class EightQueens {
     }
 
     return true;
+  }
+
+  private Integer[][] deepCopy(Integer[][] chessBoard) {
+    Integer[][] clone = new Integer[chessBoard.length][chessBoard.length];
+    for (int i = 0; i < chessBoard.length; i++) {
+      for (int j = 0; j < chessBoard[0].length; j++) {
+        clone[i][j] = chessBoard[i][j];
+      }
+    }
+    
+    return clone;
   }
 }
