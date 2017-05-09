@@ -3,12 +3,8 @@
  */
 package chapter_1;
 
-import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
-import util.InputUtil;
 
 /**
  * Question 1.8: Write an algorithm such that if an element in an MxN matrix is
@@ -25,7 +21,7 @@ public class ZeroMatrix {
    * 
    * @param matrix
    */
-  private void constructZeroMatrix(int[][] matrix, int m, int n) {
+  public void constructZeroMatrix(int[][] matrix, int m, int n) {
     Set<Integer> rows = new HashSet<Integer>();
     Set<Integer> columns = new HashSet<Integer>();
 
@@ -45,8 +41,6 @@ public class ZeroMatrix {
     for (Integer column : columns) {
       nullifyColumn(matrix, column);
     }
-
-    printMatrix(matrix, m, n);
   }
 
   /**
@@ -56,7 +50,7 @@ public class ZeroMatrix {
    * 
    * @param matrix
    */
-  private void constructZeroMatrix2(int[][] matrix, int m, int n) {
+  public void constructZeroMatrix2(int[][] matrix, int m, int n) {
     boolean[] rows = new boolean[matrix.length];
     boolean[] columns = new boolean[matrix[0].length];
 
@@ -80,8 +74,6 @@ public class ZeroMatrix {
         nullifyColumn(matrix, i);
       }
     }
-
-    printMatrix(matrix, m, n);
   }
 
   /**
@@ -92,7 +84,7 @@ public class ZeroMatrix {
    * 
    * @param matrix
    */
-  private void constructZeroMatrix3(int[][] matrix, int m, int n) {
+  public void constructZeroMatrix3(int[][] matrix, int m, int n) {
     boolean firstRowZero = false, firstColumnZero = false;
 
     /*
@@ -153,8 +145,6 @@ public class ZeroMatrix {
     if (firstColumnZero) {
       nullifyColumn(matrix, 0);
     }
-
-    printMatrix(matrix, m, n);
   }
 
   /**
@@ -179,77 +169,6 @@ public class ZeroMatrix {
     for (int i = 0; i < matrix.length; i++) {
       matrix[i][column] = 0;
     }
-  }
-
-  /**
-   * Prints the matrix
-   * 
-   * @param matrix
-   */
-  private void printMatrix(int[][] matrix, int m, int n) {
-    for (int i = 0; i < m; i++) {
-      for (int j = 0; j < n; j++) {
-        System.out.print(matrix[i][j] + " ");
-      }
-      System.out.println();
-    }
-  }
-
-  /**
-   * Makes a copy of the matrix and return the copy
-   * 
-   * @param matrix
-   * @return copy
-   */
-  private int[][] copyMatrix(int[][] matrix) {
-    int n = matrix.length;
-    int[][] copy = new int[n][matrix[0].length];
-
-    for (int i = 0; i < n; i++) {
-      copy[i] = Arrays.copyOf(matrix[i], matrix[i].length);
-    }
-
-    return copy;
-  }
-
-  /**
-   * @param args
-   * @throws FileNotFoundException 
-   */
-  public static void main(String[] args) throws FileNotFoundException {
-    // TODO Auto-generated method stub
-    ZeroMatrix zeroMatrix = new ZeroMatrix();
-    String[] input = InputUtil.readContents(1, "zero_matrix");
-    int m = 0, n = 0;
-
-    m = input.length;
-    n = input[0].split(" ").length;
-
-    System.out.println(m + " " + n);
-
-    int[][] matrix = new int[m][n];
-    
-    for (int i = 0; i < m; i++) {
-      String[] row = input[i].split(" ");
-      for (int j = 0; j < n; j++) {
-        matrix[i][j] = Integer.parseInt(row[j]);
-      }
-    }
-
-    System.out.println("Original Matrix:");
-    zeroMatrix.printMatrix(matrix, m, n);
-
-    int[][] copy = zeroMatrix.copyMatrix(matrix);
-    System.out.println("\nAfter setting zeros:");
-    zeroMatrix.constructZeroMatrix(copy, m, n);
-
-    copy = zeroMatrix.copyMatrix(matrix);
-    System.out.println("\nAfter setting zeros - method 2:");
-    zeroMatrix.constructZeroMatrix2(copy, m, n);
-
-    copy = zeroMatrix.copyMatrix(matrix);
-    System.out.println("\nAfter setting zeros - method 3:");
-    zeroMatrix.constructZeroMatrix3(copy, m, n);
   }
 
 }
