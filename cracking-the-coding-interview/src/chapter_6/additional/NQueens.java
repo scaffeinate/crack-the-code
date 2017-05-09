@@ -1,19 +1,25 @@
-package chapter_6;
+package chapter_6.additional;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EightQueens {
-  private static final int NUM_QUEENS = 8;
-  
-  public List<Integer[][]> arrangeQueens(Integer[][] chessBoard) {
+public class NQueens {
+  public List<Integer[][]> arrangeNQueens(int n) {
     List<Integer[][]> results = new ArrayList<Integer[][]>();
-    arrange8Queens(0, 0, chessBoard, results);
+    Integer[][] chessBoard = new Integer[n][n];
+
+    for (int i = 0; i < chessBoard.length; i++) {
+      for (int j = 0; j < chessBoard.length; j++) {
+        chessBoard[i][j] = 0;
+      }
+    }
+
+    arrangeNQueens(0, 0, chessBoard, results);
     return results;
   }
 
-  private void arrange8Queens(int column, int index, Integer[][] chessBoard, List<Integer[][]> results) {
-    if (index == NUM_QUEENS) {
+  private void arrangeNQueens(int column, int index, Integer[][] chessBoard, List<Integer[][]> results) {
+    if (index == chessBoard.length) {
       results.add(deepCopy(chessBoard));
       return;
     }
@@ -21,7 +27,7 @@ public class EightQueens {
     for (int i = 0; i < chessBoard.length; i++) {
       if (canPlaceQueen(i, column, chessBoard)) {
         chessBoard[i][column] = 1;
-        arrange8Queens(column + 1, index + 1, chessBoard, results);
+        arrangeNQueens(column + 1, index + 1, chessBoard, results);
         chessBoard[i][column] = 0;
       }
     }
@@ -52,11 +58,11 @@ public class EightQueens {
   private Integer[][] deepCopy(Integer[][] chessBoard) {
     Integer[][] clone = new Integer[chessBoard.length][chessBoard.length];
     for (int i = 0; i < chessBoard.length; i++) {
-      for (int j = 0; j < chessBoard[0].length; j++) {
+      for (int j = 0; j < chessBoard.length; j++) {
         clone[i][j] = chessBoard[i][j];
       }
     }
-    
+
     return clone;
   }
 }
