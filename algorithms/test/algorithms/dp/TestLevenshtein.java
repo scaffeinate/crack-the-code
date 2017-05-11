@@ -1,10 +1,15 @@
 package algorithms.dp;
 
+import static org.hamcrest.Matchers.contains;
+
+import java.util.List;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import algorithms.util.InputUtil;
 
@@ -28,41 +33,49 @@ public class TestLevenshtein {
   @Test
   public void testLevenshteinTestCase1() {
     String[] values = input[0].split(" ");
-    assertLevenshtein(values);
+    String[] actions = input[1].split(",");
+    assertLevenshtein(values, actions);
   }
 
   @Test
   public void testLevenshteinTestCase2() {
-    String[] values = input[1].split(" ");
-    assertLevenshtein(values);
+    String[] values = input[2].split(" ");
+    String[] actions = input[3].split(",");
+    assertLevenshtein(values, actions);
   }
 
   @Test
   public void testLevenshteinTestCase3() {
-    String[] values = input[2].split(" ");
-    assertLevenshtein(values);
+    String[] values = input[4].split(" ");
+    String[] actions = input[5].split(",");
+    assertLevenshtein(values, actions);
   }
 
   @Test
   public void testLevenshteinTestCase4() {
-    String[] values = input[3].split(" ");
-    assertLevenshtein(values);
+    String[] values = input[6].split(" ");
+    String[] actions = input[7].split(",");
+    assertLevenshtein(values, actions);
   }
 
   @Test
   public void testLevenshteinTestCase5() {
-    String[] values = input[4].split(" ");
-    assertLevenshtein(values);
+    String[] values = input[8].split(" ");
+    String[] actions = input[9].split(",");
+    assertLevenshtein(values, actions);
   }
 
   @Test
   public void testLevenshteinTestCase6() {
-    String[] values = input[5].split(" ");
-    assertLevenshtein(values);
+    String[] values = input[10].split(" ");
+    String[] actions = input[11].split(",");
+    assertLevenshtein(values, actions);
   }
 
-  private void assertLevenshtein(String[] values) {
+  private void assertLevenshtein(String[] values, String[] actions) {
     levenshtein.setStrings(values[0], values[1]);
     assertEquals(Integer.parseInt(values[2]), levenshtein.computeEditDistance());
+    List<String> actionsList = levenshtein.getActions();
+    assertThat(actionsList, contains(actions));
   }
 }
