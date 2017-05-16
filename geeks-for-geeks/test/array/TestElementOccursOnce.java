@@ -37,6 +37,11 @@ public class TestElementOccursOnce {
     assertElementOccursOnce(input[2]);
   }
 
+  @Test
+  public void testElementOccursOnceTestCase4() {
+    assertElementOccursOnce(input[3]);
+  }
+  
   private void assertElementOccursOnce(String input) {
     String[] values = input.split(" ");
     String[] arrValues = values[0].split(",");
