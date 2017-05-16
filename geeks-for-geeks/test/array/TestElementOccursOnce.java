@@ -47,5 +47,6 @@ public class TestElementOccursOnce {
     }
 
     assertEquals(Integer.parseInt(values[1]), ElementOccursOnce.findElement(arr));
+    assertEquals(Integer.parseInt(values[1]), ElementOccursOnce.findElement2(arr));
   }
 }
