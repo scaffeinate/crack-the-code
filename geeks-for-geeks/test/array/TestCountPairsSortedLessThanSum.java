@@ -6,7 +6,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestCountPairsSortedLessThanSum {
   private static String inputFile = "input_files/array/count_pairs_sorted_less_than_sum/test_case";

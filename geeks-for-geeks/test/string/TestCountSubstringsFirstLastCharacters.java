@@ -6,7 +6,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestCountSubstringsFirstLastCharacters {
   private static String inputFile = "input_files/string/count_substrings_first_last/test_case";

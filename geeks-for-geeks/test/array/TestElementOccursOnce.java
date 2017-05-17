@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestElementOccursOnce {
   private static String inputFile = "input_files/array/element_occurs_once/test_case";

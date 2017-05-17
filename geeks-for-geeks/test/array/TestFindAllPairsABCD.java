@@ -13,7 +13,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestFindAllPairsABCD {
   private static String basePath = "input_files/array/find_all_pairs_abcd/";

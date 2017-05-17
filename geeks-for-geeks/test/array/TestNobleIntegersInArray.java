@@ -6,7 +6,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestNobleIntegersInArray {
   private static String inputFile = "input_files/array/noble_integers_in_array/test_case";

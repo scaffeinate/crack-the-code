@@ -9,7 +9,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 import datastructures.lists.CustomLinkedList;
 import datastructures.lists.LinkedListNode;
 

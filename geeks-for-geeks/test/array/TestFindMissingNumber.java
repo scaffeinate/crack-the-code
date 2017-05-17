@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestFindMissingNumber {
   private static String inputFile = "input_files/array/find_missing_number/test_case";

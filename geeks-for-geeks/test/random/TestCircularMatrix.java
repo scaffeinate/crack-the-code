@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestCircularMatrix {
   private static String inputFile = "input_files/random/circular_matrix/test_case";

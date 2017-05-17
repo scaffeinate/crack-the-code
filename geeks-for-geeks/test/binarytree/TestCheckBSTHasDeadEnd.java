@@ -9,7 +9,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestCheckBSTHasDeadEnd {
   private static final String basePath = "input_files/binarytree/check_bst_has_dead_end/";

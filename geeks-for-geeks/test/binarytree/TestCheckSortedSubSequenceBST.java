@@ -9,7 +9,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestCheckSortedSubSequenceBST {
   private static final String basePath = "input_files/binarytree/check_sorted_subsequence_bst/";

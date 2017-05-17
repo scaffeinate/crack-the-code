@@ -6,7 +6,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestMimumSumAbsDiffTwoArrays {
   private static String inputFile = "input_files/array/mimum_sum_abs_diff/test_case";

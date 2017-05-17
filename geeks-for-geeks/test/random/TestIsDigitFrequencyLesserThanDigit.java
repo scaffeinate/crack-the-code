@@ -7,7 +7,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestIsDigitFrequencyLesserThanDigit {
   private static String inputFile = "input_files/random/is_digit_frequency_less_than_digit/test_case";

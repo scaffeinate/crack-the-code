@@ -9,7 +9,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestCheckCousinsBinaryTree {
   private static final String basePath = "input_files/binarytree/check_cousins_binary_tree/";
