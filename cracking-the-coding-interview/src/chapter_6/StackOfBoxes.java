@@ -20,7 +20,7 @@ public class StackOfBoxes {
 
     for (int i = 0; i < boxes.size(); i++) {
       Box box = boxes.get(i);
-      int height = (!results.containsKey(box)) ? maximumHeight(boxes, i, results) + 1 : results.get(box);
+      int height = (!results.containsKey(box)) ? maximumHeight(boxes, i, results) + box.height : results.get(box);
       maxHeight = Math.max(height, maxHeight);
     }
     
@@ -36,7 +36,7 @@ public class StackOfBoxes {
     for (int i = index + 1; i < boxes.size(); i++) {
       Box box = boxes.get(i);
       if (boxes.get(index).greaterThan(box)) {
-        int height = (!results.containsKey(box)) ? maximumHeight(boxes, i, results) + 1 : results.get(box);
+        int height = (!results.containsKey(box)) ? maximumHeight(boxes, i, results) + box.height : results.get(box);
         results.putIfAbsent(box, height);
         maxHeight = Math.max(maxHeight, height);
       }

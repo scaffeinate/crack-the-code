@@ -36,13 +36,13 @@ public class TestStackOfBoxes {
   @Test
   public void testStackOfBoxesTestCase1() {
     String[] input = inputList.get(0);
-    assertStackOfBoxes(input, 3);
+    assertStackOfBoxes(input, 13);
   }
   
   @Test
   public void testStackOfBoxesTestCase2() {
     String[] input = inputList.get(1);
-    assertStackOfBoxes(input, 2);
+    assertStackOfBoxes(input, 12);
   }
 
   private void assertStackOfBoxes(String[] input, int expected) {
