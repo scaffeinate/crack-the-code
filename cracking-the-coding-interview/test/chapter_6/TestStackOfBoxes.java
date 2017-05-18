@@ -53,5 +53,6 @@ public class TestStackOfBoxes {
     }
 
     assertEquals(expected, stackOfBoxes.maximumHeight(boxes));
+    assertEquals(expected, stackOfBoxes.maximumHeight2(boxes));
   }
 }
