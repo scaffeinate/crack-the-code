@@ -1,7 +1,7 @@
 /**
  * 
  */
-package algorithms.problems;
+package algorithms.tree;
 
 import java.util.HashMap;
 import java.util.Map;

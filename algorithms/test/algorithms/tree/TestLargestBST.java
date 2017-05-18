@@ -1,4 +1,4 @@
-package algoritms.problems;
+package algorithms.tree;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.problems.LargestBST;
+import algorithms.tree.LargestBST;
 import algorithms.util.InputUtil;
 
 public class TestLargestBST {
