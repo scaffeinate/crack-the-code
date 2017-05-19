@@ -23,8 +23,8 @@ public class LongestPalindromicSubstring {
             }
         }
 
-        for(int i=max.i, j=max.j; i > 0 && j > 0 && matrix[i][j] > 0; i--,j--) {
-            outputBuilder.append(reverse.charAt(i-1));
+        for(int i=max.i, j=max.j; matrix[i][j] > 0; i--,j--) {
+            outputBuilder.append(input.charAt(i-1));
         }
 
         return outputBuilder.toString();
