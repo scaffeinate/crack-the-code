@@ -22,19 +22,19 @@ public class DisjointSetWithPathCompression<T> {
     return node;
   }
 
-  public void union(T setElement1, T setElement2) {
+  public boolean union(T setElement1, T setElement2) {
     DisjointSetNode<T> node1 = nodesMap.get(setElement1);
     DisjointSetNode<T> node2 = nodesMap.get(setElement2);
 
     if (node1 == null || node2 == null) {
-      return;
+      return false;
     }
 
     DisjointSetNode<T> parent1 = parent(node1);
     DisjointSetNode<T> parent2 = parent(node2);
 
     if (parent1.equals(parent2)) {
-      return;
+      return false;
     }
 
     if (parent1.rank == parent2.rank) {
@@ -47,6 +47,8 @@ public class DisjointSetWithPathCompression<T> {
       smaller.parent = greater;
       getDisjointSets().remove(smaller);
     }
+
+    return true;
   }
 
   public T findSet(T data) {

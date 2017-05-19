@@ -3,17 +3,16 @@
  */
 package algoritms.problems;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import algorithms.problems.CountInversions;
+import algorithms.util.InputUtil;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.problems.CountInversions;
-import algorithms.util.InputUtil;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Sudharsanan Muralidharan
@@ -60,6 +59,7 @@ public class TestCountInversions {
       arr[i] = Integer.parseInt(values[i]);
     }
     assertEquals(countInversions.countInversions(arr), 0);
+    assertEquals(countInversions.countInversions2(arr), 0);
   }
 
   @Test
@@ -71,6 +71,7 @@ public class TestCountInversions {
       arr[i] = Integer.parseInt(values[i]);
     }
     assertEquals(countInversions.countInversions(arr), 0);
+    assertEquals(countInversions.countInversions2(arr), 0);
   }
 
   @Test
@@ -82,5 +83,6 @@ public class TestCountInversions {
       arr[i] = Integer.parseInt(values[i]);
     }
     assertEquals(countInversions.countInversions(arr), 15);
+    assertEquals(countInversions.countInversions2(arr), 15);
   }
 }

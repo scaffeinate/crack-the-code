@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="algorithms_main" target="1.8" />
+      <module name="algorithms_test" target="1.8" />
+      <module name="cracking-the-code_main" target="1.8" />
+      <module name="cracking-the-code_test" target="1.8" />
+      <module name="cracking-the-coding-interview_main" target="1.8" />
+      <module name="cracking-the-coding-interview_test" target="1.8" />
+      <module name="datastructures_main" target="1.8" />
+      <module name="datastructures_test" target="1.8" />
+      <module name="geeks-for-geeks_main" target="1.8" />
+      <module name="geeks-for-geeks_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

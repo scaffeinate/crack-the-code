@@ -1,22 +1,16 @@
 package algorithms.graph;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
-import static org.junit.Assert.assertEquals;
+import algorithms.util.InputUtil;
+import datastructures.graph.Edge;
+import org.junit.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import algorithms.util.InputUtil;
-import datastructures.graph.Edge;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class TestPrimMST {
   private static final String basePath = "input_files/graph/minimum_spanning_tree/";
@@ -71,7 +65,7 @@ public class TestPrimMST {
     String[] input = inputList.get(2);
     primMST.constructGraph(input);
     List<Edge<String>> mst = primMST.minimumSpanningTree();
-    String[] expected = new String[] { "AD", "AB", "AC", "CH", "GH", "FG", "AE" };
+    String[] expected = new String[] { "AD", "AB", "BC", "AC", "CH", "GH", "FG", "AE", "DE" };
     assertMST(mst, expected, 19);
   }
   
@@ -91,8 +85,9 @@ public class TestPrimMST {
       actual.add(lexographicalOrder(new String[] { edge.sourceVertex.label, edge.destVertex.label }));
       weight += edge.weight;
     }
-    assertThat(actual, hasSize(expected.length));
-    assertThat(actual, containsInAnyOrder(expected));
+    for(String s:actual) {
+      assertThat(Arrays.asList(expected), hasItem(s));
+    }
     assertEquals(weight, expectedWeight);
   }
 
