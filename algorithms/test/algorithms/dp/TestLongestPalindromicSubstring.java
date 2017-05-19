@@ -7,9 +7,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by sudharti on 5/18/17.
- */
 public class TestLongestPalindromicSubstring {
     private static String inputFile = "input_files/dp/longest_palindromic_substring/test_case";
     private static LongestPalindromicSubstring longestPalindromicSubstring = null;
@@ -51,7 +48,7 @@ public class TestLongestPalindromicSubstring {
         assertLPS(values);
     }
 
-    /*@Test
+    @Test
     public void testLongestCommonSubstringTestCase5() {
         String[] values = input[4].split(" ");
         assertLPS(values);
@@ -61,11 +58,11 @@ public class TestLongestPalindromicSubstring {
     public void testLongestCommonSubstringTestCase6() {
         String[] values = input[5].split(" ");
         assertLPS(values);
-    }*/
+    }
 
     private void assertLPS(String[] values) {
         String lcsString = longestPalindromicSubstring.longestPS(values[0]);
-        //assertEquals(values[1].length(), lcsString.length());
+        assertEquals(values[1].length(), lcsString.length());
         if (lcsString.length() > 0) {
             assertEquals(values[1], lcsString);
         }

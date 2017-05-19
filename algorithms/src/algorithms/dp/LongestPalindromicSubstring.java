@@ -1,7 +1,7 @@
 package algorithms.dp;
 
 /**
- * Created by sudharti on 5/18/17.
+ * Question: http://www.geeksforgeeks.org/?p=25463
  */
 public class LongestPalindromicSubstring {
     public String longestPS(String input) {
