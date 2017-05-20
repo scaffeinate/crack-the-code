@@ -1,7 +1,7 @@
 package random;
 
 /**
- * Created by sudharti on 5/20/17.
+ * Question: http://www.geeksforgeeks.org/?p=25714
  */
 public class LongestPalindromicSubstring {
   public String longestPS(String input) {
