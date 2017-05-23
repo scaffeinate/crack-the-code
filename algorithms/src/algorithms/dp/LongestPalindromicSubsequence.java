@@ -1,7 +1,7 @@
 package algorithms.dp;
 
 /**
- * Created by sudharti on 5/21/17.
+ * Question: http://www.geeksforgeeks.org/dynamic-programming-set-12-longest-palindromic-subsequence/
  */
 public class LongestPalindromicSubsequence {
   public String longestPS(String input) {
