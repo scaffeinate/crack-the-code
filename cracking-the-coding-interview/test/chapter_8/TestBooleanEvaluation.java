@@ -54,7 +54,12 @@ public class TestBooleanEvaluation {
 
   private void assertBooleanEvaluation(String input) {
     String[] values = input.split(" ");
-    int numWays = booleanEvaluation.countWays(values[0], Boolean.parseBoolean(values[1]));
+    String expression = values[0];
+    boolean expected = Boolean.parseBoolean(values[1]);
+    int numWays = booleanEvaluation.countWays(expression, expected);
     assertEquals(Integer.parseInt(values[2]), numWays);
+
+    int numWaysMemoized = booleanEvaluation.countWaysMemoized(expression, expected);
+    assertEquals(Integer.parseInt(values[2]), numWaysMemoized);
   }
 }
