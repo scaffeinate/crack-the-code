@@ -54,6 +54,12 @@ public class TestLongestPalindromicSubsequence {
     assertLPS(values);
   }
 
+  @Test
+  public void testLongestCommonSubstringTestCase6() {
+    String[] values = input[5].split(" ");
+    assertLPS(values);
+  }
+
   private void assertLPS(String[] values) {
     String lcsString = longestPalindromicSubsequence.longestPS(values[0]);
     assertEquals(values[1].length(), lcsString.length());
