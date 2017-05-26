@@ -1,7 +1,7 @@
 package algorithms.dp;
 
 /**
- * Created by sudharti on 5/26/17.
+ * Question: http://www.geeksforgeeks.org/dynamic-programming-set-11-egg-dropping-puzzle/
  */
 public class EggDroppingProblem {
   public int minAttemptsRecursive(int floors, int eggs) {
