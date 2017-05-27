@@ -2,6 +2,7 @@ package datastructures.graph;
 
 public class Edge<T> {
   public int weight = 0;
+  public String label;
   public Vertex<T> sourceVertex;
   public Vertex<T> destVertex;
 
@@ -14,9 +15,14 @@ public class Edge<T> {
   }
 
   public Edge(Vertex<T> sourceVertex, Vertex<T> destVertex, int weight) {
+    this(sourceVertex, destVertex, weight, "");
+  }
+
+  public Edge(Vertex<T> sourceVertex, Vertex<T> destVertex, int weight, String label) {
     this.sourceVertex = sourceVertex;
     this.destVertex = destVertex;
     this.weight = weight;
+    this.label = label;
   }
 
   @Override
