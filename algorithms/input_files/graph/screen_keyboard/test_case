@@ -1,0 +1,108 @@
+vertex a
+vertex b
+vertex c
+vertex d
+vertex e
+vertex f
+vertex g
+vertex h
+vertex i
+vertex j
+vertex k
+vertex l
+vertex m
+vertex n
+vertex o
+vertex p
+vertex q
+vertex r
+vertex s
+vertex t
+vertex u
+vertex v
+vertex w
+vertex x
+vertex y
+vertex z
+edge a b 1 right
+edge a f 1 down
+edge b a 1 left
+edge b c 1 right
+edge b g 1 down
+edge c b 1 left
+edge c d 1 right
+edge c h 1 down
+edge d c 1 left
+edge d e 1 right
+edge d i 1 down
+edge e d 1 left
+edge e j 1 down
+edge f a 1 up
+edge f g 1 right
+edge f k 1 down
+edge g f 1 left
+edge g b 1 up
+edge g h 1 right
+edge g l 1 down
+edge h g 1
+edge h c 1
+edge h i 1
+edge h m 1
+edge i h 1
+edge i d 1
+edge i n 1
+edge i j 1
+edge j i 1
+edge j e 1
+edge j o 1
+edge k f 1
+edge k l 1
+edge k p 1
+edge l k 1
+edge l g 1
+edge l m 1
+edge l q 1
+edge m l 1
+edge m h 1
+edge m r 1
+edge m n 1
+edge n m 1
+edge n i 1
+edge n s 1
+edge n o 1
+edge o n 1
+edge o j 1
+edge o t 1
+edge p k 1
+edge p q 1
+edge p u 1
+edge q p 1
+edge q l 1
+edge q v 1
+edge q r 1
+edge r q 1
+edge r m 1
+edge r w 1
+edge r s 1
+edge s r 1
+edge s n 1
+edge s t 1
+edge s x 1
+edge t s 1
+edge t o 1
+edge t y 1
+edge u p 1
+edge u v 1
+edge u z 1
+edge v u 1
+edge v q 1
+edge v w 1
+edge w v 1
+edge w r 1
+edge w x 1
+edge x w 1
+edge x s 1
+edge x y 1
+edge y x 1
+edge y t 1
+edge z u 1
