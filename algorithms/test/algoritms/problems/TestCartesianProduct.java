@@ -14,7 +14,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import algorithms.problems.CartesianProduct;
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestCartesianProduct {  
   private static final String basePath = "input_files/problems/cartesian_product/";

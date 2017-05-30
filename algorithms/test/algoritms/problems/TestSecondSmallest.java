@@ -10,7 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import algorithms.problems.SecondSmallest;
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestSecondSmallest {
   private static final String basePath = "input_files/problems/second_smallest/";

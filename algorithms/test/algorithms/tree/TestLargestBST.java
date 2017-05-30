@@ -12,7 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import algorithms.tree.LargestBST;
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestLargestBST {
   private static final String basePath = "input_files/problems/largest_bst/";

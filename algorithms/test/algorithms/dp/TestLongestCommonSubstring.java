@@ -6,7 +6,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestLongestCommonSubstring {
   private static String inputFile = "input_files/dp/longest_common_substring/test_case";

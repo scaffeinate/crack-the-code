@@ -4,7 +4,7 @@
 package algoritms.problems;
 
 import algorithms.problems.CountInversions;
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

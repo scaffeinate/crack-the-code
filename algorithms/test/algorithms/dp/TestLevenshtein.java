@@ -11,7 +11,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestLevenshtein {
   private static String inputFile = "input_files/dp/levenshtein/test_case";

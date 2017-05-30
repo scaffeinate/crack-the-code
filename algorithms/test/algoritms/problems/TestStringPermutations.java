@@ -13,7 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import algorithms.problems.StringPermutations;
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestStringPermutations {
   private static final String basePath = "input_files/problems/string_permutations/";

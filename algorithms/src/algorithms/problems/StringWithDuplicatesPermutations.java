@@ -3,15 +3,11 @@
  */
 package algorithms.problems;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.TreeMap;
+import datastructures.util.InputUtil;
 
-import algorithms.util.InputUtil;
+import java.io.FileNotFoundException;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * Problem: https://www.youtube.com/watch?v=nYFd7VHKyWQ

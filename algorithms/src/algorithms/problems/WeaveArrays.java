@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 /**
  * @author Sudharsanan Muralidharan

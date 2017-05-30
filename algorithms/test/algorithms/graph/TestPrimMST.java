@@ -1,6 +1,6 @@
 package algorithms.graph;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 import datastructures.graph.Edge;
 import org.junit.*;
 

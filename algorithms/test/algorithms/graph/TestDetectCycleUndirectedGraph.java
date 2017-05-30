@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestDetectCycleUndirectedGraph {
   private static final String basePath = "input_files/graph/detect_cycle/";

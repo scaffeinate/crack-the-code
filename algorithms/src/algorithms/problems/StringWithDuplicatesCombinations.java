@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 /**
  * Problem: https://www.youtube.com/watch?v=xTNFs5KRV_g

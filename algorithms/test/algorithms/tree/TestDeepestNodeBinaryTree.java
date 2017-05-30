@@ -10,7 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import algorithms.tree.DeepestNodeBinaryTree;
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestDeepestNodeBinaryTree {
   private static final String basePath = "input_files/tree/deepest_node_binary_tree/";

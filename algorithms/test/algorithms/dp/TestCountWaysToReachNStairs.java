@@ -6,7 +6,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.util.InputUtil;
+import datastructures.util.InputUtil;
 
 public class TestCountWaysToReachNStairs {
   private static String inputFile = "input_files/dp/count_ways_n_stairs/test_case";
