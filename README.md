@@ -64,8 +64,8 @@ Algorithms:
   - Count Ways To Reach N
   - Longest Common Subsequence
   - Longest Common Substring
-  - TODO: Longest Palindromic Substring
-  - TODO: Longest Palindromic Subsequence
+  - Longest Palindromic Substring
+  - Longest Palindromic Subsequence[Revisit]
   - TODO: Palindromic Substring search
 - **TODO: Greedy Algorithms:**
 - **TODO: String Matching:**
