@@ -59,10 +59,10 @@ public class TestRobotInAGrid {
         grid[i][j] = Integer.parseInt(values[j]);
       }
     }
-    int output = robotInAGrid.numPaths(grid);
+    int output = robotInAGrid.numPathsSourceToDestMemoized(grid);
     assertEquals(expected, output);
-    
-    output = robotInAGrid.numPathsMemoized(grid);
+
+    output = robotInAGrid.numPathsDestToSourceMemoized(grid);
     assertEquals(expected, output);
   }
 }
