@@ -8,25 +8,25 @@ import java.util.Map;
 public class RobotInAGrid2 {
 
   public List<Cell> findPath(int[][] grid) {
-    List<Cell> path = new ArrayList<Cell>();
-    Map<Cell, Boolean> cache = new HashMap<Cell, Boolean>();
-    findPath(grid, grid.length - 1, grid[0].length - 1, cache, path);
-    return path;
+    Map<Cell, List<Cell>> cache = new HashMap<Cell, List<Cell>>();
+    List<Cell> path = findPath(grid, grid.length - 1, grid[0].length - 1, cache);
+    return path == null ? new ArrayList<>() : path;
   }
 
-  private boolean findPath(int[][] grid, int i, int j, Map<Cell, Boolean> cache, List<Cell> path) {
+  private List<Cell> findPath(int[][] grid, int i, int j, Map<Cell, List<Cell>> cache) {
     Cell currentCell = new Cell(i, j);
+    List<Cell> path = new ArrayList<>();
     if (i < 0 || j < 0 || grid[i][j] == -1) {
-      return false;
+      return null;
     } else if (i == 0 && j == 0) {
       path.add(new Cell(i, j));
-      cache.put(currentCell, true);
+      cache.put(currentCell, path);
     } else if (!cache.containsKey(currentCell)) {
-      if (findPath(grid, i, j - 1, cache, path) || findPath(grid, i - 1, j, cache, path)) {
+      if ((path = findPath(grid, i, j - 1, cache)) != null || (path = findPath(grid, i - 1, j, cache)) != null) {
         path.add(new Cell(i, j));
-        cache.put(currentCell, true);
+        cache.put(currentCell, path);
       } else {
-        cache.put(currentCell, false);
+        cache.put(currentCell, null);
       }
     }
 
