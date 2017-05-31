@@ -5,9 +5,7 @@ package algorithms.dp;
  */
 public class EggDroppingProblem {
   public int minAttemptsRecursive(int floors, int eggs) {
-    if (floors == 0 || floors == 1) {
-      return floors;
-    } else if (eggs == 1) {
+    if (floors == 0 || eggs == 1 || eggs > floors) {
       return floors;
     } else {
       int min = Integer.MAX_VALUE;
