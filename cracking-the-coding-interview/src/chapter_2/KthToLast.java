@@ -1,10 +1,7 @@
 package chapter_2;
 
-import java.io.FileNotFoundException;
-
 import datastructures.lists.CustomLinkedList;
 import datastructures.lists.LinkedListNode;
-import util.InputUtil;
 
 /**
  * Question 2.2: Implement an algorithm to find the kth to last element of a
@@ -23,7 +20,7 @@ public class KthToLast {
    * @param k
    * @return foundElement
    */
-  private int findElement(CustomLinkedList<Integer> list, int k) {
+  public int findElement(CustomLinkedList<Integer> list, int k) {
     LinkedListNode<Integer> current = list.head();
     int i = 0;
 
@@ -48,7 +45,7 @@ public class KthToLast {
    * @param k
    * @return
    */
-  private int findElement2(CustomLinkedList<Integer> list, int k) {
+  public int findElement2(CustomLinkedList<Integer> list, int k) {
     LinkedListNode<Integer> current = list.head();
     LinkedListNode<Integer> runner = current;
 
@@ -75,33 +72,5 @@ public class KthToLast {
     }
 
     return current.data;
-  }
-
-  public static void main(String[] args) throws FileNotFoundException {
-
-    KthToLast kthToLast = new KthToLast();
-    String[] input = InputUtil.readContents(2, "k_last");
-    String[] elements;
-    int k;
-
-    for (String line : input) {
-      k = Integer.parseInt(line.split(" ")[0]);
-      elements = line.split(" ")[1].split(":");
-
-      CustomLinkedList<Integer> list = new CustomLinkedList<Integer>();
-      for (String e : elements) {
-        if (e != null && !e.trim().isEmpty()) {
-          list.add(Integer.parseInt(e));
-        }
-      }
-
-      System.out.println("Value of K:" + k);
-      System.out.println("Linked List:");
-      list.print();
-
-      System.out.print("Element at k from last: " + kthToLast.findElement(list, k) + "\n");
-      System.out.print("Element at k from last - Method 2: " + kthToLast.findElement2(list, k) + "\n");
-      System.out.println();
-    }
   }
 }
