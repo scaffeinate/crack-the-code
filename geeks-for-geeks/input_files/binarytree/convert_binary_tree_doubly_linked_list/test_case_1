@@ -1,0 +1,6 @@
+insertRoot 10
+insertLeft 10 12
+insertRight 10 15
+insertLeft 12 25
+insertRight 12 30
+insertLeft 15 36
