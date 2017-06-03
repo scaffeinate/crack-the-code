@@ -1,12 +1,10 @@
 package chapter_2;
 
-import java.io.FileNotFoundException;
-import java.util.HashSet;
-import java.util.Set;
-
 import datastructures.lists.CustomLinkedList;
 import datastructures.lists.LinkedListNode;
-import util.InputUtil;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Question 2.1: Write code to remove duplicates from an unsorted linked list.
@@ -26,7 +24,7 @@ public class RemoveDuplicates {
    * 
    * @param list
    */
-  private void removeSet(CustomLinkedList<Integer> list) {
+  public void removeSet(CustomLinkedList<Integer> list) {
     LinkedListNode<Integer> current = list.head();
     LinkedListNode<Integer> runner = current.next;
     Set<Integer> set = new HashSet<Integer>();
@@ -51,7 +49,7 @@ public class RemoveDuplicates {
    * 
    * @param list
    */
-  private void remove(CustomLinkedList<Integer> list) {
+  public void remove(CustomLinkedList<Integer> list) {
     LinkedListNode<Integer> current = list.head();
     while (current != null) {
       LinkedListNode<Integer> current2 = current;
@@ -67,41 +65,6 @@ public class RemoveDuplicates {
       }
 
       current = current.next;
-    }
-  }
-
-  public static void main(String[] args) throws FileNotFoundException {
-    RemoveDuplicates removeDuplicates = new RemoveDuplicates();
-    String[] input = InputUtil.readContents(2, "remove_dups");
-    String[] elements;
-
-    for (String line : input) {
-      elements = line.split(":");
-      CustomLinkedList<Integer> list = new CustomLinkedList<Integer>();
-      CustomLinkedList<Integer> list2 = new CustomLinkedList<Integer>(list);
-
-      for (String e : elements) {
-        if (e != null && !e.trim().isEmpty()) {
-          list.add(Integer.parseInt(e));
-          list2.add(Integer.parseInt(e));
-        }
-      }
-
-      System.out.println("Original Linked List:");
-      list.print();
-
-      removeDuplicates.remove(list);
-      System.out.println("After Removing Duplicates: ");
-      list.print();
-
-      System.out.println("Original Linked List:");
-      list2.print();
-      removeDuplicates.removeSet(list2);
-      System.out.println("After Removing Duplicates using Set:");
-      list2.print();
-
-      System.out.println();
-
     }
   }
 }

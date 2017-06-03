@@ -4,6 +4,7 @@
 package datastructures.lists;
 
 import datastructures.util.ListUtil;
+import org.omg.SendingContext.RunTime;
 
 /**
  * CustomLinkedList: Single LinkedList implementation
@@ -14,7 +15,7 @@ import datastructures.util.ListUtil;
  * 
  * @author Sudharsanan Muralidharan
  */
-public class CustomLinkedList<T> extends AbstractList<T> {
+public class CustomLinkedList<T> extends AbstractList<T> implements Cloneable {
 
   /**
    * Default Constructor
@@ -319,5 +320,23 @@ public class CustomLinkedList<T> extends AbstractList<T> {
     }
 
     return null;
+  }
+
+  @Override
+  public CustomLinkedList<T> clone() {
+    CustomLinkedList<T> clone = new CustomLinkedList<T>();
+    /*try {
+      clone = (CustomLinkedList<T>) super.clone();
+    } catch(CloneNotSupportedException e) {
+      throw new RuntimeException(e);
+    }*/
+
+    LinkedListNode<T> current = this.head;
+    while (current != null) {
+      clone.add(current.data);
+      current = current.next;
+    }
+
+    return clone;
   }
 }
