@@ -5,6 +5,9 @@ import datastructures.tree.BinaryTree;
 import datastructures.tree.TreeNode;
 import datastructures.util.BinaryTreeUtil;
 
+/**
+ * Question: http://www.geeksforgeeks.org/convert-given-binary-tree-doubly-linked-list-set-3/
+ */
 public class ConvertBinaryTreeDoublyLinkedList {
   private BinaryTree<Integer> tree = null;
   private TreeNode<Integer> root = null;
@@ -25,7 +28,7 @@ public class ConvertBinaryTreeDoublyLinkedList {
   }
 
   private void convert(TreeNode<Integer> root, Wrapper wrapper) {
-    if(root != null) {
+    if (root != null) {
       convert(root.left, wrapper);
       addToLinkedList(root, wrapper);
       convert(root.right, wrapper);
@@ -34,7 +37,7 @@ public class ConvertBinaryTreeDoublyLinkedList {
 
   private void addToLinkedList(TreeNode<Integer> root, Wrapper wrapper) {
     LinkedListNode<Integer> node = new LinkedListNode<Integer>(root.data);
-    if(wrapper.head == null) {
+    if (wrapper.head == null) {
       wrapper.head = node;
       wrapper.tail = node;
     } else {

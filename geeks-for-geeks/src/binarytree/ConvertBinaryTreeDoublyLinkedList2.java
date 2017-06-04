@@ -5,7 +5,7 @@ import datastructures.tree.TreeNode;
 import datastructures.util.BinaryTreeUtil;
 
 /**
- * Created by sudharti on 6/3/17.
+ * Question: http://www.geeksforgeeks.org/convert-given-binary-tree-doubly-linked-list-set-3/
  */
 public class ConvertBinaryTreeDoublyLinkedList2 {
   private BinaryTree<Integer> tree = null;
