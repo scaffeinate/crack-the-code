@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class TestConvertBinaryTreeDoublyLinkedList {
   private static final String basePath = "input_files/binarytree/convert_binary_tree_doubly_linked_list/";
-  private static String[] testCases = new String[]{"test_case_1", "test_case_2"};
+  private static String[] testCases = new String[]{"test_case_1", "test_case_2", "test_case_3" };
   private static List<String[]> inputList = new ArrayList<String[]>();
   private static ConvertBinaryTreeDoublyLinkedList convertBinaryTreeDoublyLinkedList = null;
 
@@ -47,6 +47,13 @@ public class TestConvertBinaryTreeDoublyLinkedList {
   public void testConvertBinaryTreeDoublyLinkedListBinaryTreeTestCase2() {
     String[] input = inputList.get(1);
     int[] expected = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    assertConvertBinaryTreeDoublyLinkedList(input, expected);
+  }
+
+  @Test
+  public void testConvertBinaryTreeDoublyLinkedListBinaryTreeTestCase3() {
+    String[] input = inputList.get(2);
+    int[] expected = new int[]{1, 4, 6, 7, 3, 8, 10, 13, 14};
     assertConvertBinaryTreeDoublyLinkedList(input, expected);
   }
 
