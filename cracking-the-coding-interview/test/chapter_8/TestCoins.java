@@ -1,12 +1,11 @@
 package chapter_8;
 
+import datastructures.util.InputUtil;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-
-import datastructures.util.InputUtil;
 
 public class TestCoins {
   private static final String inputFile = "input_files/chapter_8/coins/test_case";
@@ -42,19 +41,19 @@ public class TestCoins {
     String[] values = input[2].split(" ");
     assertCoins(Integer.parseInt(values[0]), Long.parseLong(values[1]));
   }
-  
+
   @Test
   public void testCoinsTestCase4() {
     String[] values = input[3].split(" ");
     assertCoins(Integer.parseInt(values[0]), Long.parseLong(values[1]));
   }
-  
+
   @Test
   public void testCoinsTestCase5() {
     String[] values = input[4].split(" ");
     assertCoins(Integer.parseInt(values[0]), Long.parseLong(values[1]));
   }
-  
+
   @Test
   public void testCoinsTestCase6() {
     String[] values = input[5].split(" ");
