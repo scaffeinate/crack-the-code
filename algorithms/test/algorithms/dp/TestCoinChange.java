@@ -69,5 +69,6 @@ public class TestCoinChange {
     }
     long expected = Long.parseLong(values[2]);
     assertEquals(expected, coinChange.numWays(n, arr));
+    assertEquals(expected, coinChange.numWays2(n, arr));
   }
 }
