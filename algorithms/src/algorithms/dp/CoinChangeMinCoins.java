@@ -23,7 +23,11 @@ public class CoinChangeMinCoins {
   }
 
   public long numWaysMemoized(int n, int[] coins) {
-    return numWaysMemoized(n, coins, new long[n + 1]);
+    long[] memo = new long[n + 1];
+    for (int i = 1; i < memo.length; i++) {
+      memo[i] = Long.MAX_VALUE;
+    }
+    return numWaysMemoized(n, coins, memo);
   }
 
   private long numWaysMemoized(int n, int[] coins, long[] memo) {
@@ -31,13 +35,11 @@ public class CoinChangeMinCoins {
       return 0;
     } else if (n < 0) {
       return Long.MAX_VALUE;
-    } else if (memo[n] == 0L) {
-      long min = Long.MAX_VALUE;
+    } else if (memo[n] == Long.MAX_VALUE) {
       for (int i = 0; i < coins.length; i++) {
         long val = numWaysMemoized(n - coins[i], coins, memo);
-        min = Math.min(min, (val == Long.MAX_VALUE) ? Long.MAX_VALUE : 1 + val);
+        memo[n] = Math.min(memo[n], (val == Long.MAX_VALUE) ? Long.MAX_VALUE : 1 + val);
       }
-      memo[n] = min;
     }
 
     return memo[n];
@@ -69,13 +71,11 @@ public class CoinChangeMinCoins {
     }
 
     for (int i = 1; i < memo.length; i++) {
-      long min = Long.MAX_VALUE;
       for (int j = 0; j < coins.length; j++) {
         if (i >= coins[j]) {
-          min = Math.min(min, (memo[i - coins[j]] == Long.MAX_VALUE) ? Long.MAX_VALUE : (1 + memo[i - coins[j]]));
+          memo[i] = Math.min(memo[i], (memo[i - coins[j]] == Long.MAX_VALUE) ? Long.MAX_VALUE : (1 + memo[i - coins[j]]));
         }
       }
-      memo[i] = min;
     }
 
     return memo[n];
