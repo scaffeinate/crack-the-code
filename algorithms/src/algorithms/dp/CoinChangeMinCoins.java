@@ -2,6 +2,7 @@ package algorithms.dp;
 
 /**
  * Question: http://www.geeksforgeeks.org/find-minimum-number-of-coins-that-make-a-change/
+ * Solution: https://www.youtube.com/watch?v=NJuKJ8sasGk
  */
 public class CoinChangeMinCoins {
   public long numWays(int n, int[] coins) {
@@ -55,6 +56,26 @@ public class CoinChangeMinCoins {
           memo[j] = Math.min(memo[j], ((memo[j - coins[i]] == Long.MAX_VALUE) ? Long.MAX_VALUE : 1 + memo[j - coins[i]]));
         }
       }
+    }
+
+    return memo[n];
+  }
+
+  public long numWaysMemoized3(int n, int[] coins) {
+    long[] memo = new long[n + 1];
+
+    for (int i = 1; i < memo.length; i++) {
+      memo[i] = Long.MAX_VALUE;
+    }
+
+    for (int i = 1; i < memo.length; i++) {
+      long min = Long.MAX_VALUE;
+      for (int j = 0; j < coins.length; j++) {
+        if (i >= coins[j]) {
+          min = Math.min(min, (memo[i - coins[j]] == Long.MAX_VALUE) ? Long.MAX_VALUE : (1 + memo[i - coins[j]]));
+        }
+      }
+      memo[i] = min;
     }
 
     return memo[n];

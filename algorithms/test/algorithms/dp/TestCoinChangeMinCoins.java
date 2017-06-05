@@ -74,5 +74,6 @@ public class TestCoinChangeMinCoins {
 
     assertEquals(Long.parseLong(values[2]), coinChangeMinCoins.numWaysMemoized(n, coins));
     assertEquals(Long.parseLong(values[2]), coinChangeMinCoins.numWaysMemoized2(n, coins));
+    assertEquals(Long.parseLong(values[2]), coinChangeMinCoins.numWaysMemoized3(n, coins));
   }
 }
