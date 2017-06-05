@@ -51,18 +51,6 @@ public class TestCoinChangeMinCoins {
     assertCoinChangeMinCoinsMemoized(values);
   }
 
-  @Test
-  public void testCoinChangeMinCoinsTestCase5() {
-    String[] values = input[4].split(" ");
-    assertCoinChangeMinCoins(values);
-  }
-
-  @Test
-  public void testCoinChangeMinCoinsTestCase6() {
-    String[] values = input[5].split(" ");
-    assertCoinChangeMinCoins(values);
-  }
-
   private void assertCoinChangeMinCoins(String[] values) {
     int n = Integer.parseInt(values[0]);
     String[] arrValues = values[1].split(",");
@@ -85,5 +73,6 @@ public class TestCoinChangeMinCoins {
     }
 
     assertEquals(Long.parseLong(values[2]), coinChangeMinCoins.numWaysMemoized(n, coins));
+    assertEquals(Long.parseLong(values[2]), coinChangeMinCoins.numWaysMemoized2(n, coins));
   }
 }
