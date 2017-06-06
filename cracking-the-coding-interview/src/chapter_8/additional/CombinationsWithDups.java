@@ -1,23 +1,20 @@
 /**
  * 
  */
-package algorithms.problems;
+package chapter_8.additional;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-import datastructures.util.InputUtil;
-
 /**
  * Problem: https://www.youtube.com/watch?v=xTNFs5KRV_g
  * 
  * @author Sudharsanan Muralidharan
  */
-public class StringWithDuplicatesCombinations {
+public class CombinationsWithDups {
 
   private void generateCombinations(char[] arr) {
     Map<Character, Integer> counterMap = new TreeMap<Character, Integer>();
@@ -48,15 +45,5 @@ public class StringWithDuplicatesCombinations {
       System.out.print(arr[i]);
     }
     System.out.print(", ");
-  }
-
-  public static void main(String[] args) throws FileNotFoundException {
-    String[] input = InputUtil.readContents("test_permutations_duplicates");
-    StringWithDuplicatesCombinations combinations = new StringWithDuplicatesCombinations();
-    for (String line : input) {
-      System.out.print("[ ");
-      combinations.generateCombinations(line.toCharArray());
-      System.out.println("]");
-    }
   }
 }
