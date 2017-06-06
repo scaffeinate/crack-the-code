@@ -1,9 +1,10 @@
-package algorithms.dp;
+package dp;
 
 import static org.hamcrest.Matchers.contains;
 
 import java.util.List;
 
+import dp.Levenshtein;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

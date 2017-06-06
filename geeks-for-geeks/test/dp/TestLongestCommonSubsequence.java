@@ -1,6 +1,7 @@
-package algorithms.dp;
+package dp;
 
 import datastructures.util.InputUtil;
+import dp.LongestCommonSubsequence;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

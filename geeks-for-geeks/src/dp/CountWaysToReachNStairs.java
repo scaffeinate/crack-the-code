@@ -1,4 +1,4 @@
-package algorithms.dp;
+package dp;
 
 /**
  * Question: http://www.geeksforgeeks.org/count-ways-reach-nth-stair/

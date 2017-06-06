@@ -1,4 +1,4 @@
-package algorithms.dp;
+package dp;
 
 /**
  * Question: http://www.geeksforgeeks.org/?p=25463

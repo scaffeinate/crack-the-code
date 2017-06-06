@@ -1,4 +1,4 @@
-package algorithms.dp;
+package dp;
 
 import datastructures.util.InputUtil;
 import org.junit.AfterClass;
@@ -7,43 +7,43 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class TestLongestPalindromicSubsequence {
-  private static String inputFile = "input_files/dp/longest_palindromic_subsequence/test_case";
-  private static LongestPalindromicSubsequence longestPalindromicSubsequence = null;
+public class TestLongestPalindromicSubstring {
+  private static String inputFile = "input_files/dp/longest_palindromic_substring/test_case";
+  private static LongestPalindromicSubstring longestPalindromicSubstring = null;
   private static String[] input = null;
 
   @BeforeClass
   public static void setup() {
-    longestPalindromicSubsequence = new LongestPalindromicSubsequence();
+    longestPalindromicSubstring = new LongestPalindromicSubstring();
     input = InputUtil.readContents(inputFile);
   }
 
   @AfterClass
   public static void teardown() {
-    longestPalindromicSubsequence = null;
+    longestPalindromicSubstring = null;
     input = null;
   }
 
   @Test
-  public void testLongestPalindromicSubsequenceTestCase1() {
+  public void testLongestPalindromicSubstringTestCase1() {
     String[] values = input[0].split(" ");
     assertLPS(values);
   }
 
   @Test
-  public void testLongestPalindromicSubsequenceTestCase2() {
+  public void testLongestPalindromicSubstringTestCase2() {
     String[] values = input[1].split(" ");
     assertLPS(values);
   }
 
   @Test
-  public void testLongestPalindromicSubsequenceTestCase3() {
+  public void testLongestPalindromicSubstringTestCase3() {
     String[] values = input[2].split(" ");
     assertLPS(values);
   }
 
   @Test
-  public void testLongestPalindromicSubsequenceTestCase4() {
+  public void testLongestPalindromicSubstringTestCase4() {
     String[] values = input[3].split(" ");
     assertLPS(values);
   }
@@ -61,7 +61,7 @@ public class TestLongestPalindromicSubsequence {
   }
 
   private void assertLPS(String[] values) {
-    String lcsString = longestPalindromicSubsequence.longestPS(values[0]);
+    String lcsString = longestPalindromicSubstring.longestPS(values[0]);
     assertEquals(values[1].length(), lcsString.length());
     if (lcsString.length() > 0) {
       assertEquals(values[1], lcsString);

@@ -1,7 +1,9 @@
 package chapter_8;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class PermutationsWithoutDups {
   public List<String> permutations(String s) {
@@ -25,6 +27,37 @@ public class PermutationsWithoutDups {
         results.add(constructString(ch));
         k++;
         j++;
+      }
+    }
+
+    return results;
+  }
+
+  public List<String> permutationsIterative2(String s) {
+    List<String> results = new ArrayList<String>();
+    int pointer = 0, counter = 0;
+    Queue<String> queue = new LinkedList<String>();
+    queue.add(new String(String.valueOf(s.charAt(0))));
+    pointer++;
+
+    while (!queue.isEmpty()) {
+      if (pointer >= s.length()) break;
+      String current = queue.poll() + s.charAt(pointer);
+      char[] arr = current.toCharArray();
+      for (int i = 0; i < current.length(); i++) {
+        swap(arr, i, 0);
+        String val = constructString(arr);
+        queue.add(val);
+        if (val.length() == s.length()) {
+          results.add(val);
+        }
+        swap(arr, 0, i);
+        counter++;
+      }
+
+      if (counter == fact(current.length())) {
+        pointer++;
+        counter = 0;
       }
     }
 

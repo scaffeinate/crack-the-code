@@ -1,7 +1,8 @@
-package algorithms.dp;
+package dp;
 
 import static org.junit.Assert.assertEquals;
 
+import dp.CountWaysToReachNStairs;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

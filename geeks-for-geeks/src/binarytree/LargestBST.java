@@ -1,13 +1,13 @@
 /**
  * 
  */
-package algorithms.tree;
-
-import java.util.HashMap;
-import java.util.Map;
+package binarytree;
 
 import datastructures.tree.BinaryTree;
 import datastructures.tree.TreeNode;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Problem: http://www.geeksforgeeks.org/find-the-largest-subtree-in-a-tree-that-is-also-a-bst
