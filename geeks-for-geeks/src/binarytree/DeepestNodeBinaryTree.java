@@ -1,11 +1,14 @@
-package algorithms.tree;
-
-import java.util.HashMap;
-import java.util.Map;
+package binarytree;
 
 import datastructures.tree.BinaryTree;
 import datastructures.tree.TreeNode;
 
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Question: http://www.geeksforgeeks.org/find-deepest-node-binary-tree/
+ */
 public class DeepestNodeBinaryTree {
 
   private BinaryTree<Integer> tree = null;
@@ -21,16 +24,16 @@ public class DeepestNodeBinaryTree {
       String[] values = line.split(" ");
       int val = 0;
       switch (values[0]) {
-      case "insertRoot":
-        val = Integer.parseInt(values[1]);
-        nodesMap.put(val, tree.insertRoot(val));
-        break;
-      case "insertLeft":
-        insert(values[1], values[2], true);
-        break;
-      case "insertRight":
-        insert(values[1], values[2], false);
-        break;
+        case "insertRoot":
+          val = Integer.parseInt(values[1]);
+          nodesMap.put(val, tree.insertRoot(val));
+          break;
+        case "insertLeft":
+          insert(values[1], values[2], true);
+          break;
+        case "insertRight":
+          insert(values[1], values[2], false);
+          break;
       }
     }
   }
@@ -63,7 +66,7 @@ public class DeepestNodeBinaryTree {
   }
 
   private void deepestNode(TreeNode<Integer> root, TreeNodeWrapper<Integer> deepestWrapper,
-      int depth) {
+                           int depth) {
     if (root == null) {
       return;
     }
@@ -71,7 +74,7 @@ public class DeepestNodeBinaryTree {
     deepestNode(root.left, deepestWrapper, depth + 1);
     deepestNode(root.right, deepestWrapper, depth + 1);
 
-    if(deepestWrapper.depth < depth) {
+    if (deepestWrapper.depth < depth) {
       deepestWrapper.depth = depth;
       deepestWrapper.treeNode = root;
     }

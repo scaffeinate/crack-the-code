@@ -1,19 +1,17 @@
-package algorithms.tree;
+package binarytree;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import datastructures.util.InputUtil;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.tree.DeepestNodeBinaryTree;
-import datastructures.util.InputUtil;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class TestDeepestNodeBinaryTree {
-  private static final String basePath = "input_files/tree/deepest_node_binary_tree/";
+  private static final String basePath = "input_files/binarytree/deepest_node_binary_tree/";
   private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3", "test_case_4" };
   private static List<String[]> inputList = new ArrayList<String[]>();
   private static DeepestNodeBinaryTree deepestNode = null;
