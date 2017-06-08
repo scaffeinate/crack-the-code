@@ -11,52 +11,55 @@ public class StackOfBoxes {
     int maxHeight = 0;
     Collections.sort(boxes, new BoxComparator());
 
-    Map<Box, Integer> results = new HashMap<Box, Integer>();
+    Map<Integer, Integer> results = new HashMap<Integer, Integer>();
 
     for (int i = 0; i < boxes.size(); i++) {
-      Box box = boxes.get(i);
-      int height = (!results.containsKey(box)) ? maximumHeight(boxes, i, results) + box.height : results.get(box);
+      int height = maximumHeight(boxes, i, results);
       maxHeight = Math.max(height, maxHeight);
     }
-    
+
     return maxHeight;
   }
 
-  private int maximumHeight(List<Box> boxes, int index, Map<Box, Integer> results) {
-    if (index == boxes.size()) {
-      return 0;
+  private int maximumHeight(List<Box> boxes, int index, Map<Integer, Integer> results) {
+    if (results.containsKey(index)) {
+      return results.get(index);
     }
 
     int maxHeight = 0;
+    Box current = boxes.get(index);
     for (int i = index + 1; i < boxes.size(); i++) {
       Box box = boxes.get(i);
-      if (boxes.get(index).greaterThan(box)) {
-        int height = (!results.containsKey(box)) ? maximumHeight(boxes, i, results) + box.height : results.get(box);
-        results.putIfAbsent(box, height);
+      if (current.greaterThan(box)) {
+        int height = maximumHeight(boxes, i, results);
         maxHeight = Math.max(maxHeight, height);
       }
     }
 
+    maxHeight += current.height;
+    results.put(index, maxHeight);
     return maxHeight;
   }
 
   public int maximumHeight2(List<Box> boxes) {
     Collections.sort(boxes, new BoxComparator());
-    return maximumHeight2(boxes, 0, null, new HashMap<Box, Integer>());
+    Map<Integer, Integer> results = new HashMap<Integer, Integer>();
+    return maximumHeight2(boxes, 0, null, results);
   }
 
-  private int maximumHeight2(List<Box> boxes, int index, Box prevBox, Map<Box, Integer> results) {
+  private int maximumHeight2(List<Box> boxes, int index, Box prevBox, Map<Integer, Integer> results) {
     int maxHeight = 0;
-    if(index == boxes.size()) {
+    if (index == boxes.size()) {
       return 0;
     }
 
     Box box = boxes.get(index);
-
-    if(prevBox == null || prevBox.greaterThan(box)) {
-      if(!results.containsKey(box)) {
-        maxHeight = Math.max(maxHeight, (maximumHeight2(boxes, index + 1, box, results) + box.height));
-        results.put(box, maxHeight);
+    if (prevBox == null || prevBox.greaterThan(box)) {
+      if (!results.containsKey(index)) {
+        maxHeight = maximumHeight2(boxes, index + 1, box, results) + box.height;
+        results.put(index, maxHeight);
+      } else {
+        maxHeight = results.get(index);
       }
     }
 
@@ -68,7 +71,7 @@ public class StackOfBoxes {
   private class BoxComparator implements Comparator<Box> {
     @Override
     public int compare(Box o1, Box o2) {
-      return Integer.valueOf(o2.height).compareTo(Integer.valueOf(o1.height));
+      return Integer.valueOf(o2.depth).compareTo(Integer.valueOf(o1.depth));
     }
   }
 
