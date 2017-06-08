@@ -1,5 +1,10 @@
 package sort;
 
+/**
+ * Question: http://www.geeksforgeeks.org/selection-sort/
+ *
+ * @param <T>
+ */
 public class SelectionSort<T> extends Sort<T> {
 
   @Override

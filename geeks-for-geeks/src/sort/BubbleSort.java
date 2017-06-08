@@ -1,5 +1,10 @@
 package sort;
 
+/**
+ * Question: http://www.geeksforgeeks.org/bubble-sort/
+ *
+ * @param <T>
+ */
 public class BubbleSort<T> extends Sort<T> {
 
   @Override

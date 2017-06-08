@@ -3,6 +3,11 @@ package sort;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
+/**
+ * Question: http://www.geeksforgeeks.org/merge-sort/
+ *
+ * @param <T>
+ */
 public class MergeSort<T> extends Sort<T> {
   private Class<?> clazz;
 

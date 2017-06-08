@@ -1,5 +1,10 @@
 package sort;
 
+/**
+ * Question: http://www.geeksforgeeks.org/insertion-sort/
+ *
+ * @param <T>
+ */
 public class InsertionSort<T> extends Sort<T> {
 
   @Override
