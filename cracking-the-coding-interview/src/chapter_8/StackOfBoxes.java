@@ -71,7 +71,7 @@ public class StackOfBoxes {
   private class BoxComparator implements Comparator<Box> {
     @Override
     public int compare(Box o1, Box o2) {
-      return Integer.valueOf(o2.depth).compareTo(Integer.valueOf(o1.depth));
+      return Integer.valueOf(o2.depth * o2.width * o2.height).compareTo(Integer.valueOf(o1.depth * o1.width * o1.height));
     }
   }
 
