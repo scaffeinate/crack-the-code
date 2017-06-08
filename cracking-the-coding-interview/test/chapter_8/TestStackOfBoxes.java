@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 public class TestStackOfBoxes {
   private static final String basePath = "input_files/chapter_8/stack_of_boxes/";
-  private static String[] testCases = new String[] { "test_case_1", "test_case_2" };
+  private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3" };
   private static List<String[]> inputList = new ArrayList<String[]>();
   private static StackOfBoxes stackOfBoxes = null;
 
@@ -35,13 +35,19 @@ public class TestStackOfBoxes {
   @Test
   public void testStackOfBoxesTestCase1() {
     String[] input = inputList.get(0);
-    assertStackOfBoxes(input, 13);
+    assertStackOfBoxes(input, 12);
   }
   
   @Test
   public void testStackOfBoxesTestCase2() {
     String[] input = inputList.get(1);
     assertStackOfBoxes(input, 12);
+  }
+
+  @Test
+  public void testStackOfBoxesTestCase3() {
+    String[] input = inputList.get(2);
+    assertStackOfBoxes(input, 48);
   }
 
   private void assertStackOfBoxes(String[] input, int expected) {
