@@ -14,12 +14,12 @@ public class NQueens {
       }
     }
 
-    arrangeNQueens(0, 0, chessBoard, results);
+    arrangeNQueens(0, chessBoard, results);
     return results;
   }
 
-  private void arrangeNQueens(int column, int index, Integer[][] chessBoard, List<Integer[][]> results) {
-    if (index == chessBoard.length) {
+  private void arrangeNQueens(int column, Integer[][] chessBoard, List<Integer[][]> results) {
+    if (column == chessBoard.length) {
       results.add(deepCopy(chessBoard));
       return;
     }
@@ -27,7 +27,7 @@ public class NQueens {
     for (int i = 0; i < chessBoard.length; i++) {
       if (canPlaceQueen(i, column, chessBoard)) {
         chessBoard[i][column] = 1;
-        arrangeNQueens(column + 1, index + 1, chessBoard, results);
+        arrangeNQueens(column + 1, chessBoard, results);
         chessBoard[i][column] = 0;
       }
     }
