@@ -1,4 +1,4 @@
-package algorithms.sort;
+package sort;
 
 public class InsertionSort<T> extends Sort<T> {
 

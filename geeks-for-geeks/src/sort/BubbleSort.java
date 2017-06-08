@@ -1,4 +1,4 @@
-package algorithms.sort;
+package sort;
 
 public class BubbleSort<T> extends Sort<T> {
 

@@ -1,32 +1,31 @@
 /**
  * 
  */
-package algorithms.sort;
+package sort;
 
-import static org.junit.Assert.assertTrue;
+import datastructures.util.InputUtil;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import datastructures.util.InputUtil;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Sudharsanan Muralidharan
  */
-public class TestInsertionSort {
+public class TestSelectionSort {
   private static String basePath = "input_files/sort/";
-  private static InsertionSort<Integer> insertionSort = null;
+  private static SelectionSort<Integer> selectionSort = null;
   private static String[] testCases = new String[] { "test_case_1", "test_case_2", "test_case_3" };;
   private static List<String[]> inputList = new ArrayList<String[]>();
 
   @BeforeClass
   public static void setup() {
-    insertionSort = new InsertionSort<Integer>();
+    selectionSort = new SelectionSort<Integer>();
     for (String testCase : testCases) {
       String inputFile = basePath + testCase;
       inputList.add(InputUtil.readContents(inputFile));
@@ -35,23 +34,23 @@ public class TestInsertionSort {
 
   @AfterClass
   public static void teardown() {
-    insertionSort = null;
+    selectionSort = null;
     testCases = null;
     inputList = null;
   }
 
   @Test
-  public void testInsertionSortTestCase1() {
+  public void testSelectionSortTestCase1() {
     assertResult(inputList.get(0));
   }
   
   @Test
-  public void testInsertionSortTestCase2() {
+  public void testSelectionSortTestCase2() {
     assertResult(inputList.get(1));
   }
   
   @Test
-  public void testInsertionSortTestCase3() {
+  public void testSelectionSortTestCase3() {
     assertResult(inputList.get(2));
   }
   
@@ -64,7 +63,7 @@ public class TestInsertionSort {
     }
 
     Integer[] expected = arr.clone();
-    insertionSort.sort(arr);
+    selectionSort.sort(arr);
     Arrays.sort(expected);
 
     assertTrue(validateResult(arr, expected));

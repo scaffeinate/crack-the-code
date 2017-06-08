@@ -1,19 +1,18 @@
 /**
  * 
  */
-package algorithms.sort;
+package sort;
 
-import static org.junit.Assert.assertTrue;
+import datastructures.util.InputUtil;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import datastructures.util.InputUtil;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Sudharsanan Muralidharan

@@ -1,4 +1,4 @@
-package algorithms.sort;
+package sort;
 
 import datastructures.heap.BinaryMaxHeap;
 

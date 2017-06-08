@@ -1,4 +1,4 @@
-package algorithms.sort;
+package sort;
 
 public class SelectionSort<T> extends Sort<T> {
 

@@ -1,4 +1,4 @@
-package algorithms.sort;
+package sort;
 
 public abstract class Sort<T> {
   

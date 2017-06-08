@@ -1,7 +1,7 @@
 /**
  * 
  */
-package algorithms.sort;
+package sort;
 
 import static org.junit.Assert.assertTrue;
 
