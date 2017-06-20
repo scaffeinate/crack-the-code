@@ -7,9 +7,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by sudharti on 6/20/17.
- */
 public class TestSubsetSum {
   private static String inputFile = "input_files/dp/subset_sum/test_case";
   private static SubsetSum subsetSum = null;

@@ -1,7 +1,8 @@
 package dp;
 
 /**
- * Created by sudharti on 6/20/17.
+ * Question: http://www.geeksforgeeks.org/dynamic-programming-subset-sum-problem/
+ * Solution: https://www.youtube.com/watch?v=s6FhG--P7z0
  */
 public class SubsetSum {
   public boolean subsetSum(int n, int[] set) {
