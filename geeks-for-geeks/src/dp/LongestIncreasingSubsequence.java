@@ -1,7 +1,8 @@
 package dp;
 
 /**
- * Created by sudharti on 6/21/17.
+ * Question: http://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/
+ * Solution: https://www.youtube.com/watch?v=CE2b_-XfVDk
  */
 public class LongestIncreasingSubsequence {
 	public int longestSeq(int[] arr) {
