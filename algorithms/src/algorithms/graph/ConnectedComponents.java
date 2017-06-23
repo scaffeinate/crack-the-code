@@ -11,45 +11,45 @@ import datastructures.util.GraphUtil;
 
 public class ConnectedComponents {
 
-  private DisjointSetWithPathCompression<Vertex<String>> disjointSet = null;
-  private UndirectedGraph<String> graph = null;
+    private DisjointSetWithPathCompression<Vertex<String>> disjointSet = null;
+    private UndirectedGraph<String> graph = null;
 
-  public ConnectedComponents() {
-    disjointSet = new DisjointSetWithPathCompression<Vertex<String>>();
-    graph = new UndirectedGraph<String>();
-  }
-
-  public void constructGraph(String[] input) {
-    GraphUtil.constructGraph(graph, input);
-
-    Set<Vertex<String>> vertices = graph.verticesSet();
-    for (Vertex<String> vertex : vertices) {
-      disjointSet.makeSet(vertex);
+    public ConnectedComponents() {
+        disjointSet = new DisjointSetWithPathCompression<Vertex<String>>();
+        graph = new UndirectedGraph<String>();
     }
 
-    Set<Edge<String>> edges = graph.edgesSet();
-    for (Edge<String> edge : edges) {
-      disjointSet.union(edge.sourceVertex, edge.destVertex);
+    public void constructGraph(String[] input) {
+        GraphUtil.constructGraph(graph, input);
+
+        Set<Vertex<String>> vertices = graph.verticesSet();
+        for (Vertex<String> vertex : vertices) {
+            disjointSet.makeSet(vertex);
+        }
+
+        Set<Edge<String>> edges = graph.edgesSet();
+        for (Edge<String> edge : edges) {
+            disjointSet.union(edge.sourceVertex, edge.destVertex);
+        }
     }
-  }
 
-  public Set<String> connectedComponents() {
-    Set<String> componentSet = new HashSet<String>();
-    Set<Vertex<String>> disjointSets = disjointSet.disjointSets();
+    public Set<String> connectedComponents() {
+        Set<String> componentSet = new HashSet<String>();
+        Set<Vertex<String>> disjointSets = disjointSet.disjointSets();
 
-    for (Vertex<String> vertex : disjointSets) {
-      componentSet.add(disjointSet.findSet(vertex).label);
+        for (Vertex<String> vertex : disjointSets) {
+            componentSet.add(disjointSet.findSet(vertex).label);
+        }
+
+        System.out.println(componentSet);
+
+        return componentSet;
     }
-    
-    System.out.println(componentSet);
 
-    return componentSet;
-  }
+    public boolean sameComponent(String value1, String value2) {
+        Vertex<String> vertex1 = graph.getVertex(value1);
+        Vertex<String> vertex2 = graph.getVertex(value2);
 
-  public boolean sameComponent(String value1, String value2) {
-    Vertex<String> vertex1 = graph.getVertex(value1);
-    Vertex<String> vertex2 = graph.getVertex(value2);
-
-    return disjointSet.findSet(vertex1).equals(disjointSet.findSet(vertex2));
-  }
+        return disjointSet.findSet(vertex1).equals(disjointSet.findSet(vertex2));
+    }
 }

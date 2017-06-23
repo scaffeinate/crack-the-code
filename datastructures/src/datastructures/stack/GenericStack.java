@@ -3,21 +3,21 @@ package datastructures.stack;
 /**
  * AbstractStack Interface which has the basic stack functions. push(), pop()
  * and peek()
- * 
- * @author Sudharsanan Muralidharan
+ *
  * @param <T>
+ * @author Sudharsanan Muralidharan
  */
 
 public interface GenericStack<T> {
 
-  void push(T data);
+    void push(T data);
 
-  T pop();
+    T pop();
 
-  T peek();
+    T peek();
 
-  int size();
+    int size();
 
-  boolean isEmpty();
+    boolean isEmpty();
 
 }

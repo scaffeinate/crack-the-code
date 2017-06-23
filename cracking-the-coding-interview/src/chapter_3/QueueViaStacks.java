@@ -8,24 +8,23 @@ import util.InputUtil;
 /**
  * Question 3.4: Implement a MyQueue class which implements a queue using two
  * stacks
- * 
- * @author Sudharsanan Muralidharan
  *
+ * @author Sudharsanan Muralidharan
  */
 public class QueueViaStacks {
-  public static void main(String[] args) throws FileNotFoundException {
-    String[] input = InputUtil.readContents(3, "queue_via_stacks");
-    MyQueue<Integer> myQueue = new MyQueue<Integer>();
-    for (String line : input) {
-      if (line.startsWith("add")) {
-        int data = Integer.parseInt(InputUtil.getArg(line));
-        System.out.println("Adding to queue: " + data);
-        myQueue.add(data);
-      } else if (line.startsWith("remove")) {
-        System.out.println("Removing from queue : " + myQueue.remove());
-      } else if (line.startsWith("peek")) {
-        System.out.println("Peek: " + myQueue.peek());
-      }
+    public static void main(String[] args) throws FileNotFoundException {
+        String[] input = InputUtil.readContents(3, "queue_via_stacks");
+        MyQueue<Integer> myQueue = new MyQueue<Integer>();
+        for (String line : input) {
+            if (line.startsWith("add")) {
+                int data = Integer.parseInt(InputUtil.getArg(line));
+                System.out.println("Adding to queue: " + data);
+                myQueue.add(data);
+            } else if (line.startsWith("remove")) {
+                System.out.println("Removing from queue : " + myQueue.remove());
+            } else if (line.startsWith("peek")) {
+                System.out.println("Peek: " + myQueue.peek());
+            }
+        }
     }
-  }
 }

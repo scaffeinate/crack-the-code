@@ -6,6 +6,7 @@ import datastructures.util.InputUtil;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -56,7 +57,7 @@ public class TestRemoveDuplicates {
             }
         }
 
-        for(String e:elements2) {
+        for (String e : elements2) {
             expected.add(Integer.parseInt(e));
         }
 
@@ -75,12 +76,12 @@ public class TestRemoveDuplicates {
 
         int size = 0, size2 = 0;
 
-        while(current != null) {
+        while (current != null) {
             size++;
             current = current.next;
         }
 
-        while(current2 != null) {
+        while (current2 != null) {
             size2++;
             current2 = current2.next;
         }
@@ -90,7 +91,7 @@ public class TestRemoveDuplicates {
         current = expected.head();
         current2 = actual.head();
 
-        while(current != null && current2 != null) {
+        while (current != null && current2 != null) {
             assertEquals(current.data, current2.data);
             current = current.next;
             current2 = current2.next;

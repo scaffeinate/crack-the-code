@@ -6,23 +6,22 @@
  * user guide available at https://docs.gradle.org/3.3/userguide/tutorial_java_projects.html
  */
 
-
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 apply plugin: 'jacoco'
 
 sourceSets {
-   main {
-      java {
-         srcDir 'src'
-      }
-   }
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
 
-   test {
-      java {
-         srcDir 'test'
-      }
-   }
+    test {
+        java {
+            srcDir 'test'
+        }
+    }
 }
 
 repositories {
@@ -30,7 +29,7 @@ repositories {
 }
 
 dependencies {
-		compile project(':datastructures')
+    compile project(':datastructures')
 }
 
 dependencies {

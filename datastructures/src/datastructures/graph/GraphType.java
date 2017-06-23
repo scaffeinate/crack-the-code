@@ -1,5 +1,5 @@
 package datastructures.graph;
 
 public enum GraphType {
-  DIRECTED, UNDIRECTED
+    DIRECTED, UNDIRECTED
 }

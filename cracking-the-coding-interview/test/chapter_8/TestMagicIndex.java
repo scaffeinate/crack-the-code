@@ -12,68 +12,68 @@ import org.junit.Test;
 import datastructures.util.InputUtil;
 
 public class TestMagicIndex {
-  private static String inputFile = "input_files/chapter_8/magic_index/test_case";
-  private static MagicIndex magicIndex;
-  private static String[] input = null;
+    private static String inputFile = "input_files/chapter_8/magic_index/test_case";
+    private static MagicIndex magicIndex;
+    private static String[] input = null;
 
-  @BeforeClass
-  public static void setup() {
-    magicIndex = new MagicIndex();
-    input = InputUtil.readContents(inputFile);
-  }
-
-  @AfterClass
-  public static void teardown() {
-    magicIndex = null;
-    input = null;
-  }
-
-  @Test
-  public void testMagicIndexTestCase1() {
-    assertMagicIndex(input[0]);
-  }
-
-  @Test
-  public void testMagicIndexTestCase2() {
-    assertMagicIndex(input[1]);
-  }
-
-  @Test
-  public void testMagicIndexTestCase3() {
-    assertMagicIndex(input[2]);
-  }
-
-  @Test
-  public void testMagicIndexTestCase4() {
-    assertMagicIndex(input[3]);
-  }
-  
-  @Test
-  public void testMagicIndexTestCase5() {
-    assertMagicIndex(input[4]);
-  }
-  
-  @Test
-  public void testMagicIndexTestCase6() {
-    assertMagicIndex(input[5]);
-  }
-
-  private void assertMagicIndex(String input) {
-    String[] values = input.split(" ");
-    String[] arrValues = values[0].split(",");
-    String[] expectedValues = values[1].split(",");
-    int[] arr = new int[arrValues.length];
-    List<Integer> expected = new ArrayList<Integer>();
-
-    for (int i = 0; i < arrValues.length; i++) {
-      arr[i] = Integer.parseInt(arrValues[i]);
+    @BeforeClass
+    public static void setup() {
+        magicIndex = new MagicIndex();
+        input = InputUtil.readContents(inputFile);
     }
 
-    for (int i = 0; i < expectedValues.length; i++) {
-      expected.add(Integer.parseInt(expectedValues[i]));
+    @AfterClass
+    public static void teardown() {
+        magicIndex = null;
+        input = null;
     }
 
-    int output = magicIndex.findMagicIndex(arr);
-    assertEquals(true, expected.contains(output));
-  }
+    @Test
+    public void testMagicIndexTestCase1() {
+        assertMagicIndex(input[0]);
+    }
+
+    @Test
+    public void testMagicIndexTestCase2() {
+        assertMagicIndex(input[1]);
+    }
+
+    @Test
+    public void testMagicIndexTestCase3() {
+        assertMagicIndex(input[2]);
+    }
+
+    @Test
+    public void testMagicIndexTestCase4() {
+        assertMagicIndex(input[3]);
+    }
+
+    @Test
+    public void testMagicIndexTestCase5() {
+        assertMagicIndex(input[4]);
+    }
+
+    @Test
+    public void testMagicIndexTestCase6() {
+        assertMagicIndex(input[5]);
+    }
+
+    private void assertMagicIndex(String input) {
+        String[] values = input.split(" ");
+        String[] arrValues = values[0].split(",");
+        String[] expectedValues = values[1].split(",");
+        int[] arr = new int[arrValues.length];
+        List<Integer> expected = new ArrayList<Integer>();
+
+        for (int i = 0; i < arrValues.length; i++) {
+            arr[i] = Integer.parseInt(arrValues[i]);
+        }
+
+        for (int i = 0; i < expectedValues.length; i++) {
+            expected.add(Integer.parseInt(expectedValues[i]));
+        }
+
+        int output = magicIndex.findMagicIndex(arr);
+        assertEquals(true, expected.contains(output));
+    }
 }

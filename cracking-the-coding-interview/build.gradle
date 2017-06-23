@@ -11,17 +11,17 @@ apply plugin: 'java'
 apply plugin: 'jacoco'
 
 sourceSets {
-   main {
-      java {
-         srcDir 'src'
-      }
-   }
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
 
-   test {
-      java {
-         srcDir 'test'
-      }
-   }
+    test {
+        java {
+            srcDir 'test'
+        }
+    }
 }
 
 dependencies {

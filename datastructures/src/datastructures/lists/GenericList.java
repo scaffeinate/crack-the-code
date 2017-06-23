@@ -4,41 +4,40 @@ package datastructures.lists;
  * Generic List Interface
  *
  * @param <T>
- * 
  * @author Sudharsanan Muralidharan
  */
 public interface GenericList<T> {
-  public boolean add(T data);
+    public boolean add(T data);
 
-  public boolean add(int index, T data);
+    public boolean add(int index, T data);
 
-  public boolean addToFront(T data);
+    public boolean addToFront(T data);
 
-  public boolean remove(Object o);
+    public boolean remove(Object o);
 
-  public boolean remove(int index);
+    public boolean remove(int index);
 
-  public boolean removeFirst();
+    public boolean removeFirst();
 
-  public boolean removeLast();
+    public boolean removeLast();
 
-  public T get(int index);
+    public T get(int index);
 
-  public T set(int index, T data);
+    public T set(int index, T data);
 
-  public boolean contains(Object o);
+    public boolean contains(Object o);
 
-  public LinkedListNode<T> head();
+    public LinkedListNode<T> head();
 
-  public void head(LinkedListNode<T> node);
+    public void head(LinkedListNode<T> node);
 
-  public LinkedListNode<T> tail();
+    public LinkedListNode<T> tail();
 
-  public void tail(LinkedListNode<T> node);
+    public void tail(LinkedListNode<T> node);
 
-  public Object[] toArray();
+    public Object[] toArray();
 
-  public int size();
+    public int size();
 
-  public boolean isEmpty();
+    public boolean isEmpty();
 }

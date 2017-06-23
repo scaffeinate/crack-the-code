@@ -10,36 +10,36 @@ import datastructures.graph.Vertex;
 import datastructures.util.GraphUtil;
 
 public class DetectCycleUndirectedGraph {
-  private AbstractGraph<String> graph = null;
-  private DisjointSetWithPathCompression<Vertex<String>> disjointSet = null;
-  private Set<Vertex<String>> vertices = null;
+    private AbstractGraph<String> graph = null;
+    private DisjointSetWithPathCompression<Vertex<String>> disjointSet = null;
+    private Set<Vertex<String>> vertices = null;
 
-  public DetectCycleUndirectedGraph() {
-    graph = new UndirectedGraph<String>();
-    disjointSet = new DisjointSetWithPathCompression<Vertex<String>>();
-  }
-
-  public void constructGraph(String[] input) {
-    GraphUtil.constructGraph(graph, input);
-    vertices = graph.verticesSet();
-    for (Vertex<String> vertex : vertices) {
-      disjointSet.makeSet(vertex);
+    public DetectCycleUndirectedGraph() {
+        graph = new UndirectedGraph<String>();
+        disjointSet = new DisjointSetWithPathCompression<Vertex<String>>();
     }
-  }
 
-  public boolean detectCycle() {
-    for (Vertex<String> vertex : vertices) {
-      List<Vertex<String>> neighbours = graph.neighboursOf(vertex);
-      for (Vertex<String> neighbour : neighbours) {
-        if (!disjointSet.findSet(vertex).equals(disjointSet.findSet(neighbour))) {
-          disjointSet.union(vertex, neighbour);
-          // If we create a union of the vertices then remove the reverse edge
-          graph.removeEdge(neighbour, vertex);
-        } else {
-          return true;
+    public void constructGraph(String[] input) {
+        GraphUtil.constructGraph(graph, input);
+        vertices = graph.verticesSet();
+        for (Vertex<String> vertex : vertices) {
+            disjointSet.makeSet(vertex);
         }
-      }
     }
-    return false;
-  }
+
+    public boolean detectCycle() {
+        for (Vertex<String> vertex : vertices) {
+            List<Vertex<String>> neighbours = graph.neighboursOf(vertex);
+            for (Vertex<String> neighbour : neighbours) {
+                if (!disjointSet.findSet(vertex).equals(disjointSet.findSet(neighbour))) {
+                    disjointSet.union(vertex, neighbour);
+                    // If we create a union of the vertices then remove the reverse edge
+                    graph.removeEdge(neighbour, vertex);
+                } else {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
