@@ -25,31 +25,31 @@ public class TestSubsetSum {
     }
 
     @Test
-    public void testFibonacciNumberTestCase1() {
+    public void testSubsetSumTestCase1() {
         String[] values = input[0].split(" ");
         assertSubsetSum(values);
     }
 
     @Test
-    public void testFibonacciNumberTestCase2() {
+    public void testSubsetSumTestCase2() {
         String[] values = input[1].split(" ");
         assertSubsetSum(values);
     }
 
     @Test
-    public void testFibonacciNumberTestCase3() {
+    public void testSubsetSumTestCase3() {
         String[] values = input[2].split(" ");
         assertSubsetSum(values);
     }
 
     @Test
-    public void testFibonacciNumberTestCase4() {
+    public void testSubsetSumTestCase4() {
         String[] values = input[3].split(" ");
         assertSubsetSum(values);
     }
 
     @Test
-    public void testFibonacciNumberTestCase5() {
+    public void testSubsetSumTestCase5() {
         String[] values = input[4].split(" ");
         assertSubsetSum(values);
     }
