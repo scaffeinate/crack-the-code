@@ -4,7 +4,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by sudharti on 6/27/17.
+ * Question: http://www.geeksforgeeks.org/weighted-job-scheduling/
+ * Solution: https://www.youtube.com/watch?v=cr6Ip0J9izc
  */
 public class WeightedJobScheduling {
     public int maxProfit(List<Job> jobs) {

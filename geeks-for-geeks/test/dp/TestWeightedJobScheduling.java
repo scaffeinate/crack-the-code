@@ -10,9 +10,6 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by sudharti on 6/27/17.
- */
 public class TestWeightedJobScheduling {
     private static String inputFile = "input_files/dp/weighted_job_scheduling/test_case";
     private static WeightedJobScheduling weightedJobScheduling = null;
