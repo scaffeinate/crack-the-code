@@ -22,4 +22,24 @@ public class RodCutting {
 
         return memo[n];
     }
+
+
+    public int maxProfitTopDown(Map<Integer, Integer> costsMap, int n) {
+        int[] memo = new int[n + 1];
+        for (int i = 1; i < memo.length; i++) memo[i] = -1;
+        return maxProfitTopDown(costsMap, n, memo);
+    }
+
+    private int maxProfitTopDown(Map<Integer, Integer> costsMap, int n, int[] memo) {
+        if (n <= 0) return 0;
+        if (memo[n] == -1) {
+            int max = 0;
+            for (int i = 1; i <= n; i++) {
+                max = Math.max(max, costsMap.getOrDefault(i, 0) + maxProfitTopDown(costsMap, n - i, memo));
+            }
+            memo[n] = max;
+        }
+
+        return memo[n];
+    }
 }

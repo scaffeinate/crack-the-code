@@ -69,5 +69,6 @@ public class TestRodCutting {
         int expected = Integer.parseInt(values[1]);
 
         assertEquals(expected, rodCutting.maxProfit(costsMap, n));
+        assertEquals(expected, rodCutting.maxProfitTopDown(costsMap, n));
     }
 }
