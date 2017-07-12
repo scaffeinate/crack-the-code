@@ -1,8 +1,8 @@
 package dp;
 
 /**
- * Question:
- * Solution:
+ * Question: http://www.geeksforgeeks.org/dynamic-programming-set-8-matrix-chain-multiplication/
+ * Solution: https://www.youtube.com/watch?v=vgLJZMUfnsU
  */
 public class MatrixMultiplication {
     public int minOperations(int[][] matrices) {
