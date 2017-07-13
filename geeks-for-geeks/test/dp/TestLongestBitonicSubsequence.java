@@ -54,6 +54,12 @@ public class TestLongestBitonicSubsequence {
         assertLIS(values);
     }
 
+    @Test
+    public void testLongestBitonicSubsequenceTestCase6() {
+        String[] values = input[5].split(" ");
+        assertLIS(values);
+    }
+
     private void assertLIS(String[] values) {
         int expected = Integer.parseInt(values[1]);
         String[] arrValues = values[0].split(",");
