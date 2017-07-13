@@ -43,13 +43,13 @@ public class LongestCommonSubsequence {
         StringBuilder builder = new StringBuilder();
         while (i != 0 && j != 0) {
             int currentVal = table[i][j];
-            if (table[i - 1][j] == currentVal) {
-                i--;
-            } else if (table[i][j - 1] == currentVal) {
-                j--;
-            } else if ((table[i - 1][j - 1] + 1) == currentVal) {
+            if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
                 builder.append(s1.charAt(i - 1));
                 i--;
+                j--;
+            } else if (table[i - 1][j] == currentVal) {
+                i--;
+            } else {
                 j--;
             }
         }
