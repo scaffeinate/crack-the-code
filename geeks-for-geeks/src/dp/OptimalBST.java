@@ -28,4 +28,37 @@ public class OptimalBST {
 
         return matrix[0][keys.length - 1];
     }
+
+    public int optimalWeightRecursive(int[] keys, int[] frequencies) {
+        int[][] memo = new int[keys.length][keys.length];
+        for (int i = 0; i < memo.length; i++) {
+            for (int j = 0; j < memo[i].length; j++) {
+                memo[i][j] = -1;
+            }
+        }
+
+        return optimalWeightRecursive(keys, frequencies, memo, 0, keys.length - 1);
+    }
+
+    private int optimalWeightRecursive(int[] keys, int[] frequencies, int[][] memo, int start, int end) {
+        if (start > end) {
+            return 0;
+        } else if (start == end) {
+            return frequencies[start];
+        } else if (memo[start][end] == -1) {
+            int min = Integer.MAX_VALUE, base = 0;
+            for (int i = start; i <= end; i++) {
+                base += frequencies[i];
+            }
+
+            for (int i = start; i <= end; i++) {
+                int val = optimalWeightRecursive(keys, frequencies, memo, start, i - 1) +
+                        optimalWeightRecursive(keys, frequencies, memo, i + 1, end);
+                min = Math.min(min, (val + base));
+            }
+            memo[start][end] = min;
+        }
+
+        return memo[start][end];
+    }
 }

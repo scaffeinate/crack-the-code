@@ -39,6 +39,12 @@ public class TestOptimalBST {
         assertOptimalBST(values);
     }
 
+    @Test
+    public void testFibonacciNumberTestCase3() {
+        String[] values = input[2].split(" ");
+        assertOptimalBST(values);
+    }
+
     private void assertOptimalBST(String[] values) {
         String[] keys = values[0].split(",");
         String[] frequencies = values[1].split(",");
@@ -55,6 +61,7 @@ public class TestOptimalBST {
 
         int expected = Integer.parseInt(values[2]);
         assertEquals(expected, optimalBST.optimalWeight(keysArr, freqArr));
+        assertEquals(expected, optimalBST.optimalWeightRecursive(keysArr, freqArr));
 
     }
 }
