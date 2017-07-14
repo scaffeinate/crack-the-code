@@ -28,19 +28,19 @@ public class TestOptimalBST {
     }
 
     @Test
-    public void testFibonacciNumberTestCase1() {
+    public void testOptimalBSTTestCase1() {
         String[] values = input[0].split(" ");
         assertOptimalBST(values);
     }
 
     @Test
-    public void testFibonacciNumberTestCase2() {
+    public void testOptimalBSTTestCase2() {
         String[] values = input[1].split(" ");
         assertOptimalBST(values);
     }
 
     @Test
-    public void testFibonacciNumberTestCase3() {
+    public void testOptimalBSTTestCase3() {
         String[] values = input[2].split(" ");
         assertOptimalBST(values);
     }
