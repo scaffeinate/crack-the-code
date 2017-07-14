@@ -4,6 +4,7 @@ import java.util.*;
 
 /**
  * Question: http://www.geeksforgeeks.org/weighted-job-scheduling/
+ * Follow-up: http://www.geeksforgeeks.org/weighted-job-scheduling-set-2-using-lis/
  * Solution: https://www.youtube.com/watch?v=cr6Ip0J9izc
  */
 public class WeightedJobScheduling {
