@@ -11,4 +11,9 @@ public class Job {
         this.end = end;
         this.profit = profit;
     }
+
+    @Override
+    public String toString() {
+        return start + ":" + end + ":" + profit;
+    }
 }

@@ -1,7 +1,6 @@
 package dp;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Question: http://www.geeksforgeeks.org/weighted-job-scheduling/
@@ -38,5 +37,51 @@ public class WeightedJobScheduling {
 
     private boolean canSelect(Job job1, Job job2) {
         return job2.start >= job1.end;
+    }
+
+    public List<Job> maxProfitJobs(List<Job> jobs) {
+        Collections.sort(jobs, new Comparator<Job>() {
+            @Override
+            public int compare(Job o1, Job o2) {
+                return Integer.valueOf(o1.start).compareTo(o2.start);
+            }
+        });
+
+        int[] memo = new int[jobs.size()];
+        int[] sources = new int[jobs.size()];
+        List<Job> results = new ArrayList<Job>();
+
+        for (int i = 0; i < jobs.size(); i++) {
+            memo[i] = jobs.get(i).profit;
+            sources[i] = i;
+        }
+
+        for (int i = 1; i < jobs.size(); i++) {
+            Job job = jobs.get(i);
+            for (int j = 0; j < i; j++) {
+                if (jobs.get(j).end <= job.start) {
+                    if (memo[i] < (memo[j] + job.profit)) {
+                        memo[i] = (memo[j] + job.profit);
+                        sources[i] = j;
+                    }
+                }
+            }
+        }
+
+        int max = 0, k = 0;
+        for (int i = 0; i < memo.length; i++) {
+            if (memo[i] > max) {
+                max = memo[i];
+                k = i;
+            }
+        }
+
+        while (sources[k] != k) {
+            results.add(jobs.get(k));
+            k = sources[k];
+        }
+
+        results.add(jobs.get(k));
+        return results;
     }
 }

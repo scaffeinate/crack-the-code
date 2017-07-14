@@ -57,5 +57,15 @@ public class TestWeightedJobScheduling {
         }
 
         assertEquals(Integer.parseInt(input[1]), weightedJobScheduling.maxProfit(jobs));
+        List<Job> maxJobs = weightedJobScheduling.maxProfitJobs(jobs);
+        StringBuilder builder = new StringBuilder();
+        int sum = 0;
+        for (int i = maxJobs.size() - 1; i >= 0; i--) {
+            sum += maxJobs.get(i).profit;
+            builder.append(maxJobs.get(i).toString()).append((i == 0) ? "" : ",");
+        }
+
+        assertEquals(Integer.parseInt(input[1]), sum);
+        assertEquals(input[2], builder.toString());
     }
 }
