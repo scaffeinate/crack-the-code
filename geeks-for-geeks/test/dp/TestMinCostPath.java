@@ -65,5 +65,6 @@ public class TestMinCostPath {
         int expected = Integer.parseInt(inputArr[inputArr.length - 1]);
 
         assertEquals(expected, minCostPath.minCost(matrix, m, n));
+        assertEquals(expected, minCostPath.minCostBottomup(matrix, m, n));
     }
 }

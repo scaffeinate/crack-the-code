@@ -30,6 +30,39 @@ public class MinCostPath {
         return memo[i][j];
     }
 
+    public int minCostBottomup(int[][] matrix, int m, int n) {
+        int[][] memo = new int[matrix.length][matrix[0].length];
+        for (int i = 0; i < memo.length; i++) {
+            for (int j = 0; j < memo[i].length; j++) {
+                memo[i][j] = Integer.MAX_VALUE;
+            }
+        }
+
+        for (int i = m; i >= 0; i--) {
+            for (int j = n; j >= 0; j--) {
+                if (i == m && j == n) {
+                    memo[i][j] = matrix[i][j];
+                } else {
+                    int min = minOf(
+                            helper(memo, i + 1, j, m, n),
+                            helper(memo, i, j + 1, m, n),
+                            helper(memo, i + 1, j + 1, m, n));
+                    memo[i][j] = (min == Integer.MAX_VALUE) ? Integer.MAX_VALUE : min + matrix[i][j];
+                }
+            }
+        }
+
+        return memo[0][0];
+    }
+
+    private int helper(int[][] memo, int i, int j, int m, int n) {
+        if (i > m || i < 0 || j > n || j < 0) {
+            return Integer.MAX_VALUE;
+        }
+
+        return memo[i][j];
+    }
+
     private int minOf(int... values) {
         int min = Integer.MAX_VALUE;
         for (int val : values) {
