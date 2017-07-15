@@ -1,7 +1,6 @@
 package dp;
 
 import datastructures.util.InputUtil;
-import dp.LongestPalindromicSubsequence;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -63,9 +62,6 @@ public class TestLongestPalindromicSubsequence {
 
     private void assertLPS(String[] values) {
         String lcsString = longestPalindromicSubsequence.longestPS(values[0]);
-        assertEquals(values[1].length(), lcsString.length());
-        if (lcsString.length() > 0) {
-            assertEquals(values[1], lcsString);
-        }
+        assertEquals(Integer.parseInt(values[1]), lcsString.length());
     }
 }

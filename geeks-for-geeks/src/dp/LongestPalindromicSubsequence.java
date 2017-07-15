@@ -7,19 +7,15 @@ public class LongestPalindromicSubsequence {
     public String longestPS(String input) {
         StringBuilder outputBuilder = new StringBuilder();
         int[][] matrix = new int[input.length()][input.length()];
+        for (int i = 0; i < input.length(); i++) matrix[i][i] = 1;
+
         int len = 2;
-
-        for (int i = 0; i < input.length(); i++) {
-            matrix[i][i] = 1;
-        }
-
         while (len <= input.length()) {
-            for (int i = 0; (i + len - 1) < input.length(); i++) {
-                int j = (i + len - 1);
-                if (input.charAt(i) == input.charAt(j)) {
-                    matrix[i][j] = 2 + matrix[i + 1][j - 1];
+            for (int start = 0, end = start + len - 1; end < input.length(); start++, end++) {
+                if (input.charAt(start) == input.charAt(end)) {
+                    matrix[start][end] = matrix[start + 1][end - 1] + 2;
                 } else {
-                    matrix[i][j] = Math.max(matrix[i][j - 1], matrix[i + 1][j]);
+                    matrix[start][end] = Math.max(matrix[start + 1][end], matrix[start][end - 1]);
                 }
             }
             len++;
@@ -27,24 +23,19 @@ public class LongestPalindromicSubsequence {
 
         int i = 0, j = input.length() - 1;
         while (matrix[i][j] != 0) {
-            if (matrix[i][j] == matrix[i][j - 1]) {
-                j--;
-            } else if (matrix[i][j] == matrix[i + 1][j]) {
-                i++;
-            } else if (matrix[i][j] == (matrix[i + 1][j - 1] + 2)) {
-                char c1 = input.charAt(i);
-                char c2 = input.charAt(j);
-                String temp = (c1 + "" + c2);
-                if (outputBuilder.length() == 0) {
-                    outputBuilder.append(temp);
-                } else {
-                    outputBuilder.insert(outputBuilder.length() / 2, temp);
+            if (input.charAt(i) == input.charAt(j)) {
+                char c = input.charAt(i);
+                int middle = outputBuilder.length() / 2;
+                outputBuilder.insert(middle, c);
+                if (i != j) {
+                    outputBuilder.insert(middle + 1, c);
                 }
                 i++;
                 j--;
-            } else {
-                outputBuilder.insert(outputBuilder.length() / 2, input.charAt(i));
-                break;
+            } else if (matrix[i][j] == matrix[i + 1][j]) {
+                i++;
+            } else if (matrix[i][j] == matrix[i][j - 1]) {
+                j--;
             }
         }
 
