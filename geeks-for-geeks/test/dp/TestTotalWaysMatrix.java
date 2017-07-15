@@ -9,8 +9,7 @@ import static junit.framework.TestCase.assertEquals;
 
 public class TestTotalWaysMatrix {
 
-    private static String inputFile = "input_files/dp/total_ways_matrix/test_case";
-    ;
+    private static String inputFile = "input_files/dp/total_ways_matrix/test_case";;
     private static String[] input = null;
     private static TotalWaysMatrix totalWaysMatrix = null;
 
@@ -38,7 +37,7 @@ public class TestTotalWaysMatrix {
 
     @Test
     public void testTotalWaysMatrix3() {
-        assertTotalWaysMatrix(input[0]);
+        assertTotalWaysMatrix(input[2]);
     }
 
 
