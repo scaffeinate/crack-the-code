@@ -5,26 +5,32 @@ package dp;
  * Solution: https://www.youtube.com/watch?v=CE2b_-XfVDk
  */
 public class LongestIncreasingSubsequence {
-    public int longestSeq(int[] arr) {
-        int max = 0;
-        for (int i = 0; i < arr.length - 1; i++) {
-            max = Math.max(max, 1 + longestSeq(arr, arr[i], i + 1));
+    public int longestSeqTopDown(int[] arr) {
+        int[][] memo = new int[arr.length + 1][arr.length];
+        for (int i = 0; i < memo.length; i++) {
+            for (int j = 0; j < memo[i].length; j++) {
+                memo[i][j] = -1;
+            }
         }
-
-        return max;
+        return longestSeqTopDown(arr, 0, arr.length, memo);
     }
 
-    private int longestSeq(int[] arr, int prev, int index) {
-        if (index == arr.length) {
-            return 0;
+    private int longestSeqTopDown(int[] arr, int index, int prev, int[][] memo) {
+        if (index == arr.length) return 0;
+
+        if (memo[prev][index] == -1) {
+            int max = 0;
+            if (prev == arr.length || arr[prev] < arr[index]) {
+                max = 1 + longestSeqTopDown(arr, index + 1, index, memo);
+            }
+
+            max = Math.max(max, longestSeqTopDown(arr, index + 1, prev, memo));
+            memo[prev][index] = max;
         }
 
-        if (arr[index] < prev) {
-            return longestSeq(arr, prev, index + 1);
-        } else {
-            return Math.max(1 + longestSeq(arr, arr[index], index + 1), longestSeq(arr, prev, index + 1));
-        }
+        return memo[prev][index];
     }
+
 
     public int longestSeqDP(int[] arr) {
         int[] memo = new int[arr.length];

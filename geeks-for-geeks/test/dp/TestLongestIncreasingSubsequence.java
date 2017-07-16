@@ -66,7 +66,7 @@ public class TestLongestIncreasingSubsequence {
             arr[i] = Integer.parseInt(arrValues[i]);
         }
 
-        assertEquals(expected, longestIncreasingSubsequence.longestSeq(arr));
+        assertEquals(expected, longestIncreasingSubsequence.longestSeqTopDown(arr));
         assertEquals(expected, longestIncreasingSubsequence.longestSeqDP(arr));
     }
 }
