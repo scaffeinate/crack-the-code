@@ -6,7 +6,7 @@ package dp;
  */
 public class MaximumSumIncreasingSubsequence {
     public int maximumSum(int[] arr) {
-        int maxSum = 0;
+        int maxSum = 0, maxIndex = 0;
         int[] memo = new int[arr.length];
         int[] sources = new int[arr.length];
         for (int i = 0; i < arr.length; i++) {
@@ -24,8 +24,17 @@ public class MaximumSumIncreasingSubsequence {
         }
 
         for (int i = 0; i < memo.length; i++) {
-            maxSum = Math.max(maxSum, memo[i]);
+            if (memo[i] > maxSum) {
+                maxSum = memo[i];
+                maxIndex = i;
+            }
         }
+
+        while (maxIndex != sources[maxIndex]) {
+            System.out.print(arr[maxIndex] + " ");
+            maxIndex = sources[maxIndex];
+        }
+        System.out.println(arr[maxIndex]);
 
         return maxSum;
     }
