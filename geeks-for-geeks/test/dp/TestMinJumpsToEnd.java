@@ -61,5 +61,6 @@ public class TestMinJumpsToEnd {
         System.out.println(nums.length);
 
         assertEquals(Integer.parseInt(inputArr[1]), minJumpsToEnd.minJumps(nums));
+        assertEquals(Integer.parseInt(inputArr[1]), minJumpsToEnd.minJumpsBottomUp(nums));
     }
 }
