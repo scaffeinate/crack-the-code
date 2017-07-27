@@ -1,7 +1,8 @@
 package dp;
 
 /**
- * Created by sudharti on 7/27/17.
+ * Question: http://www.geeksforgeeks.org/given-matrix-o-x-find-largest-subsquare-surrounded-x/
+ * Solution: https://www.youtube.com/watch?v=vi_1eHCsR9A
  */
 public class LargestSubsquareXO {
     public int maxSquare(char[][] matrix) {

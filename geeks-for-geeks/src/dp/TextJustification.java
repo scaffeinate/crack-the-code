@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Question:
+ * Question: http://www.geeksforgeeks.org/dynamic-programming-set-18-word-wrap/
+ * Solution: https://www.youtube.com/watch?v=RORuwHiblPc
  */
 public class TextJustification {
     public String justify(String[] words, int W) {
