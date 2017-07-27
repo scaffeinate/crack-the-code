@@ -14,7 +14,7 @@ public class TextJustification {
         Node node = wrapper.node;
         while (node != null && i < words.length) {
             while (i <= node.index) {
-                builder.append(words[i]).append(" ");
+                builder.append(words[i]).append((i == node.index) ? "" : " ");
                 i++;
             }
             node = node.parent;
@@ -87,7 +87,7 @@ public class TextJustification {
         while (i < words.length) {
             int index = sources[i][1];
             while (i < index) {
-                builder.append(words[i]).append(" ");
+                builder.append(words[i]).append((i == index - 1) ? "" : " ");
                 i++;
             }
             builder.append("\n");
