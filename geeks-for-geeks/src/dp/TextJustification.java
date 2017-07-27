@@ -36,13 +36,13 @@ public class TextJustification {
                 Node node = new Node(i);
                 if (result != null) {
                     node.parent = result.node;
-                    int badness = (int) (result.badness + Math.pow((W - numChars), 3));
+                    int badness = (int) (result.badness + Math.pow((W - numChars), 2));
                     if (badness < minBadness) {
                         minBadness = badness;
                         minNode = node;
                     }
                 } else {
-                    minBadness = 0;
+                    minBadness = (int) Math.pow((W - numChars), 2);
                     minNode = node;
                 }
                 i++;
@@ -53,6 +53,47 @@ public class TextJustification {
         }
 
         return memo.get(index);
+    }
+
+    public String justifyBottomUp(String[] words, int W) {
+        StringBuilder builder = new StringBuilder();
+        int[][] memo = new int[words.length][words.length];
+        for (int i = 0; i < memo.length; i++)
+            for (int j = 0; j < memo.length; j++) memo[i][j] = Integer.MAX_VALUE;
+
+        for (int i = 0; i < memo.length; i++) {
+            int numChars = 0;
+            for (int j = i; j < memo.length && (numChars += words[j].length()) <= W; j++) {
+                memo[i][j] = (int) (Math.pow((W - numChars), 2));
+                numChars++;
+            }
+        }
+
+        int[][] sources = new int[words.length][2];
+        for (int i = words.length - 1; i >= 0; i--) {
+            int min = Integer.MAX_VALUE, source = -1;
+            for (int j = i; j < words.length && memo[i][j] != Integer.MAX_VALUE; j++) {
+                int badness = memo[i][j] + ((j == words.length - 1) ? 0 : sources[j + 1][0]);
+                if (badness < min) {
+                    min = badness;
+                    source = j + 1;
+                }
+            }
+            sources[i][0] = min;
+            sources[i][1] = source;
+        }
+
+        int i = 0;
+        while (i < words.length) {
+            int index = sources[i][1];
+            while (i < index) {
+                builder.append(words[i]).append(" ");
+                i++;
+            }
+            builder.append("\n");
+        }
+
+        return builder.toString();
     }
 
     class Wrapper {
