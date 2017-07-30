@@ -1,17 +1,12 @@
 package algorithms.graph;
 
-import static org.junit.Assert.assertEquals;
+import datastructures.util.InputUtil;
+import org.junit.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import datastructures.util.InputUtil;
+import static org.junit.Assert.assertEquals;
 
 public class TestDetectCycleDirectedGraph {
     private static final String basePath = "input_files/graph/detect_cycle/";
