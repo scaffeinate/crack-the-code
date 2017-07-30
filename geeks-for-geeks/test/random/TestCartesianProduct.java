@@ -1,4 +1,4 @@
-package algoritms.problems;
+package random;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
@@ -13,7 +13,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.problems.CartesianProduct;
 import datastructures.util.InputUtil;
 
 public class TestCartesianProduct {

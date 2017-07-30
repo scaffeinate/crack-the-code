@@ -1,4 +1,4 @@
-package algorithms.graph;
+package graph;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;

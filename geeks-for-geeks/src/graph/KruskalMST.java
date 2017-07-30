@@ -1,4 +1,4 @@
-package algorithms.graph;
+package graph;
 
 import datastructures.disjointsets.DisjointSetWithPathCompression;
 import datastructures.graph.AbstractGraph;

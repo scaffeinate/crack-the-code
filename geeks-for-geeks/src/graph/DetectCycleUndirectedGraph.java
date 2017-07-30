@@ -1,4 +1,4 @@
-package algorithms.graph;
+package graph;
 
 import java.util.List;
 import java.util.Set;

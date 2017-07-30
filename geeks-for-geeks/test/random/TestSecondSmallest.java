@@ -1,16 +1,14 @@
-package algoritms.problems;
+package random;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import datastructures.util.InputUtil;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algorithms.problems.SecondSmallest;
-import datastructures.util.InputUtil;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class TestSecondSmallest {
     private static final String basePath = "input_files/problems/second_smallest/";

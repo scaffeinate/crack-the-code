@@ -1,4 +1,4 @@
-package algorithms.graph;
+package graph;
 
 import datastructures.util.InputUtil;
 import datastructures.graph.Edge;

@@ -1,7 +1,7 @@
 /**
  *
  */
-package algorithms.problems;
+package random;
 
 import java.util.Arrays;
 

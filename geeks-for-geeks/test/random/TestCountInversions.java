@@ -1,9 +1,8 @@
 /**
  *
  */
-package algoritms.problems;
+package random;
 
-import algorithms.problems.CountInversions;
 import datastructures.util.InputUtil;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

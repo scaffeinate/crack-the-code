@@ -1,4 +1,4 @@
-package algorithms.problems;
+package random;
 
 public class SecondSmallest {
     public int fetchSecondSmallest(int[] arr) {
