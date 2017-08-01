@@ -16,9 +16,9 @@ public class MaximumSumNonAdjacent {
 
     public int maxSumBottomUp(int[] arr) {
         int[] memo = new int[arr.length + 1];
-        memo[1] = arr[0];
+        memo[1] = Math.max(0, arr[0]);
         for (int i = 2; i < memo.length; i++) {
-            memo[i] = Math.max(memo[i - 1], arr[i - 1] + memo[i - 2]);
+            memo[i] = Math.max(arr[i - 1], Math.max(memo[i - 1], arr[i - 1] + memo[i - 2]));
         }
         return memo[arr.length];
     }
