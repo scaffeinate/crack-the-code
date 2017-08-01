@@ -5,7 +5,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 /**
  * Created by sudharti on 8/1/17.
@@ -64,9 +64,12 @@ public class TestMaximumSumRectangularSubMatrix {
     }
 
     private void assertMaxSumRectangularSubMatrix(String[] values) {
-        int expected = Integer.parseInt(values[1]);
         String[] arrValues = values[0].split(",");
         int[][] matrix = new int[arrValues.length][];
+        String[] expectedValues = values[1].split(",");
+        int[] expected = new int[expectedValues.length];
+
+        for (int i = 0; i < expectedValues.length; i++) expected[i] = Integer.parseInt(expectedValues[i]);
 
         for (int i = 0; i < arrValues.length; i++) {
             String[] elements = arrValues[i].split(":");
@@ -77,6 +80,6 @@ public class TestMaximumSumRectangularSubMatrix {
             matrix[i] = row;
         }
 
-        assertEquals(expected, maxSumRectSubMatrix.maximumSum(matrix));
+        assertArrayEquals(expected, maxSumRectSubMatrix.maximumSum(matrix));
     }
 }
