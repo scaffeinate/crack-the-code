@@ -73,5 +73,6 @@ public class TestMaximumSumNonAdjacent {
         }
 
         assertEquals(expected, maxSumNonAdj.maxSum(arr));
+        assertEquals(expected, maxSumNonAdj.maxSumBottomUp(arr));
     }
 }
