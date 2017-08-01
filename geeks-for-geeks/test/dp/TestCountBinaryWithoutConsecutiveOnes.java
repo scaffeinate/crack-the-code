@@ -63,6 +63,12 @@ public class TestCountBinaryWithoutConsecutiveOnes {
         assertCountBinaryWithoutConsecutiveOnes(values);
     }
 
+    @Test
+    public void testCountBinaryWithoutConsecutiveOnesTestCase7() {
+        String[] values = input[6].split(" ");
+        assertCountBinaryWithoutConsecutiveOnes(values);
+    }
+
     private void assertCountBinaryWithoutConsecutiveOnes(String[] values) {
         int N = Integer.parseInt(values[0]);
         int expected = Integer.parseInt(values[1]);
