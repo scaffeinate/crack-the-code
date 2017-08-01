@@ -63,6 +63,12 @@ public class TestMaximumSumNonAdjacent {
         assertMaxSumIncreasingSubseq(values);
     }
 
+    @Test
+    public void testMaximumSumNonAdjacentTestCase7() {
+        String[] values = input[6].split(" ");
+        assertMaxSumIncreasingSubseq(values);
+    }
+
     private void assertMaxSumIncreasingSubseq(String[] values) {
         int expected = Integer.parseInt(values[1]);
         String[] arrValues = values[0].split(",");
