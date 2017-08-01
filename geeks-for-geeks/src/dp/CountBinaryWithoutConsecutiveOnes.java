@@ -25,4 +25,14 @@ public class CountBinaryWithoutConsecutiveOnes {
         }
         return memo[N][i];
     }
+
+    public int countBottomUp(int N) {
+        int a = 1, b = 1, c = 0;
+        for (int i = 1; i <= N; i++) {
+            c = a + b;
+            a = b;
+            b = c;
+        }
+        return c;
+    }
 }

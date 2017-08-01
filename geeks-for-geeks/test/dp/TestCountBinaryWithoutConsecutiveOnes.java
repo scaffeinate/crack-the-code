@@ -74,5 +74,6 @@ public class TestCountBinaryWithoutConsecutiveOnes {
         int expected = Integer.parseInt(values[1]);
 
         assertEquals(expected, countBinary.count(N));
+        assertEquals(expected, countBinary.countBottomUp(N));
     }
 }
