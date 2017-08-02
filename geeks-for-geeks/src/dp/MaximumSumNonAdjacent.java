@@ -2,6 +2,7 @@ package dp;
 
 /**
  * Question: http://www.geeksforgeeks.org/maximum-sum-such-that-no-two-elements-are-adjacent/
+ * Solution: https://www.youtube.com/watch?v=UtGtF6nc35g
  */
 public class MaximumSumNonAdjacent {
     public int maxSum(int[] arr) {
