@@ -9,7 +9,6 @@ import static junit.framework.TestCase.assertEquals;
 
 public class TestMinJumpsToEnd {
     private static String inputFile = "input_files/dp/min_jumps_to_end/test_case";
-    ;
     private static String[] input = null;
     private static MinJumpsToEnd minJumpsToEnd = null;
 
@@ -55,10 +54,9 @@ public class TestMinJumpsToEnd {
         String[] inputArr = input.split(" ");
         String[] values = inputArr[0].split(",");
         int[] nums = new int[values.length];
-        for(int i = 0; i < values.length; i++) {
+        for (int i = 0; i < values.length; i++) {
             nums[i] = Integer.parseInt(values[i]);
         }
-        System.out.println(nums.length);
 
         assertEquals(Integer.parseInt(inputArr[1]), minJumpsToEnd.minJumps(nums));
         assertEquals(Integer.parseInt(inputArr[1]), minJumpsToEnd.minJumpsBottomUp(nums));
