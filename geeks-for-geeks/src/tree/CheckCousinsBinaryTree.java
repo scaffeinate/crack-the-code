@@ -1,25 +1,22 @@
-package binarytree;
+package tree;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
-import java.util.Queue;
 
 import datastructures.tree.BinaryTree;
 import datastructures.tree.TreeNode;
 
 /**
- * Question:
- * http://www.geeksforgeeks.org/count-half-nodes-in-a-binary-tree-iterative-and-recursive/
+ * Question: http://www.geeksforgeeks.org/?p=130442
  *
  * @author Sudharsanan Muralidharan
  */
-public class CountHalfNodesBinaryTree {
+public class CheckCousinsBinaryTree {
     private BinaryTree<Integer> tree = null;
     private Map<Integer, TreeNode<Integer>> nodesMap = null;
     private TreeNode<Integer> root = null;
 
-    public CountHalfNodesBinaryTree() {
+    public CheckCousinsBinaryTree() {
         tree = new BinaryTree<Integer>();
         nodesMap = new HashMap<Integer, TreeNode<Integer>>();
     }
@@ -59,41 +56,46 @@ public class CountHalfNodesBinaryTree {
         nodesMap.put(nodeVal, tree.insert(parentNode, node, isLeft));
     }
 
-    public int countHalfNodes() {
-        return countHalfNodes(root);
+    public boolean checkCousins(int node1Val, int node2Val) {
+        return this.checkCousins(this.root, null, 0, node1Val, node2Val).cousins;
     }
 
-    public int countHalfNodesIterative() {
-        int count = 0;
-        Queue<TreeNode<Integer>> queue = new LinkedList<TreeNode<Integer>>();
-        queue.add(root);
-
-        while (!queue.isEmpty()) {
-            TreeNode<Integer> current = queue.poll();
-            boolean halfNode = false;
-
-            if (current.left != null) {
-                queue.add(current.left);
-                halfNode = !halfNode;
-            }
-
-            if (current.right != null) {
-                queue.add(current.right);
-                halfNode = !halfNode;
-            }
-
-            count += halfNode ? 1 : 0;
+    private TreeNodeWrapper<Integer> checkCousins(TreeNode<Integer> root, TreeNode<Integer> parent, int level,
+                                                  int node1Val, int node2Val) {
+        if (root == null) {
+            return null;
         }
 
-        return count;
+        if (root.data == node1Val || root.data == node2Val) {
+            return new TreeNodeWrapper<Integer>(parent, level);
+        }
+
+        TreeNodeWrapper<Integer> leftWrapper = checkCousins(root.left, root, level + 1, node1Val, node2Val);
+        TreeNodeWrapper<Integer> rightWrapper = checkCousins(root.right, root, level + 1, node1Val, node2Val);
+
+        if (leftWrapper != null && rightWrapper != null) {
+            return new TreeNodeWrapper<Integer>(
+                    !(leftWrapper.parent).equals(rightWrapper.parent) && leftWrapper.level == rightWrapper.level);
+        } else if (leftWrapper != null || rightWrapper != null) {
+            return (leftWrapper == null) ? rightWrapper : leftWrapper;
+        }
+
+        return null;
     }
 
-    private int countHalfNodes(TreeNode<Integer> root) {
-        if (root == null || (root.left == null && root.right == null)) {
-            return 0;
-        } else {
-            int numHalfNodes = (root.left == null || root.right == null) ? 1 : 0;
-            return countHalfNodes(root.left) + countHalfNodes(root.right) + numHalfNodes;
+    @SuppressWarnings("hiding")
+    class TreeNodeWrapper<Integer> {
+        TreeNode<Integer> parent;
+        int level = 0;
+        boolean cousins = false;
+
+        TreeNodeWrapper(boolean cousins) {
+            this.cousins = cousins;
+        }
+
+        TreeNodeWrapper(TreeNode<Integer> parent, int level) {
+            this.parent = parent;
+            this.level = level;
         }
     }
 }

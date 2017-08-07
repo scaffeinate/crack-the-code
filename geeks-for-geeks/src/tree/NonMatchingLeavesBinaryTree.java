@@ -1,4 +1,4 @@
-package binarytree;
+package tree;
 
 import java.util.ArrayList;
 import java.util.HashSet;

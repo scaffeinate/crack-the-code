@@ -1,4 +1,4 @@
-package binarytree;
+package tree;
 
 import static org.junit.Assert.assertArrayEquals;
 
@@ -13,7 +13,7 @@ import datastructures.util.InputUtil;
 import datastructures.tree.BinaryTree;
 
 public class TestNonMatchingLeavesBinaryTree {
-    private static final String basePath = "input_files/binarytree/non_matching_leaves/";
+    private static final String basePath = "input_files/tree/non_matching_leaves/";
     private static String[] testCases = new String[]{"test_case_1.1", "test_case_1.2", "test_case_2.1", "test_case_2.2",
             "test_case_3.1", "test_case_3.2"};
     private static List<String[]> inputList = new ArrayList<String[]>();

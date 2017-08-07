@@ -1,4 +1,4 @@
-package binarytree;
+package tree;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
@@ -14,7 +14,7 @@ import org.junit.Test;
 import datastructures.util.InputUtil;
 
 public class TestFullNodesBinaryTree {
-    private static final String basePath = "input_files/binarytree/full_nodes/";
+    private static final String basePath = "input_files/tree/full_nodes/";
     private static String[] testCases = new String[]{"test_case_1", "test_case_2", "test_case_3", "test_case_4"};
     private static List<String[]> inputList = new ArrayList<String[]>();
     private static FullNodesInBinaryTree fullNodesBinaryTree = null;

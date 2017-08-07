@@ -1,6 +1,5 @@
-package binarytree;
+package tree;
 
-import datastructures.lists.LinkedListNode;
 import datastructures.tree.BinaryTree;
 import datastructures.tree.TreeNode;
 import datastructures.util.BinaryTreeUtil;
@@ -8,11 +7,11 @@ import datastructures.util.BinaryTreeUtil;
 /**
  * Question: http://www.geeksforgeeks.org/convert-given-binary-tree-doubly-linked-list-set-3/
  */
-public class ConvertBinaryTreeDoublyLinkedList {
+public class ConvertBinaryTreeDoublyLinkedList2 {
     private BinaryTree<Integer> tree = null;
     private TreeNode<Integer> root = null;
 
-    public ConvertBinaryTreeDoublyLinkedList() {
+    public ConvertBinaryTreeDoublyLinkedList2() {
         tree = new BinaryTree<Integer>();
     }
 
@@ -23,32 +22,30 @@ public class ConvertBinaryTreeDoublyLinkedList {
 
     public Wrapper convert() {
         Wrapper wrapper = new Wrapper();
-        convert(this.root, wrapper);
+        convert(root, wrapper);
         return wrapper;
     }
 
     private void convert(TreeNode<Integer> root, Wrapper wrapper) {
         if (root != null) {
             convert(root.left, wrapper);
-            addToLinkedList(root, wrapper);
+            makeLink(root, wrapper);
             convert(root.right, wrapper);
         }
     }
 
-    private void addToLinkedList(TreeNode<Integer> root, Wrapper wrapper) {
-        LinkedListNode<Integer> node = new LinkedListNode<Integer>(root.data);
+    private void makeLink(TreeNode<Integer> root, Wrapper wrapper) {
         if (wrapper.head == null) {
-            wrapper.head = node;
-            wrapper.tail = node;
+            wrapper.head = root;
+            wrapper.tail = root;
         } else {
-            wrapper.tail.next = node;
-            node.prev = wrapper.tail;
-            wrapper.tail = node;
+            wrapper.tail.right = root;
+            root.left = wrapper.tail;
+            wrapper.tail = root;
         }
     }
 
     class Wrapper {
-        LinkedListNode<Integer> head = null;
-        LinkedListNode<Integer> tail = null;
+        TreeNode<Integer> head, tail;
     }
 }

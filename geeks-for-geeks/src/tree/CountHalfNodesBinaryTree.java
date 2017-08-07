@@ -1,23 +1,25 @@
-package binarytree;
-
-import java.util.HashMap;
-import java.util.Map;
+package tree;
 
 import datastructures.tree.BinaryTree;
 import datastructures.tree.TreeNode;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+
 /**
  * Question:
- * http://www.geeksforgeeks.org/maximum-difference-between-node-and-its-ancestor-in-binary-tree/
+ * http://www.geeksforgeeks.org/count-half-nodes-in-a-binary-tree-iterative-and-recursive/
  *
  * @author Sudharsanan Muralidharan
  */
-public class MaxDifferenceNodeAncestor {
+public class CountHalfNodesBinaryTree {
     private BinaryTree<Integer> tree = null;
     private Map<Integer, TreeNode<Integer>> nodesMap = null;
     private TreeNode<Integer> root = null;
 
-    public MaxDifferenceNodeAncestor() {
+    public CountHalfNodesBinaryTree() {
         tree = new BinaryTree<Integer>();
         nodesMap = new HashMap<Integer, TreeNode<Integer>>();
     }
@@ -57,23 +59,41 @@ public class MaxDifferenceNodeAncestor {
         nodesMap.put(nodeVal, tree.insert(parentNode, node, isLeft));
     }
 
-    public int maximumDifference() {
-        return maximumDifference(root, Integer.MIN_VALUE, Integer.MIN_VALUE);
+    public int countHalfNodes() {
+        return countHalfNodes(root);
     }
 
-    private int maximumDifference(TreeNode<Integer> root, int maxAncestor, int maxDiff) {
-        if (root == null) {
-            return Integer.MIN_VALUE;
+    public int countHalfNodesIterative() {
+        int count = 0;
+        Queue<TreeNode<Integer>> queue = new LinkedList<TreeNode<Integer>>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode<Integer> current = queue.poll();
+            boolean halfNode = false;
+
+            if (current.left != null) {
+                queue.add(current.left);
+                halfNode = !halfNode;
+            }
+
+            if (current.right != null) {
+                queue.add(current.right);
+                halfNode = !halfNode;
+            }
+
+            count += halfNode ? 1 : 0;
         }
 
-        if (maxAncestor != Integer.MIN_VALUE) {
-            maxDiff = Math.max((maxAncestor - root.data), maxDiff);
+        return count;
+    }
+
+    private int countHalfNodes(TreeNode<Integer> root) {
+        if (root == null || (root.left == null && root.right == null)) {
+            return 0;
+        } else {
+            int numHalfNodes = (root.left == null || root.right == null) ? 1 : 0;
+            return countHalfNodes(root.left) + countHalfNodes(root.right) + numHalfNodes;
         }
-
-        maxAncestor = Math.max(root.data, maxAncestor);
-        maxDiff = Math.max(maximumDifference(root.left, maxAncestor, maxDiff), maxDiff);
-        maxDiff = Math.max(maximumDifference(root.right, maxAncestor, maxDiff), maxDiff);
-
-        return maxDiff;
     }
 }

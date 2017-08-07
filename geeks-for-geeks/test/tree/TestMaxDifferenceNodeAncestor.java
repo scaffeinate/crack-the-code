@@ -1,4 +1,4 @@
-package binarytree;
+package tree;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,7 +12,7 @@ import org.junit.Test;
 import datastructures.util.InputUtil;
 
 public class TestMaxDifferenceNodeAncestor {
-    private static final String basePath = "input_files/binarytree/max_diff_node_ancestor/";
+    private static final String basePath = "input_files/tree/max_diff_node_ancestor/";
     private static String[] testCases = new String[]{"test_case_1", "test_case_2", "test_case_3", "test_case_4"};
     private static List<String[]> inputList = new ArrayList<String[]>();
     private static MaxDifferenceNodeAncestor maxDiffNodeAncestor = null;

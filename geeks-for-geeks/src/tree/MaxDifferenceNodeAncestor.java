@@ -1,4 +1,4 @@
-package binarytree;
+package tree;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,16 +7,17 @@ import datastructures.tree.BinaryTree;
 import datastructures.tree.TreeNode;
 
 /**
- * Question: http://www.geeksforgeeks.org/?p=130442
+ * Question:
+ * http://www.geeksforgeeks.org/maximum-difference-between-node-and-its-ancestor-in-binary-tree/
  *
  * @author Sudharsanan Muralidharan
  */
-public class CheckCousinsBinaryTree {
+public class MaxDifferenceNodeAncestor {
     private BinaryTree<Integer> tree = null;
     private Map<Integer, TreeNode<Integer>> nodesMap = null;
     private TreeNode<Integer> root = null;
 
-    public CheckCousinsBinaryTree() {
+    public MaxDifferenceNodeAncestor() {
         tree = new BinaryTree<Integer>();
         nodesMap = new HashMap<Integer, TreeNode<Integer>>();
     }
@@ -56,46 +57,23 @@ public class CheckCousinsBinaryTree {
         nodesMap.put(nodeVal, tree.insert(parentNode, node, isLeft));
     }
 
-    public boolean checkCousins(int node1Val, int node2Val) {
-        return this.checkCousins(this.root, null, 0, node1Val, node2Val).cousins;
+    public int maximumDifference() {
+        return maximumDifference(root, Integer.MIN_VALUE, Integer.MIN_VALUE);
     }
 
-    private TreeNodeWrapper<Integer> checkCousins(TreeNode<Integer> root, TreeNode<Integer> parent, int level,
-                                                  int node1Val, int node2Val) {
+    private int maximumDifference(TreeNode<Integer> root, int maxAncestor, int maxDiff) {
         if (root == null) {
-            return null;
+            return Integer.MIN_VALUE;
         }
 
-        if (root.data == node1Val || root.data == node2Val) {
-            return new TreeNodeWrapper<Integer>(parent, level);
+        if (maxAncestor != Integer.MIN_VALUE) {
+            maxDiff = Math.max((maxAncestor - root.data), maxDiff);
         }
 
-        TreeNodeWrapper<Integer> leftWrapper = checkCousins(root.left, root, level + 1, node1Val, node2Val);
-        TreeNodeWrapper<Integer> rightWrapper = checkCousins(root.right, root, level + 1, node1Val, node2Val);
+        maxAncestor = Math.max(root.data, maxAncestor);
+        maxDiff = Math.max(maximumDifference(root.left, maxAncestor, maxDiff), maxDiff);
+        maxDiff = Math.max(maximumDifference(root.right, maxAncestor, maxDiff), maxDiff);
 
-        if (leftWrapper != null && rightWrapper != null) {
-            return new TreeNodeWrapper<Integer>(
-                    !(leftWrapper.parent).equals(rightWrapper.parent) && leftWrapper.level == rightWrapper.level);
-        } else if (leftWrapper != null || rightWrapper != null) {
-            return (leftWrapper == null) ? rightWrapper : leftWrapper;
-        }
-
-        return null;
-    }
-
-    @SuppressWarnings("hiding")
-    class TreeNodeWrapper<Integer> {
-        TreeNode<Integer> parent;
-        int level = 0;
-        boolean cousins = false;
-
-        TreeNodeWrapper(boolean cousins) {
-            this.cousins = cousins;
-        }
-
-        TreeNodeWrapper(TreeNode<Integer> parent, int level) {
-            this.parent = parent;
-            this.level = level;
-        }
+        return maxDiff;
     }
 }

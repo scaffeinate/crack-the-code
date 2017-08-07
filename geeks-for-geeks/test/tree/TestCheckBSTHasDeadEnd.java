@@ -1,4 +1,4 @@
-package binarytree;
+package tree;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,7 +12,7 @@ import org.junit.Test;
 import datastructures.util.InputUtil;
 
 public class TestCheckBSTHasDeadEnd {
-    private static final String basePath = "input_files/binarytree/check_bst_has_dead_end/";
+    private static final String basePath = "input_files/tree/check_bst_has_dead_end/";
     private static String[] testCases = new String[]{"test_case_1", "test_case_2", "test_case_3", "test_case_4"};
     private static List<String[]> inputList = new ArrayList<String[]>();
     private static CheckBSTHasDeadEnd checkBSTHasDeadEnd = null;

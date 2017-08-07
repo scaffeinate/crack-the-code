@@ -1,4 +1,4 @@
-package binarytree;
+package tree;
 
 import datastructures.util.InputUtil;
 import org.junit.*;
@@ -9,7 +9,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class TestLargestBST {
-    private static final String basePath = "input_files/binarytree/largest_bst/";
+    private static final String basePath = "input_files/tree/largest_bst/";
     private static String[] testCases = new String[]{"test_case_1", "test_case_2"};
     private static List<String[]> inputList = new ArrayList<String[]>();
     private LargestBST largestBST = null;

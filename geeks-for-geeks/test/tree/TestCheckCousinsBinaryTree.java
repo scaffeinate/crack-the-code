@@ -1,18 +1,17 @@
-package binarytree;
+package tree;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import datastructures.util.InputUtil;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import datastructures.util.InputUtil;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class TestCheckCousinsBinaryTree {
-    private static final String basePath = "input_files/binarytree/check_cousins_binary_tree/";
+    private static final String basePath = "input_files/tree/check_cousins_binary_tree/";
     private static String[] testCases = new String[]{"test_case_1", "test_case_2"};
     private static List<String[]> inputList = new ArrayList<String[]>();
     private static CheckCousinsBinaryTree checkBinaryTree = null;

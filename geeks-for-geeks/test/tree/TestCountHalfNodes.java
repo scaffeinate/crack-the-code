@@ -1,4 +1,4 @@
-package binarytree;
+package tree;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,15 +11,15 @@ import org.junit.Test;
 
 import datastructures.util.InputUtil;
 
-public class TestLCABinaryTree {
-    private static final String basePath = "input_files/binarytree/lca/";
+public class TestCountHalfNodes {
+    private static final String basePath = "input_files/tree/count_half_nodes/";
     private static String[] testCases = new String[]{"test_case_1", "test_case_2", "test_case_3", "test_case_4"};
     private static List<String[]> inputList = new ArrayList<String[]>();
-    private static LCABinaryTree lcaBinaryTree = null;
+    private static CountHalfNodesBinaryTree countHalfNodesBinaryTree = null;
 
     @BeforeClass
     public static void setup() {
-        lcaBinaryTree = new LCABinaryTree();
+        countHalfNodesBinaryTree = new CountHalfNodesBinaryTree();
         for (String testCase : testCases) {
             String inputFile = basePath + testCase;
             inputList.add(InputUtil.readContents(inputFile));
@@ -28,44 +28,41 @@ public class TestLCABinaryTree {
 
     @AfterClass
     public static void teardown() {
-        lcaBinaryTree = null;
+        countHalfNodesBinaryTree = null;
         inputList = null;
     }
 
     @Test
-    public void testLCABinaryTree1() {
+    public void testCountHalfNodesBinaryTreeTestCase1() {
         String[] input = inputList.get(0);
-        assertLCA(input);
+        assertCountHalfNodes(input);
     }
 
     @Test
-    public void testLCABinaryTree2() {
+    public void testCountHalfNodesBinaryTreeTestCase2() {
         String[] input = inputList.get(1);
-        assertLCA(input);
+        assertCountHalfNodes(input);
     }
 
     @Test
-    public void testLCABinaryTree3() {
+    public void testCountHalfNodesBinaryTreeTestCase3() {
         String[] input = inputList.get(2);
-        assertLCA(input);
+        assertCountHalfNodes(input);
     }
 
     @Test
-    public void testLCABinaryTree4() {
+    public void testCountHalfNodesBinaryTreeTestCase4() {
         String[] input = inputList.get(3);
-        assertLCA(input);
+        assertCountHalfNodes(input);
     }
 
-    private void assertLCA(String[] input) {
-        lcaBinaryTree.constructTree(input);
-        int expected = 0;
+    private void assertCountHalfNodes(String[] input) {
+        countHalfNodesBinaryTree.constructTree(input);
         for (String line : input) {
             String[] values = line.split(" ");
-            if (values[0].equals("lca")) {
-                expected = Integer.parseInt(values[3]);
-                int output = lcaBinaryTree.lca(Integer.parseInt(values[1]), Integer.parseInt(values[2])).data;
-                assertEquals(expected, output);
-                break;
+            if (values[0].equals("count")) {
+                assertEquals(Integer.parseInt(values[1]), countHalfNodesBinaryTree.countHalfNodes());
+                assertEquals(Integer.parseInt(values[1]), countHalfNodesBinaryTree.countHalfNodesIterative());
             }
         }
     }

@@ -1,18 +1,17 @@
-package binarytree;
+package tree;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import datastructures.util.InputUtil;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import datastructures.util.InputUtil;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class TestCheckSortedSubSequenceBST {
-    private static final String basePath = "input_files/binarytree/check_sorted_subsequence_bst/";
+    private static final String basePath = "input_files/tree/check_sorted_subsequence_bst/";
     private static String[] testCases = new String[]{"test_case_1", "test_case_2", "test_case_3"};
     private static List<String[]> inputList = new ArrayList<String[]>();
     private static CheckSortedSubSequenceBST checkSubSeq = null;

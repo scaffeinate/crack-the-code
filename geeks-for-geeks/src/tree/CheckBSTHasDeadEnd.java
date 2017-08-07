@@ -1,4 +1,4 @@
-package binarytree;
+package tree;
 
 import datastructures.tree.BinarySearchTree;
 import datastructures.tree.TreeNode;

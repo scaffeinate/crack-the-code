@@ -1,4 +1,4 @@
-package binarytree;
+package tree;
 
 import datastructures.tree.BinaryTree;
 import datastructures.tree.TreeNode;
