@@ -54,6 +54,11 @@ public class TestSmallestSubTreeDeepestNodes {
         assertSmallestSubTreeDeepestNodes(input[4]);
     }
 
+    @Test
+    public void testSmallestSubTreeDeepestNodesTestCase6() {
+        assertSmallestSubTreeDeepestNodes(input[5]);
+    }
+
     private void assertSmallestSubTreeDeepestNodes(String input) {
         String[] values = input.split("\\|");
         MultiTreeNode root = constructTree(values[0]);
