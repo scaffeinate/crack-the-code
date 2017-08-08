@@ -40,25 +40,18 @@ public class MergeSort<T> extends Sort<T> {
         while (i < n && j < m) {
             int compare = compare(left[i], right[j]);
             if (compare < 0) {
-                result[k] = left[i];
-                i++;
+                result[k++] = left[i++];
             } else {
-                result[k] = right[j];
-                j++;
+                result[k++] = right[j++];
             }
-            k++;
         }
 
         while (i < n) {
-            result[k] = left[i];
-            i++;
-            k++;
+            result[k++] = left[i++];
         }
 
         while (j < m) {
-            result[k] = right[j];
-            j++;
-            k++;
+            result[k++] = right[j++];
         }
 
         return result;
