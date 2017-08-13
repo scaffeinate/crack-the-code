@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -62,6 +63,24 @@ public class TestSparseMatrix {
             assertEquals(expected.get(i).i, asLinkedList.get(i).i);
             assertEquals(expected.get(i).j, asLinkedList.get(i).j);
             assertEquals(expected.get(i).value, asLinkedList.get(i).value);
+        }
+
+        List<List<Integer[]>> asListOfLists = SparseMatrix.asListOfLists(matrix);
+        for (int i = 0, k = 0; i < asListOfLists.size(); i++) {
+            List<Integer[]> list = asListOfLists.get(i);
+            for (int j = 0; j < list.size(); j++) {
+                assertEquals(expected.get(k).i, i);
+                assertEquals(expected.get(k).j, (int) list.get(j)[0]);
+                assertEquals(expected.get(k).value, (int) list.get(j)[1]);
+                k++;
+            }
+        }
+
+        Map<SparseMatrix.Cell, Integer> asDictionary = SparseMatrix.asDictionaryOfKeys(matrix);
+        for (int i = 0; i < expected.size(); i++) {
+            SparseMatrix.MatrixElement element = expected.get(i);
+            SparseMatrix.Cell cell = new SparseMatrix.Cell(element.i, element.j);
+            assertEquals(Integer.valueOf(element.value), asDictionary.get(cell));
         }
     }
 }
