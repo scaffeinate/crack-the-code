@@ -16,22 +16,35 @@ import static org.junit.Assert.assertEquals;
  * Created by sudharti on 8/12/17.
  */
 public class TestSparseMatrix {
-    private static String inputFile = "input_files/matrix/sparse_matrix/test_case";
-    private static String[] input = null;
+    private static final String basePath = "input_files/matrix/sparse_matrix/";
+    private static final String[] testCases = new String[]{"test_case_1", "test_case_2", "test_case_3"};
+    private static List<String[]> inputList = new ArrayList<>();
 
     @BeforeClass
     public static void setup() {
-        input = InputUtil.readContents(inputFile);
+        for (String testCase:testCases) {
+            inputList.add(InputUtil.readContents(basePath + testCase));
+        }
     }
 
     @AfterClass
     public static void teardown() {
-        input = null;
+        inputList = null;
     }
 
     @Test
     public void testCircularMatrixTestCase1() {
-        assertSparseMatrix(input);
+        assertSparseMatrix(inputList.get(0));
+    }
+
+    @Test
+    public void testCircularMatrixTestCase2() {
+        assertSparseMatrix(inputList.get(1));
+    }
+
+    @Test
+    public void testCircularMatrixTestCase3() {
+        assertSparseMatrix(inputList.get(2));
     }
 
     private void assertSparseMatrix(String[] values) {
