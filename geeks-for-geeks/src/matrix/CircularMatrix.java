@@ -1,4 +1,4 @@
-package random;
+package matrix;
 
 /**
  * Question: http://www.geeksforgeeks.org/?p=141853

@@ -1,15 +1,14 @@
-package random;
+package matrix;
 
+import datastructures.util.InputUtil;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
 
-import datastructures.util.InputUtil;
-
 public class TestCircularMatrix {
-    private static String inputFile = "input_files/random/circular_matrix/test_case";
+    private static String inputFile = "input_files/matrix/circular_matrix/test_case";
     private static String[] input = null;
 
     @BeforeClass
