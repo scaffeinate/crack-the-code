@@ -52,7 +52,7 @@ public class TestFractionalKnapsack {
     private void assertFractionalKnapsack(String input) {
         String[] values = input.split(" ");
         String[] arrValues = values[0].split(",");
-        int[][] arr = new int[arrValues.length][2];
+        Integer[][] arr = new Integer[arrValues.length][2];
 
         for (int i = 0; i < arrValues.length; i++) {
             String[] temp = arrValues[i].split(":");

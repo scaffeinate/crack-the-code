@@ -7,25 +7,18 @@ import java.util.*;
  * Solution: http://www.geeksforgeeks.org/fractional-knapsack-problem/
  */
 public class FractionalKnapsack {
-    public static double maxValue(int[][] items, int W) {
-        double currentCapacity = 0, maxValue = 0;
-        Map<Integer, Double> pricePerPound = new HashMap<>();
+    public static double maxValue(Integer[][] items, int W) {
+        int currentCapacity = 0;
+        double maxValue = 0;
+        Arrays.sort(items, (o1, o2) -> Double.valueOf(((double) o2[1] / o2[0])).compareTo((double) o1[1] / o1[0]));
+
         for (int i = 0; i < items.length; i++) {
-            pricePerPound.put(i, ((double) items[i][1]) / items[i][0]);
-        }
-
-        Set<Map.Entry<Integer, Double>> entrySet = pricePerPound.entrySet();
-        List<Map.Entry<Integer, Double>> entryList = new ArrayList<>(entrySet);
-        Collections.sort(entryList, (o1, o2) -> o2.getValue().compareTo(o1.getValue()));
-
-        for (Map.Entry<Integer, Double> entry : entryList) {
-            int index = entry.getKey();
-            int numPounds = items[index][0];
+            int numPounds = items[i][0];
             if ((currentCapacity + numPounds) <= W) {
                 currentCapacity += numPounds;
-                maxValue += (items[index][1]);
+                maxValue += (items[i][1]);
             } else {
-                maxValue += (entry.getValue() * (W - currentCapacity));
+                maxValue += (((double) items[i][1]/items[i][0]) * (W - currentCapacity));
                 break;
             }
         }
