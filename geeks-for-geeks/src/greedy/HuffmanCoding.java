@@ -11,6 +11,7 @@ public class HuffmanCoding {
 
     public String encode(String s) {
         StringBuilder builder = new StringBuilder();
+        Vector<BitSet> vector = new Vector<BitSet>();
         Map<Character, HuffmanTreeNode> freqMap = new HashMap<>();
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
