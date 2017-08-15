@@ -4,10 +4,12 @@ import java.util.*;
 import java.util.Map.Entry;
 
 /**
- * Created by sudharti on 8/14/17.
+ * Question: http://www.geeksforgeeks.org/greedy-algorithms-set-3-huffman-coding/
  */
 public class HuffmanCoding {
-    public static String encode(String s) {
+    HuffmanTreeNode root = null;
+
+    public String encode(String s) {
         StringBuilder builder = new StringBuilder();
         Map<Character, HuffmanTreeNode> freqMap = new HashMap<>();
         for (int i = 0; i < s.length(); i++) {
@@ -24,7 +26,7 @@ public class HuffmanCoding {
             queue.offer(entry.getValue());
         }
 
-        HuffmanTreeNode root = constructHuffmanTree(queue);
+        this.root = constructHuffmanTree(queue);
         Map<Character, String> encodings = new HashMap<>();
         findEncodings(root, new StringBuilder(), encodings);
 
@@ -36,7 +38,25 @@ public class HuffmanCoding {
     }
 
 
-    private static void findEncodings(HuffmanTreeNode root, StringBuilder builder, Map<Character, String> encodings) {
+    public String decode(String encoded) {
+        StringBuilder builder = new StringBuilder();
+        HuffmanTreeNode current = this.root;
+        int i = 0;
+        while (i < encoded.length()) {
+            char c = encoded.charAt(i);
+            current = (c == '0') ? current.left : current.right;
+
+            if (current.left == null && current.right == null) {
+                builder.append(current.c);
+                current = this.root;
+            }
+
+            i++;
+        }
+        return builder.toString();
+    }
+
+    private void findEncodings(HuffmanTreeNode root, StringBuilder builder, Map<Character, String> encodings) {
         if (root == null) return;
         if (root.left == null && root.right == null) {
             encodings.put(root.c, builder.toString());
@@ -48,7 +68,7 @@ public class HuffmanCoding {
         }
     }
 
-    private static HuffmanTreeNode constructHuffmanTree(PriorityQueue<HuffmanTreeNode> queue) {
+    private HuffmanTreeNode constructHuffmanTree(PriorityQueue<HuffmanTreeNode> queue) {
         while (queue.size() > 1) {
             HuffmanTreeNode node = new HuffmanTreeNode();
             if (!queue.isEmpty()) {
