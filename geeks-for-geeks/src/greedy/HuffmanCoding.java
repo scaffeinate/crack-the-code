@@ -42,16 +42,23 @@ public class HuffmanCoding {
         StringBuilder builder = new StringBuilder();
         HuffmanTreeNode current = this.root;
         int i = 0;
-        while (i < encoded.length()) {
-            char c = encoded.charAt(i);
-            current = (c == '0') ? current.left : current.right;
-
-            if (current.left == null && current.right == null) {
-                builder.append(current.c);
-                current = this.root;
+        if (encoded.isEmpty()) {
+            while (i < root.freq) {
+                builder.append(root.c);
+                i++;
             }
+        } else {
+            while (i < encoded.length()) {
+                char c = encoded.charAt(i);
+                current = (c == '0') ? current.left : current.right;
 
-            i++;
+                if (current.left == null && current.right == null) {
+                    builder.append(current.c);
+                    current = this.root;
+                }
+
+                i++;
+            }
         }
         return builder.toString();
     }
